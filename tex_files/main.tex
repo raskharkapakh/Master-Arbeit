@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage[T1]{fontenc}
+
+\title{Master Thesis}
+\author{Gaspard Ulysse Fragnière}
+\date{August 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{How to \LaTeX}
+
+How to make a reference to a paper:\cite{grumiaux2022survey}
+
+
+\section{Literature review}
+
+\subsection{Introduction}
+
+\cite{grumiaux2022survey} is a survey of several methods for sound source localization (SSL). Tradiontionally, this problem has been tackled using Signal Processing based methods. But in the recent years, methods based on deep learning have been developped and showed better results than traditional approaches. Those methods have been compiled in this paper. The survey is organized in the different following sections:
+
+\begin{itemize}
+    \item \textbf{Section I}: Introduction
+    \item \textbf{Section II}: Acoustic Environment and Sound Source Configuration
+    \item \textbf{Section III}: Conventional SSL methods
+    \item \textbf{Section IV}: Neural Network Architectures for SSL
+    \item \textbf{Section V}: Input Features
+    \item \textbf{Section VI}: Outputs strategies
+    \item \textbf{Section VII}: Data
+    \begin{enumerate}
+        \item Synthetic Data
+        \item Real data
+        \item Data augmentation techniques
+    \end{enumerate}    
+        
+    \item \textbf{Section VIII}: Learning Strategies
+    \item \textbf{Section IX}: Conclusions and Perspectives
+    
+\end{itemize}
+
+We are interested in the section about Synthetic Data and Data augmentation. Indeed those sections can be used as a statring point for building the state of the art.Its goal is to answer the following questions:
+
+\begin{itemize}
+    \item Are there \textbf{existing methods} to generate virtually:
+    \begin{itemize}
+        \item measured time data (single channel/multi-channel)?
+        \item measured source spectra (single channel/multi-channel)?
+        \item measured cross-spectral matrices in stationary environments (multi-channel only)?
+        
+    \end{itemize}
+    \item What \textbf{measurement scenarios} are used in the literature (time-stationary/non-stationary sources, number of microphones, temporal dimensions... )?
+    \item What are the \textbf{existing setups} in multi-channel data generation with neural networks (conditioning variables, network architectures (convolutional, recurrent, Transformer,\dots), generative algorithms (GAN/VAE), \dots)
+\end{itemize}
+
+In \cite{grumiaux2022survey}, a few methods about data generation are introduced. The first one is the following: Simulate the Room Impulse Response (RIR) in order to simulate realistically room acoustics (e.g. reverberation). This can provide suited training data, since RIR for rooms of different size, different source prosition as well as different dry signals can be used for the training.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Bibliography
+\bibliography{mybib}
+\bibliographystyle{plain} 
+
+
+\end{document}
