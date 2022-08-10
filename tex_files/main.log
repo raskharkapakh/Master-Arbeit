@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.8.8)  10 AUG 2022 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.8.8)  10 AUG 2022 18:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -70,20 +70,20 @@ Overfull \hbox (25.69061pt too wide) in paragraph at lines 55--56
 []\T1/cmr/m/n/10 What \T1/cmr/bx/n/10 mea-sure-ment sce-nar-ios \T1/cmr/m/n/10 are used in the lit-er-a-ture (time-stationary/non-
  []
 
-(/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.bbl) [2] (/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.aux) ) 
+(/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.bbl [2]) [3] (/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.aux) ) 
 Here is how much of TeX's memory you used:
- 730 strings out of 481239
- 10374 string characters out of 5920378
- 240564 words of memory out of 5000000
- 16049 multiletter control sequences out of 15000+600000
+ 735 strings out of 481239
+ 10483 string characters out of 5920378
+ 241564 words of memory out of 5000000
+ 16054 multiletter control sequences out of 15000+600000
  542398 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 25i,6n,20p,514b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 25i,6n,20p,541b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on /home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.pdf (2 pages, 106101 bytes).
+Output written on /home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.pdf (3 pages, 116797 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 46 PDF objects out of 1000 (max. 8388607)
+ 33 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

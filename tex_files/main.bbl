@@ -1,10 +1,41 @@
 \begin{thebibliography}{1}
 
+\bibitem{deleforge2013variational}
+Antoine Deleforge, Florence Forbes, and Radu Horaud.
+\newblock Variational em for binaural sound-source separation and localization.
+\newblock In {\em 2013 IEEE International Conference on Acoustics, Speech and
+  Signal Processing}, pages 76--80. IEEE, 2013.
+
+\bibitem{deleforge2015co}
+Antoine Deleforge, Radu Horaud, Yoav~Y Schechner, and Laurent Girin.
+\newblock Co-localization of audio sources in images using binaural features
+  and locally-linear regression.
+\newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
+  Processing}, 23(4):718--731, 2015.
+
+\bibitem{gelderblom2021synthetic}
+Femke~B Gelderblom, Yi~Liu, Johannes Kvam, and Tor~Andre Myrvoll.
+\newblock Synthetic data for dnn-based doa estimation of indoor speech.
+\newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
+  Speech and Signal Processing (ICASSP)}, pages 4390--4394. IEEE, 2021.
+
 \bibitem{grumiaux2022survey}
 Pierre-Amaury Grumiaux, Sr{\dj}an Kiti{\'c}, Laurent Girin, and Alexandre
   Gu{\'e}rin.
 \newblock A survey of sound source localization with deep learning methods.
 \newblock {\em The Journal of the Acoustical Society of America},
   152(1):107--151, 2022.
+
+\bibitem{hubner2021efficient}
+Fabian H{\"u}bner, Wolfgang Mack, and Emanu{\"e}l~AP Habets.
+\newblock Efficient training data generation for phase-based doa estimation.
+\newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
+  Speech and Signal Processing (ICASSP)}, pages 456--460. IEEE, 2021.
+
+\bibitem{vargas2021improved}
+Elizabeth Vargas, James~R Hopgood, Keith Brown, and Kartic Subr.
+\newblock On improved training of cnn for acoustic source localisation.
+\newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
+  Processing}, 29:720--732, 2021.
 
 \end{thebibliography}
