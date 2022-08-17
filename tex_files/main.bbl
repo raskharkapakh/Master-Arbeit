@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{deleforge2013variational}
 Antoine Deleforge, Florence Forbes, and Radu Horaud.
@@ -13,11 +13,24 @@ Antoine Deleforge, Radu Horaud, Yoav~Y Schechner, and Laurent Girin.
 \newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
   Processing}, 23(4):718--731, 2015.
 
+\bibitem{engel2019gansynth}
+Jesse Engel, Kumar~Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue,
+  and Adam Roberts.
+\newblock Gansynth: Adversarial neural audio synthesis.
+\newblock {\em arXiv preprint arXiv:1902.08710}, 2019.
+
 \bibitem{gelderblom2021synthetic}
 Femke~B Gelderblom, Yi~Liu, Johannes Kvam, and Tor~Andre Myrvoll.
 \newblock Synthetic data for dnn-based doa estimation of indoor speech.
 \newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
   Speech and Signal Processing (ICASSP)}, pages 4390--4394. IEEE, 2021.
+
+\bibitem{gerstoft2020parametric}
+Peter Gerstoft, Herbert Groll, and Christoph~F Mecklenbr{\"a}uker.
+\newblock Parametric bootstrapping of array data with a generative adversarial
+  network.
+\newblock In {\em 2020 IEEE 11th Sensor Array and Multichannel Signal
+  Processing Workshop (SAM)}, pages 1--5. IEEE, 2020.
 
 \bibitem{grumiaux2022survey}
 Pierre-Amaury Grumiaux, Sr{\dj}an Kiti{\'c}, Laurent Girin, and Alexandre
@@ -31,6 +44,22 @@ Fabian H{\"u}bner, Wolfgang Mack, and Emanu{\"e}l~AP Habets.
 \newblock Efficient training data generation for phase-based doa estimation.
 \newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
   Speech and Signal Processing (ICASSP)}, pages 456--460. IEEE, 2021.
+
+\bibitem{NEURIPS2019_6804c9bc}
+Kundan Kumar, Rithesh Kumar, Thibault de~Boissiere, Lucas Gestin, Wei~Zhen
+  Teoh, Jose Sotelo, Alexandre de~Br\'{e}bisson, Yoshua Bengio, and Aaron~C
+  Courville.
+\newblock Melgan: Generative adversarial networks for conditional waveform
+  synthesis.
+\newblock In H.~Wallach, H.~Larochelle, A.~Beygelzimer, F.~d\textquotesingle
+  Alch\'{e}-Buc, E.~Fox, and R.~Garnett, editors, {\em Advances in Neural
+  Information Processing Systems}, volume~32. Curran Associates, Inc., 2019.
+
+\bibitem{neekhara2019expediting}
+Paarth Neekhara, Chris Donahue, Miller Puckette, Shlomo Dubnov, and Julian
+  McAuley.
+\newblock Expediting tts synthesis with adversarial vocoding.
+\newblock {\em arXiv preprint arXiv:1904.07944}, 2019.
 
 \bibitem{vargas2021improved}
 Elizabeth Vargas, James~R Hopgood, Keith Brown, and Kartic Subr.
