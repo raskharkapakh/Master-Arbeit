@@ -87,6 +87,17 @@ Paper read and not useful:
 
 In Bianco a VAE is used to perform SSL. The idea is the following: based on VAEs to encode the phase of the relative transfer function (RTF) between two microphones to a latent parametric distribution. The resulting model estimates DOA and generates RTF phase.
 
+VAEs learn from unlabeled data explicit latent codes for generating samples, and are
+inspiring examples of representation learning. 
+
+There is a link between DOA and RTF. Indeed, the RTF phase is encoded as a function of source azimuth (direction of arrival, DOA). Similarly as in \cite{gerstoft2020parametric}, the goal of the NN (GAN or VAE) is to learn the distribution of a a quantity that is a function of the DOA. 
+
+The experiments show, only \textbf{two labeled samples per DOA} permit the VAE-SSL to obtain better performance than SRP-PHAT (State of the art).
+
+\begin{itemize}
+    \item \textbf{in:} 
+    \item \textbf{out:} Relative Transfer Function (RTF)
+\end{itemize}
 what is RTF: TODO: continue
 
 \subsection{Neekhara}
@@ -125,13 +136,45 @@ Using a GAN approach and the NSythn datasets (Dataset of standardized notes from
 
 TODO: According to Adam, this paper is to generate spectogram and not audio wave form. $\rightarrow$ check again
 \begin{itemize}
+
     \item \textbf{in:} instruments note from datasets NSynth 
     \item \textbf{out:} instruments audio waveform.
 \end{itemize}
 
 \subsection{gerstoft}
 
-\cite{gerstoft2020parametric} is concerned with training a 
+\cite{gerstoft2020parametric} is concerned with training a GAN for generating audio based features. 
+
+In many array processing techniques (i.e. beamfroming) first compute the Sample Covariance Matrix (SCM). The idea of the (Wasserstein) GAN here is to generate many SCM. More specifically, the goal of the GAN is to learn the \textbf{joint} probability distribution function of the \textbf{observable data} (array data) and the \textbf{target variable} (Wasserstein distance). The wasserstein distance is a metric to measure distance between probability distribution on a given metric space.
+
+The idea is first to consider a model that describe relationship between \textbf{array data} and \textbf{DOA}. Using this model, another relationship betwen \textbf{CSM} and \textbf{array data} can be defined. Hence we have a mathematical relationship between \textbf{DOA} and \textbf{CSM}.
+
+\begin{itemize}
+    \item \textbf{in:} True Sample Covariance Matrix with DOA
+    \item \textbf{out:} Generator, i.e. probability distribution function
+\end{itemize}
+
+Idea: maybe it would be possible to generate for the pdf os SCM for several DOA. Moreover, a link between SCM and cross spectral matrix should be investigated.
+
+\subsection{Vera-Diaz}
+
+In ASL prblem, the source’s position can be estimated with at least three Time Difference of Arrival (TDoA) measurements with hyperbolic trilateration methods. Signals captured in everyday scenarios are contaminated with noise and multipath effects.
+Directly measuring TDoA in those cases is a diﬃcult task that produces inaccurate localization results.\cite{vera2021acoustic} is concerned with finding a way to denoise those signals. Other methods uses GCC instead of TDoA. SUch methods are more robust to noise and multipath effects, but not fully immune to it. 
+
+The contribution of this paper is a DNN named DeepGCC. This DNN takes as input a GCC(Generalized Cross Correlation) Matrix and estimates a Gaussian function. Then the SSL problem is solved by replacing the GCC typically used by DeepGCC(GCC) and then using a classical beamforming approach. 
+
+\begin{itemize}
+    \item \textbf{in:} GCC
+    \item \textbf{out:} (x,y,z)
+\end{itemize}
+
+$\rightarrow$ this is actually the inverse of what we want. Hence if we could reverse this nectwork, maybe we could do something of the following: 
+
+\begin{equation}
+    (x,y,z) \rightarrow GCC \rightarrow CSM
+\end{equation}
+
+Where the last step is done thanks to the relation between $GCC$ and $CSM$ via Fourier transform. 
 
 
 \subsection{Hübner}
@@ -176,7 +219,34 @@ yielded \textbf{comparable results} for phase-based DOA estimation
 when using \textbf{the proposed method and the computationally
 expensive source-image method for training data generation.}"
 
+\subsection{Difference between VAE and GAN}
+
+In the context of image generation:
+
+"GANs generally produce better photo-realistic images but can be difficult to work with. Conversely, VAEs are easier to train but don’t usually give the best results.
+
+I recommend picking VAEs if you don’t have a lot of time to experiment with GANs and photorealism isn’t paramount.
+
+There are exceptions such as Google’s VQ-VAE 2 which can compete with GANs for image quality and realism. There is also VAE-GAN and VQ-VAE-GAN.
+
+As a note, GANs and VAEs are not specifically for images and can be used for other data types/structures." (this is from a comment on stackstats -> not really usable as a source).
+
+TODO: $\rightarrow$ read \cite{10.1007/978-3-030-38961-1_8}
+
+
 % =======================================================================================
+
+\section{Goal}
+
+The goal of the project is to create a GAN to generate either:
+\begin{itemize}
+    \item cross-spectral matrix
+    \item the complex-valued sound pressure vector at the different microphone
+\end{itemize}
+with the corresponding labels (DoA).
+
+In some way the goal of this project is to create a GAN to realistically add noise to either a cross spectral matrix or complex-valued signal sound pressure vector of an array of microphone. This noise pdf should be estimated instead of being modelled. Indeed a GAN approach is necessary to reduce the computation time and the storage required. Indeed we want to be able to generate randomly and in real time labeled data.  
+
 
 \section{Important words}
 
@@ -185,9 +255,10 @@ expensive source-image method for training data generation.}"
     \item alternatively SSL: Semi-Supervised Learning
     \item ASL: Acoustics Source Localization    
     \item Source Spectra
-    \item Generalized Cross Correlation (GCC)
-    \item CSM (note that there is a connection between the CSM and the GCC features via the Fourier transform)
-    \item CB map: Conventional Beamforming map
+    \item GCC: Generalized Cross Correlation
+    \item CSM: Cross Spectral Matrix (note that there is a connection between the CSM and the GCC features via the Fourier transform)
+    \item SCM: Sample Covariance Matrix
+    \item CB map: Conventional Beamforming map (also known as Acoustic Power Map???)
 \end{itemize}
 
 \section{State-of-the-art}

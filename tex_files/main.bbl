@@ -61,10 +61,23 @@ Paarth Neekhara, Chris Donahue, Miller Puckette, Shlomo Dubnov, and Julian
 \newblock Expediting tts synthesis with adversarial vocoding.
 \newblock {\em arXiv preprint arXiv:1904.07944}, 2019.
 
+\bibitem{10.1007/978-3-030-38961-1_8}
+Yuanyuan Sun, Lele Xu, Lili Guo, Ye~Li, and Yongming Wang.
+\newblock A comparison study of vae and gan for software fault prediction.
+\newblock In Sheng Wen, Albert Zomaya, and Laurence~T. Yang, editors, {\em
+  Algorithms and Architectures for Parallel Processing}, pages 82--96, Cham,
+  2020. Springer International Publishing.
+
 \bibitem{vargas2021improved}
 Elizabeth Vargas, James~R Hopgood, Keith Brown, and Kartic Subr.
 \newblock On improved training of cnn for acoustic source localisation.
 \newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
   Processing}, 29:720--732, 2021.
+
+\bibitem{vera2021acoustic}
+Juan~Manuel Vera-Diaz, Daniel Pizarro, and Javier Macias-Guarasa.
+\newblock Acoustic source localization with deep generalized cross
+  correlations.
+\newblock {\em Signal Processing}, 187:108169, 2021.
 
 \end{thebibliography}
