@@ -3,44 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: mybib.bib
-You've used 12 entries,
+Warning--empty journal in pinto2021deconvoluting
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            572 strings with 6981 characters,
-and the built_in function-call counts, 5361 in all, are:
-= -- 516
-> -- 332
-< -- 6
-+ -- 129
-- -- 115
-* -- 409
-:= -- 889
-add.period$ -- 42
-call.type$ -- 12
-change.case$ -- 89
+            608 strings with 8357 characters,
+and the built_in function-call counts, 8119 in all, are:
+= -- 786
+> -- 478
+< -- 8
++ -- 188
+- -- 165
+* -- 614
+:= -- 1339
+add.period$ -- 64
+call.type$ -- 19
+change.case$ -- 135
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 187
-empty$ -- 364
-format.name$ -- 115
-if$ -- 1122
+cite$ -- 20
+duplicate$ -- 285
+empty$ -- 566
+format.name$ -- 165
+if$ -- 1697
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 12
-newline$ -- 63
-num.names$ -- 28
-pop$ -- 97
+int.to.str$ -- 19
+missing$ -- 19
+newline$ -- 98
+num.names$ -- 42
+pop$ -- 143
 preamble$ -- 1
-purify$ -- 77
+purify$ -- 116
 quote$ -- 0
-skip$ -- 129
+skip$ -- 200
 stack$ -- 0
-substring$ -- 291
-swap$ -- 57
-text.length$ -- 6
+substring$ -- 476
+swap$ -- 81
+text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 48
-warning$ -- 0
-while$ -- 48
-width$ -- 14
-write$ -- 139
+type$ -- 76
+warning$ -- 1
+while$ -- 74
+width$ -- 21
+write$ -- 215
+(There was 1 warning)

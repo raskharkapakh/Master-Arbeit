@@ -3,6 +3,8 @@
 \usepackage{cite}
 \usepackage[T1]{fontenc}
 \usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \geometry{
     a4paper,
     total={170mm, 257mm},
@@ -85,7 +87,15 @@ Paper read and not useful:
 
 \subsection{Bianco}
 
-In Bianco a VAE is used to perform SSL. The idea is the following: based on VAEs to encode the phase of the relative transfer function (RTF) between two microphones to a latent parametric distribution. The resulting model estimates DOA and generates RTF phase.
+\begin{itemize} 
+    \item \textbf{in:} Relative Transfer Function (RTF)
+    \item \textbf{out:} Relative Transfer Function (RTF)
+    \item \textbf{measurement scenario:} Binaural microphone.
+    \item \textbf{setup:} VAE (Semi supervised learning)
+\end{itemize}
+
+
+In \cite{bianco2020semi} a VAE is used to perform SSL. The idea is the following: based on VAEs to encode the phase of the relative transfer function (RTF) between two microphones to a latent parametric distribution. The resulting model estimates DOA and generates RTF phase.
 
 VAEs learn from unlabeled data explicit latent codes for generating samples, and are
 inspiring examples of representation learning. 
@@ -94,22 +104,79 @@ There is a link between DOA and RTF. Indeed, the RTF phase is encoded as a funct
 
 The experiments show, only \textbf{two labeled samples per DOA} permit the VAE-SSL to obtain better performance than SRP-PHAT (State of the art).
 
-\begin{itemize}
-    \item \textbf{in:} 
-    \item \textbf{out:} Relative Transfer Function (RTF)
+\subsubsection{Bianco: the maths:}
+
+The goal in  \cite{bianco2020semi} is to create a VAE to generate an acoustics feature. The acoustics feature of interests here is the Relative Transfer Function (RTF). Model: we consider the following model:
+
+\begin{equation}
+    d_i = s \ast a_i + u_i 
+\end{equation}
+
+with \begin{itemize}
+    \item $i \in \{1,2\}$: the microphone index
+    \item $d_i$: time domain acoustic recording at microphone $i$
+    \item $s$ the acoustic source
+    \item $a_i$: the impulse response (IR) at microphone $i$  
+    \item $u_i$: the noise at microphone $i$ 
 \end{itemize}
-what is RTF: TODO: continue
+
+Then we can define the RTF $H(k)$ as
+
+\begin{equation}
+    H(k) = \frac{A_1(k)}{A_2(k)}
+\end{equation}
+
+with $A_i(k)$ the Fourier transform of $a_i$ and $k$ the frequency.
+
+Then $H(k)$ can be estimated by (with $d_1$ as reference):
+
+\begin{equation}
+        \hat{H}(k) = \frac{S_{d1d2}}{S_{d1d1}}
+\end{equation}
+
+with 
+
+\begin{itemize}
+    \item $S_{d1d1} = D_1(k)^{\ast} D_1(k)$: the Power Spectral Density (PSD)
+    \item $S_{d2d1} = D_2(k)^{\ast} D_1(k)$: the cross-PSD for a single frame.
+\end{itemize}
+
+The estimator is biased since we ignore the PSD of the noise. For each FFT frame a vector is obtained of RTF is obtained $\hat{\mathbf{h}} = [\hat{H}(1), \dots, \hat{H}(K)]^T \in \mathbb{C}^K$ for $K$ frequencies bin. We use RTFs estimated using a single frame as input to the VAE-SSL.
+
+the $n$th input sample and the supervised CNN is a sequence of RTFs frames :
+
+\begin{equation}
+        \mathbf{x}_n = \text{vec}(\text{phase}(\hat{\mathbf{H}}_n)) \in \mathbb{R}^{KP}
+\end{equation}
+
+with 
+
+\begin{itemize}
+    \item $\hat{\mathbf{H}}_n = [\hat{\mathbf{h}}_n \dots \hat{\mathbf{h}}_{n+P-1}] \in \mathbb{C}^{K \times P}$
+    \item $K = N_{\text{FFT}}/2$
+    \item $P$: the number of RTF frame in the sequence. 
+\end{itemize}
 
 \subsection{Neekhara}
-
-\cite{neekhara2019expediting} is concerned with finding a solution for Text to speech (TTS) problem. The claim is that using a GAN approach, they have been able to outperform by far naive approaches (user review) and being 100x faster than other DL approaches. More specifically this paper was concerned with creating a mapping from language to \textbf{perceptually informed spectogram}. Indeed the difficluty of the problem lays in the fact that perceptually informed spectograms are not invertible. Indeed a spectogram is a compact representation of a signal where much of the information contained in a audio waveform has been lost. More specifically the problem at hand is phase estimation and magnitude estimation. Therefore a predictive model is required to fill the missing information and create natural sounding sound.
 
 \begin{itemize}
     \item \textbf{in:} (perceptually informed) spectogram (or text on a more basic level)
     \item \textbf{out:} natural sounding audio waveform
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} GAN (for amplitude estimation)
 \end{itemize}
 
+\cite{neekhara2019expediting} is concerned with finding a solution for Text to speech (TTS) problem. The claim is that using a GAN approach, they have been able to outperform by far naive approaches (user review) and being 100x faster than other DL approaches. More specifically this paper was concerned with creating a mapping from language to \textbf{perceptually informed spectogram}. Indeed the difficluty of the problem lays in the fact that perceptually informed spectograms are not invertible. Indeed a spectogram is a compact representation of a signal where much of the information contained in a audio waveform has been lost. More specifically the problem at hand is phase estimation and magnitude estimation. Therefore a predictive model is required to fill the missing information and create natural sounding sound.
+
 \subsection{NEURIPS}
+
+\begin{itemize}
+    \item \textbf{in:} mel-spectogram 
+    \item \textbf{out:} audio waveform
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} non-autoregressive feed-forward convolutional architecture to
+    perform audio waveform generation in a GAN setup
+\end{itemize}
 
 \cite{NEURIPS2019_6804c9bc} also introduces a method for the TTS problem. Moreover in the introduction of the paper, there is a comparison of different method for text to speech (i.e. audio wave generation):
 
@@ -123,25 +190,29 @@ what is RTF: TODO: continue
 
 In \cite{NEURIPS2019_6804c9bc}, a GAN (MelGAN) is introduced. The goal of this GAN is to perform audio waveform generation.
 
-\begin{itemize}
-    \item \textbf{in:} mel-spectogram 
-    \item \textbf{out:} audio waveform
-\end{itemize}
-
 \subsection{EngelGanSynth:}
+
+\begin{itemize}
+    \item \textbf{in:} instruments note from datasets NSynth (Single channel )
+    \item \textbf{out:} instruments audio waveform.
+    \item \textbf{measurement scenario:} - 
+    \item \textbf{setup:} GAN
+\end{itemize}
 
 \cite{engel2019gansynth} is concerned with demonstrating that GANs can in fact generate high-fidelity and locally-coherent naudio by modeling log magnitudes and instantaneous frequencies with sufficient frequency resolution in the spectral domain.
 
 Using a GAN approach and the NSythn datasets (Dataset of standardized notes from instrument) to generate notes. 
 
 TODO: According to Adam, this paper is to generate spectogram and not audio wave form. $\rightarrow$ check again
-\begin{itemize}
-
-    \item \textbf{in:} instruments note from datasets NSynth 
-    \item \textbf{out:} instruments audio waveform.
-\end{itemize}
 
 \subsection{gerstoft}
+
+\begin{itemize}
+    \item \textbf{in:} True Sample Covariance Matrix with DOA
+    \item \textbf{out:} Generator, i.e. probability distribution function
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} (Wasserstein) GAN
+\end{itemize}
 
 \cite{gerstoft2020parametric} is concerned with training a GAN for generating audio based features. 
 
@@ -149,24 +220,21 @@ In many array processing techniques (i.e. beamfroming) first compute the Sample 
 
 The idea is first to consider a model that describe relationship between \textbf{array data} and \textbf{DOA}. Using this model, another relationship betwen \textbf{CSM} and \textbf{array data} can be defined. Hence we have a mathematical relationship between \textbf{DOA} and \textbf{CSM}.
 
-\begin{itemize}
-    \item \textbf{in:} True Sample Covariance Matrix with DOA
-    \item \textbf{out:} Generator, i.e. probability distribution function
-\end{itemize}
-
 Idea: maybe it would be possible to generate for the pdf os SCM for several DOA. Moreover, a link between SCM and cross spectral matrix should be investigated.
 
 \subsection{Vera-Diaz}
+
+\begin{itemize}
+    \item \textbf{in:} GCC
+    \item \textbf{out:} (x,y,z)
+    \item \textbf{measurement scenario:} pair of microphone
+    \item \textbf{setup:} (Deep) CNN
+\end{itemize}
 
 In ASL prblem, the source’s position can be estimated with at least three Time Difference of Arrival (TDoA) measurements with hyperbolic trilateration methods. Signals captured in everyday scenarios are contaminated with noise and multipath effects.
 Directly measuring TDoA in those cases is a diﬃcult task that produces inaccurate localization results.\cite{vera2021acoustic} is concerned with finding a way to denoise those signals. Other methods uses GCC instead of TDoA. SUch methods are more robust to noise and multipath effects, but not fully immune to it. 
 
 The contribution of this paper is a DNN named DeepGCC. This DNN takes as input a GCC(Generalized Cross Correlation) Matrix and estimates a Gaussian function. Then the SSL problem is solved by replacing the GCC typically used by DeepGCC(GCC) and then using a classical beamforming approach. 
-
-\begin{itemize}
-    \item \textbf{in:} GCC
-    \item \textbf{out:} (x,y,z)
-\end{itemize}
 
 $\rightarrow$ this is actually the inverse of what we want. Hence if we could reverse this nectwork, maybe we could do something of the following: 
 
@@ -176,8 +244,14 @@ $\rightarrow$ this is actually the inverse of what we want. Hence if we could re
 
 Where the last step is done thanks to the relation between $GCC$ and $CSM$ via Fourier transform. 
 
-
 \subsection{Hübner}
+
+\begin{itemize}
+    \item \textbf{in:} -
+    \item \textbf{out:} data for phase based DOA approximation. (RTF)
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} CNN
+\end{itemize}
 
 This paper is concerned with dealing with a common issue when creating DL algorithm to solve the SSL problem, namely the complexity to gather data for training/validating. Indeed, the two current way to obtain data is by either generating them using simulation or by recording them in real life. Both methods require significant amount of resources (resp. time or storage)
 
@@ -219,6 +293,22 @@ yielded \textbf{comparable results} for phase-based DOA estimation
 when using \textbf{the proposed method and the computationally
 expensive source-image method for training data generation.}"
 
+\subsection{measurement scenarios}
+
+The different measurement scenarios
+
+\subsubsection{time-stationary sources}
+
+\subsubsection{time non-stationary sources}
+
+\subsubsection{number of microphones}
+
+\subsubsection{temporal dimensions} 
+
+
+
+
+
 \subsection{Difference between VAE and GAN}
 
 In the context of image generation:
@@ -247,23 +337,118 @@ with the corresponding labels (DoA).
 
 In some way the goal of this project is to create a GAN to realistically add noise to either a cross spectral matrix or complex-valued signal sound pressure vector of an array of microphone. This noise pdf should be estimated instead of being modelled. Indeed a GAN approach is necessary to reduce the computation time and the storage required. Indeed we want to be able to generate randomly and in real time labeled data.  
 
+\section{How to train a GAN:}
+
+\begin{enumerate}
+    \item feed sample to the discriminator to make it learn what a real sample is.
+    \item When the discriminator can distinguish recognize real sample, we need to feed it fake sample and make sure it can recognize them as fake
+    \item When the discriminator is good enough at his job, we can start training the generator. The generator takes as input a random input vector and create a sample
+    \item The knowledge whether the sample was fake or not is revealed to both networks. Based upon this, the generator and discriminator need to adapt their behaviour:
+    \begin{itemize}
+        \item there is always a winner and a loser
+        \item if the discriminator successfully detect the image as fake, it remains unchanged an5d the generator need to change its behaviour 
+        \item On the other hand, if the discriminator fail to detect the image as fake, it has to adapt its behaviour and the generator stays unchanged. 
+    \end{itemize}
+    \item We repeat this process until the generator is so good that the discriminator can no longer detect the fakes.
+\end{enumerate}
 
 \section{Important words}
 
 \begin{itemize}
-    \item SSL: Sound source localization
-    \item alternatively SSL: Semi-Supervised Learning
-    \item ASL: Acoustics Source Localization    
-    \item Source Spectra
-    \item GCC: Generalized Cross Correlation
-    \item CSM: Cross Spectral Matrix (note that there is a connection between the CSM and the GCC features via the Fourier transform)
-    \item SCM: Sample Covariance Matrix
-    \item CB map: Conventional Beamforming map (also known as Acoustic Power Map???)
+    \item \textbf{SSL}: Sound source localization
+    \item alternatively \textbf{SSL}: Semi-Supervised Learning
+    \item \textbf{ASL}: Acoustics Source Localization    
+    \item \textbf{Source Spectra}
+    \item \textbf{GCC}: Generalized Cross Correlation
+    \item \textbf{CSM}: Cross Spectral Matrix (note that there is a connection between the CSM and the GCC features via the Fourier transform)
+    \item \textbf{SCM}: Sample Covariance Matrix
+    \item \textbf{CB map}: Conventional Beamforming map (also known as Acoustic Power Map???)
+    \item \textbf{conditioning variable}: splitting the data up into bins based on the values of these features, and then training a model for each bin. Then examining the differences between the models. Usually this is done to learn something about the benefits of using the different features, and about the relationships between features and outputs.
+    \item \textbf{(Time) Stationary process}: process with mean, variance and autocorrelation structure not changing over time (constant overtime)
+    \item \textbf{Autoregressive}: An autoregressive model specifies that the output variable depends linearly on its own previous values and on a stochastic term 
+    \item Data Covariance Matrix $\leftrightarrow$ Cross Spectral Matrix $\leftrightarrow$ Cross Power Spectrum.
 \end{itemize}
+
+\section{Papers found summary:}
+
+%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=
+\subsection{Bianco}
+
+In \cite{bianco2020semi}:
+
+\begin{itemize} 
+    \item \textbf{in:} Relative Transfer Function (RTF)
+    \item \textbf{out:} Relative Transfer Function (RTF)
+    \item \textbf{measurement scenario:} Binaural microphone.
+    \item \textbf{setup:} VAE (Semi supervised learning)
+\end{itemize}
+
+\subsection{Neekhara}
+
+In \cite{neekhara2019expediting}:
+
+\begin{itemize}
+    \item \textbf{in:} (perceptually informed) spectogram (or text on a more basic level)
+    \item \textbf{out:} natural sounding audio waveform
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} GAN (for amplitude estimation)
+\end{itemize}
+
+\subsection{NEURIPS}
+
+In \cite{NEURIPS2019_6804c9bc}:
+
+\begin{itemize}
+    \item \textbf{in:} mel-spectogram 
+    \item \textbf{out:} audio waveform
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} non-autoregressive feed-forward convolutional architecture to
+    perform audio waveform generation in a GAN setup
+\end{itemize}
+
+\subsection{Engel}
+
+in \cite{engel2019gansynth}:
+
+\begin{itemize}
+    \item \textbf{in:} instruments note from datasets NSynth (Single channel)
+    \item \textbf{out:} instruments audio waveform.
+    \item \textbf{measurement scenario:} - 
+    \item \textbf{setup:} GAN
+\end{itemize}
+
+\subsection{Gerstoft}
+
+In \cite{gerstoft2020parametric}:
+
+\begin{itemize}
+    \item \textbf{in:} True Sample Covariance Matrix with DOA
+    \item \textbf{out:} Generator, i.e. probability distribution function for Sample Covariance Matrix.
+    \item \textbf{measurement scenario:} -
+    \item \textbf{setup:} (Wasserstein) GAN
+\end{itemize}
+
+\subsection{Vera-Diaz}
+
+In \cite{vera2021acoustic}:
+
+\begin{itemize}
+    \item \textbf{in:} GCC
+    \item \textbf{out:} (x,y,z)
+    \item \textbf{measurement scenario:} pair of microphone
+    \item \textbf{setup:} (Deep) CNN
+\end{itemize}
+
+%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=
+
 
 \section{State-of-the-art}
 
-The problem of Sound Source Localization (SSL) is typically dealt with with two approaches: Model-based and Data-driven. The issue that we try to adress is that for data driven approaches, significant quantities of well structures data are required. In the litterature, two main ways of obtaining data have been observed:
+The problem of Acoustical Source Localization (ASL) is an important problem. \textit{TODO: write why}. Traditionnaly this problem is tackled with methods based on the physics of sound propagation (e.g. TDoA, beamforming) or with statistcal inference (e.g.Sparse Bayesian Learning). 
+
+The recent success of Deep Learning (DL) based method in other field of research (e.g. Computer Vision) led to believe that Deep Neural Networks (DNN) based approaches could provide state-of-the-art result in solving the ASL problem. \cite{castellini2021neural}, \cite{kujawski2019deep}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{pinto2021deconvoluting} and \cite{xue2020sound} propose state-of-the-arts DL-based methods for Source Characterization. It is important to note that in \cite{castellini2021neural}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{xue2020sound}, the Cross Power Spectra (CPS) was used as features for source characterization. Indeed the CPS is a direct representation of the signals received in the array of microphone.
+
+The common issue faced while implementing deep learning based methods is that significant quantities of well structures data are required. In the litterature, two main ways of obtaining data have been observed:
 
 \begin{itemize}
     \item Record sound emitted with a loudspeaker or human voice in a real acoustic enviromnent. The issue with such methods is that it can be very tedious te record in different environment. Moreover, recording sufficiently data is very time consuming. Finally, to build a high quality data sets, expensive equipment is required to have an accurate groundtruth. \textbf{TODO: add reference}
@@ -271,16 +456,24 @@ The problem of Sound Source Localization (SSL) is typically dealt with with two 
 \end{itemize}
 
 
-Therefore we would like to find another to generate datas. But before tackling this problem, it is important to note that DL-based approach do not use raw data (direct recording of microphone input) but instead features extracted from the raw data. This is crucial because it means that recording or simulating raw microphone data is no longer necessary, if good quality features could be generated directly. The features that are typically used in DL approaches are:
+Therefore we would like to find another to generate datas. But before tackling this problem, it is important to note that DL-based approach do not necessarily use raw data (direct recording of microphone input) but instead features extracted from the raw data. This is crucial because it means that recording, simulating or generating raw microphone data is no longer necessary, if good quality features could be generated directly. 
 
-\begin{enumerate}
-    \item Generalized Cross-Correlation (GCC) based features \textbf{TODO: add reference+ check}
-    \item Eigendecomposition of the Spatial Covariance Matrix \textbf{TODO: add reference+ check}
-    \item Modal coherence \textbf{TODO: add reference+ check}
-    \item Ambisonics intensity vectors \textbf{TODO: add reference+ check}
-    \item Phase and Magnitude Spectra \textbf{TODO: add reference+ check}
-    \item Phase Spectra \textbf{TODO: add reference+ check}
-\end{enumerate}
+%The features that are typically used in DL approaches are:
+
+%\begin{enumerate}
+%    \item Generalized Cross-Correlation (GCC) based features \textbf{TODO: add reference+ check}
+%    \item Eigendecomposition of the Spatial Covariance Matrix \textbf{TODO: add reference+ check}
+%    \item Modal coherence \textbf{TODO: add reference+ check}
+%    \item Ambisonics intensity vectors \textbf{TODO: add reference+ check}
+%    \item Phase and Magnitude Spectra \textbf{TODO: add reference+ check}
+%    \item Phase Spectra \textbf{TODO: add reference+ check}
+%\end{enumerate}
+
+In the litterature, the following acoustical quantities have already been generated:
+
+
+
+
 
 % Bibliography
 %\addbibresource{mybib.bib}
