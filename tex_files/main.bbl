@@ -1,5 +1,12 @@
 \begin{thebibliography}{10}
 
+\bibitem{adavanne2018direction}
+Sharath Adavanne, Archontis Politis, and Tuomas Virtanen.
+\newblock Direction of arrival estimation for multiple sound sources using
+  convolutional recurrent neural network.
+\newblock In {\em 2018 26th European Signal Processing Conference (EUSIPCO)},
+  pages 1462--1466. IEEE, 2018.
+
 \bibitem{bianco2020semi}
 Michael~J Bianco, Sharon Gannot, and Peter Gerstoft.
 \newblock Semi-supervised source localization with deep generative modeling.
@@ -12,6 +19,13 @@ Paolo Castellini, Nicola Giulietti, Nicola Falcionelli, Aldo~Franco Dragoni,
 \newblock A neural network based microphone array approach to grid-less noise
   source localization.
 \newblock {\em Applied Acoustics}, 177:107947, 2021.
+
+\bibitem{chakrabarty2017broadband}
+Soumitro Chakrabarty and Emanu{\"e}l~AP Habets.
+\newblock Broadband doa estimation using convolutional neural networks trained
+  with noise signals.
+\newblock In {\em 2017 IEEE Workshop on Applications of Signal Processing to
+  Audio and Acoustics (WASPAA)}, pages 136--140. IEEE, 2017.
 
 \bibitem{deleforge2013variational}
 Antoine Deleforge, Florence Forbes, and Radu Horaud.
@@ -31,6 +45,13 @@ Jesse Engel, Kumar~Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue,
   and Adam Roberts.
 \newblock Gansynth: Adversarial neural audio synthesis.
 \newblock {\em arXiv preprint arXiv:1902.08710}, 2019.
+
+\bibitem{ferguson2018sound}
+Eric~L Ferguson, Stefan~B Williams, and Craig~T Jin.
+\newblock Sound source localization in a multipath environment using
+  convolutional neural networks.
+\newblock In {\em 2018 IEEE International Conference on Acoustics, Speech and
+  Signal Processing (ICASSP)}, pages 2386--2390. IEEE, 2018.
 
 \bibitem{gelderblom2021synthetic}
 Femke~B Gelderblom, Yi~Liu, Johannes Kvam, and Tor~Andre Myrvoll.
@@ -52,11 +73,24 @@ Pierre-Amaury Grumiaux, Sr{\dj}an Kiti{\'c}, Laurent Girin, and Alexandre
 \newblock {\em The Journal of the Acoustical Society of America},
   152(1):107--151, 2022.
 
+\bibitem{he2018deep}
+Weipeng He, Petr Motlicek, and Jean-Marc Odobez.
+\newblock Deep neural networks for multiple speaker detection and localization.
+\newblock In {\em 2018 IEEE International Conference on Robotics and Automation
+  (ICRA)}, pages 74--79. IEEE, 2018.
+
 \bibitem{hubner2021efficient}
 Fabian H{\"u}bner, Wolfgang Mack, and Emanu{\"e}l~AP Habets.
 \newblock Efficient training data generation for phase-based doa estimation.
 \newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
   Speech and Signal Processing (ICASSP)}, pages 456--460. IEEE, 2021.
+
+\bibitem{46107}
+Chanwoo Kim, Ananya Misra, Kean Chin, Thad Hughes, Arun Narayanan, Tara
+  Sainath, and Michiel Bacchiani.
+\newblock Generation of large-scale simulated utterances in virtual rooms to
+  train deep-neural networks for far-field speech recognition in google home.
+\newblock pages 379--383, 2017.
 
 \bibitem{kujawski2019deep}
 Adam Kujawski, Gert Herold, and Ennes Sarradj.
@@ -93,6 +127,20 @@ Paarth Neekhara, Chris Donahue, Miller Puckette, Shlomo Dubnov, and Julian
 \newblock Expediting tts synthesis with adversarial vocoding.
 \newblock {\em arXiv preprint arXiv:1904.07944}, 2019.
 
+\bibitem{papayiannis2019data}
+Constantinos Papayiannis, Christine Evers, and Patrick~A Naylor.
+\newblock Data augmentation of room classifiers using generative adversarial
+  networks.
+\newblock {\em arXiv preprint arXiv:1901.03257}, 2019.
+
+\bibitem{perotin2018crnn}
+Laur{\'e}line Perotin, Romain Serizel, Emmanuel Vincent, and Alexandre
+  Gu{\'e}rin.
+\newblock Crnn-based joint azimuth and elevation localization with the
+  ambisonics intensity vector.
+\newblock In {\em 2018 16th International Workshop on Acoustic Signal
+  Enhancement (IWAENC)}, pages 241--245. IEEE, 2018.
+
 \bibitem{pinto2021deconvoluting}
 Wagner~Gon{\c{c}}alves Pinto, Micha{\"e}l Bauerheim, and H{\'e}l{\`e}ne
   Parisot-Dupuis.
@@ -118,10 +166,9 @@ Juan~Manuel Vera-Diaz, Daniel Pizarro, and Javier Macias-Guarasa.
   correlations.
 \newblock {\em Signal Processing}, 187:108169, 2021.
 
-\bibitem{xue2020sound}
-Wei Xue, Ying Tong, Chao Zhang, Guohong Ding, Xiaodong He, and Bowen Zhou.
-\newblock Sound event localization and detection based on multiple doa
-  beamforming and multi-task learning.
-\newblock In {\em INTERSPEECH}, pages 5091--5095, 2020.
+\bibitem{xu2021deep}
+Pengwei Xu, Elias~JG Arcondoulis, and Yu~Liu.
+\newblock Deep neural network models for acoustic source localization.
+\newblock In {\em Berlin Beamforming Conference}, 2021.
 
 \end{thebibliography}

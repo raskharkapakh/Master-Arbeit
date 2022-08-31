@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex main"] 1661440721 "main.aux" "main.bbl" "main" 1661441539
+["bibtex main"] 1661866995 "main.aux" "main.bbl" "main" 1661946156
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "main.aux" 1661441538 4715 e799778f9bbc7e94142b16fa7e7a13ce "pdflatex"
-  "mybib.bib" 1661441539 8268 074d3cc41e5c83b62d58d90fc8b79c7d ""
+  "main.aux" 1661868131 5620 d15c469f6f97734f1d95bfe568af3839 "pdflatex"
+  "mybib.bib" 1661866993 10654 6ee0e90b562a1050032937a6a37338a8 ""
   (generated)
-  "main.blg"
   "main.bbl"
-["pdflatex"] 1661441537 "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.pdf" "main" 1661441539
+  "main.blg"
+["pdflatex"] 1661868131 "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.pdf" "main" 1661946156
   "/etc/texmf/web2c/texmf.cnf" 1621518324 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.aux" 1661441538 4715 e799778f9bbc7e94142b16fa7e7a13ce ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.tex" 1661441537 26962 48adec73cc03c9b351daf54a2f5cbe93 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.aux" 1661868131 5620 d15c469f6f97734f1d95bfe568af3839 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.tex" 1661946155 29148 c4fb3b31d53c3ee58025af98bb480e05 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -67,6 +67,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty" 1580683321 5050 8933a39ad74377accd18991c5eb90c58 ""
   "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1580683321 8446 9874cccac5fee462272c582807dbbf56 ""
   "/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty" 1425427964 26218 19edeff8cdc2bcb704e8051dc55eb5a7 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty" 1472166125 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty" 1578002852 41601 9cf6c5257b1bc7af01a58859749dd37a ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty" 1580683321 2590 e3b24ff953e5b58d924f163d25380312 ""
   "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def" 1580854751 25404 9d60f463a00d154207ec0048dee27cf0 ""
@@ -84,12 +85,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1659951069 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659951083 8258468 9e8316621791b483cecaf6469bcf6bfa ""
-  "main.aux" 1661441538 4715 e799778f9bbc7e94142b16fa7e7a13ce "pdflatex"
-  "main.bbl" 1661440721 5525 4f7a674a2c7ce6d5e30c3639072de784 "bibtex main"
-  "main.tex" 1661441537 26962 48adec73cc03c9b351daf54a2f5cbe93 ""
+  "main.aux" 1661868131 5620 d15c469f6f97734f1d95bfe568af3839 "pdflatex"
+  "main.bbl" 1661866995 7574 00ec3459b44d7627d2374d59d2a56cbd "bibtex main"
+  "main.tex" 1661946155 29148 c4fb3b31d53c3ee58025af98bb480e05 ""
   (generated)
-  "main.log"
-  "main.pdf"
-  "main.aux"
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.log"
   "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.pdf"
+  "main.aux"
+  "main.pdf"
+  "main.log"
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/master-arbeit/tex_files/main.log"
