@@ -27,19 +27,6 @@ Soumitro Chakrabarty and Emanu{\"e}l~AP Habets.
 \newblock In {\em 2017 IEEE Workshop on Applications of Signal Processing to
   Audio and Acoustics (WASPAA)}, pages 136--140. IEEE, 2017.
 
-\bibitem{deleforge2013variational}
-Antoine Deleforge, Florence Forbes, and Radu Horaud.
-\newblock Variational em for binaural sound-source separation and localization.
-\newblock In {\em 2013 IEEE International Conference on Acoustics, Speech and
-  Signal Processing}, pages 76--80. IEEE, 2013.
-
-\bibitem{deleforge2015co}
-Antoine Deleforge, Radu Horaud, Yoav~Y Schechner, and Laurent Girin.
-\newblock Co-localization of audio sources in images using binaural features
-  and locally-linear regression.
-\newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language
-  Processing}, 23(4):718--731, 2015.
-
 \bibitem{engel2019gansynth}
 Jesse Engel, Kumar~Krishna Agrawal, Shuo Chen, Ishaan Gulrajani, Chris Donahue,
   and Adam Roberts.
@@ -53,25 +40,12 @@ Eric~L Ferguson, Stefan~B Williams, and Craig~T Jin.
 \newblock In {\em 2018 IEEE International Conference on Acoustics, Speech and
   Signal Processing (ICASSP)}, pages 2386--2390. IEEE, 2018.
 
-\bibitem{gelderblom2021synthetic}
-Femke~B Gelderblom, Yi~Liu, Johannes Kvam, and Tor~Andre Myrvoll.
-\newblock Synthetic data for dnn-based doa estimation of indoor speech.
-\newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
-  Speech and Signal Processing (ICASSP)}, pages 4390--4394. IEEE, 2021.
-
 \bibitem{gerstoft2020parametric}
 Peter Gerstoft, Herbert Groll, and Christoph~F Mecklenbr{\"a}uker.
 \newblock Parametric bootstrapping of array data with a generative adversarial
   network.
 \newblock In {\em 2020 IEEE 11th Sensor Array and Multichannel Signal
   Processing Workshop (SAM)}, pages 1--5. IEEE, 2020.
-
-\bibitem{grumiaux2022survey}
-Pierre-Amaury Grumiaux, Sr{\dj}an Kiti{\'c}, Laurent Girin, and Alexandre
-  Gu{\'e}rin.
-\newblock A survey of sound source localization with deep learning methods.
-\newblock {\em The Journal of the Acoustical Society of America},
-  152(1):107--151, 2022.
 
 \bibitem{he2018deep}
 Weipeng He, Petr Motlicek, and Jean-Marc Odobez.
@@ -84,13 +58,6 @@ Fabian H{\"u}bner, Wolfgang Mack, and Emanu{\"e}l~AP Habets.
 \newblock Efficient training data generation for phase-based doa estimation.
 \newblock In {\em ICASSP 2021-2021 IEEE International Conference on Acoustics,
   Speech and Signal Processing (ICASSP)}, pages 456--460. IEEE, 2021.
-
-\bibitem{46107}
-Chanwoo Kim, Ananya Misra, Kean Chin, Thad Hughes, Arun Narayanan, Tara
-  Sainath, and Michiel Bacchiani.
-\newblock Generation of large-scale simulated utterances in virtual rooms to
-  train deep-neural networks for far-field speech recognition in google home.
-\newblock pages 379--383, 2017.
 
 \bibitem{kujawski2019deep}
 Adam Kujawski, Gert Herold, and Ennes Sarradj.
@@ -146,13 +113,6 @@ Wagner~Gon{\c{c}}alves Pinto, Micha{\"e}l Bauerheim, and H{\'e}l{\`e}ne
   Parisot-Dupuis.
 \newblock Deconvoluting acoustic beamforming maps with a deep neural network.
 \newblock 2021.
-
-\bibitem{10.1007/978-3-030-38961-1_8}
-Yuanyuan Sun, Lele Xu, Lili Guo, Ye~Li, and Yongming Wang.
-\newblock A comparison study of vae and gan for software fault prediction.
-\newblock In Sheng Wen, Albert Zomaya, and Laurence~T. Yang, editors, {\em
-  Algorithms and Architectures for Parallel Processing}, pages 82--96, Cham,
-  2020. Springer International Publishing.
 
 \bibitem{vargas2021improved}
 Elizabeth Vargas, James~R Hopgood, Keith Brown, and Kartic Subr.

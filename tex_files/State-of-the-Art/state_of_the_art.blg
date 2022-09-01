@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: state_of_the_art.aux
+The style file: plain.bst
+Database file #1: ../mybib.bib
+Warning--empty journal in pinto2021deconvoluting
+You've used 20 entries,
+            2118 wiz_defined-function locations,
+            608 strings with 8654 characters,
+and the built_in function-call counts, 8207 in all, are:
+= -- 808
+> -- 445
+< -- 9
++ -- 174
+- -- 152
+* -- 578
+:= -- 1333
+add.period$ -- 69
+call.type$ -- 20
+change.case$ -- 133
+chr.to.int$ -- 0
+cite$ -- 21
+duplicate$ -- 312
+empty$ -- 602
+format.name$ -- 152
+if$ -- 1751
+int.to.chr$ -- 0
+int.to.str$ -- 20
+missing$ -- 20
+newline$ -- 103
+num.names$ -- 42
+pop$ -- 153
+preamble$ -- 1
+purify$ -- 113
+quote$ -- 0
+skip$ -- 220
+stack$ -- 0
+substring$ -- 469
+swap$ -- 96
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 80
+warning$ -- 1
+while$ -- 74
+width$ -- 22
+write$ -- 225
+(There was 1 warning)

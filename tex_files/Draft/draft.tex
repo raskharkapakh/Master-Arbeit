@@ -455,42 +455,11 @@ In \cite{vera2021acoustic}:
 %=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=-%=
 
 
-\section{State-of-the-art}
-
-The problem of Acoustical Source Localization (ASL) is an important problem. It was many applications suach as smart assistant (e.g. Google Home, Alexa, ...), industrial applications, \textbf{TODO: add more?}. Traditionnaly this problem is tackled with methods based on the physics of sound propagation (e.g. TDoA, beamforming) or with statistcal inference (e.g.Sparse Bayesian Learning). 
-
-The recent success of Deep Learning (DL) based method in other field of research (e.g. Computer Vision) led to believe that Deep Neural Networks (DNN) based approaches could provide state-of-the-art result in solving the ASL problem. \cite{castellini2021neural}, \cite{kujawski2019deep}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{pinto2021deconvoluting} and \cite{xu2021deep} propose state-of-the-arts DL-based methods for Source Characterization. It is important to note that in \cite{castellini2021neural}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{xu2021deep}, the Cross Power Spectra (CPS) is used as features for source characterization. The CPS is a direct representation of the signals received in the array of microphone.
-
-A common issue faced while implementing deep learning based methods is that significant quantities of well structures data are required. In the litterature, two main ways of obtaining data have been observed:
-
-\begin{itemize}
-    \item Record sound emitted with a loudspeaker or human voice in a real acoustic enviromnent. The issue with such methods is that it can be very tedious te record in different environment. Moreover, recording sufficiently data is very time consuming. Finally, to build a high quality data sets, expensive equipment is required to have an accurate groundtruth. In the literature, \cite{he2018deep} and \cite{ferguson2018sound} have such an approach.
-    \item Simulate a Room Impulse Response (RIR) in order to recreate realistic room acoustics (e.g. reverberation). Then convolve dry audio signals with the RIR simulated. This can provide suited training data, since RIR for rooms of different size, different source prosition as well as different dry signals can be used for the training. The issue with such a method is the important amount of time and storage required. E.g. \cite{chakrabarty2017broadband}, \cite{perotin2018crnn} and \cite{adavanne2018direction} created their datasets in this way.
-\end{itemize}
-
-
-Therefore we would like to find another to generate datas, using Deep Learning approach. It is important to note that DL-based approach do not necessarily use raw data (direct recording of microphone input) but instead features extracted from the raw data. This is crucial because it means that recording, simulating or generating raw microphone data is no longer necessary, if good quality features could be generated directly.
-
-\cite{neekhara2019expediting}, \cite{NEURIPS2019_6804c9bc}, \cite{engel2019gansynth} use Generative Adversial Network (GAN) to generate realistic audio waveform. \cite{neekhara2019expediting} and \cite{NEURIPS2019_6804c9bc} specifically focus on the generation of audio waveform conditioned on a spectogram (cGAN). On the other hand, \cite{engel2019gansynth} design a GAN to generate realistic audio waveform of single music notes played by an instrument. It is important to note that the GAN designed by \cite{neekhara2019expediting} is the one implemented in \cite{vargas2021improved}. 
-
-\cite{bianco2020semi} proposes an approach to generate another acoustic feature: the phase of the relative transfer function (RTF) between two microphones. In this paper a Variational Auto Encoder (VAE) is designed to simultaneously generate phases of RTF and classifying them by their Direction of Arrival (DoA).
-
-\cite{gerstoft2020parametric} use a GAN to generate Sample Cross Spectra Matrices (named as Sample Covariance Matrices) for a given DoA. In their approach, the GAN is trained with data only coming from one DoA, making it unable to generate sample for different DoA.
-
-In \cite{hubner2021efficient} introduce a low complexity model-based method for generating samples of microphones phases. This method proposed is not based on DL. Indeed, it is based on a statistical noise model, a deterministic direct-path model for the point source, and a statistical model. The claim of this paper is that the low complexity of the proposed  model makes it suited for online training data generation. 
-
-\cite{vera2021acoustic} introduce a CNN for denoising (i.e. removing the effects of reverberation and multipath effects) of of the Generalization Cross Correlation (GCC) matrix of an array of microphone. This is interesting, since such an network could maybe be inverted to noise GCC matrix and hence make them realistic. 
-
-\cite{papayiannis2019data} introduce a GAN approach to generate artificial Acoustical Impulse Response (AIR). An AIR is high-dimensional, consisting of thousands of coefficients. AIRs are used typically in the problem of classification of acoustic environment.
-
-
-
-
 
 
 % Bibliography
 %\addbibresource{mybib.bib}
-\bibliography{mybib}
+\bibliography{../mybib}
 \bibliographystyle{plain} 
 
 
