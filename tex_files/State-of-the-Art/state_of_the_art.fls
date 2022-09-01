@@ -41,6 +41,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.aux
@@ -79,6 +81,9 @@ INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.bbl
 INPUT /home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.bbl
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm
 INPUT /home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
@@ -88,3 +93,4 @@ INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb
 INPUT /usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb
+INPUT /usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb

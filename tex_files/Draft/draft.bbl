@@ -74,6 +74,19 @@ Paarth Neekhara, Chris Donahue, Miller Puckette, Shlomo Dubnov, and Julian
 \newblock Expediting tts synthesis with adversarial vocoding.
 \newblock {\em arXiv preprint arXiv:1904.07944}, 2019.
 
+\bibitem{papayiannis2019data}
+Constantinos Papayiannis, Christine Evers, and Patrick~A Naylor.
+\newblock Data augmentation of room classifiers using generative adversarial
+  networks.
+\newblock {\em arXiv preprint arXiv:1901.03257}, 2019.
+
+\bibitem{ratnarajah2021fast}
+Anton Ratnarajah, Shi-Xiong Zhang, Meng Yu, Zhenyu Tang, Dinesh Manocha, and
+  Dong Yu.
+\newblock Fast-rir: Fast neural diffuse room impulse response generator.
+  10.48550.
+\newblock {\em arXiv preprint ARXIV.2110.04057}, 2021.
+
 \bibitem{10.1007/978-3-030-38961-1_8}
 Yuanyuan Sun, Lele Xu, Lili Guo, Ye~Li, and Yongming Wang.
 \newblock A comparison study of vae and gan for software fault prediction.

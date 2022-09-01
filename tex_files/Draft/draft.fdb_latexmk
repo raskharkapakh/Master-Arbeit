@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex draft"] 1662025166 "draft.aux" "draft.bbl" "draft" 1662025167
-  "../mybib.bib" 1662024816 10654 6ee0e90b562a1050032937a6a37338a8 ""
+["bibtex draft"] 1662027734 "draft.aux" "draft.bbl" "draft" 1662029639
+  "../mybib.bib" 1662027549 10943 9c59d18824b7319853cc6a60e49a3ceb ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "draft.aux" 1662025167 4328 182948d4e38bf2333464b1b29a897321 "pdflatex"
+  "draft.aux" 1662027734 4068 75d0869fa440cc77f88d17de011d8f2b "pdflatex"
   (generated)
   "draft.bbl"
   "draft.blg"
-["pdflatex"] 1662025166 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.pdf" "draft" 1662025167
+["pdflatex"] 1662027734 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.pdf" "draft" 1662029639
   "/etc/texmf/web2c/texmf.cnf" 1621518324 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.aux" 1662025167 4328 182948d4e38bf2333464b1b29a897321 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.tex" 1662025165 24129 763f0af2446aa51b24ad3b5cd71a8208 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.aux" 1662027734 4068 75d0869fa440cc77f88d17de011d8f2b ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.tex" 1662029638 24046 93a425604c41de2ff0dcfdf06e960a3c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -85,12 +85,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1659951069 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659951083 8258468 9e8316621791b483cecaf6469bcf6bfa ""
-  "draft.aux" 1662025167 4328 182948d4e38bf2333464b1b29a897321 "pdflatex"
-  "draft.bbl" 1662025166 4354 c53080d61b7d0c787f9da7e3ee2cd311 "bibtex draft"
-  "draft.tex" 1662025165 24129 763f0af2446aa51b24ad3b5cd71a8208 ""
+  "draft.aux" 1662027734 4068 75d0869fa440cc77f88d17de011d8f2b "pdflatex"
+  "draft.bbl" 1662027734 4852 5cad8516a73df44803cccf9ec68763c1 "bibtex draft"
+  "draft.tex" 1662029638 24046 93a425604c41de2ff0dcfdf06e960a3c ""
   (generated)
   "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.log"
   "draft.log"
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.pdf"
-  "draft.aux"
   "draft.pdf"
+  "draft.aux"
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Draft/draft.pdf"
