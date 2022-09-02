@@ -303,15 +303,69 @@ expensive source-image method for training data generation.}"
 
 \subsection{Papayiannis}
 
-\cite{papayiannis2019data} -> read
+\cite{papayiannis2019data} is concerned with the generation of Acoustic Impulse Response.
 
+Reverberation are a good representation of the acoustic environment. In numerous taskm it is useful to be able to know in what environment a speech recording has been made (for instance), based on the reverbaration present in the recording. For this purpose, ML classifier have been built, in order to classify different enviroment. A feature that is typically used for such a classification is the Acoustic Impulse Response represented as Finite Impulse Response (FIR).
+
+The issue is that a lot of IR are required for building a classifier. An IR is typically measured, hence the number that can be created is limited (time wise). For this reason, \cite{papayiannis2019data} introduce a way to generate (with GAN) artificial AIR from measured AIR. $\rightarrow$ data augmentation.
+
+"This is an alternative to the process of measuring many more AIRs, by moving the source and receiver at various positions in the same real room. Repeating the process for a number of rooms expands the available dataset, without the need for any additional data collection"
+
+"A challenge to overcome during training is related to the motivation for this work, which is the high-dimensionality of AIRs. This is overcome by using a proposed low-dimensional representation for acoustic environments. The representation describes sparse early reflection using the parameters estimated in [6] and uses established acoustic parameters to represent the late reverberation."
+
+-> \textbf{Question for Adam: Are IR dependent on the source-receiver positions ? -> it is never mentionned in \cite{papayiannis2019data}}
+
+\textbf{Data representation}: During training, AIRs are presented to the networks using \textbf{taps of FIR filters $\rightarrow$ to investigate}. The taps represent the sound pressure at the position of a receiver placed in the room, with the room excited by a source placed within its boundaries.
+
+-> Hence the data generated is dependent on the dimension of the room. GAN trained for a specific room. But then the position of the receiver and source a randomly chosen (not conditional)
+
+"The task of room classification is to identify a known room at unknown source and receiver positions. With the transformation being class invariant, the available training AIRs from a room will be used to artificially generate AIRs at new source and receiver positions from the same room."
+
+$\rightarrow$ the main contribution of this paper is to propose a low dimension representation of AIR that is still informative (i.e. contains info about early reflection, late reverberation ) $\rightarrow$ look more into that (chapter: Proposed low-dimensional representation)
+
+In this work, the generation of AIRs is based on training one GAN for each of the 7 rooms, part of the training database. Therefore, 7 GANs are trained and each one of them is used to generate a number of AIRs as if they were measured in the corresponding rooms.
+
+\textbf{Conclusion:} as it is, this paper is not useful. For it to be useful for the task at hand, the GAN would need be conditionned on:
+
+\begin{itemize}
+    \item Source and Receiver positions 
+    \item Room dimension (maybe less important)
+\end{itemize}
 
 
 \subsection{Ratnarajah}
 
-\cite{ratnarajah2021fast} -> read
+\cite{ratnarajah2021fast} proposes a fast method (NN-based) for generating Room Impulse Response (RIR). The input paramaters used are the following:
+
+\begin{itemize}
+    \item rectangular room dimensions
+    \item listener position
+    \item speaker position
+    \item reverberation time ($T_{60}$)
+\end{itemize}
+
+An issue with IR generator is that they are computationally very expensive. Moreover for NN training significant amount of data are required, hence offline data generation leads to high storage needs.
+
+"To generate RIRs for a given acoustic environment, we propose a one-dimensional conditional generator network. Our generator network takes room geometry, listener and speaker positions, and $T_{60}$ as inputs, which are the common input used by all traditional RIR generators, and generates RIRs as raw-waveform audio. Our FAST-RIR generates RIRs of length 4096 at 16 kHz frequency."
+
+$\rightarrow$ all together this paper seems to provide good results and seems applicable for the task at hand. $\rightarrow$ \textbf{TODO: write about this in State-of-the-Art alongside Papayiannis and ask Adam if it makes sense to keep both (probably not)} 
 
 
+\subsection{Thoughts about the different data generation methods:}
+
+In the thesis task, the following three data generation approach are listed (LHS) Whereas in the meeting, we mentionned the following three approaches (RHS):
+
+\begin{itemize}
+    \item Measurement $\leftrightarrow$ experimental measurements
+    \item Syntetic $\leftrightarrow$ calculation of theoretical model [10]
+    \item Semi-synthetic $\leftrightarrow$ virtual measurement [11]
+\end{itemize}
+
+In the state of the art, semi-synthetic approach must be mentionned explained and its limitation must be stated. Moreover a time were such an approach was used need to be mentionned.
+
+Semi synthetic data generation approach are not the best suited for several reason. First, the data produce is not usually not as accurate as actual measurement. Moreover, generating sufficient data is extremely tedious and is often more time consuming than model training, since extremley significant quantity of data are required to train a NN. Indeed to have a good measurement a lot of IR must be created.
+
+\textbf{Question: is semi synthetic when the RIR is measured and full synthetic when the RIR is generated with "maths" ? $\rightarrow$ wait for Adam email and use response to rewrite.}
 
 
 
@@ -329,6 +383,8 @@ There are exceptions such as Google’s VQ-VAE 2 which can compete with GANs for
 As a note, GANs and VAEs are not specifically for images and can be used for other data types/structures." (this is from a comment on stackstats -> not really usable as a source).
 
 TODO: $\rightarrow$ read \cite{10.1007/978-3-030-38961-1_8}
+
+from \cite{papayiannis2019data}: "A generative model represents the joint probability $P(x, y)$, which is in contrast to classification DNNs that estimate the posterior $P(x|y)$. Recent advancements in deep learning led to the proposal of alternatives to the traditional method for the estimation of parametric model distributions. The two dominant methods in the modern literature are GANs and Variational Autoencoders (VAEs). Both follow a similar formulation that uses back-propagation to train network layers, which are able to estimate the generative model by filtering noise drawn from a known prior. In the literature review conducted for this work, GANs have shown to be widely adopted in the field of audio processing across different tasks such as SED [14], speech recognition [15], speech enhancement [16] and dereverberation [17, 18]. Furthermore, variants of the original GAN in [19] exist, which can be adapted in the future to lead to more exciting applications of the method proposed in this work, such as Conditional GANs [20], DualGANs [21] and many others. GANs are therefore chosen as the estimation mechanism for the generative models in this paper."
 
 
 % =======================================================================================

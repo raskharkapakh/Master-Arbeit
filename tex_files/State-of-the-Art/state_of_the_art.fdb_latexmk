@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex state_of_the_art"] 1662027091 "state_of_the_art.aux" "state_of_the_art.bbl" "state_of_the_art" 1662027615
-  "../mybib.bib" 1662027549 10943 9c59d18824b7319853cc6a60e49a3ceb ""
+["bibtex state_of_the_art"] 1662027091 "state_of_the_art.aux" "state_of_the_art.bbl" "state_of_the_art" 1662039609
+  "../mybib.bib" 1662037426 10943 9c59d18824b7319853cc6a60e49a3ceb ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
   "state_of_the_art.aux" 1662027615 3014 60bbd36eef4dc3108411f83f863d6224 "pdflatex"
   (generated)
   "state_of_the_art.blg"
   "state_of_the_art.bbl"
-["pdflatex"] 1662027615 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.pdf" "state_of_the_art" 1662027615
+["pdflatex"] 1662027615 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.pdf" "state_of_the_art" 1662039609
   "/etc/texmf/web2c/texmf.cnf" 1621518324 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.aux" 1662027615 3014 60bbd36eef4dc3108411f83f863d6224 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.tex" 1662027614 5602 6529cb6776a42fde1ea4086d3efddcba ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/State-of-the-Art/state_of_the_art.tex" 1662039608 5602 6529cb6776a42fde1ea4086d3efddcba ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm" 1136768653 3584 13049b61b922a28b158a38aeff75ee9b ""
@@ -73,7 +73,7 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659951083 8258468 9e8316621791b483cecaf6469bcf6bfa ""
   "state_of_the_art.aux" 1662027615 3014 60bbd36eef4dc3108411f83f863d6224 "pdflatex"
   "state_of_the_art.bbl" 1662027091 7588 e51d5be038ac3e7ab08ec0468644356d "bibtex state_of_the_art"
-  "state_of_the_art.tex" 1662027614 5602 6529cb6776a42fde1ea4086d3efddcba ""
+  "state_of_the_art.tex" 1662039608 5602 6529cb6776a42fde1ea4086d3efddcba ""
   (generated)
   "state_of_the_art.log"
   "state_of_the_art.pdf"
