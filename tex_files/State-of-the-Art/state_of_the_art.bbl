@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -139,6 +139,13 @@ Anton Ratnarajah, Shi-Xiong Zhang, Meng Yu, Zhenyu Tang, Dinesh Manocha, and
 \newblock Fast-rir: Fast neural diffuse room impulse response generator.
   10.48550.
 \newblock \emph{arXiv preprint ARXIV.2110.04057}, 2021.
+
+\bibitem[Takeda and Komatani(2016)]{takeda2016sound}
+Ryu Takeda and Kazunori Komatani.
+\newblock Sound source localization based on deep neural networks with
+  directional activate function exploiting phase information.
+\newblock In \emph{2016 IEEE international conference on acoustics, speech and
+  signal processing (ICASSP)}, pages 405--409. IEEE, 2016.
 
 \bibitem[Vargas et~al.(2021)Vargas, Hopgood, Brown, and
   Subr]{vargas2021improved}
