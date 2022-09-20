@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1663682425 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.pdf" "understanding_gan" 1663682425
+["pdflatex"] 1663682425 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.tex" "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.pdf" "understanding_gan" 1663685967
   "/etc/texmf/web2c/texmf.cnf" 1621518324 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.aux" 1663682425 1037 aa36e91c7f32300ac4c7970a8044fa29 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.tex" 1663682424 7585 b8be63b480e2005710dc96efee0f4bdf ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.tex" 1663685967 7585 b8be63b480e2005710dc96efee0f4bdf ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -80,10 +80,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1659951069 4770781 1ed1abab22da9c3e2cc82e4db562318b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1659951083 8258468 9e8316621791b483cecaf6469bcf6bfa ""
   "understanding_gan.aux" 1663682425 1037 aa36e91c7f32300ac4c7970a8044fa29 "pdflatex"
-  "understanding_gan.tex" 1663682424 7585 b8be63b480e2005710dc96efee0f4bdf ""
+  "understanding_gan.tex" 1663685967 7585 b8be63b480e2005710dc96efee0f4bdf ""
   (generated)
-  "understanding_gan.aux"
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.log"
-  "understanding_gan.pdf"
   "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.pdf"
+  "understanding_gan.pdf"
   "understanding_gan.log"
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Understanding_GAN/understanding_gan.log"
+  "understanding_gan.aux"
