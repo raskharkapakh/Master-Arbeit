@@ -1,0 +1,164 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage[round]{natbib}
+\usepackage{listings}
+
+%\geometry{
+%    a4paper,
+%    total={170mm, 257mm},
+%    left=20mm,
+%    top=10mm,
+%}
+
+\title{Understanding GAN}
+\author{Gaspard Ulysse Fragnière}
+\date{August 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Discriminator}
+
+\begin{itemize}
+    \item When given a sample, the discriminator produce a preditcion, i.e
+    \begin{equation}
+        \text{prediction} = \text{discrimantor}(\text{sample})
+    \end{equation}
+    \item A prediction is a "matrix" of size $1 \times 1$, hence a scalar. If its value is bigger than 0, it means the the discriminator considered the given sample as legit
+\end{itemize}
+
+\section{Generator}
+
+    
+
+\begin{itemize}
+    \item When the generator is trained, the function "predict" can be used. It needs to be provided a random vector of dimension "\lstinline{latent_dim}". This vector act as a seed to produce a sample,  
+    \begin{equation}
+        \text{sample} = \text{generator}(\text{seed})
+    \end{equation}
+    \item test
+    
+    
+\end{itemize}
+
+
+\section{GAN}
+
+
+
+
+\begin{itemize}
+    \item The training of the GAN happens when “fit” is called
+    \item When fit is called, the function "\lstinline{train_step}" is called iteravely.
+    \item the function "\lstinline{train_step}" does the following:
+    \begin{itemize}
+        \item the generator generate eigenvectors using the random seed 
+        \item the fake eigenvectors are normalized
+        \item Combine fake (i.e. generated) eigenvectors and real eigenvectors, resulting in an array of dimesion: \lstinline{eigenvector_size} $\times$ $2$\lstinline{batch_size}.
+        \item we then produce the groundtruth labels for these eigen vectors, i.e. a vector of dimension \lstinline{batch_size} full of ones, followed by a vector of dimension \lstinline{batch_size} full of zeros.
+        \item train the discrimantors, i.e. make the discriminator guess what eigenvectors are real, compute \lstinline{d_loss}.(guess, groundtruth) and use it to update weights (\textbf{TODO: read code again here})
+        \item In order to train the generator this time, we produce another random seed and a vector full of zero of dimension \lstinline{batch_size} to be the new groundtruth
+        \item We then provide this second seed to the generator, in order to produce \lstinline{batch_size} fake eigenvectors.
+        \item We feed those fake eigenvectors and save its prediction. 
+        \item We compute the \lstinline{g_loss} (new groundtruth, prediction of the discriminator).
+        \item We use \lstinline{g_loss} to update the weights of the generator.
+        \item Finally we monitor the losses (\textbf{Understand what that means})
+        
+    \end{itemize}
+\end{itemize}
+
+
+\section{The data}
+
+We need to understand what is the shape of the data:
+
+\subsection{Data used for the training:}
+
+\begin{itemize}
+    \item \textbf{CSM}: The cross spectral matrix is computed with
+    \begin{equation}
+        \mathbf{C} = \mathbf{p} \mathbf{p}^H
+    \end{equation}
+    Where $\mathbf{p} \in \mathbb{C}^M$ is the complex sound pressure vector in the array of $M$ microphones. The CSM can approximated by:
+    \begin{equation}
+        \hat{\mathbf{C}} = \frac{1}{B} \sum_{b=1}^{B} \mathbf{p} \mathbf{p}^H
+    \end{equation} 
+    With  B snapshots. The size of the CSM is then $M \times M$. Its eigendecomposition contains $M$ eigenvalues and associated eigenvectors.
+    \item \textbf{CSMTRIU}: a compressed version of the CSM. The compression is done using the fact that the CSM is hermitian (i.e. a complex squared matrix that is equal to its complex conjugated transpose, i.e. $a_{ij} = \Bar{a}_{ji}$)
+    \item \textbf{Eigendecomposition} The size of the CSM is then $M \times M$. Its eigendecomposition contains $M$ eigenvalues and associated eigenvectors, and can be written as 
+    \begin{equation}
+        \hat{\mathbf{C}} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^H
+    \end{equation}
+    where $\mathbf{V} = [\mathbf{v}_1^T, \dots, \mathbf{v}_M^T]$, $\mathbf{v}_i$ being the $i$th eigenvector and where $\mathbf{\Lambda}$ is a diagonal matrix, where $\lambda_{ii}$ is the $i$th eigenvalue. Currently the eigendecompistion is performed automatically by the parser function in the \lstinline{load_data.py} file.
+\end{itemize}
+
+Currently the data provided for the training are the eigenvectors $[\mathbf{v}_1^T, \dots, \mathbf{v}_M^T]$. It needs to be extended to generate also the eigenvalues $[\lambda_{11}, \dots, \lambda_{MM}]$. 
+
+More specifically, the data provided for training comes in batches of size \lstinline{batch_size}. Hence the data provided for training has \textbf{dimension}: \lstinline{batch_size} $\times M \times M \times 2$ (real, imaginary).
+
+\subsection{Generator}
+
+\begin{itemize}
+    \item \textbf{in}: random vector of dimension \lstinline{latent_dim}. \textbf{Dimension}: \lstinline{batch_size} $\times$ \lstinline{latent_dim}.
+    \item \textbf{out}: eigenvectors matrix of dimension $M \times M$
+    \textbf{Dimension}: \lstinline{batch_size} $\times M \times M \times 2$
+\end{itemize}
+
+\subsection{Discriminator}
+
+\begin{itemize}
+    \item \textbf{in}: eigenvectors matrix of dimension $M \times M$.
+    \textbf{Dimension}: \lstinline{batch_size} $\times M \times M \times 2$
+    \item \textbf{out}: ${0,1}$, "boolean". 
+    \textbf{Dimension}: \lstinline{batch_size}
+\end{itemize}
+
+\subsection{How to improve a GAN}
+
+from https://towardsdatascience.com/gan-ways-to-improve-gan-performance-acf37f9f59b
+
+Common pitfalls:
+
+\begin{itemize}
+    \item Non-convergence
+    \item Mode Collapse
+    
+\end{itemize}
+
+\subsection{Wasserstein GAN}
+
+-> see article: https://machinelearningmastery.com/how-to-implement-wasserstein-loss-for-generative-adversarial-networks/
+
+In a WGAN, the discriminator is replaced by a critic. Unlike a discriminator that say if a sample is fake or not, the role of a critic is to quantity the level of fakeness (or realness) of a receive sample. More formally, a critic produce an output in $\{0,1\}$ and a critic in $[0,1]$. This simple change is supposed to have a great impact on the convergence of a model.
+
+Implementation of a WGAN requires a few changes from regular implementation, i.e. 
+
+\begin{itemize}
+    \item Use a linear activation function in the output layer of the critic model (instead of sigmoid).
+    \item Use Wasserstein loss to train the critic and generator models that promote larger difference between scores for real and generated images.
+    \item Constrain critic model weights to a limited range after each mini batch update (e.g. [-0.01,0.01]).
+    \item Update the critic model more times than the generator each iteration (e.g. 5).
+    \item Use the RMSProp version of gradient descent with small learning rate and no momentum (e.g. 0.00005). (quote: "… we report that WGAN training becomes unstable at times when one uses a momentum based optimizer such as Adam […] We therefore switched to RMSProp …")
+
+\end{itemize}
+
+\subsubsection{Wasserstein Loss:}
+
+How to implement a Wasserstein loss:
+
+\begin{itemize}
+    \item \textbf{Goal:} increase the gap between the scores for real and generated images
+    \item \textbf{Critic Loss}: difference between average critic score on real images and average critic score on fake images
+    \item \textbf{Generator Loss} the negation of the average critic score on fake images
+    \item 
+\end{itemize}
+
+
+\end{document}
