@@ -25,6 +25,28 @@ def parser(record):
     evls, evecs = tf.linalg.eigh(csm)
     return tf.stack([tf.math.real(evecs),tf.math.imag(evecs)],axis=2)
 
+def full_parser(record):
+    parsed = tf.io.parse_single_example(
+    record,
+    {
+    #'loc' : tf.io.FixedLenFeature((2,),tf.float32),
+    'csmtriu' : tf.io.FixedLenFeature((64,64,1),tf.float32)}        
+    )
+    csm = uncompress_csm(parsed['csmtriu'])
+    csm /= csm[63,63] # normalize on reference microphone autopower
+    evals, evecs = tf.linalg.eigh(csm)
+
+
+    # in order to get to have similar dimensions as the eigenvectors, the eigenvalues are stored in a diagonal matrix.
+    return tf.stack([tf.math.real(evecs),
+                    tf.math.imag(evecs), 
+                    tf.linalg.diag(tf.math.real(evals)), 
+                    tf.linalg.diag(tf.math.imag(evals))],
+                    axis=2)
+
+
+
+
 
 if __name__ == "__main__":
 

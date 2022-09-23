@@ -45,9 +45,9 @@ import numpy as np
 # hyperparameters
 latent_dim = 128
 batch_size = 16
-num_channels = 1
+num_channels = 4
 csm_size = 64  # cross-spectral matrix
-csm_shape = (csm_size, csm_size, 2)  # MxMx2 (real,imag)
+csm_shape = (csm_size, csm_size, num_channels)  # MxMx2 (real,imag)
 n_critic = 5
 critic_clip_value = 0.1
 
@@ -103,6 +103,38 @@ class WGAN():
 
         model = Sequential()
 
+        model.add(Conv2D(16, kernel_size=3, strides=2, input_shape=self.csm_shape, padding="same"))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Dropout(0.25))
+        model.add(Conv2D(32, kernel_size=3, strides=2, padding="same", kernel_constraint=const))
+        model.add(ZeroPadding2D(padding=((0,1),(0,1))))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Dropout(0.25))
+        model.add(Conv2D(64, kernel_size=3, strides=2, padding="same", kernel_constraint=const))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Dropout(0.25))
+        model.add(Conv2D(128, kernel_size=3, strides=1, padding="same", kernel_constraint=const))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(Dropout(0.25))
+        model.add(Flatten())
+        model.add(Dense(1, activation='linear'))
+
+        model.summary()
+
+        sample = Input(shape=self.csm_shape)
+        validity = model(sample)
+
+        final_model = Model(sample, validity)
+        final_model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer)
+
+
+        return final_model
+        """
+        model = Sequential()
+
         model.add(Conv2D(64, (3, 3), strides=(2, 2), input_shape=self.csm_shape, padding="same", kernel_constraint=const))
         model.add(LeakyReLU(alpha=0.2))
         model.add(Conv2D(128, (3, 3), strides=(2, 2), padding="same", kernel_constraint=const))
@@ -113,11 +145,47 @@ class WGAN():
         model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer)
 	    
         return model
+        """
 
 
     # Create the generator.
     def build_generator(self):
+        
+        model = Sequential()
+        
+        # here changed a from 7 to 16
+        a = 16 
+        model.add(Dense(128 * a * a, activation="relu", input_dim=self.latent_dim))
+        model.add(Reshape((a, a, 128)))
+        model.add(UpSampling2D())
+        model.add(Conv2D(128, kernel_size=4, padding="same"))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(Activation("relu"))
+        model.add(UpSampling2D())
+        model.add(Conv2D(64, kernel_size=4, padding="same"))
+        model.add(BatchNormalization(momentum=0.8))
+        model.add(Activation("relu"))
+        model.add(Conv2D(num_channels, kernel_size=4, padding="same"))
+        model.add(Activation("tanh"))
+        
+        #model.add(Reshape((64, 64, 2)))
+        
 
+
+
+        model.summary()
+
+        noise = Input(shape=(self.latent_dim,))
+        sample = model(noise)
+
+
+        final_model = Model(noise, sample)
+        final_model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer)
+
+
+        return final_model
+        
+        """
         model = Sequential()
         model.add(Dense(128, activation="relu", input_dim=self.latent_dim))
         model.add(LayerNormalization())
@@ -129,9 +197,28 @@ class WGAN():
         model.add(Reshape((64, 64, 2)))
 
         return model
+        """
  
 
     def build_wgan(self, generator, critic):
+        
+        z = Input(shape=(self.latent_dim,))
+        img = generator(z)
+
+        # For the combined model we will only train the generator
+        critic.trainable = False
+
+        # The critic takes generated images as input and determines validity
+        valid = critic(img)
+
+        # The combined model  (stacked generator and critic)
+        combined = Model(z, valid)
+        combined.compile(loss=self.wasserstein_loss,
+            optimizer=self.optimizer,
+            metrics=['accuracy'])
+        
+        return combined
+        """
         # make weights in the critic not trainable
         for layer in critic.layers:
             if not isinstance(layer, BatchNormalization):
@@ -145,6 +232,7 @@ class WGAN():
         # compile model
         model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer)
         return model
+        """
 
 
 
@@ -205,10 +293,17 @@ class WGAN():
                 # generate fake sample using random seed
                 fake_sample = self.generator(seed)
 
+                # split eigenvectors and eigenvalues
+                fake_evecs = fake_sample[:,:,:,0:2]
+                fake_evals = fake_sample[:,:,:,2:4]
+
                 # normalize eigenvecs to unit length
-                norm_fake_sample = normalize_eigenvecs(fake_sample)
+                norm_fake_evecs = normalize_eigenvecs(fake_evecs)
 
+                # merge again
 
+                
+                norm_fake_sample = tf.concat([norm_fake_evecs,fake_evals],axis=3)
 
                 # update critic model weights
                 c_loss2 = self.critic.train_on_batch(norm_fake_sample, fake)
@@ -228,15 +323,22 @@ class WGAN():
             g_loss = self.wgan.train_on_batch(seed, real)
             g_hist.append(g_loss)
 
-
             # print loss per epoch
-            print('>%d, c1=%.3f, c2=%.3f g=%.3f' % (e+1, c1_hist[-1], c2_hist[-1], g_loss))
+            
+            print('>epoch %d' % (e+1))
+            print('c_real=%.3f' % (c1_hist[-1]))
+            print('c_fake=%.3f' % (c2_hist[-1]))
+            print('g0=%.3f' % (g_loss[0]))
+            print('g1=%.3f' % (g_loss[1]))
+            print('===========')
            
         # line plots of loss
+        
         plt.plot(c1_hist, label='crit_real')
         plt.plot(c2_hist, label='crit_fake')
         plt.plot(g_hist, label='gen')
         plt.legend()
+        
         
     """
     def train(self, n_epoch, data):
@@ -409,10 +511,20 @@ class WGAN():
     def get_sample(self):
         for i in range(100):
             random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
-            generated_eigenvecs = self.generator.predict(random_latent_vectors)
-            scaled_eigenvecs = normalize_eigenvecs(generated_eigenvecs)
+            generated_sample = self.generator.predict(random_latent_vectors)
+
+            # split eigenvectors and eigenvalues
+            generated_evecs = generated_sample[:,:,:,0:2]
+            generated_evals = generated_sample[:,:,:,2:4]
+
+            # normalize eigenvecs to unit length
+            scaled_generated_evecs = normalize_eigenvecs(generated_evecs)
+
+            # merge again
+            scaled_sample = tf.concat([scaled_generated_evecs,generated_evals],axis=3)
             
-            predictions = self.critic(scaled_eigenvecs)
+            
+            predictions = self.critic(scaled_sample)
             print(predictions[0, 0])
             
 
@@ -421,7 +533,7 @@ class WGAN():
 
                 # printing image:
                 print(predictions.shape)
-                return scaled_eigenvecs
+                return scaled_sample
 
                 
             elif i == 99:
