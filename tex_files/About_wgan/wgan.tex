@@ -98,6 +98,11 @@ Implementation of a WGAN requires a few changes from implementation of a regular
     \item 
 \end{itemize}
 
+\section{WGAN2: Improved Training of Wasserstein GAN}
+
+As we have seen above, WGAN improve the stability in training the critic ($\approx$ discriminator). But sometimes, they only generate poor sample or fail to converge. This is due to the weight clipping happening while training the critic. In order to remedy to this, \cite{DBLP:journals/corr/GulrajaniAADC17} propose to replace weight clipping by the introduction of a penalization of the norm of gradient of the critic with respect to its input. 
+
+The issue is that trying to orient the critic to 1-Lipschitz function by weight clipping, biases the critic for too simple function. 
 
 
 % Bibliography

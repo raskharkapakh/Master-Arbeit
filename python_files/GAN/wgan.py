@@ -280,7 +280,7 @@ class WGAN():
                     real_sample = batch.get_next() #(size batch_size X csm_shape, i.e 16x64x64)
                 except:
                     print("There are not sufficient batches to train further. Training interrupted")
-                    break
+                    exit
                 
                 c_loss1 = self.critic.train_on_batch(real_sample, real)
                 c1_tmp.append(c_loss1)
@@ -321,15 +321,10 @@ class WGAN():
             seed = tf.random.normal(shape=(self.batch_size, self.latent_dim))
             # update the generator via the critic's error
             g_loss = self.wgan.train_on_batch(seed, real)
-            g_hist.append(g_loss)
+            g_hist.append(g_loss[0])
 
             # print loss per epoch
-            
-            print('>epoch %d' % (e+1))
-            print('c_real=%.3f' % (c1_hist[-1]))
-            print('c_fake=%.3f' % (c2_hist[-1]))
-            print('g0=%.3f' % (g_loss[0]))
-            print('g1=%.3f' % (g_loss[1]))
+            print('>epoch %d [c_real=%.3f][c_fake=%.3f][g=%.3f]' % (e+1, c1_hist[-1], c2_hist[-1], g_loss[0]))
             print('===========')
            
         # line plots of loss

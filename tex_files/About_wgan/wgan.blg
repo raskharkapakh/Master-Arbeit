@@ -1,46 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: wgan.aux
 The style file: plainnat.bst
 Database file #1: ../mybib.bib
-You've used 1 entry,
+You've used 2 entries,
             2773 wiz_defined-function locations,
-            599 strings with 5013 characters,
-and the built_in function-call counts, 669 in all, are:
-= -- 63
-> -- 30
+            606 strings with 5270 characters,
+and the built_in function-call counts, 1200 in all, are:
+= -- 107
+> -- 78
 < -- 1
-+ -- 10
-- -- 9
-* -- 49
-:= -- 96
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 6
-chr.to.int$ -- 1
-cite$ -- 2
-duplicate$ -- 33
-empty$ -- 55
-format.name$ -- 10
-if$ -- 147
++ -- 26
+- -- 24
+* -- 98
+:= -- 185
+add.period$ -- 8
+call.type$ -- 2
+change.case$ -- 14
+chr.to.int$ -- 2
+cite$ -- 4
+duplicate$ -- 53
+empty$ -- 86
+format.name$ -- 26
+if$ -- 253
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 13
-num.names$ -- 4
-pop$ -- 15
+missing$ -- 2
+newline$ -- 19
+num.names$ -- 8
+pop$ -- 28
 preamble$ -- 1
-purify$ -- 5
+purify$ -- 12
 quote$ -- 0
-skip$ -- 27
+skip$ -- 45
 stack$ -- 0
-substring$ -- 34
-swap$ -- 11
+substring$ -- 36
+swap$ -- 12
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 11
+type$ -- 22
 warning$ -- 0
-while$ -- 6
+while$ -- 9
 width$ -- 0
-write$ -- 21
+write$ -- 36

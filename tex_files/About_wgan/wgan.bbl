@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{2}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -11,5 +11,13 @@ Martin Arjovsky, Soumith Chintala, and L{\'e}on Bottou.
 \newblock Wasserstein generative adversarial networks.
 \newblock In \emph{International conference on machine learning}, pages
   214--223. PMLR, 2017.
+
+\bibitem[Gulrajani et~al.(2017)Gulrajani, Ahmed, Arjovsky, Dumoulin, and
+  Courville]{DBLP:journals/corr/GulrajaniAADC17}
+Ishaan Gulrajani, Faruk Ahmed, Mart{\'{\i}}n Arjovsky, Vincent Dumoulin, and
+  Aaron~C. Courville.
+\newblock Improved training of wasserstein gans.
+\newblock \emph{CoRR}, abs/1704.00028, 2017.
+\newblock URL \url{http://arxiv.org/abs/1704.00028}.
 
 \end{thebibliography}
