@@ -35,8 +35,26 @@ def evals_parser(record):
     csm = uncompress_csm(parsed['csmtriu'])
     csm /= csm[63,63] # normalize on reference microphone autopower
     evals, _ = tf.linalg.eigh(csm)
+    evals_real = tf.math.real(evals)
 
-    return tf.math.real(evals)
+
+    return evals_real
+
+def evals_square_parser(record):
+    parsed = tf.io.parse_single_example(
+    record,
+    {
+    #'loc' : tf.io.FixedLenFeature((2,),tf.float32),
+    'csmtriu' : tf.io.FixedLenFeature((64,64,1),tf.float32)}        
+    )
+    csm = uncompress_csm(parsed['csmtriu'])
+    csm /= csm[63,63] # normalize on reference microphone autopower
+    evals, _ = tf.linalg.eigh(csm)
+    evals_real = tf.math.real(evals)
+    evals_square = tf.reshape(evals_real, (8,8,1))
+
+
+    return evals_square
 
 def full_parser(record):
     parsed = tf.io.parse_single_example(

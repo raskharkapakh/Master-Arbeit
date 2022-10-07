@@ -128,7 +128,8 @@ class WGAN():
         validity = model(sample)
 
         final_model = Model(sample, validity)
-        final_model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer)
+        final_model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer,
+        metrics=['accuracy'])
 
 
         return final_model
@@ -260,11 +261,13 @@ class WGAN():
 
         
         # lists for keeping track of loss
-        c1_hist, c2_hist, g_hist = list(), list(), list()
+        c1_loss_hist, c2_loss_hist, g_loss_hist = list(), list(), list()
+        c_acc_hist, g_acc_hist = list(), list()
         
         for e in range(n_epochs):
             
-            c1_tmp, c2_tmp = list(), list()
+            c1_loss_tmp, c2_loss_tmp = list(), list()
+            c1_acc_tmp, c2_acc_tmp = list(), list()
             
 
             # ========================================================
@@ -282,8 +285,9 @@ class WGAN():
                     print("There are not sufficient batches to train further. Training interrupted")
                     exit
                 
-                c_loss1 = self.critic.train_on_batch(real_sample, real)
-                c1_tmp.append(c_loss1)
+                c_loss1, c_acc1 = self.critic.train_on_batch(real_sample, real)
+                c1_loss_tmp.append(c_loss1)
+                c1_acc_tmp.append(c_acc1)
                 
                 # generate 'fake' examples
 
@@ -306,12 +310,14 @@ class WGAN():
                 norm_fake_sample = tf.concat([norm_fake_evecs,fake_evals],axis=3)
 
                 # update critic model weights
-                c_loss2 = self.critic.train_on_batch(norm_fake_sample, fake)
-                c2_tmp.append(c_loss2)
+                c_loss2, c_acc2 = self.critic.train_on_batch(norm_fake_sample, fake)
+                c2_loss_tmp.append(c_loss2)
+                c2_acc_tmp.append(c_acc2)
             
             # store critic loss
-            c1_hist.append(np.mean(c1_tmp))
-            c2_hist.append(np.mean(c2_tmp))
+            c1_loss_hist.append(np.mean(c1_loss_tmp))
+            c2_loss_hist.append(np.mean(c2_loss_tmp))
+            c_acc_hist.append(np.mean(np.append(c1_acc_tmp,c2_acc_tmp)))
             
             # ========================================================
             # Train Generator
@@ -320,18 +326,30 @@ class WGAN():
             # prepare points in latent space as input for the generator
             seed = tf.random.normal(shape=(self.batch_size, self.latent_dim))
             # update the generator via the critic's error
-            g_loss = self.wgan.train_on_batch(seed, real)
-            g_hist.append(g_loss[0])
+            g_loss, g_acc = self.wgan.train_on_batch(seed, real)
+            g_loss_hist.append(g_loss)
+            g_acc_hist.append(g_acc)
 
             # print loss per epoch
-            print('>epoch %d [c_real=%.3f][c_fake=%.3f][g=%.3f]' % (e+1, c1_hist[-1], c2_hist[-1], g_loss[0]))
+            print('>epoch %d' % (e+1))
+            print('loss: [c_real=%.3f][c_fake=%.3f][g=%.3f]' % (c1_loss_hist[-1], c2_loss_hist[-1], g_loss_hist[-1]))
+            print('acc: [c=%.3f][g=%.3f]' % (c_acc_hist[-1], g_acc_hist[-1]))
             print('===========')
            
         # line plots of loss
+        plt.figure(figsize=(15,5))
+
+        plt.subplot(1,2,1)
+        plt.title("Losses")
+        plt.plot(c1_loss_hist, label='crit_real')
+        plt.plot(c2_loss_hist, label='crit_fake')
+        plt.plot(g_loss_hist, label='gen')
         
-        plt.plot(c1_hist, label='crit_real')
-        plt.plot(c2_hist, label='crit_fake')
-        plt.plot(g_hist, label='gen')
+        plt.subplot(1,2,2)
+        plt.title("Accuracies")
+        plt.plot(c_acc_hist, label='crit')
+        plt.plot(g_acc_hist, label='gen')
+        
         plt.legend()
         
         

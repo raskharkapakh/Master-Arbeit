@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: final_report.aux
+The style file: plainnat.bst
+Database file #1: ../mybib.bib
+Warning--empty year in eriklindernoren
+Warning--empty journal in pinto2021deconvoluting
+You've used 25 entries,
+            2773 wiz_defined-function locations,
+            732 strings with 10648 characters,
+and the built_in function-call counts, 13907 in all, are:
+= -- 1242
+> -- 903
+< -- 15
++ -- 301
+- -- 276
+* -- 1137
+:= -- 2084
+add.period$ -- 88
+call.type$ -- 25
+change.case$ -- 165
+chr.to.int$ -- 25
+cite$ -- 52
+duplicate$ -- 630
+empty$ -- 1071
+format.name$ -- 307
+if$ -- 2982
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 24
+newline$ -- 135
+num.names$ -- 102
+pop$ -- 357
+preamble$ -- 1
+purify$ -- 140
+quote$ -- 0
+skip$ -- 500
+stack$ -- 0
+substring$ -- 481
+swap$ -- 121
+text.length$ -- 11
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 275
+warning$ -- 2
+while$ -- 115
+width$ -- 0
+write$ -- 338
+(There were 2 warnings)

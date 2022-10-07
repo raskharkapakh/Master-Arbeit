@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{comment}
+\usepackage[round]{natbib}
+
+%\geometry{
+%    a4paper,
+%    total={170mm, 257mm},
+%    left=20mm,
+%    top=10mm,
+%}
+
+\title{Master Thesis}
+\author{Gaspard Ulysse Fragnière}
+\date{August 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{How to Identify and Diagnose GAN Failure Modes}
+
+From: https://machinelearningmastery.com/practical-guide-to-gan-failure-modes/
+
+-> make sure that in the GAN, when training the generator as "combined", the critic/discriminator is set as trainable=false
+
+-> "First, the loss and accuracy of the discriminator and loss for the generator model are reported to the console each iteration of the training loop.
+
+This is important. A stable GAN will have a discriminator loss around 0.5, typically between 0.5 and maybe as high as 0.7 or 0.8. The generator loss is typically higher and may hover around 1.0, 1.5, 2.0, or even higher.
+
+The accuracy of the discriminator on both real and generated (fake) images will not be 50%, but should typically hover around 70% to 80%.
+
+For both the discriminator and generator, behaviors are likely to start off erratic and move around a lot before the model converges to a stable equilibrium."
+
+Summary:
+
+\begin{itemize}
+    \item Discriminator loss on real and fake images is expected to sit around 0.5.
+    \item Generator loss on fake images is expected to sit between 0.5 and perhaps 2.0.
+    \item Discriminator accuracy on real and fake images is expected to sit around 80\%.
+    \item Variance of generator and discriminator loss is expected to remain modest.
+    \item The generator is expected to produce its highest quality images during a period of stability.
+    \item Training stability may degenerate into periods of high-variance loss and corresponding lower quality generated images.
+\end{itemize}
+
+\textbf{Mode collapse:} It  refers to a generator model that is only capable of generating one or a small subset of different outcomes, or modes. A mode collapse can be identified by reviewing the line plot of model loss. The line plot will show oscillations in the loss over time, most notably in the generator model, as the generator model is updated and jumps from generating one mode to another model that has different loss.
+
+\textbf{Convergence failure:} It is identified by the loss for the discriminator to crash down to a value close to zero and remain there. An important difference for this case is that the loss for the generator rises quickly and continues to rise for the duration of training.
+
+\section{tips for training GAN:}
+
+
+
+\section{How to fix GAN convergence issue}
+
+    
+One of the biggest step forw
+
+
+
+% Bibliography
+%\addbibresource{mybib.bib}
+\bibliography{../mybib}
+\bibliographystyle{plainnat} 
+
+
+\end{document}
