@@ -25,14 +25,17 @@ batch_size = 16
 
 class evals_GAN():
     
-    def __init__(self):
+    def __init__(self, adam_lr=0.00002, adam_beta_1=0.5, summary=True):
 
         self.evals_size = evals_size
         self.num_channels = num_channels
         self.latent_dim = latent_dim
         self.batch_size = batch_size
+        self.adam_lr = adam_lr
+        self.adam_beta_1 = adam_beta_1
+        self.summary = summary
 
-        self.optimizer = Adam(0.0002, 0.5)
+        self.optimizer = Adam(self.adam_lr, self.adam_beta_1)
 
         #self.gen_loss_tracker = keras.metrics.Mean(name="generator_loss")
         #self.disc_loss_tracker = keras.metrics.Mean(name="discriminator_loss")
@@ -97,7 +100,9 @@ class evals_GAN():
         model.add(Dense(256))
         model.add(LeakyReLU(alpha=0.2))
         model.add(Dense(1, activation='sigmoid'))
-        model.summary()
+        
+        if self.summary:
+            model.summary()
         
 
         eval = Input(shape=self.evals_size)
@@ -143,7 +148,8 @@ class evals_GAN():
         model.add(Dense(np.prod(self.evals_size), activation='tanh'))
         #model.add(Reshape(self.evals_size))
         
-        model.summary()
+        if self.summary:
+            model.summary()
 
         noise = Input(shape=(self.latent_dim,))
         evals = model(noise)
@@ -168,7 +174,7 @@ class evals_GAN():
         self.loss_fn = loss_fn
     """
     
-    def train(self, evals_dataset, n_epoch):
+    def train(self, evals_dataset, n_epoch, print_epoch=True, plot_result=True):
 
         # get data
         batch = iter(evals_dataset)
@@ -225,26 +231,34 @@ class evals_GAN():
             g_loss_list.append(g_loss)
             g_acc_list.append(g_acc)
             
-            # print status
-            print('-=-=- EPOCH %d -=-=-' % (e+1))
-            print('>loss: [c_real=%.3f][c_fake=%.3f][g=%.3f]' % (c1_loss, c2_loss, g_loss))
-            print('>accuracy: [c=%.3f][g=%.3f]' % (c_acc, g_acc))
-            print("")
+            if print_epoch:
+                # print status
+                print('-=-=- EPOCH %d -=-=-' % (e+1))
+                print('>loss: [c_real=%.3f][c_fake=%.3f][g=%.3f]' % (c1_loss, c2_loss, g_loss))
+                print('>accuracy: [c=%.3f][g=%.3f]' % (c_acc, g_acc))
+                print("")
         
-        plt.figure(figsize=(15,5))
+        if plot_result:
+            
+            fig = plt.figure(figsize=(15,5))
 
-        plt.subplot(1,2,1)
-        plt.title("Losses")
-        plt.plot(np.arange(n_epoch), c1_loss_list, label='crit_real')
-        plt.plot(np.arange(n_epoch), c2_loss_list, label='crit_fake')
-        plt.plot(np.arange(n_epoch), g_loss_list, label='gen')
-        plt.legend()
-        
-        plt.subplot(1,2,2)
-        plt.title("Accuracies")
-        plt.plot(np.arange(n_epoch), c_acc_list, label='crit')
-        plt.plot(np.arange(n_epoch), g_acc_list, label='gen')
-        plt.legend()
+            plt.subplot(1,2,1)
+            plt.title("Losses")
+            plt.plot(np.arange(n_epoch), c1_loss_list, label='crit_real')
+            plt.plot(np.arange(n_epoch), c2_loss_list, label='crit_fake')
+            plt.plot(np.arange(n_epoch), g_loss_list, label='gen')
+            plt.hlines(0.5, color='red', xmin=0, xmax=n_epoch, linestyles='dotted')
+            plt.hlines(2, color='red', xmin=0, xmax=n_epoch,linestyles='dotted')
+            plt.legend()
+            
+            plt.subplot(1,2,2)
+            plt.title("Accuracies")
+            plt.plot(np.arange(n_epoch), c_acc_list, label='crit')
+            plt.plot(np.arange(n_epoch), g_acc_list, label='gen')
+            plt.hlines(0.8, color='red', xmin=0, xmax=n_epoch, linestyles='dotted')
+            plt.legend()
+
+            fig.suptitle(f'lr={self.adam_lr}, beta_1={self.adam_beta_1}', fontsize=16)
    
 
     def get_evals(self):

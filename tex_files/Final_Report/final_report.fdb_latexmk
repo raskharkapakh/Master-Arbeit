@@ -1,16 +1,16 @@
 # Fdb version 3
-["bibtex final_report"] 1665161514 "final_report.aux" "final_report.bbl" "final_report" 1665161607
-  "../mybib.bib" 1665152389 12482 bcad5c6bc78d5b492fb85078a54d97c4 ""
+["bibtex final_report"] 1665571268 "final_report.aux" "final_report.bbl" "final_report" 1665571296
+  "../mybib.bib" 1665495184 13147 75b615db51d592cc96e7a4988163c5f2 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "final_report.aux" 1665161607 6283 ae891f7065c16144885b6580c20448a1 "pdflatex"
+  "final_report.aux" 1665571296 6950 fc6c9a6a40ae0027090a72246fbe198a "pdflatex"
   (generated)
   "final_report.bbl"
   "final_report.blg"
-["pdflatex"] 1665161606 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1665161607
+["pdflatex"] 1665571295 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1665571296
   "../figs/DCGAN_evals_loss_acc.png" 1665154479 61335 bef3f7bf479ce45b84cef1921d10c305 ""
   "../figs/GAN_evals_loss_acc.png" 1665151615 45477 00a000293a004f1193e1152fe2493f83 ""
   "/etc/texmf/web2c/texmf.cnf" 1664350533 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1665161606 19960 72018e456da56bab9e543b435053f972 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1665571294 22335 7bf0d3a1270ff5a877e0fed6ec9bd801 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -44,10 +44,13 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb" 1248133631 32034 6149cc3792d7e291632994f6e6ca6d68 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb" 1248133631 32007 e8fa0078355f39467039935974716569 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
@@ -97,9 +100,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664350730 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1664350791 2799227 abb622decb41d040688c8f6b5552e01e ""
-  "final_report.aux" 1665161607 6283 ae891f7065c16144885b6580c20448a1 "pdflatex"
-  "final_report.bbl" 1665161514 8818 8fb6788e4dc5f2c20880e20d37b963ce "bibtex final_report"
-  "final_report.tex" 1665161606 19960 72018e456da56bab9e543b435053f972 ""
+  "final_report.aux" 1665571296 6950 fc6c9a6a40ae0027090a72246fbe198a "pdflatex"
+  "final_report.bbl" 1665571269 9519 2a5bb395bd8b7cca702e8c2fd97ab1ec "bibtex final_report"
+  "final_report.tex" 1665571294 22335 7bf0d3a1270ff5a877e0fed6ec9bd801 ""
   (generated)
   "final_report.aux"
   "final_report.log"

@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -62,6 +62,14 @@ Peter Gerstoft, Herbert Groll, and Christoph~F Mecklenbr{\"a}uker.
   network.
 \newblock In \emph{2020 IEEE 11th Sensor Array and Multichannel Signal
   Processing Workshop (SAM)}, pages 1--5. IEEE, 2020.
+
+\bibitem[Goodfellow et~al.(2020)Goodfellow, Pouget-Abadie, Mirza, Xu,
+  Warde-Farley, Ozair, Courville, and Bengio]{goodfellow2020generative}
+Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
+  Sherjil Ozair, Aaron Courville, and Yoshua Bengio.
+\newblock Generative adversarial networks.
+\newblock \emph{Communications of the ACM}, 63\penalty0 (11):\penalty0
+  139--144, 2020.
 
 \bibitem[Gulrajani et~al.(2017)Gulrajani, Ahmed, Arjovsky, Dumoulin, and
   Courville]{DBLP:journals/corr/GulrajaniAADC17}
@@ -151,6 +159,13 @@ Wagner~Gon{\c{c}}alves Pinto, Micha{\"e}l Bauerheim, and H{\'e}l{\`e}ne
   Parisot-Dupuis.
 \newblock Deconvoluting acoustic beamforming maps with a deep neural network.
 \newblock 2021.
+
+\bibitem[Radford et~al.(2015)Radford, Metz, and
+  Chintala]{radford2015unsupervised}
+Alec Radford, Luke Metz, and Soumith Chintala.
+\newblock Unsupervised representation learning with deep convolutional
+  generative adversarial networks.
+\newblock \emph{arXiv preprint arXiv:1511.06434}, 2015.
 
 \bibitem[Ratnarajah et~al.(2021)Ratnarajah, Zhang, Yu, Tang, Manocha, and
   Yu]{ratnarajah2021fast}

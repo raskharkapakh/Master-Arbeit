@@ -150,9 +150,12 @@ In order to fix the convergence issue experienced by teh models above, we implem
 
 \subsection{GAN}
 
+\cite{goodfellow2020generative}
 \textbf{TODO: include explanation about GAN basic principle}
 
 \subsection{DCGAN}
+
+\cite{radford2015unsupervised}
 
 \textbf{TODO: include explanation about DCGAN basic principle}
 
@@ -214,11 +217,36 @@ Implementation of a WGAN requires a few changes from implementation of a regular
 
 \subsection{WGAN-GP}
 
-As we have seen above, WGAN improve the stability in training the critic ($\approx$ discriminator). But sometimes, they only generate poor sample or fail to converge. This is due to the weight clipping happening while training the critic. In order to remedy to this, \cite{DBLP:journals/corr/GulrajaniAADC17} propose to replace weight clipping by the introduction of a penalization of the norm of gradient of the critic with respect to its input. The issue is that trying to orient the critic to 1-Lipschitz function by weight clipping, biases the critic for too simple function.
+As we have seen above, WGAN improve the stability in training the critic ($\approx$ discriminator). But it is still subject to poor sample generation, convergence failure or mode collapse. This is due to the weight clipping happening while training the critic. In order to remedy to this, \cite{DBLP:journals/corr/GulrajaniAADC17} propose to replace weight clipping by the introduction of a penalization of the norm of gradient of the critic with respect to its input. The issue is that trying to orient the critic to 1-Lipschitz function by weight clipping, biases the critic for too simple function. \cite{DBLP:journals/corr/GulrajaniAADC17} observes that implement the Lipschitz constraint to weight clipping leads to either exploding or vanishing gradient, unless the threshold $c$ used for the clipping is carefully fine-tuned.
 
-\textbf{TODO: Explain more formally the Gradient Penalty}
+\subsubsection{The gradient penalty}
 
+In order to enforce the Lipschitz constraint, \cite{DBLP:journals/corr/GulrajaniAADC17} proposes to add a penalty term to the loss function. the loss function then becomes: 
 
+\begin{equation}
+    L = L' + P
+\end{equation}
+
+where:
+
+\begin{itemize}
+    \item Original loss function: 
+    \begin{equation}
+        L' = \mathbb{E}_{\mathbf{\tilde{x}} \sim \mathbb{P}_g} [D(\mathbf{\tilde{x}})] - \mathbb{E}_{\mathbf{x} \sim \mathbb{P}_r} [D(\mathbf{x})]
+    \end{equation}
+    \item Penalty:
+    \begin{equation}
+        P = \lambda \mathbb{E}_{\hat{\mathbf{x}} \sim \mathbb{P}_{\hat{\mathbf{x}}}}[(||\nabla_{\hat{\mathbf{x}}} D(\hat{\mathbf{x}})-1||)^2]
+    \end{equation}
+\end{itemize}
+
+The goal of the penalty is to enforce the 1-Lipschitz constraint. Indeed, by definition, a function is 1-Lipschitz if and only if its gradient norm smaller or equal to 1 everywhere. It can be easily seen that the penalty is here to enforce this constraint. In order to make such a penalty tractable, a soft version of the penalty is considered, where the constraint is only enforced on a the gradient norm of a few random samples $\hat{\mathbf{x}} \sim \mathbb{P}_{\hat{\mathbf{x}}}$.
+
+The sampling distribution $\mathbb{P}_{\hat{\mathbf{x}}}$ is defined by sampling uniformly on on a line between a pair of points respectively sampled from $\mathbb{P}_{r}$ and $\mathbb{P}_{g}$. This was proven experimentally to give sufficiently good results.
+
+In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done.
+
+No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples.Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
 % ========================================================================
 
 % Bibliography

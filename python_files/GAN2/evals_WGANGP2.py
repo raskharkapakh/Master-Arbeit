@@ -2,23 +2,18 @@
 from __future__ import print_function, division
 
 #from keras.layers.merge import _Merge
-from keras.datasets import mnist
-from keras.layers import Input, Dense, Reshape, Flatten, Dropout
-from keras.layers import BatchNormalization, Activation, ZeroPadding2D
-from keras.layers import LeakyReLU
-from keras.layers import UpSampling2D, Conv2D
-from keras.models import Sequential, Model
-from keras.optimizers import RMSprop
+#from tensorflow.keras.datasets import mnist
+from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout, BatchNormalization, Activation, ZeroPadding2D, LeakyReLU, UpSampling2D, Conv2D, Layer
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.optimizers import RMSprop
 from functools import partial
-from keras.layers import Layer
 
 import tensorflow as tf
-
-import keras.backend as K
+import tensorflow.keras.backend as K
 
 import matplotlib.pyplot as plt
 
-import sys
+#import sys
 
 import numpy as np
 
@@ -36,11 +31,17 @@ evals_shape = (8,8,1)
 latent_dim = 128
 batch_size = 16
 
+"""
+TODO: build custom layer:
+
 class RandomWeightedAverage(Layer):
     def __init__(self, batch_size, evals_shape):
         super().__init__()
         self.batch_size = batch_size
         self.evals_shape = evals_shape
+
+    def build():
+        TODO
 
     def call(self, inputs, **kwargs):
         shape = (self.batch_size, 
@@ -53,6 +54,26 @@ class RandomWeightedAverage(Layer):
 
     def compute_output_shape(self, input_shape):
         return input_shape[0]
+"""
+
+class RandomWeightedAverage(Layer):
+    def __init__(self, batch_size, evals_shape, **kwargs):
+        self.shape = (batch_size, 
+                    evals_shape[0],
+                    evals_shape[1], 
+                    evals_shape[2])
+        super().__init__(**kwargs)
+
+    def build(self, input_shape, **kwargs):
+        super().build(input_shape, **kwargs)
+
+    def call(self, inputs, **kwargs):
+        alpha = tf.random.uniform(self.shape)
+        #alpha = tf.random_uniform((self.batch_size, 1, 1, 1))
+        return (alpha * inputs[0]) + ((1 - alpha) * inputs[1])
+
+    def compute_output_shape(self, **kwargs):
+        return self.shape
 
 """
 class RandomWeightedAverage(_Merge):
@@ -223,29 +244,18 @@ class evals_WGANGP():
 
     def train(self, evals_dataset, n_epoch):
 
+        # create iterator to iterate over batches
         batch = iter(evals_dataset)
 
         # groundtruth
-        real = -np.ones((self.batch_size, 1))
-        fake = np.ones((self.batch_size, 1))
-        dummy = np.zeros((batch_size, 1)) # Dummy gt for gradient penalty
+        real = -tf.ones((self.batch_size, 1))
+        fake = tf.ones((self.batch_size, 1))
+        dummy = tf.zeros((batch_size, 1)) # Dummy gt for gradient penalty
 
+        # list for storing performances while training
         c_loss_list, g_loss_list = list(), list() 
         c_acc_list, g_acc_list = list(), list()
 
-        """
-        # Load the dataset
-        (X_train, _), (_, _) = mnist.load_data()
-
-        # Rescale -1 to 1
-        X_train = (X_train.astype(np.float32) - 127.5) / 127.5
-        X_train = np.expand_dims(X_train, axis=3)
-
-        # Adversarial ground truths
-        valid = -np.ones((batch_size, 1))
-        fake =  np.ones((batch_size, 1))
-        dummy = np.zeros((batch_size, 1)) # Dummy gt for gradient penalty
-        """
         for e in range(n_epoch):
 
             for _ in range(self.n_critic):
@@ -261,11 +271,7 @@ class evals_WGANGP():
                 #  Train Discriminator
                 # ---------------------
 
-                """
-                # Select a random batch of images
-                idx = np.random.randint(0, X_train.shape[0], batch_size)
-                imgs = X_train[idx]
-                """
+
                 # BEGIN VERSION 1:
                 # vvvvvvvvvvvvvvvv
                 """
@@ -288,7 +294,7 @@ class evals_WGANGP():
                 # vvvvvvvvvvvvvvvv
                 
                 # Sample generator input
-                noise = np.random.normal(0, 1, (batch_size, self.latent_dim))
+                noise = tf.random.normal(0, 1, (batch_size, self.latent_dim))
                 # Train the critic
                 # TODO: here need to scale fake and real evals
                 # c_loss, c_acc
@@ -357,37 +363,3 @@ class evals_WGANGP():
             elif i == 99:
                 print("no real eigenvalues found")
                 return False, norm_generated_eigenvals
-
-
-            """
-            # If at save interval => save generated image samples
-            if epoch % sample_interval == 0:
-                self.sample_images(epoch)
-            """
-
-    """
-    def sample_images(self, epoch):
-        r, c = 5, 5
-        noise = np.random.normal(0, 1, (r * c, self.latent_dim))
-        gen_imgs = self.generator.predict(noise)
-
-        # Rescale images 0 - 1
-        gen_imgs = 0.5 * gen_imgs + 0.5
-
-        fig, axs = plt.subplots(r, c)
-        cnt = 0
-        for i in range(r):
-            for j in range(c):
-                axs[i,j].imshow(gen_imgs[cnt, :,:,0], cmap='gray')
-                axs[i,j].axis('off')
-                cnt += 1
-        fig.savefig("images/mnist_%d.png" % epoch)
-        plt.close()
-    """
-
-
-"""
-if __name__ == '__main__':
-    wgan = WGANGP()
-    wgan.train(evals_dataset=evals_dataset, n_epoch=30000, batch_size=32, sample_interval=100)
-"""

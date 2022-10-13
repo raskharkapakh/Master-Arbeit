@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  7 OCT 2022 18:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  12 OCT 2022 12:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -242,44 +242,44 @@ File: ../figs/DCGAN_evals_loss_acc.png Graphic file (type png)
 <use ../figs/DCGAN_evals_loss_acc.png>
 Package pdftex.def Info: ../figs/DCGAN_evals_loss_acc.png  used on input line 135.
 (pdftex.def)             Requested size: 430.00462pt x 159.6958pt.
- [5 <../figs/GAN_evals_loss_acc.png>] Excluding 'comment' comment. [6 <../figs/DCGAN_evals_loss_acc.png>] (./final_report.bbl [7]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 72.
+ [5 <../figs/GAN_evals_loss_acc.png>] Excluding 'comment' comment. [6 <../figs/DCGAN_evals_loss_acc.png>] [7] (./final_report.bbl [8]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 80.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 3417) in paragraph at lines 68--73
+Underfull \hbox (badness 3417) in paragraph at lines 76--81
 []\T1/cmr/m/n/10 Ishaan Gul-ra-jani, Faruk Ahmed, Martín Ar-jovsky, Vin-cent Du-moulin, and Aaron C.
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 96--106
+Underfull \hbox (badness 1540) in paragraph at lines 104--114
 []\T1/cmr/m/n/10 Kundan Ku-mar, Rithesh Ku-mar, Thibault de Boissiere, Lu-cas Gestin, Wei Zhen Teoh,
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 96--106
+Underfull \hbox (badness 1648) in paragraph at lines 104--114
 \T1/cmr/m/n/10 Jose Sotelo, Alexan-dre de Brébis-son, Yoshua Ben-gio, and Aaron C Courville.  Mel-
  []
 
 
-Overfull \hbox (49.90596pt too wide) in paragraph at lines 96--106
+Overfull \hbox (49.90596pt too wide) in paragraph at lines 104--114
 \T1/cmtt/m/n/10 https://proceedings.neurips.cc/paper/2019/file/6804c9bca0a615bdb9374d00a9fcba59-Paper.pdf\T1/cmr/m/n/10 . 
  []
 
-[8]) [9] (./final_report.aux) ) 
+[9]) [10] (./final_report.aux) ) 
 Here is how much of TeX's memory you used:
- 3960 strings out of 478287
- 58533 string characters out of 5849289
- 355388 words of memory out of 5000000
- 22108 multiletter control sequences out of 15000+600000
+ 3966 strings out of 478287
+ 58722 string characters out of 5849289
+ 356568 words of memory out of 5000000
+ 22114 multiletter control sequences out of 15000+600000
  483254 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,1007b,254s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on final_report.pdf (9 pages, 385638 bytes).
+ 55i,6n,62p,1007b,266s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on final_report.pdf (10 pages, 416319 bytes).
 PDF statistics:
- 134 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 152 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
