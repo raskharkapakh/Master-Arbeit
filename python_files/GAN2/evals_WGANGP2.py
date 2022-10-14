@@ -1,28 +1,22 @@
 
 from __future__ import print_function, division
 
-#from keras.layers.merge import _Merge
-#from tensorflow.keras.datasets import mnist
-from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout, BatchNormalization, Activation, ZeroPadding2D, LeakyReLU, UpSampling2D, Conv2D, Layer
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.optimizers import RMSprop
-from functools import partial
-
+# Library imports
 import tensorflow as tf
 import tensorflow.keras.backend as K
-
 import matplotlib.pyplot as plt
-
-#import sys
-
 import numpy as np
 
-"""
-from tensorflow.python.framework.ops import disable_eager_execution
-disable_eager_execution()
-"""
+# Imports from TensorFlow/Keras
+from tensorflow.keras.layers import Dense, Reshape, Flatten, Dropout, BatchNormalization, Activation, ZeroPadding2D, LeakyReLU, UpSampling2D, Conv2D
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers import RMSprop, Adam
+from tensorflow.keras.metrics import Accuracy
 
-# My import
+
+
+
+# My imports
 from eigenmanipulation2 import normalize_evals
 
 
@@ -30,59 +24,12 @@ num_channels = 1
 evals_shape = (8,8,1)
 latent_dim = 128
 batch_size = 16
+n_critic = 5
 
-"""
-TODO: build custom layer:
-
-class RandomWeightedAverage(Layer):
-    def __init__(self, batch_size, evals_shape):
-        super().__init__()
-        self.batch_size = batch_size
-        self.evals_shape = evals_shape
-
-    def build():
-        TODO
-
-    def call(self, inputs, **kwargs):
-        shape = (self.batch_size, 
-                self.evals_shape[0],
-                self.evals_shape[1], 
-                self.evals_shape[2])
-        alpha = tf.random.uniform(shape)
-        #alpha = tf.random_uniform((self.batch_size, 1, 1, 1))
-        return (alpha * inputs[0]) + ((1 - alpha) * inputs[1])
-
-    def compute_output_shape(self, input_shape):
-        return input_shape[0]
-"""
-
-class RandomWeightedAverage(Layer):
-    def __init__(self, batch_size, evals_shape, **kwargs):
-        self.shape = (batch_size, 
-                    evals_shape[0],
-                    evals_shape[1], 
-                    evals_shape[2])
-        super().__init__(**kwargs)
-
-    def build(self, input_shape, **kwargs):
-        super().build(input_shape, **kwargs)
-
-    def call(self, inputs, **kwargs):
-        alpha = tf.random.uniform(self.shape)
-        #alpha = tf.random_uniform((self.batch_size, 1, 1, 1))
-        return (alpha * inputs[0]) + ((1 - alpha) * inputs[1])
-
-    def compute_output_shape(self, **kwargs):
-        return self.shape
-
-"""
-class RandomWeightedAverage(_Merge):
-    #Provides a (random) weighted average between real and generated image samples
-    def _merge_function(self, inputs):
-        shape = inputs[0].shape
-        alpha = K.random_uniform(shape)
-        return (alpha * inputs[0]) + ((1 - alpha) * inputs[1])
-"""
+# learning rate constant
+LR = 1e-4
+MIN_LR = 1e-6 # Minimum value of learning rate
+DECAY_FACTOR=1.00004
 
 class evals_WGANGP():
     def __init__(self):
@@ -90,6 +37,7 @@ class evals_WGANGP():
         self.latent_dim = latent_dim
         self.batch_size = batch_size
         self.evals_shape = evals_shape
+        self.n_critic = n_critic
 
         # Following parameter and optimizer set as recommended in paper
         self.n_critic = 5
@@ -98,235 +46,223 @@ class evals_WGANGP():
         # Build the generator and critic
         self.generator = self.build_generator()
         self.critic = self.build_critic()
-
-        #-------------------------------
-        # Construct Computational Graph
-        #       for the Critic
-        #-------------------------------
-
-        # Freeze generator's layers while training critic
-        self.generator.trainable = False
-
-        # Image input (real sample)
-        real_evals = Input(shape=self.evals_shape)
-
-        # Noise input
-        z_disc = Input(shape=(self.latent_dim,))
-        # Generate image based of noise (fake sample)
-        fake_evals = self.generator(z_disc)
-
-        # Discriminator determines validity of the real and fake images
-        fake = self.critic(fake_evals)
-        real = self.critic(real_evals)
-
-        # Construct weighted average between real and fake images
-        interpolated_evals = RandomWeightedAverage(self.batch_size, self.evals_shape)([real_evals, fake_evals])
-        """
-        alpha = K.random_uniform(evals_shape)
-        interpolated_evals = (alpha * real_evals) + ((1 - alpha) * fake_evals)
-        """
-        # Determine validity of weighted sample
-        validity_interpolated = self.critic(interpolated_evals)
-
-        # Use Python partial to provide loss function with additional
-        # 'averaged_samples' argument
-        partial_gp_loss = partial(self.gradient_penalty_loss,
-                          averaged_samples=interpolated_evals)
-        partial_gp_loss.__name__ = 'gradient_penalty' # Keras requires function names
-
-        self.critic_model = Model(inputs=[real_evals, z_disc],
-                            outputs=[real, fake, validity_interpolated])
-        self.critic_model.compile(loss=[self.wasserstein_loss,
-                                        self.wasserstein_loss,
-                                        partial_gp_loss],
-                                optimizer=self.optimizer,
-                                loss_weights=[1, 1, 10],
-                                metrics=['accuracy'])
-        #-------------------------------
-        # Construct Computational Graph
-        #         for Generator
-        #-------------------------------
-
-        # For the generator we freeze the critic's layers
-        self.critic.trainable = False
-        self.generator.trainable = True
-
-        # Sampled noise for input to generator
-        z_gen = Input(shape=(self.latent_dim,))
-        # Generate images based of noise
-        evals = self.generator(z_gen)
-        # Discriminator determines validity
-        valid = self.critic(evals)
-        # Defines generator model
-        self.generator_model = Model(z_gen, valid)
-        self.generator_model.compile(loss=self.wasserstein_loss, optimizer=self.optimizer,
-        metrics=['accuracy'])
+        
+        self.g_optimizer = Adam(learning_rate=LR, beta_1=0.5)
+        self.c_optimizer = Adam(learning_rate=LR, beta_1=0.5)
 
 
-    def gradient_penalty_loss(self, y_true, y_pred, averaged_samples):
-        """
-        Computes gradient penalty based on prediction and weighted real / fake samples
-        """
-        gradients = K.gradients(y_pred, averaged_samples)[0]
-        # compute the euclidean norm by squaring ...
-        gradients_sqr = K.square(gradients)
-        #   ... summing over the rows ...
-        gradients_sqr_sum = K.sum(gradients_sqr,
-                                  axis=np.arange(1, len(gradients_sqr.shape)))
-        #   ... and sqrt
-        gradient_l2_norm = K.sqrt(gradients_sqr_sum)
-        # compute lambda * (1 - ||grad||)^2 still for each single sample
-        gradient_penalty = K.square(1 - gradient_l2_norm)
-        # return the mean as loss over all the batch samples
-        return K.mean(gradient_penalty)
+    def learning_rate_decay(self, current_lr, decay_factor=DECAY_FACTOR):
+        # Calculate new learning rate using decay factor
+        new_lr = max(current_lr / decay_factor, MIN_LR)
+        return new_lr
 
 
-    def wasserstein_loss(self, y_true, y_pred):
-        return K.mean(y_true * y_pred)
+    def set_learning_rate(self, new_lr):
+        #Set new learning rate to optimizers
+        
+        K.set_value(self.c_optimizer.lr, new_lr)
+        K.set_value(self.g_optimizer.lr, new_lr)
 
+    def get_accuracy(self, pred, groundtruth):
+        
+        # "round" prediction so that accuracy can be computed
+        # Because we have a critic instead of a discriminator, accuracy will always be zero otherwise  
+        numpy_pred = pred.numpy()
+        round_numpy_pred = np.where(numpy_pred < 0, -1, 1)
+        round_pred = tf.convert_to_tensor(round_numpy_pred)
+        
+        
+        acc = Accuracy()
+        acc.update_state(round_pred, groundtruth)
+        accuracy = acc.result().numpy()
+        return accuracy
+
+    def get_next_batch(self, iterator):
+        # get real input data
+        try:
+            batch = iterator.get_next() #(size batch_size X evals_shape, i.e 16x64)
+        except:
+            print("There are not sufficient batches to train further. Training interrupted")
+            exit()
+
+        return batch, iterator
+
+    
     def build_generator(self):
+       
+        model = Sequential(
+            [
+                Dense(128 * 2 * 2, activation="relu", input_dim=self.latent_dim),
+                Reshape((2, 2, 128)),
+                UpSampling2D(),
+                Conv2D(128, kernel_size=4, padding="same"),
+                BatchNormalization(momentum=0.8),
+                Activation("relu"),
+                UpSampling2D(),
+                Conv2D(64, kernel_size=4, padding="same"),
+                BatchNormalization(momentum=0.8),
+                Activation("relu"),
+                Conv2D(self.num_channels, kernel_size=4, padding="same"),
+                Activation("tanh"),
+            ],
+            name='generator',
+        )
 
-        model = Sequential()
+        return model
 
-        model.add(Dense(128 * 2 * 2, activation="relu", input_dim=self.latent_dim))
-        model.add(Reshape((2, 2, 128)))
-        model.add(UpSampling2D())
-        model.add(Conv2D(128, kernel_size=4, padding="same"))
-        model.add(BatchNormalization(momentum=0.8))
-        model.add(Activation("relu"))
-        model.add(UpSampling2D())
-        model.add(Conv2D(64, kernel_size=4, padding="same"))
-        model.add(BatchNormalization(momentum=0.8))
-        model.add(Activation("relu"))
-        model.add(Conv2D(self.num_channels, kernel_size=4, padding="same"))
-        model.add(Activation("tanh"))
-        """
-        model.add(Reshape(self.evals_shape, input_shape=self.evals_img_shape))
-        """
 
-        model.summary()
+    def train_generator(self):
 
-        noise = Input(shape=(self.latent_dim,))
-        img = model(noise)
+        seed = tf.random.normal([self.batch_size, self.latent_dim])
+        ###################################
+        # Train G
+        ###################################
+        with tf.GradientTape() as g_tape:
+            fake_evals = self.generator([seed], training=True)
+            norm_fake_evals = normalize_evals(fake_evals)
+            fake_pred = self.critic([norm_fake_evals], training=True)
+            g_loss = -tf.reduce_mean(fake_pred)
+        # Calculate the gradients for generator
+        g_gradients = g_tape.gradient(g_loss,
+                                                self.generator.trainable_variables)
+        # Apply the gradients to the optimizer
+        self.g_optimizer.apply_gradients(zip(g_gradients,
+                                                    self.generator.trainable_variables))
+        groundtruth_real = -tf.ones(shape=fake_pred.shape)
+        g_acc = self.get_accuracy(fake_pred, groundtruth_real)
 
-        return Model(noise, img)
+        return g_loss, g_acc
+
+
 
     def build_critic(self):
+        
+        model = Sequential(
+            [
+                Conv2D(16, kernel_size=3, strides=2, input_shape=self.evals_shape, padding="same"),
+                LeakyReLU(alpha=0.2),
+                Dropout(0.25),
+                Conv2D(32, kernel_size=3, strides=2, padding="same"),
+                ZeroPadding2D(padding=((0,1),(0,1))),
+                BatchNormalization(momentum=0.8),
+                LeakyReLU(alpha=0.2),
+                Dropout(0.25),
+                Conv2D(64, kernel_size=3, strides=2, padding="same"),
+                BatchNormalization(momentum=0.8),
+                LeakyReLU(alpha=0.2),
+                Dropout(0.25),
+                Conv2D(128, kernel_size=3, strides=1, padding="same"),
+                BatchNormalization(momentum=0.8),
+                LeakyReLU(alpha=0.2),
+                Dropout(0.25),
+                Flatten(),
+                Dense(1)
+            ],
+            name= 'critic',
+        )
 
-        model = Sequential()
-        """
-        model.add(Reshape(self.evals_img_shape, input_shape=self.evals_shape))"""
-        model.add(Conv2D(16, kernel_size=3, strides=2, input_shape=self.evals_shape, padding="same"))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv2D(32, kernel_size=3, strides=2, padding="same"))
-        model.add(ZeroPadding2D(padding=((0,1),(0,1))))
-        model.add(BatchNormalization(momentum=0.8))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv2D(64, kernel_size=3, strides=2, padding="same"))
-        model.add(BatchNormalization(momentum=0.8))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Conv2D(128, kernel_size=3, strides=1, padding="same"))
-        model.add(BatchNormalization(momentum=0.8))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(Dropout(0.25))
-        model.add(Flatten())
-        model.add(Dense(1))
+        return model
+    
 
-        model.summary()
+    def train_critic(self, real_evals):
 
-        img = Input(shape=self.evals_shape)
-        validity = model(img)
+        lambda_gp = 10 # value advised by paper
 
-        return Model(img, validity)
+        seed = tf.random.normal(shape=(self.batch_size, self.latent_dim))
+        alpha = tf.random.uniform(self.evals_shape, minval=0, maxval=1)
 
-    def train(self, evals_dataset, n_epoch):
 
+        with tf.GradientTape(persistent=True) as d_tape:
+            with tf.GradientTape() as gp_tape:
+                fake_evals = self.generator([seed], training=True)
+                
+        
+                interpolated_evals = (alpha * real_evals) + ((1 - alpha) * fake_evals)
+                norm_interpolated_evals = normalize_evals(interpolated_evals)
+
+                interpolated_evals_pred = self.critic([norm_interpolated_evals], training=True)
+            
+            norm_real_evals = normalize_evals(real_evals)
+            norm_fake_evals = normalize_evals(fake_evals)
+
+            # Compute gradient penalty
+            grads = gp_tape.gradient(interpolated_evals_pred, interpolated_evals)
+            grad_norms = tf.sqrt(tf.reduce_sum(tf.square(grads), axis=[1, 2, 3]))
+            gradient_penalty = tf.reduce_mean(tf.square(grad_norms - 1))
+            
+            fake_pred = self.critic([norm_fake_evals], training=True)
+            real_pred = self.critic([norm_real_evals], training=True)
+            
+            c_loss = tf.reduce_mean(fake_pred) - tf.reduce_mean(real_pred) + lambda_gp * gradient_penalty
+        # Calculate the gradients for discriminator
+        c_gradients = d_tape.gradient(c_loss,
+                                                self.critic.trainable_variables)
+        # Apply the gradients to the optimizer
+        self.c_optimizer.apply_gradients(zip(c_gradients,
+                                                    self.critic.trainable_variables))
+        
+        #groundtruth
+        groundtruth_real = -tf.ones(shape=real_pred.shape)
+        groundtruth_fake = tf.ones(shape=fake_pred.shape)
+        
+        c_acc_real = self.get_accuracy(real_pred, groundtruth_real)
+        c_acc_fake = self.get_accuracy(real_pred, groundtruth_fake)
+        c_acc = np.mean([c_acc_real, c_acc_fake])
+
+        return c_loss, c_acc
+
+
+    def train(self, evals_dataset, n_epoch):        
+        
+        current_learning_rate = LR
         # create iterator to iterate over batches
-        batch = iter(evals_dataset)
+        batch_iterator = iter(evals_dataset)
 
-        # groundtruth
-        real = -tf.ones((self.batch_size, 1))
-        fake = tf.ones((self.batch_size, 1))
-        dummy = tf.zeros((batch_size, 1)) # Dummy gt for gradient penalty
-
-        # list for storing performances while training
-        c_loss_list, g_loss_list = list(), list() 
-        c_acc_list, g_acc_list = list(), list()
+        c_loss_list, g_loss_list = [], []
+        c_acc_list, g_acc_list = [], [] 
 
         for e in range(n_epoch):
+        
+            # ================
+            # train critic
+            # ================
+            
+            c_loss_temp_list = []
+            c_acc_temp_list = []
 
             for _ in range(self.n_critic):
                 
-                c_loss_list_tmp, c_acc_list_tmp = list(), list()
+                # get data
+                real_evals, batch_iterator = self.get_next_batch(batch_iterator)
 
-                try:
-                    real_evals = batch.get_next() #(size batch_size X evals_shape, i.e 16x64)
-                except:
-                    print("There are not sufficient batches to train further. Training interrupted")
-                    exit()
-                # ---------------------
-                #  Train Discriminator
-                # ---------------------
+                # Using learning rate decay
+                current_learning_rate = self.learning_rate_decay(current_learning_rate)
+                self.set_learning_rate(current_learning_rate)
 
+                c_loss_temp, c_acc_temp = self.train_critic(real_evals)
+                c_loss_temp_list.append(c_loss_temp)
+                c_acc_temp_list.append(c_acc_temp)
 
-                # BEGIN VERSION 1:
-                # vvvvvvvvvvvvvvvv
-                """
-                norm_real_evals = normalize_evals(real_evals)
-                c1_loss, c1_acc = self.critic_model.train_on_batch([norm_real_evals], [real, dummy])
-                
-                # train discriminator with fake samples
-                seed = tf.random.normal(shape=(self.batch_size, self.latent_dim)) # random vector to generate fake sample
-                fake_evals = self.generator(seed) # generate fake sample using random seed
-                norm_fake_evals = normalize_evals(fake_evals)
-                c2_loss, c2_acc = self.critic_model.train_on_batch([norm_fake_evals], [fake, dummy])
+            c_loss = np.mean(c_loss_temp_list)
+            c_acc = np.mean(c_acc_temp_list)
+           
 
-                c_loss = np.mean([c1_loss, c2_loss])
-                c_acc = np.mean([c1_acc, c2_acc])
-                """
-                # ^^^^^^^^^^^^^
-                # END VERSION 1
+            # ================
+            # train generator
+            # ================
 
-                # BEGIN VERSION 2:
-                # vvvvvvvvvvvvvvvv
-                
-                # Sample generator input
-                noise = tf.random.normal(0, 1, (batch_size, self.latent_dim))
-                # Train the critic
-                # TODO: here need to scale fake and real evals
-                # c_loss, c_acc
-                test = self.critic_model.train_on_batch(
-                    [real_evals, noise],
-                    [real, fake, dummy]
-                )
-                
-                # ^^^^^^^^^^^^^
-                # END VERSION 2
+            # Using learning rate decay
+            current_learning_rate = self.learning_rate_decay(current_learning_rate)
+            self.set_learning_rate(current_learning_rate)
 
-                print(test.shape)
-                
-                c_loss_list_tmp.append(c_loss)
-                c_acc_list_tmp.append(c_acc)
+            g_loss, g_acc = self.train_generator()
 
-            c_loss = np.mean(c_loss_list_tmp)
-            c_acc = np.mean(c_acc_list_tmp)
-
-
-
-            # ---------------------
-            #  Train Generator
-            # ---------------------
-            noise = np.random.normal(0, 1, (batch_size, self.latent_dim))
-            g_loss, g_acc = self.generator_model.train_on_batch(noise, real)
-
-            # save the progress
             c_loss_list.append(c_loss)
             c_acc_list.append(c_acc)
+
             g_loss_list.append(g_loss)
             g_acc_list.append(g_acc)
+
 
             # print the progress
             print('-=-=- EPOCH %d -=-=-' % (e+1))
@@ -341,19 +277,22 @@ class evals_WGANGP():
         plt.title("Losses")
         plt.plot(np.arange(n_epoch), c_loss_list, label='crit')
         plt.plot(np.arange(n_epoch), g_loss_list, label='gen')
-        
+        plt.legend()
+
         plt.subplot(1,2,2)
         plt.title("Accuracies")
         plt.plot(np.arange(n_epoch), c_acc_list, label='crit')
         plt.plot(np.arange(n_epoch), g_acc_list, label='gen')
+    
         plt.legend()
+        
 
-    def get_evals(self):
+    def generate_evals(self):
         for i in range(100):
             random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
             generated_eigenvals = self.generator.predict(random_latent_vectors)
             norm_generated_eigenvals = normalize_evals(generated_eigenvals) # scale appropriately
-            predictions = self.discriminator(norm_generated_eigenvals)
+            predictions = self.critic(norm_generated_eigenvals)
             print(predictions[0, 0])
             
             if predictions[0, 0] > 0:
