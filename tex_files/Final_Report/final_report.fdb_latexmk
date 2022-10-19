@@ -1,16 +1,16 @@
 # Fdb version 3
-["bibtex final_report"] 1665747718 "final_report.aux" "final_report.bbl" "final_report" 1665747719
+["bibtex final_report"] 1666171828 "final_report.aux" "final_report.bbl" "final_report" 1666171843
   "../mybib.bib" 1665495184 13147 75b615db51d592cc96e7a4988163c5f2 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "final_report.aux" 1665747719 6950 e971dbfdebe8a5a743c206b8aff8685a "pdflatex"
+  "final_report.aux" 1666171843 7104 411473c4b7af20b13600d39edcc59be8 "pdflatex"
   (generated)
   "final_report.bbl"
   "final_report.blg"
-["pdflatex"] 1665747718 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1665747719
+["pdflatex"] 1666171842 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1666171843
   "../figs/DCGAN_evals_loss_acc.png" 1665154479 61335 bef3f7bf479ce45b84cef1921d10c305 ""
   "../figs/GAN_evals_loss_acc.png" 1665151615 45477 00a000293a004f1193e1152fe2493f83 ""
   "/etc/texmf/web2c/texmf.cnf" 1664350533 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1665747716 22450 5b63e6b2ab7978852d4554901ddf2c4f ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1666171842 22538 0fd28a073dfb84e7badf568790b38eff ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -100,9 +100,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664350730 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1664350791 2799227 abb622decb41d040688c8f6b5552e01e ""
-  "final_report.aux" 1665747719 6950 e971dbfdebe8a5a743c206b8aff8685a "pdflatex"
-  "final_report.bbl" 1665747718 9519 2a5bb395bd8b7cca702e8c2fd97ab1ec "bibtex final_report"
-  "final_report.tex" 1665747716 22450 5b63e6b2ab7978852d4554901ddf2c4f ""
+  "final_report.aux" 1666171843 7104 411473c4b7af20b13600d39edcc59be8 "pdflatex"
+  "final_report.bbl" 1666171828 9519 2a5bb395bd8b7cca702e8c2fd97ab1ec "bibtex final_report"
+  "final_report.tex" 1666171842 22538 0fd28a073dfb84e7badf568790b38eff ""
   (generated)
   "final_report.aux"
   "final_report.log"

@@ -14,26 +14,27 @@ from tensorflow.keras.optimizers import RMSprop, Adam
 from tensorflow.keras.metrics import Accuracy
 
 # My imports
-from eigenmanipulation2 import normalize_evals
+from eigenmanipulation2 import normalize_evecs
 
-
-num_channels = 1
-evals_shape = (8,8,1)
 latent_dim = 128
 batch_size = 16
+num_channels = 2
+evecs_size = 64  # cross-spectral matrix
+evecs_shape = (evecs_size, evecs_size, 2)  # MxMx2 (real,imag)
 n_critic = 5
+critic_clip_value = 0.1
 
 # learning rate constant
 LR = 1e-4
 MIN_LR = 1e-6 # Minimum value of learning rate
 DECAY_FACTOR=1.00004
 
-class evals_WGANGP():
+class evecs_WGANGP():
     def __init__(self):
         self.num_channels = num_channels
         self.latent_dim = latent_dim
         self.batch_size = batch_size
-        self.evals_shape = evals_shape
+        self.evecs_shape = evecs_shape
         self.n_critic = n_critic
 
         """
@@ -46,6 +47,7 @@ class evals_WGANGP():
         self.generator = self.build_generator()
         self.critic = self.build_critic()
         
+
         self.g_optimizer = Adam(learning_rate=LR, beta_1=0.5)
         self.c_optimizer = Adam(learning_rate=LR, beta_1=0.5)
 
@@ -79,7 +81,7 @@ class evals_WGANGP():
     def get_next_batch(self, iterator):
         # get real input data
         try:
-            batch = iterator.get_next() #(size batch_size X evals_shape, i.e 16x64)
+            batch = iterator.get_next() #(size batch_size X evecs_shape, i.e 16x64)
         except:
             print("There are not sufficient batches to train further. Training interrupted")
             exit()
@@ -88,11 +90,11 @@ class evals_WGANGP():
 
     
     def build_generator(self):
-       
+
         model = Sequential(
             [
-                Dense(128 * 2 * 2, activation="relu", input_dim=self.latent_dim),
-                Reshape((2, 2, 128)),
+                Dense(128 * 16 * 16, activation="relu", input_dim=self.latent_dim),
+                Reshape((16, 16, 128)),
                 UpSampling2D(),
                 Conv2D(128, kernel_size=4, padding="same"),
                 BatchNormalization(momentum=0.8),
@@ -117,9 +119,9 @@ class evals_WGANGP():
         # Train G
         ###################################
         with tf.GradientTape() as g_tape:
-            fake_evals = self.generator([seed], training=True)
-            norm_fake_evals = normalize_evals(fake_evals)
-            fake_pred = self.critic([norm_fake_evals], training=True)
+            fake_evecs = self.generator([seed], training=True)
+            norm_fake_evecs = normalize_evecs(fake_evecs)
+            fake_pred = self.critic([norm_fake_evecs], training=True)
             g_loss = -tf.reduce_mean(fake_pred)
         # Calculate the gradients for generator
         g_gradients = g_tape.gradient(g_loss,
@@ -138,7 +140,7 @@ class evals_WGANGP():
         
         model = Sequential(
             [
-                Conv2D(16, kernel_size=3, strides=2, input_shape=self.evals_shape, padding="same"),
+                Conv2D(16, kernel_size=3, strides=2, input_shape=self.evecs_shape, padding="same"),
                 LeakyReLU(alpha=0.2),
                 Dropout(0.25),
                 Conv2D(32, kernel_size=3, strides=2, padding="same"),
@@ -163,34 +165,41 @@ class evals_WGANGP():
         return model
     
 
-    def train_critic(self, real_evals):
+    def train_critic(self, real_evecs):
 
         lambda_gp = 10 # value advised by paper
 
         seed = tf.random.normal(shape=(self.batch_size, self.latent_dim))
-        alpha = tf.random.uniform(self.evals_shape, minval=0, maxval=1)
+        alpha = tf.random.uniform(self.evecs_shape, minval=0, maxval=1)
 
 
         with tf.GradientTape(persistent=True) as d_tape:
             with tf.GradientTape() as gp_tape:
-                fake_evals = self.generator([seed], training=True)
+                fake_evecs = self.generator([seed], training=True)
                 
-        
-                interpolated_evals = (alpha * real_evals) + ((1 - alpha) * fake_evals)
-                norm_interpolated_evals = normalize_evals(interpolated_evals)
+                """
+                print(real_evecs.shape) # TODO: delete this line
 
-                interpolated_evals_pred = self.critic([norm_interpolated_evals], training=True)
+                a = (alpha * real_evecs) # TODO: delete this line
+                b = (alpha * fake_evecs) # TODO: delete this line
+                """
+
+                interpolated_evecs = (alpha * real_evecs) + ((1 - alpha) * fake_evecs)
+
+                norm_interpolated_evecs = normalize_evecs(interpolated_evecs)
+
+                interpolated_evecs_pred = self.critic([norm_interpolated_evecs], training=True)
             
-            norm_real_evals = normalize_evals(real_evals)
-            norm_fake_evals = normalize_evals(fake_evals)
+            norm_real_evecs = normalize_evecs(real_evecs)
+            norm_fake_evecs = normalize_evecs(fake_evecs)
 
             # Compute gradient penalty
-            grads = gp_tape.gradient(interpolated_evals_pred, interpolated_evals)
+            grads = gp_tape.gradient(interpolated_evecs_pred, interpolated_evecs)
             grad_norms = tf.sqrt(tf.reduce_sum(tf.square(grads), axis=[1, 2, 3]))
             gradient_penalty = tf.reduce_mean(tf.square(grad_norms - 1))
             
-            fake_pred = self.critic([norm_fake_evals], training=True)
-            real_pred = self.critic([norm_real_evals], training=True)
+            fake_pred = self.critic([norm_fake_evecs], training=True)
+            real_pred = self.critic([norm_real_evecs], training=True)
             
             c_loss = tf.reduce_mean(fake_pred) - tf.reduce_mean(real_pred) + lambda_gp * gradient_penalty
         # Calculate the gradients for discriminator
@@ -211,11 +220,11 @@ class evals_WGANGP():
         return c_loss, c_acc
 
 
-    def train(self, evals_dataset, n_epoch):        
+    def train(self, evecs_dataset, n_epoch):        
         
         current_learning_rate = LR
         # create iterator to iterate over batches
-        batch_iterator = iter(evals_dataset)
+        batch_iterator = iter(evecs_dataset)
 
         c_loss_list, g_loss_list = [], []
         c_acc_list, g_acc_list = [], [] 
@@ -232,13 +241,13 @@ class evals_WGANGP():
             for _ in range(self.n_critic):
                 
                 # get data
-                real_evals, batch_iterator = self.get_next_batch(batch_iterator)
+                real_evecs, batch_iterator = self.get_next_batch(batch_iterator)
 
                 # Using learning rate decay
                 current_learning_rate = self.learning_rate_decay(current_learning_rate)
                 self.set_learning_rate(current_learning_rate)
 
-                c_loss_temp, c_acc_temp = self.train_critic(real_evals)
+                c_loss_temp, c_acc_temp = self.train_critic(real_evecs)
                 c_loss_temp_list.append(c_loss_temp)
                 c_acc_temp_list.append(c_acc_temp)
 
@@ -286,18 +295,19 @@ class evals_WGANGP():
         plt.legend()
         
 
-    def generate_evals(self):
+    def generate_evecs(self):
+
         for i in range(100):
             random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
-            generated_eigenvals = self.generator.predict(random_latent_vectors)
-            norm_generated_eigenvals = normalize_evals(generated_eigenvals) # scale appropriately
-            predictions = self.critic(norm_generated_eigenvals)
-            print(predictions[0, 0])
+            generated_evecs = self.generator.predict(random_latent_vectors)
+            norm_generated_evecs = normalize_evecs(generated_evecs) 
             
-            if predictions[0, 0] > 0:
+            predictions = self.critic(norm_generated_evecs)
+
+            if predictions[0, 0] < 0:
                 print("real eigenvalues found")
-                return True, norm_generated_eigenvals
-                
+                return True, norm_generated_evecs
+
             elif i == 99:
                 print("no real eigenvalues found")
-                return False, norm_generated_eigenvals
+                return False, norm_generated_evecs

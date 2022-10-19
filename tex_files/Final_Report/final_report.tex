@@ -80,70 +80,7 @@ In \cite{hubner2021efficient} introduce a low complexity model-based method for 
 
 \cite{vera2021acoustic} introduce a CNN for denoising (i.e. removing the effects of reverberation and multipath effects) on the Generalization Cross Correlation (GCC) matrix of an array of microphone. More specifically than a CNN, the network used has a encoder-decoder structure. This means that a possible approach to create the data we want, would be to attempt to invert network proposed. With this we could realistically add noise to GCC matrices and hence making it suitable for training.
 
-\section{Our approach}
-
-We decided that it made sense to try to generate the Cross Spectral Matrix (CSM), as done in \cite{gerstoft2020parametric} and extend his work to create a network to generate CSM, conditionally on Direction of Arrival (DoA). Indeed, such a network would allow us to have the online generation of labeled data required to train the network \textbf{TODO: find name of network for Source Characterization}. By providing a DoA (i.e. a label) to the network, we would generate the corresponding CSM data.
-
-More specifically than the CSM, we thought it would make more sense to generate separately the eigenvalues and eigenvectors its eigendecomposition. A CSM $\mathbf{\hat{C}}$ can be decomposed as :
-
-\begin{equation}
-    \mathbf{\hat{C}} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^H
-\end{equation}
-
-where $\mathbf{V} = [\mathbf{v}_1^T, \dots, \mathbf{v}_M^T] \in \mathbb{C}^{M \times M}$, $\mathbf{v}_i$ being the $i$th eigenvector and where $\mathbf{\Lambda} \in \mathbb{R}^{M \times M}$ is a diagonal matrix, where $\lambda_{ii}$ is the $i$th eigenvalue, corresponding to the $i$th eigenvector.
-
-Indeed, since we choose a Generative Adversial Approach, the data will be generated using two networks: a generator and a discriminator/critic. Those two network are competing against each other: the goal of the generator is to produce data realistic enough so that discriminator can not tell it is fake. The goal of the discriminator is to tell whether a given input is real or has been generated. Both the generator and the discriminator have to be trained simultaneously until convergence. A typical issue occuring during the training, is that the discriminator becomes too good at discerning real from fake sample and hence the generator does not improve anymore.
-
-Generating the eigenvalues and eigenvectors instead of the CSM is done in order to help the generator. This allow to normalize all the eigenvectors before feeding them to the discriminator, whether they are real or generated. The eigenvalues can also be scaled the biggest of them is equal to one. \textbf{TODO: develop on that} 
-
-\section{Data generation}
-
-\textbf{TODO: fill this section if necessary} 
-
-\section{Generation of Eigenvalues}
-
-
-
-\subsection{GAN approach}
-
-As an attempt to generate the data, the first approach was to build a GAN network. The architecture used was taken from \cite{eriklindernoren}. The architecture of the generator here were regular perceptron and activation function. \textbf{TODO: Are more details about the architecture required?}. We show in Fig.\ref{fig:GAN_evals_loss_acc} the losses and accuracies of the generator and discriminator plotted as function of the trainings epochs. It can be easily observed that the typical non-convergence scenario is happening. Indeed the loss of the discriminator quickly decreases to zero, while its accuracy reaches one. On the other hand, the loss of the generator increases steadily while its accuracy remains at zero.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../figs/GAN_evals_loss_acc.png}
-    \caption{GAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
-    \label{fig:GAN_evals_loss_acc}
-\end{figure}
-
-For a reference, in a convergening GAN, the following behaviour is expected to be observed:
-
-\begin{itemize}
-    \item Discriminator loss on real and fake samples is expected to sit around 0.5.
-    \item Generator loss on fake samples is expected to sit between 0.5 and perhaps 2.0.
-    \item Discriminator accuracy on real and fake samples is expected to sit around 80 percent.
-    \item Variance of generator and discriminator loss is expected to remain modest.
-    \item The generator is expected to produce its highest quality samples during a period of stability.
-    \item Training stability may degenerate into periods of high-variance loss and corresponding lower quality generated samples.
-\end{itemize}
-
-\subsection{DCGAN approach}
-
-As an attempt to improve the above-mentionned performances, the perceptron layers of the generator and discriminatort were replaced by convolutional layert and both networks were deepened. The implementation was the one used in the DCGAN in \cite{eriklindernoren}. The observed performance are then the ones of Fig.\ref{fig:DCGAN_evals_loss_acc}. As for the GAN, the same non-convergence pattern can be observed.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../figs/DCGAN_evals_loss_acc.png}
-    \caption{DCGAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
-    \label{fig:DCGAN_evals_loss_acc}
-\end{figure}
-
-\subsection{WGAN-GP approach}
-
-In order to fix the convergence issue experienced by teh models above, we implement the Wasserstein GAN (WGAN). More specifixcally we implement its imporved version, Wasserstein GAN with Gradient Penalty (WGAN-GP). \textbf{TODO: finish writing this section once the WGAN-GP has been successfully implemented}
-
--> A lot of hope in this repo: https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb
-
-\section{Generation of Eigenvectors}
+\section{Fundamentals}
 
 \textbf{TODO: write this section}
 
@@ -249,6 +186,74 @@ The sampling distribution $\mathbb{P}_{\hat{\mathbf{x}}}$ is defined by sampling
 In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done.
 
 No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples.Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
+
+
+\section{Our approach (TODO: title to change)}
+
+We decided that it made sense to try to generate the Cross Spectral Matrix (CSM), as done in \cite{gerstoft2020parametric} and extend his work to create a network to generate CSM, conditionally on Direction of Arrival (DoA). Indeed, such a network would allow us to have the online generation of labeled data required to train the network \textbf{TODO: find name of network for Source Characterization}. By providing a DoA (i.e. a label) to the network, we would generate the corresponding CSM data.
+
+More specifically than the CSM, we thought it would make more sense to generate separately the eigenvalues and eigenvectors its eigendecomposition. A CSM $\mathbf{\hat{C}}$ can be decomposed as :
+
+\begin{equation}
+    \mathbf{\hat{C}} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^H
+\end{equation}
+
+where $\mathbf{V} = [\mathbf{v}_1^T, \dots, \mathbf{v}_M^T] \in \mathbb{C}^{M \times M}$, $\mathbf{v}_i$ being the $i$th eigenvector and where $\mathbf{\Lambda} \in \mathbb{R}^{M \times M}$ is a diagonal matrix, where $\lambda_{ii}$ is the $i$th eigenvalue, corresponding to the $i$th eigenvector.
+
+Indeed, since we choose a Generative Adversial Approach, the data will be generated using two networks: a generator and a discriminator/critic. Those two network are competing against each other: the goal of the generator is to produce data realistic enough so that discriminator can not tell it is fake. The goal of the discriminator is to tell whether a given input is real or has been generated. Both the generator and the discriminator have to be trained simultaneously until convergence. A typical issue occuring during the training, is that the discriminator becomes too good at discerning real from fake sample and hence the generator does not improve anymore.
+
+Generating the eigenvalues and eigenvectors instead of the CSM is done in order to help the generator. This allow to normalize all the eigenvectors before feeding them to the discriminator, whether they are real or generated. The eigenvalues can also be scaled the biggest of them is equal to one. \textbf{TODO: develop on that} 
+
+\subsection{Data generation}
+
+\textbf{TODO: fill this section if necessary} 
+
+\subsection{Generation of Eigenvalues}
+
+
+
+\subsubsection{GAN approach}
+
+As an attempt to generate the data, the first approach was to build a GAN network. The architecture used was taken from \cite{eriklindernoren}. The architecture of the generator here were regular perceptron and activation function. \textbf{TODO: Are more details about the architecture required?}. We show in Fig.\ref{fig:GAN_evals_loss_acc} the losses and accuracies of the generator and discriminator plotted as function of the trainings epochs. It can be easily observed that the typical non-convergence scenario is happening. Indeed the loss of the discriminator quickly decreases to zero, while its accuracy reaches one. On the other hand, the loss of the generator increases steadily while its accuracy remains at zero.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{../figs/GAN_evals_loss_acc.png}
+    \caption{GAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
+    \label{fig:GAN_evals_loss_acc}
+\end{figure}
+
+For a reference, in a convergening GAN, the following behaviour is expected to be observed:
+
+\begin{itemize}
+    \item Discriminator loss on real and fake samples is expected to sit around 0.5.
+    \item Generator loss on fake samples is expected to sit between 0.5 and perhaps 2.0.
+    \item Discriminator accuracy on real and fake samples is expected to sit around 80 percent.
+    \item Variance of generator and discriminator loss is expected to remain modest.
+    \item The generator is expected to produce its highest quality samples during a period of stability.
+    \item Training stability may degenerate into periods of high-variance loss and corresponding lower quality generated samples.
+\end{itemize}
+
+\subsubsection{DCGAN approach}
+
+As an attempt to improve the above-mentionned performances, the perceptron layers of the generator and discriminatort were replaced by convolutional layert and both networks were deepened. The implementation was the one used in the DCGAN in \cite{eriklindernoren}. The observed performance are then the ones of Fig.\ref{fig:DCGAN_evals_loss_acc}. As for the GAN, the same non-convergence pattern can be observed.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{../figs/DCGAN_evals_loss_acc.png}
+    \caption{DCGAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
+    \label{fig:DCGAN_evals_loss_acc}
+\end{figure}
+
+\subsubsection{WGAN-GP approach}
+
+In order to fix the convergence issue experienced by teh models above, we implement the Wasserstein GAN (WGAN). More specifixcally we implement its imporved version, Wasserstein GAN with Gradient Penalty (WGAN-GP). \textbf{TODO: finish writing this section once the WGAN-GP has been successfully implemented}
+
+-> A lot of hope in this repo: https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb -> It worked !!!! 
+
+\subsection{Generation of Eigenvectors}
+
+
 % ========================================================================
 
 % Bibliography
