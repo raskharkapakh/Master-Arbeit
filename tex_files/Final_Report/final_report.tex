@@ -82,21 +82,51 @@ In \cite{hubner2021efficient} introduce a low complexity model-based method for 
 
 \section{Fundamentals}
 
-\textbf{TODO: write this section}
-
-
-\section{Networks explained}
 
 \subsection{GAN}
 
-\cite{goodfellow2020generative}
-\textbf{TODO: include explanation about GAN basic principle}
+\cite{goodfellow2020generative} introduce a new approach to solve the problem of generative model. The goal is to learn the probability disitrbution that was used to generate samples, by observing them.
+
+The method introduced in this paper is called Generarive Adversial Network (GAN). The idea is to create a game (in the game theory sense) where two networks compete against each other. The first network is called a discriminator and its goal is to determine real from fake samples. The other network is a  generator with the aim to produce data realisitic enough that the discriminator cannot determine that it is fake.
+
+The generator takes as input a random vector and use it generate a sample. This random vector is referred to as latent variable. The vector space of latent variable is called latent space. After training, the generator should be a mapping from the latent space to the data space. The latent space is  a representation of smaller dimension of the data space.
+
+The discriminator takes as input a real or generated sample and predicts its authenticity. The discriminator is a simple binary classifier. The real sample come from the datasets and the fake are output of the generator.
+
+Both models are trained simultaneously. First the generator create a batch of fake sample. This batch is then fed to the discriminator, alongside a batch of real samples. For each of them, the discriminator makes a prediction about their authenticity. The discriminator then gets updated based on how accurate it was at classifying samples and the generator based on how many times fake sample were able to fool the discriminator. We can see here that the training of both networks is supervised, on the contrary of typical generative models.
+
+In a gaming theory framework, both networks are competing in a zero-sum game. This means that if one network performs well at its task and gets rewarded by little weights update, the other must have performed poorly and hence gets penalized by heavy weights updated. E.g. if the discriminator was successful at classifying all samples, it means that the generator had not been able to fool the discriminator by producing any realistic fake samples.  
+
+
+\textbf{TODO: include more maths and/or more graphs?}
 
 \subsection{DCGAN}
 
-\cite{radford2015unsupervised}
+\cite{radford2015unsupervised} introduce GAN, but unlike in \cite{goodfellow2020generative}, the architecture of the discriminator and generator is not achieved with regular perceptron, but with Convolutional layer. We first remind how a regular perceptron layer works. For an input vector $\mathbf{x} \in \mathbb{R}^k$ and output vector $\mathbf{y} \in \mathbb{R}^l$, a perceptron layer consists of two parts:
 
-\textbf{TODO: include explanation about DCGAN basic principle}
+\begin{itemize}
+    \item an activation $\mathbf{a} = \mathbf{W} \mathbf{x} + \mathbf{b}$
+    \item a non-linearity $y = f(\mathbf{x};\theta) = \sigma(\mathbf{a})$
+\end{itemize}
+
+where $\mathbf{W} \in \mathbb{R}^{l \times k}$ are the weights of the perceptron and $\mathbf{b} \in \mathbb{R}^l$ its bias. $\sigma(\cdot)$ is called the activation function and is the source of non linearity in neural networks. An example of such activation function is the Rectified Linear Unit (ReLU) where:
+
+\begin{equation}
+    \sigma_{\text{ReLU}}(\mathbf{a}) = [\max(a_0, 0), \dots, \max(a_{l-1}, 0)]^T
+\end{equation}
+
+We can now introduce the architecture of a convolutional layer. Without loss of generality, we assume that our network reecive as input an square image with a single channel, i.e. $\mathbf{H_0} \in \mathbb{R}^{d_0 \times (m \times m)}$ with $d_0 = 1$, transforms it with one square kernel, i.e. $\mathbf{K} \in \mathbb{R}^{s \times (r \times r)}$ with $s = 1$ to output another square image with a single channel, i.e. $\mathbf{H_1} \in \mathbb{R}^{d_1 \times (n \times n)}$, with $d_1 = 1$
+
+The relationship between input image $\mathbf{H_0} \in \mathbb{R}^{m \times m}$, output image $\mathbf{H_1} \in \mathbb{R}^{n \times n}$ and kernel $\mathbf{K} \in \mathbb{R}^{r \times r}$ is defined as:
+
+
+\begin{itemize} 
+    \item an activation $\mathbf{A} = \mathbf{H_0} \ast \mathbf{K}$
+    \item a non-linearity $\mathbf{H_1}_{(i,j)} = \sigma(\mathbf{A}_{(i,j)})$ 
+\end{itemize}
+
+\cite{radford2015unsupervised} proposes a set of constraint that makes the use of convulotional layers possible in GAN setting.
+
 
 \subsection{WGAN}
 
@@ -118,25 +148,30 @@ More specifically, \cite{arjovsky2017wasserstein} provides the following insight
 
 %\textbf{TODO}: Understand and explain loss function structure + Check if the loss function used is the same as the one used in the original Wasserstein paper.
 
-The goal of WGAN, remains the same as GAN, namely approximation of of the probability distribution $P_r$ of some data by distribution $P_{\theta}$. For this reason, it is necessary to have metrics to quantify distance between probability distributions $P_r$ and $P_m$ (e.g. Kullback-Leibler divergence, Jensen-Shannon divergence, ...). In WGAN, the distance used is the Earth-Mover (EM) distance or Wasserstein-1, defined as 
+The goal of WGAN, remains the same as GAN, namely solving the problem of generative model. More precisely, this mean approximating the probability distribution $P_r$ of some data by a distribution $P_{\theta}$. For this reason, it is necessary to have metrics to quantify distance between two probability distributions $P_r$ and $P_m$. Example of such distances are the Kullback-Leibler divergence or the Jensen-Shannon divergence. In WGAN, the distance used is the Earth-Mover (EM) distance or Wasserstein-1, defined as 
 
 \begin{equation}
     W(\mathbb{P}_r, \mathbb{P}_m) = \inf_{\gamma \in \Pi(\mathbb{P}_r, \mathbb{P}_m)} \mathbb{E}_{(x,y) \sim \gamma} [||x-y||]
 \end{equation}
 
-Where $\Pi(\mathbb{P}_r, \mathbb{P}_m)$ is the set of all joint distribution $\gamma(x,y)$ whose marginals are respectively $\mathbb{P}_r$ and $\mathbb{P}_m$. Informally, $\gamma(x,y)$ shows how much "mass" must be carried to trasnform $\mathbb{P}_r$ into $\mathbb{P}_m$. The EM distance is then "the cost" of the optimal "transport". Unfortunately the EM distance is intractable, due to the infinum part in its equation, but the Kantorovich-Rubinstein duality tells us that
+Where $\Pi(\mathbb{P}_r, \mathbb{P}_m)$ is the set of all joint distribution $\gamma(x,y)$ whose marginals are respectively $\mathbb{P}_r$ and $\mathbb{P}_m$. Informally, $\gamma(x,y)$ shows how much "mass" must be carried to transform $\mathbb{P}_r$ into $\mathbb{P}_m$. The EM distance is then "the cost" of the optimal "transport".
+
+\textbf{TODO: here explain why the earth-mover is better than the the other probaility distances -> use https://www.alexirpan.com/2017/02/22/wasserstein-gan.html}
+
+Unfortunately the EM distance is intractable, due to the infinum part in its equation. But using the Kantorovich-Rubinstein duality, it can be reformulated as:
+
 
 \begin{equation}
     W(\mathbb{P}_r, \mathbb{P}_{\theta}) = \sup_{||f||_L \leq 1} \mathbb{E}_{x \sim \mathbb{P}_r} [f(x)] - \mathbb{E}_{x \sim \mathbb{P}_{\theta}} [f(x)] 
 \end{equation}
 
-Where the supremum is over 1-Lipschitz function. It is important to note that if we replace $||f||_L \leq 1$ by $||f||_L \leq K$, i.e. consider also the K-Lipschitz function, then we obtain $K \cdot W(\mathbb{P}_r, \mathbb{P}_{\theta})$. Hence, for a family of functions $\{f_w\}_{w \in \mathcal{W}}$ (all functions being K-Lipschitz), we can consider solving the optimization problem:
+Where the supremum is over 1-Lipschitz functions. It is important to note that if we replace $||f||_L \leq 1$ by $||f||_L \leq K$, i.e. consider also the K-Lipschitz functions, then we obtain $K \cdot W(\mathbb{P}_r, \mathbb{P}_{\theta})$. Hence, for a family of functions $\{f_w\}_{w \in \mathcal{W}}$ (all functions being K-Lipschitz), we can consider solving the optimization problem:
 
 \begin{equation}
-    \max_{w \in \mathcal(W)}  \mathbb{E}_{x \sim \mathbb{P}_r}[f_w(x)] - \mathbb{E}_{z \sim p(z)}[f_w(g_{\theta}(z))]
+    \max_{w \in \mathcal{W}}  \mathbb{E}_{x \sim \mathbb{P}_r}[f_w(x)] - \mathbb{E}_{z \sim p(z)}[f_w(g_{\theta}(z))]
 \end{equation}
 
-Note: we can approximate the solution of the above mentionned problem with a Neural Network with weights $\mathcal{W}$. $\mathcal{W}$ need to be compact to assure that the function $f_w$ are K-lpischitz. Therefore in order to have $\mathcal{W}$ being compact, \cite{arjovsky2017wasserstein} proposes to simply clip the weights, such that they lay in a small box (e.g. $[-0.01, 0.01]^l$)
+Note: we can approximate the solution of the above mentionned problem with a Neural Network with weights $\mathcal{W}$. $\mathcal{W}$ need to be compact to assure that the function $f_w$ are K-Lipschitz. Therefore in order to have $\mathcal{W}$ being compact, \cite{arjovsky2017wasserstein} proposes to simply clip the weights, such that they lay in a small box $[-c, c]^l$, e.g. with $c = 0.01$
 
 
 \subsubsection{Necessary changes to turn a GAN into a WGAN}
@@ -156,11 +191,11 @@ Implementation of a WGAN requires a few changes from implementation of a regular
 
 \subsection{WGAN-GP}
 
-As we have seen above, WGAN improve the stability in training the critic ($\approx$ discriminator). But it is still subject to poor sample generation, convergence failure or mode collapse. This is due to the weight clipping happening while training the critic. In order to remedy to this, \cite{DBLP:journals/corr/GulrajaniAADC17} propose to replace weight clipping by the introduction of a penalization of the norm of gradient of the critic with respect to its input. The issue is that trying to orient the critic to 1-Lipschitz function by weight clipping, biases the critic for too simple function. \cite{DBLP:journals/corr/GulrajaniAADC17} observes that implement the Lipschitz constraint to weight clipping leads to either exploding or vanishing gradient, unless the threshold $c$ used for the clipping is carefully fine-tuned.
+As we have seen above, WGAN improve the stability in training the critic ($\approx$ discriminator). But it is still subject to poor sample generation, convergence failure or mode collapse. This is due to the weight clipping happening while training the critic. In order to remedy to this, \cite{DBLP:journals/corr/GulrajaniAADC17} propose to replace weight clipping by the introduction of a penalization of the norm of gradient of the critic with respect to its input. The issue is that trying to orient the critic to 1-Lipschitz function by weight clipping, biases the critic for too simple function. \cite{DBLP:journals/corr/GulrajaniAADC17} observes that implementing the Lipschitz constraint using weights clipping leads to either exploding or vanishing gradient, unless the threshold $c$ used for the clipping is carefully fine-tuned.
 
 \subsubsection{The gradient penalty}
 
-In order to enforce the Lipschitz constraint, \cite{DBLP:journals/corr/GulrajaniAADC17} proposes to add a penalty term to the loss function. the loss function then becomes: 
+In order to enforce the Lipschitz constraint, \cite{DBLP:journals/corr/GulrajaniAADC17} proposes to add a penalty term to the loss function. The loss function then becomes: 
 
 \begin{equation}
     L = L' + P
@@ -179,13 +214,11 @@ where:
     \end{equation}
 \end{itemize}
 
-The goal of the penalty is to enforce the 1-Lipschitz constraint. Indeed, by definition, a function is 1-Lipschitz if and only if its gradient norm smaller or equal to 1 everywhere. It can be easily seen that the penalty is here to enforce this constraint. In order to make such a penalty tractable, a soft version of the penalty is considered, where the constraint is only enforced on a the gradient norm of a few random samples $\hat{\mathbf{x}} \sim \mathbb{P}_{\hat{\mathbf{x}}}$.
+The goal of the penalty is to enforce the 1-Lipschitz constraint. Indeed, by definition, a function is 1-Lipschitz if and only if its gradient norm is smaller or equal to 1 everywhere. It can be easily seen that the penalty is here to enforce this constraint. In order to make such a penalty tractable, a soft version of the penalty is considered, where the constraint is only enforced on a the gradient norm of a few random samples $\hat{\mathbf{x}} \sim \mathbb{P}_{\hat{\mathbf{x}}}$.
 
 The sampling distribution $\mathbb{P}_{\hat{\mathbf{x}}}$ is defined by sampling uniformly on on a line between a pair of points respectively sampled from $\mathbb{P}_{r}$ and $\mathbb{P}_{g}$. This was proven experimentally to give sufficiently good results.
 
-In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done.
-
-No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples.Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
+In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done. No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples.Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
 
 
 \section{Our approach (TODO: title to change)}
@@ -203,57 +236,30 @@ where $\mathbf{V} = [\mathbf{v}_1^T, \dots, \mathbf{v}_M^T] \in \mathbb{C}^{M \t
 Indeed, since we choose a Generative Adversial Approach, the data will be generated using two networks: a generator and a discriminator/critic. Those two network are competing against each other: the goal of the generator is to produce data realistic enough so that discriminator can not tell it is fake. The goal of the discriminator is to tell whether a given input is real or has been generated. Both the generator and the discriminator have to be trained simultaneously until convergence. A typical issue occuring during the training, is that the discriminator becomes too good at discerning real from fake sample and hence the generator does not improve anymore.
 
 Generating the eigenvalues and eigenvectors instead of the CSM is done in order to help the generator. This allow to normalize all the eigenvectors before feeding them to the discriminator, whether they are real or generated. The eigenvalues can also be scaled the biggest of them is equal to one. \textbf{TODO: develop on that} 
-
-\subsection{Data generation}
-
-\textbf{TODO: fill this section if necessary} 
+ 
 
 \subsection{Generation of Eigenvalues}
 
+\subsubsection{WGAN-GP}
 
+-> Implementation from this repo https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb
 
-\subsubsection{GAN approach}
+\subsubsection{Networks Architecture}
 
-As an attempt to generate the data, the first approach was to build a GAN network. The architecture used was taken from \cite{eriklindernoren}. The architecture of the generator here were regular perceptron and activation function. \textbf{TODO: Are more details about the architecture required?}. We show in Fig.\ref{fig:GAN_evals_loss_acc} the losses and accuracies of the generator and discriminator plotted as function of the trainings epochs. It can be easily observed that the typical non-convergence scenario is happening. Indeed the loss of the discriminator quickly decreases to zero, while its accuracy reaches one. On the other hand, the loss of the generator increases steadily while its accuracy remains at zero.
+\subsubsection{Performance}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../figs/GAN_evals_loss_acc.png}
-    \caption{GAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
-    \label{fig:GAN_evals_loss_acc}
-\end{figure}
-
-For a reference, in a convergening GAN, the following behaviour is expected to be observed:
-
-\begin{itemize}
-    \item Discriminator loss on real and fake samples is expected to sit around 0.5.
-    \item Generator loss on fake samples is expected to sit between 0.5 and perhaps 2.0.
-    \item Discriminator accuracy on real and fake samples is expected to sit around 80 percent.
-    \item Variance of generator and discriminator loss is expected to remain modest.
-    \item The generator is expected to produce its highest quality samples during a period of stability.
-    \item Training stability may degenerate into periods of high-variance loss and corresponding lower quality generated samples.
-\end{itemize}
-
-\subsubsection{DCGAN approach}
-
-As an attempt to improve the above-mentionned performances, the perceptron layers of the generator and discriminatort were replaced by convolutional layert and both networks were deepened. The implementation was the one used in the DCGAN in \cite{eriklindernoren}. The observed performance are then the ones of Fig.\ref{fig:DCGAN_evals_loss_acc}. As for the GAN, the same non-convergence pattern can be observed.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{../figs/DCGAN_evals_loss_acc.png}
-    \caption{DCGAN: Loss and Accuracy of the generator and dsicriminator plotted as a function of the training epochs}
-    \label{fig:DCGAN_evals_loss_acc}
-\end{figure}
-
-\subsubsection{WGAN-GP approach}
-
-In order to fix the convergence issue experienced by teh models above, we implement the Wasserstein GAN (WGAN). More specifixcally we implement its imporved version, Wasserstein GAN with Gradient Penalty (WGAN-GP). \textbf{TODO: finish writing this section once the WGAN-GP has been successfully implemented}
-
--> A lot of hope in this repo: https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb -> It worked !!!! 
+- Comparison between Generated and Real
+- Loss Function 
 
 \subsection{Generation of Eigenvectors}
 
+-> Implementation from this repo https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb
 
+\subsubsection{WGAN-GP}
+
+\subsection{Data Augmentation}
+
+\subsection{Generation of Cross-Correlation Matrix}
 % ========================================================================
 
 % Bibliography

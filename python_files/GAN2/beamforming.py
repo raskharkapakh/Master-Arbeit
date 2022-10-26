@@ -5,6 +5,7 @@ from acoular import __file__ as bpath, MicGeom, RectGrid, SteeringVector,\
  BeamformerBase, L_p, ImportGrid
 from spectra import PowerSpectraImport
 
+
 def beamform(csm):
         
     # set up the parameters
@@ -13,21 +14,9 @@ def beamform(csm):
     mg = MicGeom(from_file='tub_vogel64_ap1.xml')
 
 
-    """
-    TODO: CSM shape must be (numfrequencies, numchannels, numchannels)
-    TODO: here I changed "csm.copy()" to only "csm" -> see if it matters
-    TODO: check what type "csm" should be.
-    """
-    
-    NUMFREQ = 1 # one freq with index bin = 13 ? -> is that accurate ?
-    NUMCHANNELS = 64
-    
-
-    csm = tf.reshape(csm, shape=(NUMFREQ,NUMCHANNELS,NUMCHANNELS))
-
     # generate test data, in real life this would come from an array measurement
     
-    ps_import = PowerSpectraImport(csm=csm, frequencies=f)
+    ps_import = PowerSpectraImport(csm=csm.copy(), frequencies=f)
     rg = RectGrid(x_min=-0.5,
                 x_max=0.5,
                 y_min=-0.5,
@@ -56,6 +45,13 @@ def beamform(csm):
 
 # return CSM from its eigendecomposition
 def get_csm(evecs_real, evecs_imag, evals_vec):
+    """
+    shape, dytpe:
+    - evecs_real: (64, 64), float32
+    - evecs_imag: (64, 64), float32
+    - evals_vec: (64, ), float32
+    """
+
     evecs = tf.complex(evecs_real, evecs_imag)
     evecs_H = tf.linalg.adjoint(evecs)
     evals_real = tf.linalg.diag(evals_vec)

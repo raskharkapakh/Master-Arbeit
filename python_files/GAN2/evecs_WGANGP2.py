@@ -15,6 +15,7 @@ from tensorflow.keras.metrics import Accuracy
 
 # My imports
 from eigenmanipulation2 import normalize_evecs
+from data_generation import get_evecs_batch
 
 latent_dim = 128
 batch_size = 16
@@ -178,10 +179,9 @@ class evecs_WGANGP():
                 fake_evecs = self.generator([seed], training=True)
                 
                 """
-                print(real_evecs.shape) # TODO: delete this line
-
-                a = (alpha * real_evecs) # TODO: delete this line
-                b = (alpha * fake_evecs) # TODO: delete this line
+                print(f"alpha={alpha.dtype}")
+                print(f"real_evecs={real_evecs.dtype}")
+                print(f"fake_evecs={fake_evecs.dtype}")
                 """
 
                 interpolated_evecs = (alpha * real_evecs) + ((1 - alpha) * fake_evecs)
@@ -220,11 +220,9 @@ class evecs_WGANGP():
         return c_loss, c_acc
 
 
-    def train(self, evecs_dataset, n_epoch):        
+    def train(self, n_epoch):        
         
         current_learning_rate = LR
-        # create iterator to iterate over batches
-        batch_iterator = iter(evecs_dataset)
 
         c_loss_list, g_loss_list = [], []
         c_acc_list, g_acc_list = [], [] 
@@ -241,7 +239,7 @@ class evecs_WGANGP():
             for _ in range(self.n_critic):
                 
                 # get data
-                real_evecs, batch_iterator = self.get_next_batch(batch_iterator)
+                real_evecs = get_evecs_batch(batch_size=self.batch_size)
 
                 # Using learning rate decay
                 current_learning_rate = self.learning_rate_decay(current_learning_rate)

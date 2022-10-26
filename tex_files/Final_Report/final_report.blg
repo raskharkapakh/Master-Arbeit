@@ -3,47 +3,46 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: final_report.aux
 The style file: plainnat.bst
 Database file #1: ../mybib.bib
-Warning--empty year in eriklindernoren
 Warning--empty journal in pinto2021deconvoluting
-You've used 27 entries,
+You've used 26 entries,
             2773 wiz_defined-function locations,
-            744 strings with 11088 characters,
-and the built_in function-call counts, 15076 in all, are:
-= -- 1337
-> -- 1008
-< -- 15
-+ -- 336
-- -- 309
-* -- 1249
-:= -- 2273
-add.period$ -- 94
-call.type$ -- 27
-change.case$ -- 182
-chr.to.int$ -- 27
-cite$ -- 56
-duplicate$ -- 671
-empty$ -- 1143
-format.name$ -- 342
-if$ -- 3215
+            739 strings with 10939 characters,
+and the built_in function-call counts, 14780 in all, are:
+= -- 1312
+> -- 998
+< -- 14
++ -- 332
+- -- 306
+* -- 1234
+:= -- 2229
+add.period$ -- 91
+call.type$ -- 26
+change.case$ -- 178
+chr.to.int$ -- 26
+cite$ -- 53
+duplicate$ -- 656
+empty$ -- 1111
+format.name$ -- 338
+if$ -- 3152
 int.to.chr$ -- 1
 int.to.str$ -- 1
 missing$ -- 26
-newline$ -- 145
-num.names$ -- 110
-pop$ -- 389
+newline$ -- 140
+num.names$ -- 106
+pop$ -- 376
 preamble$ -- 1
-purify$ -- 155
+purify$ -- 152
 quote$ -- 0
-skip$ -- 535
+skip$ -- 521
 stack$ -- 0
-substring$ -- 510
-swap$ -- 123
+substring$ -- 508
+swap$ -- 122
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 297
-warning$ -- 2
-while$ -- 123
+type$ -- 286
+warning$ -- 1
+while$ -- 120
 width$ -- 0
-write$ -- 363
-(There were 2 warnings)
+write$ -- 352
+(There was 1 warning)

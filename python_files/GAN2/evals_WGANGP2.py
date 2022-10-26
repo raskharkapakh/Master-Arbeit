@@ -15,6 +15,7 @@ from tensorflow.keras.metrics import Accuracy
 
 # My imports
 from eigenmanipulation2 import normalize_evals
+from data_generation import get_evals_batch
 
 
 num_channels = 1
@@ -74,7 +75,9 @@ class evals_WGANGP():
         acc = Accuracy()
         acc.update_state(round_pred, groundtruth)
         accuracy = acc.result().numpy()
+        
         return accuracy
+
 
     def get_next_batch(self, iterator):
         # get real input data
@@ -211,11 +214,10 @@ class evals_WGANGP():
         return c_loss, c_acc
 
 
-    def train(self, evals_dataset, n_epoch):        
+    def train(self, n_epoch):        
         
         current_learning_rate = LR
         # create iterator to iterate over batches
-        batch_iterator = iter(evals_dataset)
 
         c_loss_list, g_loss_list = [], []
         c_acc_list, g_acc_list = [], [] 
@@ -232,7 +234,7 @@ class evals_WGANGP():
             for _ in range(self.n_critic):
                 
                 # get data
-                real_evals, batch_iterator = self.get_next_batch(batch_iterator)
+                real_evals = get_evals_batch(batch_size=self.batch_size)
 
                 # Using learning rate decay
                 current_learning_rate = self.learning_rate_decay(current_learning_rate)

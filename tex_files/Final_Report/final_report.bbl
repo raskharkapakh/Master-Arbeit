@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -118,11 +118,6 @@ Soo~Young Lee, Jiho Chang, and Seungchul Lee.
   with high resolution and accuracy.
 \newblock \emph{Mechanical Systems and Signal Processing}, 161:\penalty0
   107959, 2021.
-
-\bibitem[Lindernoren()]{eriklindernoren}
-Erik Lindernoren.
-\newblock Keras-gan: Keras implementations of generative adversarial networks.
-\newblock URL \url{https://github.com/eriklindernoren/Keras-GAN}.
 
 \bibitem[Ma and Liu(2019)]{ma2019phased}
 Wei Ma and Xun Liu.
