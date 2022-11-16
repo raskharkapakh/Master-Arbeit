@@ -220,8 +220,23 @@ The sampling distribution $\mathbb{P}_{\hat{\mathbf{x}}}$ is defined by sampling
 
 In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done. No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples.Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
 
+\subsection{On GAN/WGAN/WGAN-GP Convergence}
 
-\section{Our approach (TODO: title to change)}
+
+
+\textbf{quote:} "The loss of WGAN does have a convergence point: 0. We should arrive at this point when the generator is capable of generating samples so good that no Lipschitz continuous discriminator can distinguish real from generated samples.
+
+In fact it is a major selling point of WGAN that the loss should steadily converge in a way that informs you whether the training is making progress or not. With traditional GANs, pretty much the only way of telling if the generated samples are improving is via visual inspection, and you stop the training when the visual quality of the samples is satisfying."
+
+
+from \cite{arjovsky2017wasserstein} \textbf{quote:} "To our knowledge, this is the first time in GAN literature that such a property is shown, where the loss of the GAN shows properties of convergence."
+
+-> \cite{arjovsky2017wasserstein} shows that in a WGAN, the loss function of the generator is directly correlated with the quality of the sample produced. This is not true in a regular GAN and is actually one of the main selling point of a WGAN over GAN.
+
+-> \textbf{TODO: this need to be mentionned when showing the results of WGAN-GP}
+
+
+\section{Our approach (\textbf{TODO: title to change})}
 
 We decided that it made sense to try to generate the Cross Spectral Matrix (CSM), as done in \cite{gerstoft2020parametric} and extend his work to create a network to generate CSM, conditionally on Direction of Arrival (DoA). Indeed, such a network would allow us to have the online generation of labeled data required to train the network \textbf{TODO: find name of network for Source Characterization}. By providing a DoA (i.e. a label) to the network, we would generate the corresponding CSM data.
 
@@ -242,22 +257,120 @@ Generating the eigenvalues and eigenvectors instead of the CSM is done in order 
 
 \subsubsection{WGAN-GP}
 
--> Implementation from this repo https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb
+In order to generate the eigenvalue, a WGAN-GP was built. The implementation was adapted from \cite{nain2020wgangp}. The data to generate was the eigenvaluess of the CSM. The dimension of the CSM are $64 \times 64$, hence there are 64 eigenvalues to generate. In order to generate this data with convolutional networks, the eigenvalues were arranged in a "image" format, namely as a matrix of dimension $8 \times 8$. 
 
 \subsubsection{Networks Architecture}
 
+As mentionned in the fundamentals the basic structure is two competing networks, a generator and a discriminator or critic. Both architectures of the generator and critic are illustrated in Fig.\ref{fig:evals_WGANGP_architecture} (respectively A and B). Both those architures are directly adapted from \cite{nain2020wgangp} in such a way that the dimension of the data produced is the same as our samples ($8 \times 8$).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{../figs/evals_WGANGP_architecture.png}
+    \caption{Architectures respectively for the generator (A) and critic (B) used in the WGAN-GP to generate eigenvalues}
+    \label{fig:evals_WGANGP_architecture}
+\end{figure}
+
+Moreover, before being fed to the discriminator, real and generated eigenvalues are scaled such that the biggest eigenvalue is equal to one. Normalizing eigenvalues in this way is done to reduce the size of the sample space. This is illustrated in Fig.1\ref{fig:evals_wgangp_full_structure}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{../figs/evals_wgangp_full_structure.jpg}
+    \caption{Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}
+    \label{fig:evals_wgangp_full_structure}
+\end{figure}
+
+
 \subsubsection{Performance}
 
-- Comparison between Generated and Real
-- Loss Function 
+A problem with regular GANs is that it is really hard to know when a good model has been found, from looking only at the loss function. The quality of a model is typically assessed by visually looking at the generated sample and deciding if they are realistic or not. But \cite{arjovsky2017wasserstein} shows that in a WGAN, the loss function of the generator is directly correlated with the quality of the sample produced. This is not true in a regular GAN and is actually one of the main selling point of a WGAN over GAN. With this knowledge, we can observe from the loss function of the generator showed in Fig.\ref{fig:evals_g_loss} actually shows convergence. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{../figs/evals_g_loss.png}    
+    \caption{The loss function of the generator while training the WGAN-GP for eigenvalues generation.}
+    \label{fig:evals_g_loss}
+\end{figure} 
+
+
+
+Moreover when comparing real  and generated eigenvalues sample in Fig.\ref{fig:real_vs_generated_evals}, it can be observed that our WGAN-GP produces sufficiently realisitic results. 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{../figs/real_vs_generated_evals.png}    
+    \caption{Top row shows eigenvalues generated by the WGAN-GP, respectively in normal values, followed by their representation in dB. The second shows the same for real eigenvalues.
+    }
+    \label{fig:real_vs_generated_evals}
+\end{figure} 
 
 \subsection{Generation of Eigenvectors}
 
--> Implementation from this repo https://github.com/henry32144/wgan-gp-tensorflow/blob/master/WGAN-GP-celeb64.ipynb
-
 \subsubsection{WGAN-GP}
 
+Similarly as for generating the eigenvalues, the eigenvectors were generated using a WGAN-GP whose implementation was adapted from \cite{nain2020wgangp}. There were 64 vectors to generate all of size 64. The vector were stacked in a matrix such that the data to generate was an image of dimension $64 \times 64$.
+
+\subsubsection{Architecture}
+
+Again, we have two networks forming the WGAN-GP: a generator and a discriminator or critic. The architectures of both the generator and critic are illustrated in Fig.\ref{fig:evecs_WGANGP_architecture}. Similarily as for the eigenvalues, the architectures used are directly adapted from \cite{nain2020wgangp} in order to produce data with desired dimensions. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{../figs/evals_WGANGP_architecture.png}
+    \caption{Architectures respectively for the generator (A) and critic (B) used in the WGAN-GP to generate eigenvectors}
+    \label{fig:evecs_WGANGP_architecture}
+\end{figure}
+
+In order to reduce the sample space, both the real and generated eigenvectors are normalized before being fed to the discriminator. The full WGAN-GP structure is illutrates in Fig.\ref{fig:evecs_wgangp_full_structure}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth]{../figs/evecs_wgangp_full_structure.jpg}
+    \caption{Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}
+    \label{fig:evecs_wgangp_full_structure}
+\end{figure}
+
+\subsubsection{Performance} 
+
 \subsection{Data Augmentation}
+
+As seen before, we have some quite realistic looking generated eigenvalues. This led to the following idea for increasing the number of training samples (data augmentation). First, for a set of received CSM, decompose them in eigenvalues $\mathbf{\Lambda}$  and eigenvectors $\mathbf{V} = [\mathbf{v}_1^T, \dots, \mathbf{v}_M^T]$ with:
+
+\begin{equation}
+    \mathbf{\hat{C}} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^H
+\end{equation}
+
+
+The set of all eigenvalues can then be used to train a WGAN-GP. Using this network, we can generated eigenvalues $\hat{\mathbf{\Lambda}}$, which are realistic, up to an unknown scaling factor $c \in \mathbb{R}$.  
+
+
+Then using the generated eigenvalues $\hat{\mathbf{\Lambda}}$ with real eigenvectors $\mathbf{V}$ we can have semi-generated CSM:
+
+\begin{equation}
+    \mathbf{\hat{C}}_\text{augm.}  = \mathbf{V} \hat{\mathbf{\Lambda}} \mathbf{V}^H
+\end{equation}
+
+which are realistic up to the scaling factor $c$. \textbf{TODO: show that the scaling factor $c$ does influence the beamforming}.
+
+\subsubsection{Comparison between augmented data and real data.}
+
+
+Fig.\ref{fig:beamforming_real_csm} and Fig.\ref{fig:beamforming_augmented_csm} show respectively the result of performing beamforming on a real CSM issued from the dataset and from a semi generated CSM. Both CSM have been recreated from the eigenvalue decomposition. It can be observed that both results are visually similar. A more careful obserbartion allows to notice that despite looking similar proportinaly, the overall values of in the beamforming map resulting from real data are slightly higher. This is due to the scaling of the eigenvalues taking place in the generative process. 
+
+\begin{figure}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \includegraphics[width=1.2\textwidth]{../figs/beamforming_real_csm.png}
+        \caption{Results of beamforming from a real CSM}
+        \label{fig:beamforming_real_csm}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \includegraphics[width=1.2\textwidth]{../figs/beamforming_augmented_csm.png}
+        \caption{Results of beamforming from a CSM issued from augmented data}
+        \label{fig:beamforming_augmented_csm}
+    \end{minipage}
+\end{figure}
 
 \subsection{Generation of Cross-Correlation Matrix}
 % ========================================================================

@@ -1,4 +1,4 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -124,6 +124,11 @@ Wei Ma and Xun Liu.
 \newblock Phased microphone array for sound source localization with deep
   learning.
 \newblock \emph{Aerospace Systems}, 2\penalty0 (2):\penalty0 71--81, 2019.
+
+\bibitem[Nain(2020)]{nain2020wgangp}
+Aakash Nain.
+\newblock Wgan-gp overriding model train step, May 2020.
+\newblock URL \url{https://keras.io/examples/generative/wgan{\_}gp/}.
 
 \bibitem[Neekhara et~al.(2019)Neekhara, Donahue, Puckette, Dubnov, and
   McAuley]{neekhara2019expediting}

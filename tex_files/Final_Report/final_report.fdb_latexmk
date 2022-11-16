@@ -1,14 +1,21 @@
 # Fdb version 3
-["bibtex final_report"] 1666782707 "final_report.aux" "final_report.bbl" "final_report" 1666782708
-  "../mybib.bib" 1665495184 13147 75b615db51d592cc96e7a4988163c5f2 ""
+["bibtex final_report"] 1668603256 "final_report.aux" "final_report.bbl" "final_report" 1668603257
+  "../mybib.bib" 1667561284 13443 93c8d0811bea018edd18dc36a7da2376 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "final_report.aux" 1666782708 6699 55ee68482510b9ad31ed1bbf538e83c1 "pdflatex"
+  "final_report.aux" 1668603257 9412 7f1d1207085f93b06eb0fb29458e7b9b "pdflatex"
   (generated)
   "final_report.bbl"
   "final_report.blg"
-["pdflatex"] 1666782707 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1666782708
+["pdflatex"] 1668603256 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" "final_report.pdf" "final_report" 1668603257
+  "../figs/beamforming_augmented_csm.png" 1668536892 46473 72a6c6d915b55357889d3a9a70281ae9 ""
+  "../figs/beamforming_real_csm.png" 1668536892 46120 807c1805848c5dc3b2bd6ec74acac492 ""
+  "../figs/evals_WGANGP_architecture.png" 1668430554 4809820 e3a46924f14aa984cab96ac8d4d5bb22 ""
+  "../figs/evals_g_loss.png" 1668436581 39302 f228554557e2a363d540724fcfbcab57 ""
+  "../figs/evals_wgangp_full_structure.jpg" 1668433457 71863 04041663e7b6b4c0ab9ff6104eee4137 ""
+  "../figs/evecs_wgangp_full_structure.jpg" 1668434080 69276 ab2b4dbd749415a870433bf3f66e4498 ""
+  "../figs/real_vs_generated_evals.png" 1668435801 2804089 3a79f64e9e4f26fcef0884aa0a9c55b2 ""
   "/etc/texmf/web2c/texmf.cnf" 1664350533 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1666782706 24348 f7fac8a746cf729df541dddf17700449 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/Final_Report/final_report.tex" 1668603254 32179 33e9cd6c188d8ce0102152df92560438 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -101,9 +108,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1664350730 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1664350791 2799227 abb622decb41d040688c8f6b5552e01e ""
-  "final_report.aux" 1666782708 6699 55ee68482510b9ad31ed1bbf538e83c1 "pdflatex"
-  "final_report.bbl" 1666782707 9314 bbb108324eb8ed803e92c15d17b1029e "bibtex final_report"
-  "final_report.tex" 1666782706 24348 f7fac8a746cf729df541dddf17700449 ""
+  "final_report.aux" 1668603257 9412 7f1d1207085f93b06eb0fb29458e7b9b "pdflatex"
+  "final_report.bbl" 1668603256 9492 a283258a70481070a956c504711d7949 "bibtex final_report"
+  "final_report.tex" 1668603254 32179 33e9cd6c188d8ce0102152df92560438 ""
   (generated)
   "final_report.aux"
   "final_report.log"
