@@ -70,6 +70,35 @@ def conv_block(
 
 
 def get_critic_model():
+    
+    # PERCEPTRON APPROACH =====================
+    # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    
+    evecs_input = Input(shape=evecs_SHAPE)
+   
+    x = Flatten()(evecs_input)
+    x = Dense(64*64)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dense(512)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dense(256)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dense(1)(x)
+
+    
+    
+
+    c_model = Model(evecs_input, x, name="critic")
+
+    c_model.summary()
+
+    return c_model
+    
+    
+    # CONVOLUTIONAL APPROACH ==================
+    # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    """
+
     img_input = Input(shape=evecs_SHAPE)
     # Zero pad the input to make the input images size to (32, 32, 1).
     x = ZeroPadding2D((2, 2))(img_input)
@@ -123,8 +152,11 @@ def get_critic_model():
     x = Dense(1)(x)
 
     c_model = Model(img_input, x, name="critic")
-    return c_model
 
+    c_model.summary()
+
+    return c_model
+    """
 
 
 def upsample_block(
@@ -156,6 +188,41 @@ def upsample_block(
 
 
 def get_generator_model():
+    
+    # PERCEPTRON APPROACH =====================
+    # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    
+    noise = Input(shape=(latent_dim,))
+    
+    
+    x = Dense(256, use_bias=False)(noise)
+    x = BatchNormalization()(x)
+    x = LeakyReLU(0.2)(x)
+
+    x = Dense(1024, use_bias=False)(x)
+    #x = BatchNormalization()(x)
+    x = LeakyReLU(0.2)(x)
+
+    x = Dense(4096, use_bias=False)(x)
+    #x = BatchNormalization()(x)
+    x = LeakyReLU(0.2)(x)
+
+    x = Dense(np.prod((64,64,2)), use_bias=False)(x)
+    #x = BatchNormalization()(x)
+    x = LeakyReLU(0.2)(x)
+
+    x = Reshape((64,64,2))(x)
+
+    g_model = Model(noise, x, name="generator")
+
+    g_model.summary()
+
+    return g_model
+    
+    
+    # CONVOLUTIONAL APPROACH ==================
+    # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+    """
     noise = Input(shape=(latent_dim,))
     
     a = 8
@@ -193,15 +260,14 @@ def get_generator_model():
         use_bias=False, 
         use_bn=True
     )
-    
-    """
-    # At this point, we have an output which has the same shape as the input, (32, 32, 1).
-    # We will use a Cropping2D layer to make it (28, 28, 1).
-    x = Cropping2D((2, 2))(x)
-    """
+   
 
     g_model = Model(noise, x, name="generator")
+
+    g_model.summary()
+
     return g_model
+    """
 
 
 

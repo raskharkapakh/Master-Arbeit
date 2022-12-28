@@ -70,6 +70,26 @@ def conv_block(
 
 
 def get_critic_model():
+    
+    # Perceptron approach
+
+    evecs = Input(shape=EVALS_SHAPE)
+    
+    x = Flatten(input_shape=EVALS_SHAPE)(evecs)
+    x = Dense(512)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dense(256)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = Dense(1)(x)
+    
+    c_model = Model(evecs, x, name="critic")
+
+    c_model.summary()
+    
+    return c_model
+
+    # Convolutional approach
+    """
     img_input = Input(shape=EVALS_SHAPE)
     # Zero pad the input to make the input images size to (32, 32, 1).
     x = ZeroPadding2D((2, 2))(img_input)
@@ -123,8 +143,11 @@ def get_critic_model():
     x = Dense(1)(x)
 
     c_model = Model(img_input, x, name="critic")
-    return c_model
 
+    c_model.summary()
+
+    return c_model
+    """
 
 
 def upsample_block(
@@ -156,6 +179,31 @@ def upsample_block(
 
 
 def get_generator_model():
+    
+    # Perceptron approach
+    
+    noise = Input(shape=(latent_dim,))
+    
+    x = Dense(256, use_bias=False)(noise)
+    x = LeakyReLU(alpha=0.2)(x)
+    x = BatchNormalization(momentum=0.8)(x)
+    x = Dense(512)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    #x = BatchNormalization(momentum=0.8)(x)
+    x = Dense(1024)(x)
+    x = LeakyReLU(alpha=0.2)(x)
+    #x = BatchNormalization(momentum=0.8)(x)
+    x = Dense(np.prod(EVALS_SHAPE), activation='tanh')(x)
+    x = Reshape(EVALS_SHAPE)(x)
+   
+    g_model = Model(noise, x, name="generator")
+
+    g_model.summary()
+
+    return g_model
+    
+    # Convolutional approach
+    """
     noise = Input(shape=(latent_dim,))
     
     a = 64
@@ -193,15 +241,13 @@ def get_generator_model():
         use_bias=False, 
         use_bn=True
     )
-    """
-    # At this point, we have an output which has the same shape as the input, (32, 32, 1).
-    # We will use a Cropping2D layer to make it (28, 28, 1).
-    x = Cropping2D((2, 2))(x)
-    """
 
     g_model = Model(noise, x, name="generator")
-    return g_model
 
+    g_model.summary()
+
+    return g_model
+    """
 
 
 

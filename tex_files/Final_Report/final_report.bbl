@@ -72,9 +72,9 @@ Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley,
   139--144, 2020.
 
 \bibitem[Gulrajani et~al.(2017)Gulrajani, Ahmed, Arjovsky, Dumoulin, and
-  Courville]{DBLP:journals/corr/GulrajaniAADC17}
+  C.Courville]{DBLP:journals/corr/GulrajaniAADC17}
 Ishaan Gulrajani, Faruk Ahmed, Mart{\'{\i}}n Arjovsky, Vincent Dumoulin, and
-  Aaron~C. Courville.
+  Aaron C.Courville.
 \newblock Improved training of wasserstein gans.
 \newblock \emph{CoRR}, abs/1704.00028, 2017.
 \newblock URL \url{http://arxiv.org/abs/1704.00028}.

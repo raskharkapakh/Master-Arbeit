@@ -1,2 +1,7 @@
 python_files/Acoular tutorial/single_sources.h5
 env
+python_files/Data/*
+python_files/GAN3/cache
+python_files/GAN3/logs
+python_files/GAN3/checkpoints
+python_files/GAN3/datasets_backups/*

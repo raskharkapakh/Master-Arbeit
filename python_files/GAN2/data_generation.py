@@ -4,7 +4,7 @@ from input_data import WishartCSM
 from acoular import MicGeom, SteeringVector, ImportGrid
 
 
-def get_sample():    
+def get_sample():
     # create CSM
     f = 343*16
 
@@ -53,3 +53,6 @@ def get_evecs_batch(batch_size):
 def get_evals_batch(batch_size):
     
     return tf.stack([get_sample()[1] for _ in range(batch_size)], axis=0)
+
+
+

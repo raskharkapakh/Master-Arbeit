@@ -6,7 +6,7 @@ Database file #1: ../mybib.bib
 Warning--empty journal in pinto2021deconvoluting
 You've used 27 entries,
             2773 wiz_defined-function locations,
-            744 strings with 11052 characters,
+            744 strings with 11051 characters,
 and the built_in function-call counts, 15079 in all, are:
 = -- 1338
 > -- 1008

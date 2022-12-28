@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  16 NOV 2022 13:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  28 DEC 2022 16:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -26,18 +26,29 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks16
 \inpenc@posthook=\toks17
-) (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
-LaTeX Info: Redefining \cite on input line 302.
-LaTeX Info: Redefining \nocite on input line 332.
-Package: cite 2015/02/27  v 5.5
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks18
-) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
@@ -45,14 +56,14 @@ Package: iftex 2020/03/06 v1.0d TeX engine tests
 \Gm@cnth=\count193
 \Gm@cntv=\count194
 \c@Gm@tempcnt=\count195
-\Gm@bindingoffset=\dimen139
-\Gm@wd@mp=\dimen140
-\Gm@odd@mp=\dimen141
-\Gm@even@mp=\dimen142
-\Gm@layoutwidth=\dimen143
-\Gm@layoutheight=\dimen144
-\Gm@layouthoffset=\dimen145
-\Gm@layoutvoffset=\dimen146
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
 \Gm@dimlist=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
@@ -64,10 +75,10 @@ Package: amstext 2021/08/26 v2.01 AMS text
  (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
-\ex@=\dimen147
+\ex@=\dimen149
 )) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen148
+\pmbraise@=\dimen150
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
@@ -83,7 +94,7 @@ LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
 \Mathstrutbox@=\box50
 \strutbox@=\box51
-\big@size=\dimen149
+\big@size=\dimen151
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \macc@depth=\count267
@@ -96,12 +107,12 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \column@=\count272
 \maxfields@=\count273
 \andhelp@=\toks22
-\eqnshift@=\dimen150
-\alignsep@=\dimen151
-\tagshift@=\dimen152
-\tagwidth@=\dimen153
-\totwidth@=\dimen154
-\lineht@=\dimen155
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
 \@envbody=\toks23
 \multlinegap=\skip50
 \multlinetaggap=\skip51
@@ -119,7 +130,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )) (/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty
 \CommentStream=\write3
- Excluding comment 'comment') (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+ Excluding comment 'comment') (/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
+) (/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 
 
@@ -131,21 +146,6 @@ Package natbib Warning: The `cite' package should not be used
 LaTeX Info: Redefining \cite on input line 694.
 LaTeX Info: Redefining \citenum on input line 708.
 \c@NAT@ctr=\count274
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 107.
- (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen156
-\Gin@req@width=\dimen157
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count275
@@ -153,21 +153,60 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 ) (./final_report.aux)
 \openout1 = `final_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count276
+\scratchdimen=\dimen158
+\scratchbox=\box53
+\nofMPsegments=\count277
+\nofMParguments=\count278
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count279
+\MPscratchDim=\dimen159
+\MPnumerator=\count280
+\makeMPintoPDFobject=\count281
+\everyMPtoPDFconversion=\toks26
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+ (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -202,100 +241,102 @@ LaTeX Font Info:    ... okay on input line 24.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count276
-\scratchdimen=\dimen158
-\scratchbox=\box53
-\nofMPsegments=\count277
-\nofMParguments=\count278
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count279
-\MPscratchDim=\dimen159
-\MPnumerator=\count280
-\makeMPintoPDFobject=\count281
-\everyMPtoPDFconversion=\toks26
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] Excluding 'comment' comment. [5] [6] [7]
-<../figs/evals_WGANGP_architecture.png, id=46, 192.72pt x 361.35pt>
-File: ../figs/evals_WGANGP_architecture.png Graphic file (type png)
-<use ../figs/evals_WGANGP_architecture.png>
-Package pdftex.def Info: ../figs/evals_WGANGP_architecture.png  used on input line 268.
-(pdftex.def)             Requested size: 279.50037pt x 524.05988pt.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+Overfull \hbox (5.94814pt too wide) in paragraph at lines 239--240
+[]\T1/cmr/m/n/10 From fo-rum (https://stats.stackexchange.com/questions/505696/when-is-my-wasserstein-gan-gp-
+ []
+
+[7] [8]
+<../figs/full_measurement_setup.png, id=49, 1202.4925pt x 841.1425pt>
+File: ../figs/full_measurement_setup.png Graphic file (type png)
+<use ../figs/full_measurement_setup.png>
+Package pdftex.def Info: ../figs/full_measurement_setup.png  used on input line 283.
+(pdftex.def)             Requested size: 279.50037pt x 195.51227pt.
+<../figs/source.png, id=51, 987.69pt x 1103.12125pt>
+File: ../figs/source.png Graphic file (type png)
+<use ../figs/source.png>
+Package pdftex.def Info: ../figs/source.png  used on input line 290.
+(pdftex.def)             Requested size: 279.50037pt x 312.15413pt.
+<../figs/microphone_array_cropped.jpg, id=52, 657.1752pt x 462.528pt>
+File: ../figs/microphone_array_cropped.jpg Graphic file (type jpg)
+<use ../figs/microphone_array_cropped.jpg>
+Package pdftex.def Info: ../figs/microphone_array_cropped.jpg  used on input line 297.
+(pdftex.def)             Requested size: 279.50037pt x 196.71648pt.
+ [9 <../figs/full_measurement_setup.png>] [10 <../figs/source.png>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 321.
 
 
-LaTeX Warning: Float too large for page by 3.52728pt on input line 271.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 349.
 
-<../figs/evals_wgangp_full_structure.jpg, id=48, 1080.035pt x 932.48375pt>
+<../figs/evals_wgangp_full_structure.jpg, id=61, 1080.035pt x 932.48375pt>
 File: ../figs/evals_wgangp_full_structure.jpg Graphic file (type jpg)
 <use ../figs/evals_wgangp_full_structure.jpg>
-Package pdftex.def Info: ../figs/evals_wgangp_full_structure.jpg  used on input line 277.
+Package pdftex.def Info: ../figs/evals_wgangp_full_structure.jpg  used on input line 378.
 (pdftex.def)             Requested size: 279.50037pt x 241.316pt.
-<../figs/evals_g_loss.png, id=49, 1312.905pt x 393.47pt>
+<../figs/evals_g_loss.png, id=62, 1312.905pt x 393.47pt>
 File: ../figs/evals_g_loss.png Graphic file (type png)
 <use ../figs/evals_g_loss.png>
-Package pdftex.def Info: ../figs/evals_g_loss.png  used on input line 289.
+Package pdftex.def Info: ../figs/evals_g_loss.png  used on input line 389.
 (pdftex.def)             Requested size: 387.00153pt x 115.98257pt.
-<../figs/real_vs_generated_evals.png, id=50, 225.0006pt x 180.4341pt>
+<../figs/real_vs_generated_evals.png, id=63, 225.0006pt x 180.4341pt>
 File: ../figs/real_vs_generated_evals.png Graphic file (type png)
 <use ../figs/real_vs_generated_evals.png>
-Package pdftex.def Info: ../figs/real_vs_generated_evals.png  used on input line 301.
+Package pdftex.def Info: ../figs/real_vs_generated_evals.png  used on input line 400.
 (pdftex.def)             Requested size: 387.00153pt x 310.34607pt.
-[8] [9 <../figs/evals_WGANGP_architecture.png>] [10 <../figs/evals_wgangp_full_structure.jpg> <../figs/evals_g_loss.png>] [11 <../figs/real_vs_generated_evals.png>]
-File: ../figs/evals_WGANGP_architecture.png Graphic file (type png)
-<use ../figs/evals_WGANGP_architecture.png>
-Package pdftex.def Info: ../figs/evals_WGANGP_architecture.png  used on input line 319.
-(pdftex.def)             Requested size: 279.50037pt x 524.05988pt.
+[11 <../figs/microphone_array_cropped.jpg>] [12] [13 <../figs/evals_wgangp_full_structure.jpg> <../figs/evals_g_loss.png>] [14 <../figs/real_vs_generated_evals.png>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 451.
 
 
-LaTeX Warning: Float too large for page by 3.52728pt on input line 322.
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 477.
 
-<../figs/evecs_wgangp_full_structure.jpg, id=66, 1079.03125pt x 932.48375pt>
+<../figs/evecs_wgangp_full_structure.jpg, id=79, 1079.03125pt x 932.48375pt>
 File: ../figs/evecs_wgangp_full_structure.jpg Graphic file (type jpg)
 <use ../figs/evecs_wgangp_full_structure.jpg>
-Package pdftex.def Info: ../figs/evecs_wgangp_full_structure.jpg  used on input line 329.
+Package pdftex.def Info: ../figs/evecs_wgangp_full_structure.jpg  used on input line 508.
 (pdftex.def)             Requested size: 279.50037pt x 241.54366pt.
-<../figs/beamforming_real_csm.png, id=67, 326.21875pt x 259.97125pt>
+[15] [16] [17 <../figs/evecs_wgangp_full_structure.jpg>]
+<../figs/beamforming_real_csm.png, id=89, 326.21875pt x 259.97125pt>
 File: ../figs/beamforming_real_csm.png Graphic file (type png)
 <use ../figs/beamforming_real_csm.png>
-Package pdftex.def Info: ../figs/beamforming_real_csm.png  used on input line 364.
+Package pdftex.def Info: ../figs/beamforming_real_csm.png  used on input line 545.
 (pdftex.def)             Requested size: 232.20032pt x 185.05293pt.
 
-Overfull \hbox (38.69955pt too wide) in paragraph at lines 364--365
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 545--546
 [][] 
  []
 
-<../figs/beamforming_augmented_csm.png, id=68, 334.24875pt x 253.94875pt>
+<../figs/beamforming_augmented_csm.png, id=90, 334.24875pt x 253.94875pt>
 File: ../figs/beamforming_augmented_csm.png Graphic file (type png)
 <use ../figs/beamforming_augmented_csm.png>
-Package pdftex.def Info: ../figs/beamforming_augmented_csm.png  used on input line 369.
+Package pdftex.def Info: ../figs/beamforming_augmented_csm.png  used on input line 550.
 (pdftex.def)             Requested size: 232.20032pt x 176.42216pt.
 
-Overfull \hbox (38.69955pt too wide) in paragraph at lines 369--370
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 550--551
 [][] 
  []
 
-(./final_report.bbl [12] [13] [14 <../figs/evecs_wgangp_full_structure.jpg> <../figs/beamforming_real_csm.png> <../figs/beamforming_augmented_csm.png>]
+(./final_report.bbl [18 <../figs/beamforming_real_csm.png> <../figs/beamforming_augmented_csm.png>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 80.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 3417) in paragraph at lines 76--81
-[]\T1/cmr/m/n/10 Ishaan Gul-ra-jani, Faruk Ahmed, Martín Ar-jovsky, Vin-cent Du-moulin, and Aaron C.
+Underfull \hbox (badness 10000) in paragraph at lines 76--81
+[]\T1/cmr/m/n/10 Ishaan Gul-ra-jani, Faruk Ahmed, Martín Ar-jovsky, Vin-cent Du-moulin, and Aaron
  []
 
 
@@ -313,25 +354,25 @@ Overfull \hbox (49.90596pt too wide) in paragraph at lines 104--114
 \T1/cmtt/m/n/10 https://proceedings.neurips.cc/paper/2019/file/6804c9bca0a615bdb9374d00a9fcba59-Paper.pdf\T1/cmr/m/n/10 . 
  []
 
-[15]
+
 Underfull \hbox (badness 10000) in paragraph at lines 129--132
 []\T1/cmr/m/n/10 Aakash Nain.  Wgan-gp over-rid-ing model train step, May 2020.  URL
  []
 
-) [16] (./final_report.aux) ) 
+[19]) [20] (./final_report.aux) ) 
 Here is how much of TeX's memory you used:
- 4013 strings out of 478287
- 60339 string characters out of 5849289
- 356620 words of memory out of 5000000
- 22153 multiletter control sequences out of 15000+600000
+ 4555 strings out of 478287
+ 71633 string characters out of 5849289
+ 373923 words of memory out of 5000000
+ 22665 multiletter control sequences out of 15000+600000
  484788 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,8n,62p,1007b,293s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,67p,1007b,295s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on final_report.pdf (16 pages, 741516 bytes).
+Output written on final_report.pdf (20 pages, 5346138 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 201 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
