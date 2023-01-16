@@ -22,10 +22,10 @@ from eigenmanipulation import normalize_evecs
 # parameters
 num_channels = 1
 evecs_SHAPE = (63,64,2)
-latent_dim = 128
+#latent_dim = 128
 batch_size = 16
-n_critic = 5
-critic_extra_steps=3
+#n_critic = 5
+#critic_extra_steps=3
 gp_weight=10.0
 
 generator_optimizer = Adam(learning_rate=0.0002, beta_1=0.5, beta_2=0.9)
@@ -63,7 +63,7 @@ def conv_block(
     return x
 
 
-def get_critic_model():
+def get_critic_model(latent_dim):
     
     # PERCEPTRON APPROACH =====================
     # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -84,7 +84,7 @@ def get_critic_model():
 
     c_model = Model(evecs_input, x, name="critic")
 
-    c_model.summary()
+    #c_model.summary()
 
     return c_model
     
@@ -178,7 +178,7 @@ def upsample_block(
     return x
 
 
-def get_generator_model():
+def get_generator_model(latent_dim):
     
     # PERCEPTRON APPROACH =====================
     # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -215,7 +215,7 @@ def get_generator_model():
     # CONVOLUTIONAL APPROACH ==================
     # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
     """
-    noise = Input(shape=(latent_dim,))
+    noise = Input(shape=(self.latent_dim,))
     
     a = 16
     x = Dense(a * a * 256, use_bias=False)(noise)
@@ -268,11 +268,11 @@ def get_generator_model():
 
 
 class noise_evecs_WGANGP(Model):
-    def __init__(self):
+    def __init__(self, latent_dim=128, critic_extra_steps=5):
         super(noise_evecs_WGANGP, self).__init__()
         
-        self.critic = get_critic_model()
-        self.generator = get_generator_model()
+        self.critic = get_critic_model(latent_dim)
+        self.generator = get_generator_model(latent_dim)
         self.latent_dim = latent_dim
         self.c_steps = critic_extra_steps
         self.gp_weight = gp_weight

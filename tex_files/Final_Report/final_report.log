@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  28 DEC 2022 16:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  16 JAN 2023 15:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -250,129 +250,230 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-Overfull \hbox (5.94814pt too wide) in paragraph at lines 239--240
-[]\T1/cmr/m/n/10 From fo-rum (https://stats.stackexchange.com/questions/505696/when-is-my-wasserstein-gan-gp-
- []
-
-[7] [8]
-<../figs/full_measurement_setup.png, id=49, 1202.4925pt x 841.1425pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11]
+<../figs/full_measurement_setup.png, id=59, 1202.4925pt x 841.1425pt>
 File: ../figs/full_measurement_setup.png Graphic file (type png)
 <use ../figs/full_measurement_setup.png>
-Package pdftex.def Info: ../figs/full_measurement_setup.png  used on input line 283.
+Package pdftex.def Info: ../figs/full_measurement_setup.png  used on input line 415.
 (pdftex.def)             Requested size: 279.50037pt x 195.51227pt.
-<../figs/source.png, id=51, 987.69pt x 1103.12125pt>
+<../figs/source.png, id=61, 987.69pt x 1103.12125pt>
 File: ../figs/source.png Graphic file (type png)
 <use ../figs/source.png>
-Package pdftex.def Info: ../figs/source.png  used on input line 290.
+Package pdftex.def Info: ../figs/source.png  used on input line 422.
 (pdftex.def)             Requested size: 279.50037pt x 312.15413pt.
-<../figs/microphone_array_cropped.jpg, id=52, 657.1752pt x 462.528pt>
+<../figs/microphone_array_cropped.jpg, id=62, 657.1752pt x 462.528pt>
 File: ../figs/microphone_array_cropped.jpg Graphic file (type jpg)
 <use ../figs/microphone_array_cropped.jpg>
-Package pdftex.def Info: ../figs/microphone_array_cropped.jpg  used on input line 297.
+Package pdftex.def Info: ../figs/microphone_array_cropped.jpg  used on input line 429.
 (pdftex.def)             Requested size: 279.50037pt x 196.71648pt.
- [9 <../figs/full_measurement_setup.png>] [10 <../figs/source.png>]
+ [12 <../figs/full_measurement_setup.png>] [13 <../figs/source.png>]
+<../figs/data_eigenvalue_spectrum.png, id=72, 877.2775pt x 340.27126pt>
+File: ../figs/data_eigenvalue_spectrum.png Graphic file (type png)
+<use ../figs/data_eigenvalue_spectrum.png>
+Package pdftex.def Info: ../figs/data_eigenvalue_spectrum.png  used on input line 448.
+(pdftex.def)             Requested size: 430.00462pt x 166.79147pt.
+ [14 <../figs/microphone_array_cropped.jpg>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 321.
+               Default added (so using `tbp') on input line 472.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 349.
+               Default added (so using `tbp') on input line 490.
 
-<../figs/evals_wgangp_full_structure.jpg, id=61, 1080.035pt x 932.48375pt>
+<../figs/evals_wgangp_full_structure.jpg, id=76, 1080.035pt x 932.48375pt>
 File: ../figs/evals_wgangp_full_structure.jpg Graphic file (type jpg)
 <use ../figs/evals_wgangp_full_structure.jpg>
-Package pdftex.def Info: ../figs/evals_wgangp_full_structure.jpg  used on input line 378.
+Package pdftex.def Info: ../figs/evals_wgangp_full_structure.jpg  used on input line 510.
 (pdftex.def)             Requested size: 279.50037pt x 241.316pt.
-<../figs/evals_g_loss.png, id=62, 1312.905pt x 393.47pt>
-File: ../figs/evals_g_loss.png Graphic file (type png)
-<use ../figs/evals_g_loss.png>
-Package pdftex.def Info: ../figs/evals_g_loss.png  used on input line 389.
-(pdftex.def)             Requested size: 387.00153pt x 115.98257pt.
-<../figs/real_vs_generated_evals.png, id=63, 225.0006pt x 180.4341pt>
-File: ../figs/real_vs_generated_evals.png Graphic file (type png)
-<use ../figs/real_vs_generated_evals.png>
-Package pdftex.def Info: ../figs/real_vs_generated_evals.png  used on input line 400.
-(pdftex.def)             Requested size: 387.00153pt x 310.34607pt.
-[11 <../figs/microphone_array_cropped.jpg>] [12] [13 <../figs/evals_wgangp_full_structure.jpg> <../figs/evals_g_loss.png>] [14 <../figs/real_vs_generated_evals.png>]
+[15 <../figs/data_eigenvalue_spectrum.png>] [16 <../figs/evals_wgangp_full_structure.jpg>]
+<../figs/evals_wgangp_loss.png, id=84, 965.6075pt x 580.1675pt>
+File: ../figs/evals_wgangp_loss.png Graphic file (type png)
+<use ../figs/evals_wgangp_loss.png>
+Package pdftex.def Info: ../figs/evals_wgangp_loss.png  used on input line 522.
+(pdftex.def)             Requested size: 174.14949pt x 104.62924pt.
+<../figs/evals_loss_after_finetuning.png, id=85, 973.6375pt x 587.19376pt>
+File: ../figs/evals_loss_after_finetuning.png Graphic file (type png)
+<use ../figs/evals_loss_after_finetuning.png>
+Package pdftex.def Info: ../figs/evals_loss_after_finetuning.png  used on input line 527.
+(pdftex.def)             Requested size: 174.14949pt x 105.02728pt.
+<../figs/eval_WGANGP_sample_before_fine_tuning.png, id=86, 908.39375pt x 629.35126pt>
+File: ../figs/eval_WGANGP_sample_before_fine_tuning.png Graphic file (type png)
+<use ../figs/eval_WGANGP_sample_before_fine_tuning.png>
+Package pdftex.def Info: ../figs/eval_WGANGP_sample_before_fine_tuning.png  used on input line 538.
+(pdftex.def)             Requested size: 232.20032pt x 160.87137pt.
+
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 538--539
+[][] 
+ []
+
+<../figs/eval_WGANGP_sample_after_fine_tuning.png, id=87, 918.43124pt x 631.35875pt>
+File: ../figs/eval_WGANGP_sample_after_fine_tuning.png Graphic file (type png)
+<use ../figs/eval_WGANGP_sample_after_fine_tuning.png>
+Package pdftex.def Info: ../figs/eval_WGANGP_sample_after_fine_tuning.png  used on input line 543.
+(pdftex.def)             Requested size: 232.20032pt x 159.62154pt.
+
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 543--544
+[][] 
+ []
+
+
+Underfull \hbox (badness 1205) in paragraph at lines 544--544
+\T1/cmr/m/n/10 WGAN-GP (blue), when trained fur-ther
+ []
+
+<../figs/eval_WGANGP_sample_level.png, id=88, 934.49126pt x 631.35875pt>
+File: ../figs/eval_WGANGP_sample_level.png Graphic file (type png)
+<use ../figs/eval_WGANGP_sample_level.png>
+Package pdftex.def Info: ../figs/eval_WGANGP_sample_level.png  used on input line 555.
+(pdftex.def)             Requested size: 387.00153pt x 261.4695pt.
+[17 <../figs/evals_wgangp_loss.png> <../figs/evals_loss_after_finetuning.png>] [18 <../figs/eval_WGANGP_sample_before_fine_tuning.png> <../figs/eval_WGANGP_sample_after_fine_tuning.png> <../figs/eval_WGANGP_sample_level.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 451.
+               Default added (so using `tbp') on input line 579.
 
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 477.
+               Default added (so using `tbp') on input line 599.
 
-<../figs/evecs_wgangp_full_structure.jpg, id=79, 1079.03125pt x 932.48375pt>
+<../figs/evals_dB_loss_before_finetuning.png, id=100, 948.54375pt x 600.2425pt>
+File: ../figs/evals_dB_loss_before_finetuning.png Graphic file (type png)
+<use ../figs/evals_dB_loss_before_finetuning.png>
+Package pdftex.def Info: ../figs/evals_dB_loss_before_finetuning.png  used on input line 622.
+(pdftex.def)             Requested size: 174.14949pt x 110.2005pt.
+
+Underfull \hbox (badness 2469) in paragraph at lines 623--623
+\T1/cmr/m/n/10 while per-form-ing ini-tial train-ing of the
+ []
+
+<../figs/evals_dB_loss_after_finetuning.png, id=101, 952.55875pt x 591.20876pt>
+File: ../figs/evals_dB_loss_after_finetuning.png Graphic file (type png)
+<use ../figs/evals_dB_loss_after_finetuning.png>
+Package pdftex.def Info: ../figs/evals_dB_loss_after_finetuning.png  used on input line 627.
+(pdftex.def)             Requested size: 174.14949pt x 108.08188pt.
+<../figs/evals_dB_sample_before_finetuning.png, id=102, 943.525pt x 640.3925pt>
+File: ../figs/evals_dB_sample_before_finetuning.png Graphic file (type png)
+<use ../figs/evals_dB_sample_before_finetuning.png>
+Package pdftex.def Info: ../figs/evals_dB_sample_before_finetuning.png  used on input line 642.
+(pdftex.def)             Requested size: 232.20032pt x 157.59619pt.
+
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 642--643
+[][] 
+ []
+
+<../figs/evals_dB_sample_after_finetuning.png, id=103, 938.50626pt x 635.37375pt>
+File: ../figs/evals_dB_sample_after_finetuning.png Graphic file (type png)
+<use ../figs/evals_dB_sample_after_finetuning.png>
+Package pdftex.def Info: ../figs/evals_dB_sample_after_finetuning.png  used on input line 647.
+(pdftex.def)             Requested size: 232.20032pt x 157.19489pt.
+
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 647--648
+[][] 
+ []
+
+<../figs/evals_dB_not_level_sample_comparison.png, id=104, 920.43875pt x 640.3925pt>
+File: ../figs/evals_dB_not_level_sample_comparison.png Graphic file (type png)
+<use ../figs/evals_dB_not_level_sample_comparison.png>
+Package pdftex.def Info: ../figs/evals_dB_not_level_sample_comparison.png  used on input line 659.
+(pdftex.def)             Requested size: 387.00153pt x 269.25616pt.
+[19] [20 <../figs/evals_dB_loss_before_finetuning.png> <../figs/evals_dB_loss_after_finetuning.png> <../figs/evals_dB_sample_before_finetuning.png> <../figs/evals_dB_sample_after_finetuning.png>] [21 <../figs/evals_dB_not_level_sample_comparison.png>]
+<../figs/histogram_main_eigenvector.png, id=120, 1157.32375pt x 577.15625pt>
+File: ../figs/histogram_main_eigenvector.png Graphic file (type png)
+<use ../figs/histogram_main_eigenvector.png>
+Package pdftex.def Info: ../figs/histogram_main_eigenvector.png  used on input line 678.
+(pdftex.def)             Requested size: 279.50037pt x 139.38338pt.
+<../figs/histogram_noise_eigenvector.png, id=121, 1157.32375pt x 577.15625pt>
+File: ../figs/histogram_noise_eigenvector.png Graphic file (type png)
+<use ../figs/histogram_noise_eigenvector.png>
+Package pdftex.def Info: ../figs/histogram_noise_eigenvector.png  used on input line 685.
+(pdftex.def)             Requested size: 279.50037pt x 139.38338pt.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 707.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 726.
+
+<../figs/evecs_wgangp_full_structure.jpg, id=122, 1079.03125pt x 932.48375pt>
 File: ../figs/evecs_wgangp_full_structure.jpg Graphic file (type jpg)
 <use ../figs/evecs_wgangp_full_structure.jpg>
-Package pdftex.def Info: ../figs/evecs_wgangp_full_structure.jpg  used on input line 508.
+Package pdftex.def Info: ../figs/evecs_wgangp_full_structure.jpg  used on input line 749.
 (pdftex.def)             Requested size: 279.50037pt x 241.54366pt.
-[15] [16] [17 <../figs/evecs_wgangp_full_structure.jpg>]
-<../figs/beamforming_real_csm.png, id=89, 326.21875pt x 259.97125pt>
+[22 <../figs/histogram_main_eigenvector.png>] [23 <../figs/histogram_noise_eigenvector.png>]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 767.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 787.
+
+[24 <../figs/evecs_wgangp_full_structure.jpg>] [25]
+<../figs/beamforming_real_csm.png, id=138, 326.21875pt x 259.97125pt>
 File: ../figs/beamforming_real_csm.png Graphic file (type png)
 <use ../figs/beamforming_real_csm.png>
-Package pdftex.def Info: ../figs/beamforming_real_csm.png  used on input line 545.
+Package pdftex.def Info: ../figs/beamforming_real_csm.png  used on input line 837.
 (pdftex.def)             Requested size: 232.20032pt x 185.05293pt.
 
-Overfull \hbox (38.69955pt too wide) in paragraph at lines 545--546
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 837--838
 [][] 
  []
 
-<../figs/beamforming_augmented_csm.png, id=90, 334.24875pt x 253.94875pt>
+<../figs/beamforming_augmented_csm.png, id=139, 334.24875pt x 253.94875pt>
 File: ../figs/beamforming_augmented_csm.png Graphic file (type png)
 <use ../figs/beamforming_augmented_csm.png>
-Package pdftex.def Info: ../figs/beamforming_augmented_csm.png  used on input line 550.
+Package pdftex.def Info: ../figs/beamforming_augmented_csm.png  used on input line 842.
 (pdftex.def)             Requested size: 232.20032pt x 176.42216pt.
 
-Overfull \hbox (38.69955pt too wide) in paragraph at lines 550--551
+Overfull \hbox (38.69955pt too wide) in paragraph at lines 842--843
 [][] 
  []
 
-(./final_report.bbl [18 <../figs/beamforming_real_csm.png> <../figs/beamforming_augmented_csm.png>]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 80.
+[26 <../figs/beamforming_real_csm.png> <../figs/beamforming_augmented_csm.png>] (./final_report.bbl
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 88.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 76--81
+Underfull \hbox (badness 10000) in paragraph at lines 84--89
 []\T1/cmr/m/n/10 Ishaan Gul-ra-jani, Faruk Ahmed, Martín Ar-jovsky, Vin-cent Du-moulin, and Aaron
  []
 
-
-Underfull \hbox (badness 1540) in paragraph at lines 104--114
+[27]
+Underfull \hbox (badness 1540) in paragraph at lines 112--122
 []\T1/cmr/m/n/10 Kundan Ku-mar, Rithesh Ku-mar, Thibault de Boissiere, Lu-cas Gestin, Wei Zhen Teoh,
  []
 
 
-Underfull \hbox (badness 1648) in paragraph at lines 104--114
+Underfull \hbox (badness 1648) in paragraph at lines 112--122
 \T1/cmr/m/n/10 Jose Sotelo, Alexan-dre de Brébis-son, Yoshua Ben-gio, and Aaron C Courville.  Mel-
  []
 
 
-Overfull \hbox (49.90596pt too wide) in paragraph at lines 104--114
+Overfull \hbox (49.90596pt too wide) in paragraph at lines 112--122
 \T1/cmtt/m/n/10 https://proceedings.neurips.cc/paper/2019/file/6804c9bca0a615bdb9374d00a9fcba59-Paper.pdf\T1/cmr/m/n/10 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--132
+Underfull \hbox (badness 10000) in paragraph at lines 137--140
 []\T1/cmr/m/n/10 Aakash Nain.  Wgan-gp over-rid-ing model train step, May 2020.  URL
  []
 
-[19]) [20] (./final_report.aux) ) 
+[28]) [29] (./final_report.aux) ) 
 Here is how much of TeX's memory you used:
- 4555 strings out of 478287
- 71633 string characters out of 5849289
- 373923 words of memory out of 5000000
- 22665 multiletter control sequences out of 15000+600000
+ 4658 strings out of 478287
+ 76070 string characters out of 5849289
+ 373300 words of memory out of 5000000
+ 22757 multiletter control sequences out of 15000+600000
  484788 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,11n,67p,1007b,295s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on final_report.pdf (20 pages, 5346138 bytes).
+ 60i,11n,67p,1031b,295s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on final_report.pdf (29 pages, 5748273 bytes).
 PDF statistics:
- 201 PDF objects out of 1000 (max. 8388607)
- 117 compressed objects within 2 object streams
+ 256 PDF objects out of 1000 (max. 8388607)
+ 139 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

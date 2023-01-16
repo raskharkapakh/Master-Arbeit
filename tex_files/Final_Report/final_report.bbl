@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -54,6 +54,14 @@ Eric~L Ferguson, Stefan~B Williams, and Craig~T Jin.
   convolutional neural networks.
 \newblock In \emph{2018 IEEE International Conference on Acoustics, Speech and
   Signal Processing (ICASSP)}, pages 2386--2390. IEEE, 2018.
+
+\bibitem[Gerstoft et~al.(2012)Gerstoft, Menon, Hodgkiss, and
+  Mecklenbr{\"a}uker]{gerstoft2012eigenvalues}
+Peter Gerstoft, Ravishankar Menon, William~S Hodgkiss, and Christoph~F
+  Mecklenbr{\"a}uker.
+\newblock Eigenvalues of the sample covariance matrix for a towed array.
+\newblock \emph{The Journal of the Acoustical Society of America}, 132\penalty0
+  (4):\penalty0 2388--2396, 2012.
 
 \bibitem[Gerstoft et~al.(2020)Gerstoft, Groll, and
   Mecklenbr{\"a}uker]{gerstoft2020parametric}
@@ -174,6 +182,19 @@ Anton Ratnarajah, Shi-Xiong Zhang, Meng Yu, Zhenyu Tang, Dinesh Manocha, and
 \newblock Fast-rir: Fast neural diffuse room impulse response generator.
   10.48550.
 \newblock \emph{arXiv preprint ARXIV.2110.04057}, 2021.
+
+\bibitem[Sarradj(2010)]{sarradj2010fast}
+Ennes Sarradj.
+\newblock A fast signal subspace approach for the determination of absolute
+  levels from phased microphone array measurements.
+\newblock \emph{Journal of Sound and Vibration}, 329\penalty0 (9):\penalty0
+  1553--1569, 2010.
+
+\bibitem[Sarradj(2012)]{sarradj2012three}
+Ennes Sarradj.
+\newblock Three-dimensional acoustic source mapping with different beamforming
+  steering vector formulations.
+\newblock \emph{Advances in Acoustics and Vibration}, 2012, 2012.
 
 \bibitem[Takeda and Komatani(2016)]{takeda2016sound}
 Ryu Takeda and Kazunori Komatani.

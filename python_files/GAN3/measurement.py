@@ -12,7 +12,7 @@ def get_measurement_sample(measurement_name, freq_index):
     # Get a random slice of measurement 
     ts_slice = acoular.MaskedTimeSamples(name=measurement_name)
 
-    nb_slices = 100 # maximum number of non-overlapping slices wished
+    nb_slices = 50 # maximum number of non-overlapping slices wished
     slice_length = int(np.floor(nb_samples/nb_slices)) # length of slice to use
     start_index = np.random.randint(0, (nb_samples-slice_length)-1) 
     stop_index = start_index + slice_length
@@ -40,38 +40,30 @@ def get_evals_evecs(csm):
     
     evals, evecs = tf.linalg.eigh(csm)
 
-    # =====================================================================================
-    evecs_real = tf.math.real(evecs)
-    evecs_imag = tf.math.imag(evecs)
+    main_evec = tf.reshape(evecs[:,-1], [64, 1])
+    noise_evecs = evecs[:, 0:63]
+    
+    main_evec_real = tf.math.real(main_evec)
+    main_evec_imag = tf.math.imag(main_evec)
+    noise_evecs_real = tf.math.real(noise_evecs)
+    noise_evecs_imag = tf.math.imag(noise_evecs)
 
 
     # cast from float64 to float32
-    evecs_real = tf.cast(evecs_real, tf.float32)
-    evecs_imag = tf.cast(evecs_imag, tf.float32)
+    main_evec_real = tf.cast(main_evec_real, tf.float32)
+    main_evec_imag = tf.cast(main_evec_imag, tf.float32)
+    noise_evecs_real = tf.cast(noise_evecs_real, tf.float32)
+    noise_evecs_imag = tf.cast(noise_evecs_imag, tf.float32)
     evals_tf = tf.cast(evals, tf.float32)
     
     # get evals as level
     evals_dB_tf = tf.convert_to_tensor(levelify(normalize_evals(tf.math.real(evals_tf))))
 
-    # get index of eigenvalues big enough to be considered not a noise representation 
-    #threshold_max = np.max(np.array(evals_tf)) # SEE IF IT APPLIES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    index_main = tf.where(normalize_evals(evals_tf) == 1) # 1 is not a magic number, it is max value after normalization (by def.)
-    index_noise = tf.where(normalize_evals(evals_tf) < 1)
-    
-    # separate eigenvecs between main component and noise
-    main_evecs_real = tf.gather(evecs_real, index_main)[:,0,:]
-    main_evecs_imag = tf.gather(evecs_imag, index_main)[:,0,:]
-    noise_evecs_real = tf.gather(evecs_real, index_noise)[:,0,:]
-    noise_evecs_imag = tf.gather(evecs_imag, index_noise)[:,0,:]
-
-
-    main_evecs = tf.stack([main_evecs_real, main_evecs_imag], axis=2)
-    noise_evecs = tf.stack([noise_evecs_real, noise_evecs_imag], axis=2)
-
     # reshape evals into "image" format instead of vetcor format  
     evals_tf = tf.reshape(tf.math.real(evals_tf), (8,8,1))
     evals_dB_tf = tf.reshape(evals_dB_tf, (8,8,1))
-
-
-    return main_evecs, noise_evecs, evals_tf, evals_dB_tf
+    
+    main_evec = tf.stack([main_evec_real, main_evec_imag], axis=-1)
+    noise_evecs = tf.stack([noise_evecs_real, noise_evecs_imag], axis=-1)
+    
+    return main_evec, noise_evecs, evals_tf, evals_dB_tf

@@ -8,22 +8,6 @@ from spectra import PowerSpectraImport
 
 def beamform(csm, helmotz_number=4.0625, measurement=False):
     
-    """
-    TODO: current assumption: freq_index=helmotz_number -> TO CHECK
-    
-    Helmotz number :
-    
-    freq = H_e * L_c
-    
-    with H_e : Helmotz number
-    L_c : longueur caractérisque, en acoustique: vitesse du son [m/s]: 343
-    """
-    
-    
-    # set up the parameters
-    # TODO: see link between freq_index and Helmotz number
-    
-    
     mg = MicGeom(from_file='tub_vogel64_ap1.xml')
     scaling = 1.0
     if measurement:
@@ -56,8 +40,6 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
             interpolation='bicubic')
     colorbar()
 
-
-
     return None
 
 # return CSM from its eigendecomposition
@@ -76,4 +58,15 @@ def get_csm(evecs_real, evecs_imag, evals_vec):
     evals = tf.complex(evals_real, evals_imag)
     tmp = tf.linalg.matmul(evecs,evals)    
     return tf.linalg.matmul(tmp,evecs_H)
+
+def get_rank_I_csm(main_evec_real, main_evec_imag, evals_vec):
+    
+    main_evec = tf.complex(main_evec_real, main_evec_imag)[:, tf.newaxis]
+    main_evec_H = tf.linalg.adjoint(main_evec) # hermitian
+        
+    evals = tf.complex(evals_vec[-1], 0.0)[tf.newaxis, tf.newaxis]
+    
+    return main_evec @ evals @ main_evec_H
+
+
 

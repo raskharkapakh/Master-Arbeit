@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Imports from TensorFlow/Keras
-from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout, BatchNormalization, Activation, ZeroPadding2D, LeakyReLU, UpSampling2D, Conv2D, Cropping2D
+from tensorflow.keras.layers import Input, Add, Dense, Reshape, Flatten, Dropout, BatchNormalization, Activation, ZeroPadding2D, LeakyReLU, UpSampling2D, Conv2D, Cropping2D
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.optimizers import RMSprop, Adam
 from tensorflow.keras.metrics import Accuracy
@@ -193,7 +193,13 @@ def get_generator_model():
     x = Dense(1024)(x)
     x = LeakyReLU(alpha=0.2)(x)
     #x = BatchNormalization(momentum=0.8)(x)
-    x = Dense(np.prod(EVALS_SHAPE), activation='tanh')(x)
+    x = Dense(np.prod(EVALS_SHAPE), activation='tanh')(x) # TODO: see if this line really is necessary 
+    x = Dense(np.prod(EVALS_SHAPE), activation='relu')(x) # replace line above: act=tanh-> act=relu (enforce non-neg values only)
+    x = Add()([x,tf.fill(dims=(batch_size, np.prod(EVALS_SHAPE)), value=1e-10)]) #add a very small value to make sure the network only generate positive values 
+    
+    
+
+    
     x = Reshape(EVALS_SHAPE)(x)
    
     g_model = Model(noise, x, name="generator")

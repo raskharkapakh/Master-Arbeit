@@ -4,45 +4,45 @@ The top-level auxiliary file: final_report.aux
 The style file: plainnat.bst
 Database file #1: ../mybib.bib
 Warning--empty journal in pinto2021deconvoluting
-You've used 27 entries,
+You've used 30 entries,
             2773 wiz_defined-function locations,
-            744 strings with 11051 characters,
-and the built_in function-call counts, 15079 in all, are:
-= -- 1338
-> -- 1008
-< -- 15
-+ -- 336
-- -- 309
-* -- 1251
-:= -- 2274
-add.period$ -- 94
-call.type$ -- 27
-change.case$ -- 182
-chr.to.int$ -- 27
-cite$ -- 55
-duplicate$ -- 671
-empty$ -- 1143
-format.name$ -- 342
-if$ -- 3216
+            762 strings with 11596 characters,
+and the built_in function-call counts, 16364 in all, are:
+= -- 1456
+> -- 1067
+< -- 17
++ -- 357
+- -- 327
+* -- 1354
+:= -- 2473
+add.period$ -- 103
+call.type$ -- 30
+change.case$ -- 197
+chr.to.int$ -- 30
+cite$ -- 61
+duplicate$ -- 731
+empty$ -- 1258
+format.name$ -- 363
+if$ -- 3482
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 26
-newline$ -- 145
-num.names$ -- 110
-pop$ -- 388
+missing$ -- 29
+newline$ -- 160
+num.names$ -- 122
+pop$ -- 414
 preamble$ -- 1
-purify$ -- 155
+purify$ -- 167
 quote$ -- 0
-skip$ -- 534
+skip$ -- 577
 stack$ -- 0
-substring$ -- 510
-swap$ -- 124
+substring$ -- 578
+swap$ -- 127
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 297
+type$ -- 330
 warning$ -- 1
-while$ -- 123
+while$ -- 136
 width$ -- 0
-write$ -- 364
+write$ -- 403
 (There was 1 warning)
