@@ -40,6 +40,7 @@
 \citation{sarradj2010fast}
 \newlabel{csm}{{3}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Eigenvalue decomposition and Rank I Cross spectral matrix}{4}{}\protected@file@percent }
+\newlabel{rank_I_csm}{{5}{4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Conventional beamforming}{4}{}\protected@file@percent }
 \citation{sarradj2012three}
 \citation{sarradj2010fast}
@@ -73,7 +74,7 @@
 \citation{DBLP:journals/corr/GulrajaniAADC17}
 \citation{gerstoft2020parametric}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.8}Assessing performances of a WGAN or WGAN-GP compared to GAN}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Our approach (\textbf  {title to change ?})}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methods}{11}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Data}{11}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.1}Synthetic data}{11}{}\protected@file@percent }
 \citation{gerstoft2012eigenvalues}
@@ -84,83 +85,105 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Device used as audio source to create the measurement}}{13}{}\protected@file@percent }
 \newlabel{fig:source}{{2}{13}}
 \citation{nain2020wgangp}
-\citation{nain2020wgangp}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Picture of the array of microphone used to create the real measurement}}{14}{}\protected@file@percent }
 \newlabel{fig:microphone_array}{{3}{14}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.3}Comparison between synthetic and measured data}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation of Eigenvalues}{14}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Architecture}{14}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.1.4}The data used in this thesis}{14}{}\protected@file@percent }
+\citation{nain2020wgangp}
 \citation{nain2020wgangp}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparison of the eigenvalues of CSMs approximated from synthetic data (blue) and from measured data (orange).}}{15}{}\protected@file@percent }
 \newlabel{fig:data_eigenvalue_spectrum}{{4}{15}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{15}{}\protected@file@percent }
-\newlabel{tab:evals_generator_WGANGP_architecture}{{1}{15}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation of eigenvalues}{15}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.1}Architecture}{15}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{16}{}\protected@file@percent }
+\newlabel{tab:evals_generator_WGANGP_architecture}{{1}{16}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate eigenvalues. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}}{16}{}\protected@file@percent }
 \newlabel{tab:evals_critic_WGANGP_architecture}{{2}{16}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}}{16}{}\protected@file@percent }
-\newlabel{fig:evals_wgangp_full_structure}{{5}{16}}
-\citation{nain2020wgangp}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The loss function of the critic while performing initial training of the WGAN-GP for eigenvalues generation (before fine-tuning).}}{17}{}\protected@file@percent }
-\newlabel{fig:evals_wgangp_loss}{{6}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The loss function of the critic while fine-tuning the WGAN-GP for eigenvalues generation.}}{17}{}\protected@file@percent }
-\newlabel{fig:evals_loss_after_finetuning}{{7}{17}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}}{17}{}\protected@file@percent }
+\newlabel{fig:evals_wgangp_full_structure}{{5}{17}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.2.2}Results}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Generating eigenvalues from their level values}{17}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Architecture}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Generation of eigenvalues from their level values}{17}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The loss function of the critic while performing initial training of the WGAN-GP for eigenvalues generation (before fine-tuning).}}{18}{}\protected@file@percent }
+\newlabel{fig:evals_wgangp_loss}{{6}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The loss function of the critic while fine-tuning the WGAN-GP for eigenvalues generation.}}{18}{}\protected@file@percent }
+\newlabel{fig:evals_loss_after_finetuning}{{7}{18}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparision between real eigenvalues (orange) from the synthetic dataset with sample eigenvalues generated by our WGAN-GP (blue), when trained only with synthetic data (before fine-tuning)}}{18}{}\protected@file@percent }
 \newlabel{fig:eval_WGANGP_sample_before_fine_tuning}{{8}{18}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparision between real eigenvalues (orange) from the measurement dataset with sample eigenvalues generated by our WGAN-GP (blue), when trained further with measurement data (after fine-tuning)}}{18}{}\protected@file@percent }
 \newlabel{fig:eval_WGANGP_sample_after_fine_tuning}{{9}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces comparison level values of generated eigenvalues before fine-tuning (blue), generated eigenvalues after fine-tuning (orange) eigenvalues of synthetic CSM (green) and eigenvalues of CSM of measured data (red)}}{18}{}\protected@file@percent }
-\newlabel{fig:eval_WGANGP_sample_level}{{10}{18}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues from their level values. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{19}{}\protected@file@percent }
-\newlabel{tab:evals_dB_generator_WGANGP_architecture}{{3}{19}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate eigenvalues from their level values. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}}{19}{}\protected@file@percent }
-\newlabel{tab:evals_dB_critic_WGANGP_architecture}{{4}{19}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Results}{19}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The loss function of the critic while performing initial training of the WGAN-GP for the levels of eigenvalues generation (before fine-tuning).}}{20}{}\protected@file@percent }
-\newlabel{fig:evals_dB_loss_before_finetuning}{{11}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The loss function of the critic while fine-tuning the WGAN-GP for the levels of eigenvalues generation.}}{20}{}\protected@file@percent }
-\newlabel{fig:evals_dB_loss_after_finetuning}{{12}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Comparision between the levels of real eigenvalues (blue) from the synthetic dataset with sample levels eigenvalues generated by our WGAN-GP (orange), when trained only with synthetic data (before fine-tuning)}}{20}{}\protected@file@percent }
-\newlabel{fig:evals_dB_sample_before_finetuning}{{13}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Comparision between the levels real eigenvalues (blue) from the measurement dataset with sample levels of eigenvalues generated by our WGAN-GP (orange), when trained further with measurement data (after fine-tuning)}}{20}{}\protected@file@percent }
-\newlabel{fig:evals_dB_sample_after_finetuning}{{14}{20}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces comparison between generated eigenvalues before fine-tuning (blue), generated eigenvalues after fine-tuning (orange), eigenvalues of synthetic CSM (green) and eigenvalues of CSM of measured data (red). The eigenvalues are computed back from their level values.}}{21}{}\protected@file@percent }
-\newlabel{fig:evals_dB_not_level_sample_comparison}{{15}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces comparison level values of generated eigenvalues before fine-tuning (blue), generated eigenvalues after fine-tuning (orange) eigenvalues of synthetic CSM (green) and eigenvalues of CSM of measured data (red)}}{19}{}\protected@file@percent }
+\newlabel{fig:eval_WGANGP_sample_level}{{10}{19}}
 \citation{nain2020wgangp}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces histogram showing the value taken by the main eigenvector. The left side show the real part, whereas the right side shows the imaginary part.}}{22}{}\protected@file@percent }
-\newlabel{fig:histogram_main_eigenvector}{{16}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Generation of Eigenvectors}{22}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues from their level values. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{20}{}\protected@file@percent }
+\newlabel{tab:evals_dB_generator_WGANGP_architecture}{{3}{20}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate eigenvalues from their level values. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}}{20}{}\protected@file@percent }
+\newlabel{tab:evals_dB_critic_WGANGP_architecture}{{4}{20}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Architecture}{20}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Results}{20}{}\protected@file@percent }
+\citation{nain2020wgangp}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces The loss function of the critic while performing initial training of the WGAN-GP for the levels of eigenvalues generation (before fine-tuning).}}{21}{}\protected@file@percent }
+\newlabel{fig:evals_dB_loss_before_finetuning}{{11}{21}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces The loss function of the critic while fine-tuning the WGAN-GP for the levels of eigenvalues generation.}}{21}{}\protected@file@percent }
+\newlabel{fig:evals_dB_loss_after_finetuning}{{12}{21}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Generation of eigenvectors}{21}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Comparision between the levels of real eigenvalues (blue) from the synthetic dataset with sample levels eigenvalues generated by our WGAN-GP (orange), when trained only with synthetic data (before fine-tuning)}}{22}{}\protected@file@percent }
+\newlabel{fig:evals_dB_sample_before_finetuning}{{13}{22}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Comparision between the levels real eigenvalues (blue) from the measurement dataset with sample levels of eigenvalues generated by our WGAN-GP (orange), when trained further with measurement data (after fine-tuning)}}{22}{}\protected@file@percent }
+\newlabel{fig:evals_dB_sample_after_finetuning}{{14}{22}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}WGAN-GP to generate the main eigenvector}{22}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.1}Architecture}{22}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces histogram shwoing the value taken by one of the noise eigenvector (selected at random). The left side show the real part, whereas the right side shows the imaginary part.}}{23}{}\protected@file@percent }
-\newlabel{fig:histogram_noise_eigenvector}{{17}{23}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Results}{22}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces comparison between generated eigenvalues before fine-tuning (blue), generated eigenvalues after fine-tuning (orange), eigenvalues of synthetic CSM (green) and eigenvalues of CSM of measured data (red). The eigenvalues are computed back from their level values.}}{23}{}\protected@file@percent }
+\newlabel{fig:evals_dB_not_level_sample_comparison}{{15}{23}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate the main eigenvector. Total params: 821,888, Trainable params: 821,376, Non-trainable params: 512}}{23}{}\protected@file@percent }
 \newlabel{tab:main_evec_generator_WGANGP_architecture}{{5}{23}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the main eigenvector. Total params: 197,633, Trainable params: 197,633, Non-trainable params: 0}}{23}{}\protected@file@percent }
-\newlabel{tab:main_evec_critic_WGANGP_architecture}{{6}{23}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}}{24}{}\protected@file@percent }
-\newlabel{fig:evecs_wgangp_full_structure}{{18}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.5.2}Results}{24}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}WGAN-GP to generate the noise eigenvectors \textbf  {TODO: to see if it is only for noise eigenvectors, or for all evecs directly}}{24}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Architecture}{24}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Results}{24}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate the noise eigenvectors. Total params: 37,520,384, Trainable params: 37,519,872, Non-trainable params: 512}}{25}{}\protected@file@percent }
-\newlabel{tab:noise_evecs_generator_WGANGP_architecture}{{7}{25}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the noise eigenvectors. Total params: 35,263,489, Trainable params: 35,263,489, Non-trainable params: 0}}{25}{}\protected@file@percent }
-\newlabel{tab:noise_evecs_critic_WGANGP_architecture}{{8}{25}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Results of beamforming from a real CSM}}{26}{}\protected@file@percent }
-\newlabel{fig:beamforming_real_csm}{{19}{26}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Results of beamforming from a CSM issued from augmented data}}{26}{}\protected@file@percent }
-\newlabel{fig:beamforming_augmented_csm}{{20}{26}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Data Augmentation}{26}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Comparison between augmented data and real data.}{26}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Beamforming map, created with a rank I CSM created from measurement data}}{24}{}\protected@file@percent }
+\newlabel{fig:measurement_sample_rank_I_beamforming}{{16}{24}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the main eigenvector. Total params: 197,633, Trainable params: 197,633, Non-trainable params: 0}}{24}{}\protected@file@percent }
+\newlabel{tab:main_evec_critic_WGANGP_architecture}{{6}{24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Histograms of the values of the scalars of the eigenvectors with different index. The eigenvector with index $63$ is the main eigenvector (two last histograms).}}{25}{}\protected@file@percent }
+\newlabel{fig:eigenvectors_histograms}{{17}{25}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}}{26}{}\protected@file@percent }
+\newlabel{fig:evecs_wgangp_full_structure}{{18}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces The loss function of the critic while performing initial training of the WGAN-GP for the main eigenvector (before fine-tuning).}}{26}{}\protected@file@percent }
+\newlabel{fig:main_evec_loss_before_finetuning}{{19}{26}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces The loss function of the critic while fine-tuning the WGAN-GP for the the main eigenvector generation.}}{26}{}\protected@file@percent }
+\newlabel{fig:main_evec_loss_after_finetuning}{{20}{26}}
+\citation{gerstoft2020parametric}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Beamforming map, created with a rank I CSM created from data generated with the WGAN-GP}}{27}{}\protected@file@percent }
+\newlabel{fig:sample_rank_I_beamforming}{{21}{27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Difference between the beamforming map created rank I CSM from data generated with the WGAN-GP and the beamforming map created rank I CSM from measurement data}}{27}{}\protected@file@percent }
+\newlabel{fig:sample_rank_I_beamforming_difference}{{22}{27}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}WGAN-GP to generate the noise eigenvectors \textbf  {TODO: to see if it is only for noise eigenvectors, or for all evecs directly}}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}Architecture}{27}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Results}{27}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate the noise eigenvectors. Total params: 37,520,384, Trainable params: 37,519,872, Non-trainable params: 512}}{28}{}\protected@file@percent }
+\newlabel{tab:noise_evecs_generator_WGANGP_architecture}{{7}{28}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the noise eigenvectors. Total params: 35,263,489, Trainable params: 35,263,489, Non-trainable params: 0}}{28}{}\protected@file@percent }
+\newlabel{tab:noise_evecs_critic_WGANGP_architecture}{{8}{28}}
+\citation{gerstoft2020parametric}
+\citation{nain2020wgangp}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 986,632, Trainable params: 977,796, Non-trainable params: 8,836}}{29}{}\protected@file@percent }
+\newlabel{tab:snapshots_generator_WGANGP_architecture}{{9}{29}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Generation CSM snapshots}{29}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.1}Architecture}{29}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 4,317,761, Trainable params: 4,317,761, Non-trainable params: 0}}{30}{}\protected@file@percent }
+\newlabel{tab:snapshots_critic_WGANGP_architecture}{{10}{30}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.7.2}Result}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Data Augmentation}{30}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}Comparison between augmented data and real data.}{30}{}\protected@file@percent }
 \bibdata{../mybib}
 \bibcite{adavanne2018direction}{{1}{2018}{{Adavanne et~al.}}{{Adavanne, Politis, and Virtanen}}}
 \bibcite{arjovsky2017wasserstein}{{2}{2017}{{Arjovsky et~al.}}{{Arjovsky, Chintala, and Bottou}}}
 \bibcite{bianco2020semi}{{3}{2020}{{Bianco et~al.}}{{Bianco, Gannot, and Gerstoft}}}
 \bibcite{castellini2021neural}{{4}{2021}{{Castellini et~al.}}{{Castellini, Giulietti, Falcionelli, Dragoni, and Chiariotti}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Results of beamforming from a real CSM}}{31}{}\protected@file@percent }
+\newlabel{fig:beamforming_real_csm}{{23}{31}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Results of beamforming from a CSM issued from augmented data}}{31}{}\protected@file@percent }
+\newlabel{fig:beamforming_augmented_csm}{{24}{31}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.2}Comparison of different positions}{31}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{31}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Future work}{31}{}\protected@file@percent }
 \bibcite{chakrabarty2017broadband}{{5}{2017}{{Chakrabarty and Habets}}{{}}}
 \bibcite{engel2019gansynth}{{6}{2019}{{Engel et~al.}}{{Engel, Agrawal, Chen, Gulrajani, Donahue, and Roberts}}}
 \bibcite{ferguson2018sound}{{7}{2018}{{Ferguson et~al.}}{{Ferguson, Williams, and Jin}}}
@@ -168,9 +191,6 @@
 \bibcite{gerstoft2020parametric}{{9}{2020}{{Gerstoft et~al.}}{{Gerstoft, Groll, and Mecklenbr{\"a}uker}}}
 \bibcite{goodfellow2020generative}{{10}{2020}{{Goodfellow et~al.}}{{Goodfellow, Pouget-Abadie, Mirza, Xu, Warde-Farley, Ozair, Courville, and Bengio}}}
 \bibcite{DBLP:journals/corr/GulrajaniAADC17}{{11}{2017}{{Gulrajani et~al.}}{{Gulrajani, Ahmed, Arjovsky, Dumoulin, and C.Courville}}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Generation of Cross-Correlation Matrix}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{27}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Future work}{27}{}\protected@file@percent }
 \bibcite{he2018deep}{{12}{2018}{{He et~al.}}{{He, Motlicek, and Odobez}}}
 \bibcite{hubner2021efficient}{{13}{2021}{{H{\"u}bner et~al.}}{{H{\"u}bner, Mack, and Habets}}}
 \bibcite{kujawski2019deep}{{14}{2019}{{Kujawski et~al.}}{{Kujawski, Herold, and Sarradj}}}
@@ -191,4 +211,4 @@
 \bibcite{vera2021acoustic}{{29}{2021}{{Vera-Diaz et~al.}}{{Vera-Diaz, Pizarro, and Macias-Guarasa}}}
 \bibcite{xu2021deep}{{30}{2021}{{Xu et~al.}}{{Xu, Arcondoulis, and Liu}}}
 \bibstyle{plainnat}
-\gdef \@abspage@last{29}
+\gdef \@abspage@last{33}

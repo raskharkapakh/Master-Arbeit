@@ -5,3 +5,4 @@ python_files/GAN3/cache
 python_files/GAN3/logs
 python_files/GAN3/checkpoints
 python_files/GAN3/datasets_backups/*
+python_files/GAN3/datasets_backups_1/*

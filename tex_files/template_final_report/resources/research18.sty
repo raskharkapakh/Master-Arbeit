@@ -1,0 +1,2463 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% research18.sty
+% Version started  09.01.2020
+% Stefan M. Moser
+%
+% tested on TeXLive 2019 and 2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesPackage{research18}[2020/08/04 package research18]
+
+\typeout{Basic definitions and settings by Stefan M. Moser, version 18.}
+
+%%% Main Options:
+% 
+% *slides: Includes all necessary packages and definitions for my
+%    slides. Based on elpres.cls. Also activates option sf, and
+%    ignores option copyright if given. 
+%
+%
+%%% Layout Options:
+%
+% *layout: sets page layout. Depends on global options '10pt'
+%    (default), '11pt', and '12pt'. 
+%    ATTENTION: If global option 'a4paper' is not present, this option 
+%    is ignored.
+% *widelayout: like 'layout', but sets larger textwidth and
+%    textheight. Overwrites option 'layout'.
+%
+% *twosideshift: if option 'layout' or 'widelayout' is given, the
+%    pagelayout is shifted towards outer margin (for a
+%    twoside-layout). Otherwise ignored. 
+%
+% *copyright: activates copyright footer.
+% *pagecount: like 'copyright', but page count style including last
+%    page: "1/4", "2/4", etc.. Requires a \label{lastpage} set at the 
+%    end of the document. 
+%
+%
+%%% Switch-On Options:
+%
+% *url: defines a command \url{...} that uses Michael Shell's extremely
+%    cool shellverb.sty.
+%
+% *USenglish: activates babel with main language 'USenglish' (and
+%    additional language 'ngerman')
+% *ngerman: activates babel with main language 'ngerman' (and
+%    additonal language 'USenglish'), and changes theorem names
+%    to German
+%  These two options are exclusive! To switch language within
+%    document, use \english and \german.
+%  Both options also activate datetime2 and define long, short, and
+%    numeric versions of dates. Default is long. To switch use
+%    \datelong, \dateshort, or \datenum. By using \datedefault one can
+%    switch to number-format date 2020-01-10. 
+%  When option *nodate is given, datetime2 is not activated.
+%
+% *sf: sets the font family to \sffamily and changes also the font in
+%    titles like the references, etc.
+%
+% *ccfonts: font change from Computer Modern to Concrete. 
+%
+% *backvec: activates the command \backvec{...} that produces a
+%    backward-arrow on top of a mathematical variable. 
+%
+% *hyperref: Activates hyperref. 
+% *hyperrefurl: Activates hyperref with all links set to black apart
+%    from url-links, that are blue.
+% *hyperrefblack: Activates hyperref with all links set to black.
+%  These three options are exclusive hyperrefblack overriding
+%    hyperrefurl overriding hyperref.
+%
+% *latexcode: defines the environments latexcode and latexcodeonly to 
+%    typeset LaTeX-code on the left and its compilation on the right.
+%
+% *chinese: activates CJK and utf8 encoding for Chinese typing. 
+%    To type Chinese characters, you need then to need to change to
+%    Chinese: for pinyin:
+%    for swapping fro and back:   C-\ 
+%    for swapping the first time: C-\ chinese-py-b5
+%    for swapping with choice:    C-x RET C-\ chinese-py-b5
+%
+%
+%%% Switch-Off Options:
+%
+% *nographics: does not include graphicx (pdflatex) or graphicx and
+%    psfrag (latex). 
+%
+% *ieeelists: asks IEEEtrantools not to retain the original definitions
+%    of list-environments, but uses the IEEE version of it. Has no
+%    effect if option 'IEEEtran' is given.
+%
+% *notheorems: does not define theorems. This is needed when one wants
+%    to define the theorems in a different manner, e.g., numbered
+%    according to sections. If the option is given, also
+%    the package amsthm is not loaded! Note that in this case amsthm
+%    must be loaded manually AFTER this package! 
+%
+% *chaptertheorems: does define theorems numbered according to
+%    chapters. ATTENTION: If the option is given in article-class,
+%    LaTeX will hang itself while compiling! In memoir-class it does
+%    work also for article, but then the theorems are numbered
+%    according to sections.
+%
+% *noresetatchapters: does not reset figure and footnote counters at a
+%    new chapter, but let them run through the whole document.
+%    Note: if this option is given in article-class or similar
+%    where no chapters exist, LaTeX will hang itself while compiling!
+%
+% *noutf8: does not activate utf8 input encoding and T1 font encoding. 
+%
+% *nodate: does not activate datetime2 when babel is loaded.
+%
+%
+%%% Compatibility Options:
+%
+% *IEEEtran: include this option when using IEEEtran-class
+%    (IEEEtrantools.sty and amsthm.sty are not loaded).
+%
+% *xelatex: include this option when compiling with XeLaTeX.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Planned changes in the future:
+%
+% - remove option noutf8 and loading of inputenc, because utf8 is now
+%   LaTeX default and needs not be loaded anymore
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Changes since research17.sty:
+%
+% - removed old empty options 'graphics' and 'utf8'
+%
+% - removed option 'date' and coupled it fully with babel, which is
+%   activated by option USenglish or ngerman (option newzealand is
+%   removed). The date is now based on datetime2.sty. Also there are
+%   new language switches and date format switches. Added option
+%   'nodate' to prevent loading of datetime2.
+%
+% - completely new slide option, now based on elpres instead of
+%   powerdot.
+%
+% - new option 'ccfonts' that changes the font to Concrete.
+%
+% - const and constb are now defined as proper mathfonts, so that they
+%   can also handle greek letters etc.
+%
+% - Old const-font is discouraged: \constt-definition is replaced by \constold
+%
+% - New switch for changing between mathcal and mathds for sets
+%
+% - Fixed many operatornames.
+%
+%
+%
+% Changes since research16.sty:
+%
+% - made utf8 and graphics default and instead added noutf8 and
+%   nographics options.
+%
+% - Option slides now for powerdot.sty instead of seminar.sty. Removed
+%   option frame. 
+%
+% - added option pagecount
+%
+%
+%
+% Changes since research15.sty:
+%
+% - Removed compatibility with TeXLive 2014 or earlier! Requires
+%   TeXLive 2015 or more (most will work anyway), but layout relies on 
+%   IEEEtrantools v1.5 (IEEEtran.cls v. 1.8b) or later.
+%
+% - Removed option memoir. It now detects memoir automatically. The
+%   page layout is now also done separat from this option (see next
+%   point). 
+%
+% - Added IEEEtrantools layout commands to offer proper setting of
+%   page layout (options layout, widelayout, twosideshift).
+%
+% - Option copyright decoupled from memoir, works now also without
+%   memoir. 
+%
+%
+%
+% Changes since research14.sty:
+%
+% - Removed option usentheorem as I never used this anyway and forgot
+%   how to use in the first place...
+%
+% - Complete change away from pstricks: all whiteboxes etc. are now
+%   created using implicit tikz-features (mdframed.sty). Hence,
+%   research15 is now fully functional under pdflatex, with only one
+%   exception: slides are still not fixed for pdflatex yet.
+%
+% - Removed compatibility with TeXLive 2012 or earlier! Requires
+%   TeXLive 2013 or more (most will work anyway, but, e.g., slides
+%   won't work).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareOption{nographics}{
+  \let\stefannographics=\relax
+}
+\DeclareOption{IEEEtran}{
+  \let\stefanIEEEtran=\relax
+}
+\DeclareOption{ieeelists}{
+  \let\stefanieeelists=\relax
+}
+\DeclareOption{notheorems}{
+  \let\stefannotheorems=\relax
+}
+\DeclareOption{chaptertheorems}{
+  \let\stefanchaptertheorems=\relax
+}
+\DeclareOption{noresetatchapters}{
+  \let\stefannoresetatchapters=\relax
+}
+\DeclareOption{url}{
+  \let\stefanurl=\relax
+}
+\DeclareOption{USenglish}{
+  \let\stefanbabel=\relax
+  \let\stefanUSenglish=\relax
+}
+\DeclareOption{ngerman}{
+  \let\stefanbabel=\relax
+  \let\stefanngerman=\relax
+}
+\DeclareOption{nodate}{
+  \let\stefannodate=\relax
+}
+\DeclareOption{layout}{
+  \let\stefanlayout=\relax
+}
+\DeclareOption{widelayout}{
+  \let\stefanlayout=\relax
+  \let\stefanwidelayout=\relax
+}
+\DeclareOption{twosideshift}{
+  \let\stefantwosideshift=\relax
+}
+\DeclareOption{a4paper}{
+  \let\stefanafourpaper=\relax
+}
+\DeclareOption{11pt}{
+  \let\stefanelevenpt=\relax
+}
+\DeclareOption{12pt}{
+  \let\stefantwelvept=\relax
+}
+\DeclareOption{copyright}{
+  \let\stefancopyright=\relax
+}
+\DeclareOption{pagecount}{
+  \let\stefanpagecount=\relax
+  \let\stefancopyright=\relax
+}
+\DeclareOption{backvec}{
+  \let\stefanbackvec=\relax
+}
+\DeclareOption{hyperref}{
+  \let\stefanhyperref=\relax
+}
+\DeclareOption{hyperrefblack}{
+  \let\stefanhyperref=\relax
+  \let\stefanhyperrefblack=\relax
+}
+\DeclareOption{hyperrefurl}{
+  \let\stefanhyperref=\relax
+  \let\stefanhyperrefurl=\relax
+}
+\DeclareOption{slides}{
+  \let\stefanslides=\relax
+  \let\stefansf=\relax
+}
+\DeclareOption{ccfonts}{
+  \let\stefanccfonts=\relax
+}
+\DeclareOption{sf}{
+  \let\stefansf=\relax
+}
+\DeclareOption{noutf8}{
+  \let\stefannoutf=\relax
+}
+\DeclareOption{chinese}{
+  \let\stefanchinese=\relax
+}
+\DeclareOption{xelatex}{
+  \let\stefanxelatex=\relax
+}
+\DeclareOption{latexcode}{
+  \let\stefanlatexcode=\relax
+}
+\ProcessOptions
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General Packages 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\RequirePackage{checkend}  % provides better error messages when
+                            % there are open environments at \end{document}
+
+\RequirePackage{etoolbox}   % Provides many programming commands like \ifstrequal 
+\RequirePackage{ifpdf}      % check whether pdflatex or something else is running
+
+\RequirePackage{needspace}  % Provides command \needspace{3\baselineskip} 
+                            % that ensures that at least this amount is still
+                            % available on page or a \newpage is created
+
+\RequirePackage[noadjust]{cite}       % Improves presentation of citations, like [3--7].
+\def\citepunct{], [}        % and changing it such that it becomes
+\def\citedash{]--[}         % [1], [2], [5]--[9]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Fonts
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanccfonts\undefined
+  \relax
+\else
+  \RequirePackage[boldsans]{ccfonts}
+\fi
+\RequirePackage{amsmath}
+\RequirePackage{amsopn}
+%\RequirePackage{amsfonts} %loaded by amsmath
+\RequirePackage{amssymb}
+\ifx\stefanxelatex\undefined
+  \RequirePackage{accents}
+\fi
+\RequirePackage{fix-cm}    % permits arbitrary sizes of Computer Modern
+
+\RequirePackage{pifont}    % access to Zapf Dingbats via \ding{...} 
+\RequirePackage{mathrsfs}  % provides mathscr: Ralph Smith's Formal Script
+%\RequirePackage{eufrak}   % included in amsfonts
+\RequirePackage{eucal}     % replaces mathcal by eucal
+\renewcommand{\mathcal}[1]{\CMcal{#1}} % reestablishing normal definition of \mathcal{...}
+\newcommand{\eucal}[1]{\EuScript{#1}}  % providing \eucal{...}
+
+%\newcommand{\hmmax}{0}     % restricts the number fonts loaded by bm, makes
+%\newcommand{\bmmax}{0}     % compilation slower, but keeps free space
+                            % for other fonts. Uncomment when getting
+                            % a "too many math alphabets" error
+                            % Must be given BEFORE loading bm
+\RequirePackage{bm}         % for nice bold math symbols using \bm{...}
+                            % Attention: redefines \boldsymbol{...}
+\newcommand{\bmrm}[1]{\bm{\mathrm{#1}}} % bm with rm-version bold
+
+\RequirePackage{dsfont}     % doublestroke font like mathbb using \mathds{...}
+%\RequirePackage{bbm}       % doublestroke font like mathbb using \bbm{...},
+                            % \bbmss{...} (sans serif), \bbmtt{...} (typerwriter) 
+
+\RequirePackage{mleftright} % provides \mleft, \mright to fix issue with spacing
+\mleftright                 % redefines all \left and \right to behave
+                            % like \mleft and \mright
+
+\RequirePackage{mathdots}   % fixes \ddots and \vdots to scale properly
+                            % and adds \iddots
+\RequirePackage{trfsigns}   % for \Fourier, \fourier, \laplace, \Laplace
+\RequirePackage{centernot}  % for \centernot: negation of any math symbol
+
+\RequirePackage{nicefrac}   % for \nicefrac: nice frac for text-mode
+
+\RequirePackage[normalscripts]{moresize}
+                            % adds a size \ssmall between \tiny and
+                            % \scriptsize, and a size \HUGE
+
+%%%%% backvec %%%%%
+\ifx\stefanbackvec\undefined
+  \relax
+\else
+  \makeatletter
+  \begingroup
+  \nfss@catcodes
+  \DeclareFontFamily{OML}{backvec}{\skewchar\font127 }
+  \DeclareFontShape{OML}{backvec}{m}{it}%
+  {<5><6><7><8><9>gen*backvec%
+    <10><10.95>backvec10%
+    <12><14.4><17.28><20.74><24.88>backvec12%
+  }{}
+  \DeclareFontShape{OML}{backvec}{b}{it}{%
+    <5><6><7><8><9>gen*backvecb%
+    <10><10.95><12><14.4><17.28><20.74><24.88>backvecb10%
+  }{}
+  \DeclareFontShape{OML}{backvec}{bx}{it}%
+  {<->ssub*backvec/b/it}{}
+  \endgroup
+  \DeclareSymbolFont{bvletters}     {OML}{backvec} {m}{it}
+  \DeclareMathAccent{\backvec}{\mathord}{bvletters}{"7E}
+  \makeatother
+\fi
+
+%%%%% widebar %%%%%
+\makeatletter
+\newcommand*\if@single[3]{%
+  \setbox0\hbox{${\mathaccent"0362{#1}}^H$}%
+  \setbox2\hbox{${\mathaccent"0362{\kern0pt#1}}^H$}%
+  \ifdim\ht0=\ht2 #3\else #2\fi
+  }
+%The bar will be moved to the right by a half of \macc@kerna, which is computed by amsmath:
+\newcommand*\rel@kern[1]{\kern#1\dimexpr\macc@kerna}
+%If there's a superscript following the bar, then no negative kern may follow the bar;
+%an additional {} makes sure that the superscript is high enough in this case:
+\newcommand*\widebar[1]{\@ifnextchar^{{\wide@bar{#1}{0}}}{\wide@bar{#1}{1}}}
+%Use a separate algorithm for single symbols:
+\newcommand*\wide@bar[2]{\if@single{#1}{\wide@bar@{#1}{#2}{1}}{\wide@bar@{#1}{#2}{2}}}
+\newcommand*\wide@bar@[3]{%
+  \begingroup
+  \def\mathaccent##1##2{%
+%If there's more than a single symbol, use the first character instead (see below):
+    \if#32 \let\macc@nucleus\first@char \fi
+%Determine the italic correction:
+    \setbox\z@\hbox{$\macc@style{\macc@nucleus}_{}$}%
+    \setbox\tw@\hbox{$\macc@style{\macc@nucleus}{}_{}$}%
+    \dimen@\wd\tw@
+    \advance\dimen@-\wd\z@
+%Now \dimen@ is the italic correction of the symbol.
+    \divide\dimen@ 3
+    \@tempdima\wd\tw@
+    \advance\@tempdima-\scriptspace
+%Now \@tempdima is the width of the symbol.
+    \divide\@tempdima 10
+    \advance\dimen@-\@tempdima
+%Now \dimen@ = (italic correction / 3) - (Breite / 10)
+    \ifdim\dimen@>\z@ \dimen@0pt\fi
+%The bar will be shortened in the case \dimen@<0 !
+    \rel@kern{0.6}\kern-\dimen@
+    \if#31
+      \overline{\rel@kern{-0.6}\kern\dimen@\macc@nucleus\rel@kern{0.4}\kern\dimen@}%
+      \advance\dimen@0.4\dimexpr\macc@kerna
+%Place the combined final kern (-\dimen@) if it is >0 or if a superscript follows:
+      \let\final@kern#2%
+      \ifdim\dimen@<\z@ \let\final@kern1\fi
+      \if\final@kern1 \kern-\dimen@\fi
+    \else
+      \overline{\rel@kern{-0.6}\kern\dimen@#1}%
+    \fi
+  }%
+  \macc@depth\@ne
+  \let\math@bgroup\@empty \let\math@egroup\macc@set@skewchar
+  \mathsurround\z@ \frozen@everymath{\mathgroup\macc@group\relax}%
+  \macc@set@skewchar\relax
+  \let\mathaccentV\macc@nested@a
+%The following initialises \macc@kerna and calls \mathaccent:
+  \if#31
+    \macc@nested@a\relax111{#1}%
+  \else
+%If the argument consists of more than one symbol, and if the first token is
+%a letter, use that letter for the computations:
+    \def\gobble@till@marker##1\endmarker{}%
+    \futurelet\first@char\gobble@till@marker#1\endmarker
+    \ifcat\noexpand\first@char A\else
+      \def\first@char{}%
+    \fi
+    \macc@nested@a\relax111{\first@char}%
+  \fi
+  \endgroup
+}
+\makeatother
+
+%%%%% widecheck & wideparen & similar %%%%%
+% Taken from \RequirePackage[mathx]{mathabx}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+     <5> <6> <7> <8> <9> <10>
+     <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+     mathx10
+     }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}    {0}{mathx}{"71}
+\DeclareMathAccent{\widetilde}    {0}{mathx}{"72}
+\DeclareMathAccent{\simplewidebar}{0}{mathx}{"73}
+\DeclareMathAccent{\widearrow}    {0}{mathx}{"74}
+\DeclareMathAccent{\wideparen}    {0}{mathx}{"75}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IEEEtrantools
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanIEEEtran\undefined
+  \ifx\stefanieeelists\undefined
+    % usual way: keep list the way they are
+    \RequirePackage{IEEEtrantools}
+  \else
+    \RequirePackage[redeflists]{IEEEtrantools}
+  \fi
+  \renewcommand{\theequationdis}{{\normalfont (\theequation)}} %fix equation numbers
+  \renewcommand{\theIEEEsubequationdis}{{\normalfont (\theIEEEsubequation)}} %fix equation numbers
+  \renewcommand{\IEEEQED}{\IEEEQEDopen}
+  \renewcommand{\IEEEproofindentspace}{2\parindent} %default: 2\parindent
+\fi
+
+% If LaTeX has to break an IEEEeqnarray it applies some penalty-points for
+% doing so, i.e., the higher the penalty, the less often it will
+% actually break an eqnarray. The penalty is defined by the counter
+% \interdisplaylinepenalty and can be set directly by:
+% \interdisplaylinepenalty=x 
+% Indirectly one can use
+% \allowdisplaybreaks[z]
+% where 
+% z=1 corresponds to x=9999
+% z=2 corresponds to x=6999
+% z=3 corresponds to x=2999
+% z=4 corresponds to x=0 (default)
+% Note: \interdisplaylinepenalty is actually defined in amsmath! So
+% this needs to be set after loading amsmath
+\interdisplaylinepenalty=1000
+
+% For tables made by IEEEeqnarray:
+\newcommand{\mystrut}{\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{1pt}}
+\newcommand{\mystrutlarge}{\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{4pt}{2pt}}
+
+% Trick for handling hyperlinks with subequations
+\makeatletter
+\def\IEEElabelanchoreqn#1{\bgroup
+\def\@currentlabel{\p@equation\theequation}\relax
+\def\@currentHref{\@IEEEtheHrefequation}\label{#1}\relax
+\Hy@raisedlink{\hyper@anchorstart{\@currentHref}}\relax
+\Hy@raisedlink{\hyper@anchorend}\egroup}
+\makeatother
+
+\newcommand{\subnumberinglabel}[1]{\IEEEyesnumber\IEEEyessubnumber*\IEEElabelanchoreqn{#1}}
+
+% This label-command activates subnumbering and creates a hyperlink to
+% the block of the equations:
+%
+% \begin{IEEEeqnarray}{rCl}
+%   \subnumberinglabel{eq:1}
+%   a & = & b + c
+%   \label{eq:1a}
+%   \\
+%   d & = & e + f
+%   \label{eq:1b}
+% \end{IEEEeqnarray}
+% In \eqref{eq:1} we have that ....
+%
+% Now the hyperlink to eq:1 will work even though the number (1) is
+% not created in the text!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Page Layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Based on unpublished features of IEEEtrantools.sty v1.5
+% (IEEEtran.cls v1.8b) or later 
+%
+% Note: to enlarge only one page, use: \enlargethispage{2\baselineskip}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% usage: \IEEEsettextwidth{inner margin}{outer margin}
+% Sets \textwidth to allow the specified inner and outer margins
+% for the current \paperwidth.
+%
+% usage: \IEEEsetsidemargin{mode: i, o, c, a}{margin/offset}
+% Sets \oddsidemargin and \evensidemargin to yield the specified margin
+% of the given mode.
+% The available modes are:
+% i = inner margin
+% o = outer margin
+% c = centered, with the given offset
+% a = adjust the margins using the given offset
+% For the offsets, positive values increase the inner margin.
+% \textwidth should be set properly for the given margins before calling this
+% function.
+%
+% usage: \IEEEsettextheight[sample text]{top text margin}{bottom text margin}
+% Sets \textheight based on the specified top margin and bottom margin.
+% Takes into consideration \paperheight, \topskip, and (by default)
+% the actual height and depth of the \IEEEdefaultsampletext text.  
+%
+% usage: \IEEEsettopmargin[sample text]{mode: t, b, c, a, q}{margin/offset}
+% Sets \topmargin based on the specified vertical margin.
+% Takes into consideration the base 1in offset, \headheight, \headsep,
+% \topskip, and (by default) the the actual height (or, for the bottom, depth)
+% of the \IEEEdefaultsampletext text.
+% The available modes are:
+% t = top margin
+% b = bottom margin
+% c = vertically centered, with the given offset
+% a = adjust the vertical margins using the given offset
+% q = adjust the margins using \IEEEquantizedtextheightdiff and the given offset
+% For the offsets, positive values increase the top margin.
+% \headheight, \headsep, \topskip and \textheight should be set properly for the
+% given margins before calling this function.
+%
+% usage: \IEEEquantizetextheight[base unit]{mode: d, c, i}
+% Sets \textheight to be an integer multiple of the current \baselineskip
+% (or the optionally specified base unit) plus the first (\topskip) line.
+% \IEEEquantizedtextheightdiff is a length equal to the difference between
+% the new quantized and original \textheight.
+% \IEEEquantizedtextheightlpc is a macro containing the integer number of
+% lines per column under the quantized \textheight. i.e.,
+% \textheight = \IEEEquantizedtextheightlpc * \baselineskip + \topskip
+% The mode determines how \textheight is quantized:
+% d = always decrease (always round down the number of lines per column)
+% c = use the closest match
+% i = always increase (always round up the number of lines per column)
+% In anycase, if \textheight is already quantized, it will remain unchanged,
+% and \IEEEquantizedtextheightdiff will be set to zero.
+% Depends on: \IEEEquantizelength
+%
+% usage: \IEEEsetfootermargin[footer sample][text sample]{mode: t, b, c, a}{margin/offset}
+% Adjusts \footskip based on the specified footer margin.
+% Takes into consideration the base 1in offset, \paperheight, \headheight,
+% \headsep, \textheight and (by default) the actual height (or depth) of the
+% \IEEEdefaultfootersampletext and \IEEEdefaultsampletext text.
+% The available modes are:
+% t = top margin (top of the footer text to the bottom of the main text)
+% b = bottom margin (bottom of the footer text to the bottom of page)
+% c = vertically centered between the main text and the bottom of the page,
+%     with the given offset
+% a = adjust the vertical position using the given offset
+% For the offsets, positive values move the footer downward.
+% \headheight, \headsep, \topskip, \topmargin, and \textheight should be set
+% properly before calling this function.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%
+\ifx\stefanlayout\undefined
+  \relax
+\else
+  \ifx\stefanafourpaper\undefined
+    % option a4paper not given => do nothing
+    \typeout{Option a4paper missing, ignoring options layout and widelayout.}
+  \else
+    \ifx\stefanwidelayout\undefined
+      % normal layout
+      \typeout{normal page layout}
+
+      % 10pt
+      \IEEEsettextheight{3.45cm}{4.35cm}
+      \IEEEsettopmargin{t}{3.45cm}
+      \IEEEquantizetextheight{c}
+      \IEEEsettextwidth{4.5cm}{4.5cm}
+      \IEEEsetsidemargin{c}{0cm}
+      \IEEEsetfootermargin{t}{1.4cm}
+
+      \ifx\stefanelevenpt\undefined
+        \relax
+      \else
+        % 11pt
+        \IEEEsettextheight{3.45cm}{4.35cm}
+        \IEEEsettopmargin{t}{3.45cm}
+        \IEEEquantizetextheight{c}
+        \IEEEsettextwidth{4cm}{4cm}
+        \IEEEsetsidemargin{c}{0cm}
+        \IEEEsetfootermargin{t}{1.4cm}
+      \fi
+
+      \ifx\stefantwelvept\undefined
+        \relax
+      \else
+        % 12pt
+        \IEEEsettextheight{3.45cm}{4.35cm}
+        \IEEEsettopmargin{t}{3.45cm}
+        \IEEEquantizetextheight{c}
+        \IEEEsettextwidth{3.75cm}{3.75cm}
+        \IEEEsetsidemargin{c}{0cm}
+        \IEEEsetfootermargin{t}{1.4cm}
+      \fi
+
+    \else
+      % wide layout
+      \typeout{wide page layout}
+      
+      % 10pt
+      \IEEEsettextheight{2.5cm}{4cm}
+      \IEEEsettopmargin{t}{2.5cm}
+      \IEEEquantizetextheight{c}
+      \IEEEsettextwidth{3.8cm}{3.8cm}
+      \IEEEsetsidemargin{c}{0cm}
+      \IEEEsetfootermargin{t}{1.4cm}
+      
+      \ifx\stefanelevenpt\undefined
+        \relax
+      \else
+        % 11pt
+        \IEEEsettextheight{2.5cm}{4cm}
+        \IEEEsettopmargin{t}{2.5cm}
+        \IEEEquantizetextheight{c}
+        \IEEEsettextwidth{3.25cm}{3.25cm}
+        \IEEEsetsidemargin{c}{0cm}
+        \IEEEsetfootermargin{t}{1.4cm}
+      \fi
+
+      \ifx\stefantwelvept\undefined
+        \relax
+      \else
+        % 12pt
+        \IEEEsettextheight{2.5cm}{4cm}
+        \IEEEsettopmargin{t}{2.5cm}
+        \IEEEquantizetextheight{c}
+        \IEEEsettextwidth{3cm}{3cm}
+        \IEEEsetsidemargin{c}{0cm}
+        \IEEEsetfootermargin{t}{1.4cm}
+      \fi
+    \fi
+
+    % shift four doubleside layout
+    \ifx\stefantwosideshift\undefined
+      \relax
+    \else
+      \typeout{page layout shift}
+      \IEEEsetsidemargin{a}{1cm}
+    \fi
+
+  \fi
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Memoir
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Are we running memoir?
+\makeatletter
+\@ifclassloaded{memoir}
+  {\let\stefanmemoir=\relax}
+  {\relax}%
+\makeatother
+\ifx\stefanmemoir\undefined
+  \typeout{No memoir class.}
+  \relax
+\else
+  \typeout{Memoir class.}
+  \setsecnumdepth{subsection}
+  %\settocdepth{subsection} % should not be used here, officially only
+                            % after begin{document}, after tikz OK
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Copyright
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefancopyright\undefined
+  \relax
+\else
+  \ifx\stefanslides\undefined
+    \newcommand{\mycopyright}{\copyright~Stefan M.~Moser, \today}
+    \ifx\stefanmemoir\undefined
+      % copyright without memoir, but with fancyhdr
+      \RequirePackage{fancyhdr}
+      \renewcommand{\headrulewidth}{0pt}
+      \setlength{\headwidth}{\textwidth}
+      \lhead{}
+      \chead{}
+      \rhead{}
+      \lfoot{\fancyplain{\footnotesize\mycopyright}{\footnotesize\mycopyright}}
+      \cfoot{}
+      \ifx\stefanpagecount\undefined
+        \rfoot{\thepage}
+      \else
+        \rfoot{\thepage/\pageref{lastpage}}
+      \fi
+      \pagestyle{fancyplain}
+    \else
+      % copyright with memoir
+      \aliaspagestyle{title}{copyright}
+      \makepagestyle{copyright}
+      \ifx\stefanpagecount\undefined
+        \makeoddfoot{copyright}{\footnotesize\mycopyright}{}{\thepage}
+        \makeevenfoot{copyright}{\footnotesize\mycopyright}{}{\thepage}
+      \else
+        \makeoddfoot{copyright}{\footnotesize\mycopyright}{}{\thepage/\pageref{lastpage}}
+        \makeevenfoot{copyright}{\footnotesize\mycopyright}{}{\thepage/\pageref{lastpage}}
+      \fi    
+      \pagestyle{copyright}
+    \fi
+  \fi
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% babel-package and dates
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanbabel\undefined
+  \relax
+\else
+  \ifx\stefanngerman\undefined
+    % main language is English
+    \RequirePackage[ngerman,main=USenglish]{babel}
+    \ifx\stefannodate\undefined
+      \RequirePackage{datetime2} % needs to be loaded after babel
+      \RequirePackage{ifthen} 
+      \DTMnewdatestyle{mydateshort}{%
+        \renewcommand{\DTMdisplaydate}[4]{\ifthenelse{\equal{##2}{5}}{\number##3~\DTMenglishshortmonthname##2~\number##1 }{\number##3~\DTMenglishshortmonthname##2.~\number##1 }}%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+      \DTMnewdatestyle{mydatelong}{%
+        \renewcommand{\DTMdisplaydate}[4]{\number##3~\DTMenglishmonthname##2\ \number##1 }%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+      \DTMnewdatestyle{mydatenum}{%
+        \renewcommand{\DTMdisplaydate}[4]{\DTMtwodigits{##3}-\DTMtwodigits{##2}-\number##1 }%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+    \fi
+  \else
+    % main language is German
+    \RequirePackage[USenglish,main=ngerman]{babel}
+    \ifx\stefannodate\undefined
+      \RequirePackage{datetime2} % needs to be loaded after babel
+      \DTMnewdatestyle{mydateshort}{%
+        \renewcommand{\DTMdisplaydate}[4]{\number##3.~\DTMgermanshortmonthname##2~\number##1 }%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+      \DTMnewdatestyle{mydatelong}{%
+        \renewcommand{\DTMdisplaydate}[4]{\number##3.~\DTMgermanmonthname##2\ \number##1 }%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+      \DTMnewdatestyle{mydatenum}{%
+        \renewcommand{\DTMdisplaydate}[4]{\DTMtwodigits{##3}.\DTMtwodigits{##2}.\number##1 }%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+      }
+    \fi
+  \fi
+
+  \newcommand{\english}{\selectlanguage{USenglish}}
+  \newcommand{\german}{\selectlanguage{ngerman}}
+  \ifx\stefannodate\undefined
+    \newcommand{\datelong}{\DTMsetdatestyle{mydatelong}}
+    \newcommand{\dateshort}{\DTMsetdatestyle{mydateshort}}
+    \newcommand{\datenum}{\DTMsetdatestyle{mydatenum}}
+    \newcommand{\datedefault}{\DTMsetdatestyle{default}}
+    \datelong 
+  \fi
+\fi
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UTF8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanxelatex\undefined
+  \ifx\stefannoutf\undefined
+    \ifx\stefanchinese\undefined
+      \RequirePackage[utf8]{inputenc} 
+      \RequirePackage[T1]{fontenc} % To force 8-bit encoding so that
+                                   % hyphenation works for special characters!
+    \fi
+  \fi
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefannographics\undefined
+  \ifpdf
+    % pdflatex
+    \RequirePackage{graphicx}
+  \else
+    % latex or xelatex
+    \RequirePackage{graphicx}
+    \RequirePackage{psfrag}
+    \RequirePackage{pstricks}
+  \fi
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TikZ, Frames, and Boxes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanIEEEtran\undefined
+  \ifx\stefannotheorems\undefined
+    \RequirePackage{amsthm} 
+  \fi
+\fi
+
+\RequirePackage{tikz}
+\usepgflibrary{arrows.meta}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows} %used also in mdframed
+\usetikzlibrary{calc}
+\usetikzlibrary{patterns}
+
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+\RequirePackage[framemethod=tikz]{mdframed} %should be loaded after amsthm.sty
+%% the following is a fix for mdframed.sty Version 1.9b. Once a new
+%% version is out, this fix is not needed anymore!
+\RequirePackage{xpatch}
+\makeatletter
+\xpatchcmd{\endmdframed}
+  {\aftergroup\endmdf@trivlist\color@endgroup}
+  {\endmdf@trivlist\color@endgroup\@doendpe}
+  {}{}
+\makeatother
+%% end fix
+
+% framed equations with additional spacing
+\newlength{\eqboxstorage}
+\newcommand{\eqbox}[1]{
+  \setlength{\eqboxstorage}{\fboxsep}
+  \setlength{\fboxsep}{6pt}
+  \boxed{#1}
+  \setlength{\fboxsep}{\eqboxstorage}
+}
+  
+\global\mdfdefinestyle{myboxstyle}{%
+  shadow=true,%
+  linecolor=black,%
+  shadowcolor=black,%
+  shadowsize=6pt,%
+  nobreak=false,%
+  innertopmargin=10pt,%
+  innerbottommargin=10pt,%
+  leftmargin=5pt,%
+  rightmargin=5pt,%
+  needspace=1cm,%
+  skipabove=10pt,%
+  skipbelow=10pt,%
+  middlelinewidth=1pt,%
+  afterlastframe={\vspace{5pt}},%
+  aftersingleframe={\vspace{5pt}},%
+  tikzsetting={draw=black,very thick}%
+}
+
+% framed box that can be broken at end of page
+\newmdenv[style=myboxstyle,backgroundcolor=white]{whitebox}
+\newmdenv[style=myboxstyle,backgroundcolor=black!20]{graybox}
+\newmdenv[style=myboxstyle,backgroundcolor=white,%startcode={\\},%
+innertopmargin=1pt,skipbelow=5pt]{whiteboxt}
+
+% framed box that CANNOT be broken at end of page
+\newmdenv[style=myboxstyle,,backgroundcolor=white,nobreak=true]{blockwhitebox}
+\newmdenv[style=myboxstyle,backgroundcolor=black!20,nobreak=true]{blockgraybox}
+\newmdenv[style=myboxstyle,backgroundcolor=white,nobreak=true,%startcode={\\},%
+innertopmargin=1pt,skipbelow=5pt]{blockwhiteboxt}
+
+% invisible box that CANNOT be broken at end of page
+\newmdenv[nobreak=true,hidealllines=true]{blockbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of Theorems 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% first let's define the names of my theorems
+\ifx\stefanngerman\undefined
+  \newcommand{\mytheoremname}{Theorem}
+  \newcommand{\mylemmaname}{Lemma}
+  \newcommand{\mycorollaryname}{Corollary}
+  \newcommand{\myconjecturename}{Conjecture}
+  \newcommand{\mypropositionname}{Proposition}
+  \newcommand{\myclaimname}{Claim}
+  \newcommand{\mydefinitionname}{Definition}
+  \newcommand{\myremarkname}{Remark}
+  %\newcommand{\myremarkname}{Note}
+  \newcommand{\myexamplename}{Example}
+  \newcommand{\myideaname}{Idea}
+\else
+  \newcommand{\mytheoremname}{Theorem}
+  %\newcommand{\mytheoremname}{Satz}
+  \newcommand{\mylemmaname}{Lemma}
+  %\newcommand{\mycorollaryname}{Korollar}
+  \newcommand{\mycorollaryname}{Folgesatz}
+  \newcommand{\myconjecturename}{Hypothese}
+  \newcommand{\mypropositionname}{Satz}
+  \newcommand{\myclaimname}{Satz}
+  \newcommand{\mydefinitionname}{Definition}
+  \newcommand{\myremarkname}{Bemerkung}
+  %\newcommand{\myremarkname}{Hinweis}
+  \newcommand{\myexamplename}{Beispiel}
+  \newcommand{\myideaname}{Idee}
+\fi
+
+\ifx\stefanIEEEtran\undefined
+  \ifx\stefannotheorems\undefined
+    % If I do not include trantools, then I'm using IEEEtran.cls which
+    % defines theorems according to IEEE ways. Therefore in this case I
+    % should NOT include amsthm. Otherwise I should!  Note also that
+    % amsthm should be loaded after amsmath!
+    % \RequirePackage{amsthm} % loaded above before mdframed.sty!
+
+    % \newtheoremstyle{name of style}{space-above} 
+    % {space-below} {body-font} 
+    % {indent amount }{Thm head font} 
+    % {punctuation after Thm head} 
+    % {space after Thm head}{Thm head spec}             
+
+    \ifx\stefanccfonts\undefined
+      \newtheoremstyle{myplain}{}{}{\itshape}{}%
+      {\bfseries}{.}{ }{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+      \newtheoremstyle{myplaintight}{0pt}{0pt}{\itshape}{}%
+      {\bfseries}{.}{ }{\upshape\bfseries #1 #2\thmnote{ (#3)}}             
+      
+      \newtheoremstyle{mybreak}{}{}{\itshape}{}%
+      {\bfseries}{.}{\newline}{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+      \newtheoremstyle{mybreaktight}{0pt}{0pt}{\itshape}{}%
+      {\bfseries}{.}{\newline}{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+    \else
+      \newtheoremstyle{myplain}{12pt}{12pt}{\upshape}{}%
+      {\bfseries}{.}{ }{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+      \newtheoremstyle{myplaintight}{0pt}{0pt}{\upshape}{}%
+      {\bfseries}{.}{ }{\upshape\bfseries #1 #2\thmnote{ (#3)}}             
+
+      \newtheoremstyle{mybreak}{8pt}{8pt}{\upshape}{}%
+      {\bfseries}{.}{\newline}{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+      \newtheoremstyle{mybreaktight}{0pt}{0pt}{\upshape}{}%
+      {\bfseries}{.}{\newline}{\upshape\bfseries #1 #2\thmnote{ (#3)}}
+    \fi
+    
+    \newtheoremstyle{nonumdefinition}{}{}{\upshape}{}%
+    {\bfseries}{:}{ }{\upshape\bfseries #1\thmnote{}}             
+    
+    \theoremstyle{myplain}
+    \ifx\stefanchaptertheorems\undefined
+    \newtheorem{theorem}{\mytheoremname}
+    \else
+    \newtheorem{theorem}{\mytheoremname}[chapter]
+    \fi
+    \newtheorem{lemma}[theorem]{\mylemmaname}
+    \newtheorem{corollary}[theorem]{\mycorollaryname}
+    \newtheorem{conjecture}[theorem]{\myconjecturename}
+    \newtheorem{proposition}[theorem]{\mypropositionname}
+    \newtheorem{claim}[theorem]{\myclaimname}
+    % \newtheorem{exercise}{Exercise}
+
+    \theoremstyle{myplaintight}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxtheorem}[theorem]{\mytheoremname}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxcorollary}[theorem]{\mycorollaryname}
+    \newmdtheoremenv[style=myboxstyle,nobreak=true]{blockwhiteboxtheorem}[theorem]{\mytheoremname}
+    \newmdtheoremenv[style=myboxstyle,nobreak=true]{blockwhiteboxcorollary}[theorem]{\mycorollaryname}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxlemma}[theorem]{\mylemmaname}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxproposition}[theorem]{\mypropositionname}
+    \newmdtheoremenv[style=myboxstyle,nobreak=true]{blockwhiteboxproposition}[theorem]{\mypropositionname}
+
+    \theoremstyle{mybreak}
+    \newtheorem{theorembreak}[theorem]{\mytheoremname}
+    \newtheorem{corollarybreak}[theorem]{\mycorollaryname}
+    
+    \theoremstyle{mybreaktight}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxtheorembreak}[theorem]{\mytheoremname}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxcorollarybreak}[theorem]{\mycorollaryname}
+    \newmdtheoremenv[style=myboxstyle]{whiteboxlemmabreak}[theorem]{\mylemmaname}
+    \newmdtheoremenv[style=myboxstyle,nobreak=true]{blockwhiteboxtheorembreak}[theorem]{\mytheoremname}
+    \newmdtheoremenv[style=myboxstyle,nobreak=true]{blockwhiteboxcorollarybreak}[theorem]{\mycorollaryname}
+
+    \theoremstyle{definition}
+    \newtheorem{definition}[theorem]{\mydefinitionname}
+
+    \newtheorem{rema}[theorem]{\myremarkname}
+    \newenvironment{remark}[1][]{%
+      \begin{rema}[#1]%
+      }{%
+        \ifbool{noremarkend}{}{\remarkend}{}\end{rema}%
+      \global\boolfalse{noremarkend}{}%
+    }
+    \newbool{noremarkend}
+    \newcommand{\remarksymbol}{\text{$\vartriangle$}} 
+    \DeclareRobustCommand{\remarkend}{\unskip\penalty9999 \hbox{}\nobreak\hfill\quad\hbox{\remarksymbol}}
+    \newcommand{\remarkendhere}{\global\booltrue{noremarkend}\hbox{\remarksymbol}\let\remarksymbol\relax}
+
+    
+    \newtheorem{exa}[theorem]{\myexamplename}
+    \newenvironment{example}[1][]{%
+      \begin{exa}[#1]%
+      }{%
+        \ifbool{noexampleend}{}{\exampleend}{}\end{exa}%
+      \global\boolfalse{noexampleend}{}%
+    }
+    \newbool{noexampleend}
+    \newcommand{\examplesymbol}{\text{$\lozenge$}} 
+    % \newcommand{\examplesymbol}{\text{$\blacklozenge$}} 
+    % \newcommand{\exampleend}{\hfill\examplesymbol} 
+    \DeclareRobustCommand{\exampleend}{\unskip\penalty9999 \hbox{}\nobreak\hfill\quad\hbox{\examplesymbol}}
+    \newcommand{\exampleendhere}{\global\booltrue{noexampleend}\hbox{\examplesymbol}\let\examplesymbol\relax}
+
+    % \renewcommand{\qedsymbol}{$\blacksquare$}
+    
+    \theoremstyle{nonumdefinition}
+    \newtheorem{idea}{\myideaname}
+    \newtheorem{exa*}{\myexamplename}
+    \newenvironment{example*}[1][]{%
+      \begin{exa*}[#1]%
+      }{%
+        \ifbool{noexampleend}{}{\exampleend}{}\end{exa*}%
+      \global\boolfalse{noexampleend}{}%
+    }
+    
+    \theoremstyle{remark}
+    
+    % \numberwithin{equation}{section} 
+    
+  \fi
+
+\else
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+  % IEEE VERSION: IEEEtran.cls
+  %
+  % IEEEtran.cls defines theorems according to IEEE ways. But I still
+  % need to define the theorems! Unless I explicitly do not wish this
+  % by option "notheorems" 
+  \ifx\stefannotheorems\undefined
+    \newtheorem{theorem}{\mytheoremname}
+    \newtheorem{lemma}[theorem]{\mylemmaname}
+    \newtheorem{corollary}[theorem]{\mycorollaryname}
+    \newtheorem{conjecture}[theorem]{\myconjecturename}
+    \newtheorem{proposition}[theorem]{\mypropositionname}
+    \newtheorem{claim}[theorem]{\myclaimname}
+    \newtheorem{definition}[theorem]{\mydefinitionname}
+    \newtheorem{remark}[theorem]{\myremarkname}
+    \newtheorem{example}[theorem]{\myexamplename}
+    \newenvironment{whiteboxtheorem}{%
+      \begin{whitebox}\begin{theorem}}%
+        {\end{theorem}\end{whitebox}%
+    }
+    \newenvironment{whiteboxtheoremarg}[1]{%
+      \begin{whitebox}\begin{theorem}[#1]}%
+        {\end{theorem}\end{whitebox}%
+    }
+  \fi
+  \newcommand{\examplesymbol}{\text{$\lozenge$}} 
+  %\newcommand{\examplesymbol}{\text{$\blacklozenge$}} 
+  \DeclareRobustCommand{\exampleend}{\unskip\penalty9999 \hbox{}\nobreak\hfill\quad\hbox{\examplesymbol}}
+
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% URL
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Showing LaTeX source code poses some difficulties. I probably could have
+% done things with \verbatim. But, I don't like it for a number of reasons.
+% For me, the main drawbacks are: 
+%
+% 1. hyphenates words 
+% 2. does not perfectly left and right justify the \ttfamily text
+% 3. does not allow the use of active LaTeX commands within the displayed code
+%
+% Basically, I wanted a little more control.
+%
+% So, I developed a set of commands that will display LaTeX code. 
+% The \longcmdword and \shortcmdword commands allow the direct
+% display of LaTeX commands. The difference between the two is that
+% \longcmdword will retain spaces and allows the inter-letter spacing
+% to expand slightly so that the text will always be justified while
+% \shortcmdword ignores spaces and uses no inter-letter space.
+% Variations of these two are provided to provide different font sizes and styles,
+% i.e. \longcmdwordSTT yields \small \ttfamily text
+%
+% When one of these commands is issued:
+%
+% |    becomes the control character: |relax 
+%      ( use |stroke to get a | character)
+%
+% { }  becomes like punctuation 
+%      (use |bgroup and |egroup instead) 
+%
+% +    prevents a break between the characters it appears between
+%      (use |plus to get a + character)
+%
+% ~    nonbreaking spaces become visible tildes
+% 
+% breaks are not allowed right after a "\" or a space
+%
+% For the \longcmdword forms, since normal spaces are not ignored:
+% &    becomes an (ignored) space character for use after commands.
+%      e.g., " |mbox|bgroup&Unbro|egroup&ken and "
+%
+% to stop the action of a cmdword command, issue an |end.
+%
+% The trick is to read all the input characters and to insert a "sliver"
+% of hspace glue between them! TeX will be happy to make a break at any
+% glue, and it will never hyphenate at the break. With the \longcmdword forms, 
+% this interletter glue is also allowed to stretch a very small amount -
+% because a long command sequence could stretch across the entire column
+% without any spaces to break on.
+% When real spaces are encountered, we replace them with \hspace* commands
+% of the same nominal length, but that can stretch and shrink a fair
+% amount. The \hspace* form ensures that the space will not be lost
+% at the start/end of the lines. By using \penalty10000 at the end of
+% the artificial spaces, we ensure that TeX will not break right after a
+% space - the user will be able to explicitly see the space at the
+% beginning of the next line.
+%
+% This command family can be thought of as implementing a type of "backward"
+% line breaking world in which breaks are assumed to possible everywhere except
+% were indicated as prohibited. Furthermore, hyphenation is not used as spaces
+% are not implicit with line breaks, but must be carried to the start of the
+% next line. In other words, commands are not thought of as words, but rather
+% as sequences of letters.
+%
+%
+% Note: TeX parser tokenizes commands and special characters when acquiring
+% an argument for a command. Thus, when used within an argument to a command,
+% the code in the \XXcmdwordXX never gets a chance to alter "\", "|", "{", "}",
+% etc., before TeX acquires the argument. For such use, the syntax is reversed,
+% i.e., call the commands using the "\" as one normally would. The "+", "~" will
+% still operate as described above:
+% \footnote{\longcmdwordTT this\plus is+a\stroke big\_\bslchar mbox%
+% \openbracechar~\closebracechar\ test\end.}
+% Future versions of this code may use this latter approach exclusively so
+% as to unify the syntax (although entering LaTeX code will then take longer
+% command sequences in the main text).
+%
+\ifx\stefanurl\undefined
+  \relax
+\else
+  %if hyperref is given, we define the url-command after the hyperref
+  %package, see below
+  %if slides is given, we define the url-command and hyperref in slides
+  \ifx\stefanhyperref\undefined
+    \ifx\stefanslides\undefined
+      \RequirePackage{shellverb}
+      \newcommand{\url}[1]{\shortcmdword #1 \end}
+      \newcommand{\blockshell}[1]{\shortcmdword #1 \end}
+    \fi
+  \fi
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Slides: Elpres
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanslides\undefined
+  \relax
+\else
+  \RequirePackage[document]{ragged2e}
+  \RaggedRight
+  \RequirePackage[display]{texpower}
+  \newcommand{\fpause}{\distance{10000}\pause} % for the first \pause
+                                % command on each slide to fix a
+                                % spacing issue with elpres  
+  % hyperref is activated implicitly
+  \hypersetup{plainpages=false,breaklinks=true,hyperindex=true,colorlinks=true,filecolor=black,linkcolor=black,citecolor=black,urlcolor=black,backref=false}
+  \ifx\stefanurl\undefined
+    \relax
+  \else
+    \RequirePackage{shellverb}
+    \renewcommand{\url}[1]{\href{#1}{\shortcmdword #1 \end}}
+    \newcommand{\hypurl}[2]{\href{#1}{\shortcmdword #2 \end}}
+    \newcommand{\blockshell}[1]{\shortcmdword #1 \end}
+  \fi
+  % \RequirePackage{fancyhdr} % automatically loaded by elpres 
+  \renewcommand{\headrulewidth}{0pt}
+  \setlength{\headwidth}{\textwidth}
+  % \lhead, \chead, \rhead are blocked by elpres!
+  \lfoot{\parbox[l][2mm][b]{3cm}{\includegraphics[height=2mm]{ethlogo_kurz.png}}}
+  \cfoot{\tiny\myfooter}
+  \ifx\stefanpagecount\undefined
+    \rfoot{\tiny\thepage}
+  \else
+    \rfoot{\tiny\thepage/\pageref{lastpage}}
+  \fi
+  \pagestyle{fancyplain}
+  \newcommand{\myfooter}{Stefan M.~Moser --- ETH Zürich \& National Chiao Tung University}
+
+  \RequirePackage{bbding}
+  \RequirePackage{cancel}
+  \RequirePackage{color}
+  
+  \definecolor{cyan}{rgb}{0, 0.9, 0.9}
+  \definecolor{darkcyan}{rgb}{0, 0.8, 0.8}
+  \definecolor{magenta}{rgb}{1, 0, 1}
+  \definecolor{purple}{rgb}{0.5, 0, 0.5}
+  \definecolor{darkred}{rgb}{0.565, 0.0, 0.0} %entspricht im xfig: a5a09f
+  \definecolor{darkgreen}{rgb}{0, 0.85, 0}
+  \definecolor{lightred}{rgb}{1, 0.5, 0.5}
+  \definecolor{lightblue}{rgb}{0.5, 0.5, 1}
+  \definecolor{lightgreen}{rgb}{0.5, 1, 0.5}
+  \definecolor{lightgray}{rgb}{0.8, 0.8, 0.8}
+  \renewcommand{\r}{\color{red}}
+  \renewcommand{\b}{\color{blue}}
+  \newcommand{\gr}{\color{darkgreen}}
+  \newcommand{\lr}{\color{lightred}}
+  \newcommand{\lb}{\color{lightblue}}
+  \newcommand{\lgr}{\color{lightgreen}}
+  \newcommand{\w}{\color{white}}
+  \newcommand{\g}{\color{gray}}
+  \renewcommand{\lg}{\color{lightgray}}
+  \renewcommand{\k}{\color{black}}
+  
+  \newcommand{\keep}{\addtocounter{page}{-1}}
+  \newcommand{\add}[1]{\addtocounter{page}{#1}}
+    
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \sffamily
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% After \begin{document} the command \sffamily must be given
+%
+\ifx\stefansf\undefined
+  \relax
+\else
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chinese
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefanchinese\undefined
+  \relax
+\else
+  \ifx\stefanxelatex\undefined
+
+    \RequirePackage[encapsulated]{CJK} 
+    %\RequirePackage{ucs}
+    %\RequirePackage[utf8x]{inputenc} 
+    \RequirePackage[utf8]{inputenc} 
+    % Complete fonts:
+    % only pdflatex:
+    \newcommand{\cjktext}[1]{\protect\begin{CJK*}{UTF8}{cyberbit}#1\end{CJK*}}
+    % latex or pdflatex:
+    \newcommand{\cjktexta}[1]{\protect\begin{CJK*}{UTF8}{bkai}#1\end{CJK*}}
+    \newcommand{\cjktextb}[1]{\protect\begin{CJK*}{UTF8}{bsmi}#1\end{CJK*}}
+    % Partial fonts:
+    % latex or pdflatex:
+    \newcommand{\cjktextpa}[1]{\protect\begin{CJK*}{UTF8}{gkai}#1\end{CJK*}}
+    \newcommand{\cjktextpb}[1]{\protect\begin{CJK*}{UTF8}{gbsn}#1\end{CJK*}}
+    
+    \newcommand{\1}{}
+    \newcommand{\2}{ˊ}
+    \newcommand{\3}{ˇ}
+    \newcommand{\4}{ˋ}
+    \newcommand{\5}{˙}
+    \newcommand{\cm}{，}
+    \newcommand{\po}{。}
+    \newcommand{\cs}{、}
+    \newcommand{\xm}{！}
+    \newcommand{\qm}{？}
+    \newcommand{\qo}{《}
+    \newcommand{\qc}{》}
+
+    \DeclareUnicodeCharacter{20013}{中}
+    \DeclareUnicodeCharacter{23665}{山}
+    \DeclareUnicodeCharacter{22825}{天}
+    \DeclareUnicodeCharacter{26085}{日}
+    \DeclareUnicodeCharacter{29579}{王}
+    \newcommand{\Zhong}{\textnormal{\cjktextb{中}}}
+    \newcommand{\zhong}{\textnormal{\cjktexta{中}}}
+    \newcommand{\Shan}{\textnormal{\cjktextb{山}}}
+    \newcommand{\shan}{\textnormal{\cjktexta{山}}}
+    \newcommand{\Tian}{\textnormal{\cjktextb{天}}}
+    \newcommand{\tian}{\textnormal{\cjktexta{天}}}
+    \newcommand{\Ri}{\textnormal{\cjktextb{日}}}
+    \newcommand{\ri}{\textnormal{\cjktexta{日}}}
+    \newcommand{\Wang}{\textnormal{\cjktextb{王}}}
+    \newcommand{\wang}{\textnormal{\cjktexta{王}}}
+
+  \else
+
+    \RequirePackage{fontspec}
+    \RequirePackage{xeCJK}
+    \setmainfont{Times}
+    % \setmainfont{Helvetica}
+    % \setmainfont{Zapfino}
+    % \setmainfont{BiauKai}
+    \setCJKmainfont{BiauKai}
+    % \setCJKmainfont{HanWangKaiMediumChuIn}
+    % \setCJKmainfont{HanWangMingMediumChuIn}
+    % \setCJKmainfont{Apple LiGothic}
+    % \setCJKmainfont{Heiti SC Medium}
+    % \setCJKmainfont{Heiti SC Light}
+    % \setCJKmainfont{Heiti TC Light}
+    % \setCJKmainfont{Heiti TC Medium}
+    % \setCJKmainfont{LiSong Pro}
+    % \setCJKmainfont{LiHei Pro}
+    % \setCJKmainfont{STFangsong}
+    % \setCJKmainfont{STHeiti}
+    % \setCJKmainfont{STKaiti}
+    % \setCJKmainfont{STSong}
+    % \setCJKmainfont{STXihei}
+    
+    \newcommand{\1}{}
+    \newcommand{\2}{\hspace{-0.1em}\fontspec{BiauKai}ˊ}
+    \newcommand{\3}{\hspace{-0.1em}\fontspec{BiauKai}ˇ}
+    \newcommand{\4}{\hspace{-0.1em}\fontspec{BiauKai}ˋ}
+    \newcommand{\5}{\hspace{-0.1em}\fontspec{BiauKai}˙}
+
+    %For compatibility reasons:
+    \newcommand{\cjktext}[1]{#1}
+    \newcommand{\cjktexta}[1]{#1}
+    \newcommand{\cjktextb}[1]{#1}
+    \newcommand{\cjktextpa}[1]{#1}
+    \newcommand{\cjktextpb}[1]{#1}
+
+  \fi
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Reset of Counters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The remreset package removes a counter from the reset list
+% controlled by a second counter. In other words, the package prevents
+% a designated counter from being reset when LaTeX increments a second
+% counter. For example, most reports normally reset the equation
+% number at the beginning of each chapter. You can use this package to
+% remove the reset so that equations are numbered sequentially
+% throughout the report.
+% Usage: Add the commands
+% \makeatletter
+% \@removefromreset{x}{y}
+% \makeatother
+% where x is the counter you don't want to reset (such as footnote or
+% theorem) and y is the controlling counter, such as chapter or
+% section.  
+% The package command \@removefromreset is the opposite of the
+% standard LaTeX command \@addtoreset.  No package options are
+% available.
+\ifx\stefannoresetatchapters\undefined
+  \relax
+\else
+  \RequirePackage{remreset}
+  \@removefromreset{table}{chapter}
+  \renewcommand{\thetable}{\arabic{table}}
+  \@removefromreset{figure}{chapter}
+  \renewcommand{\thefigure}{\arabic{figure}}
+  \@removefromreset{equation}{chapter}
+  \renewcommand{\theequation}{\arabic{equation}}
+  \@removefromreset{footnote}{chapter}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Hyphenation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Normally a word with a hyphen like 'signal-dependent' cannot be
+% hyphened at any other place than the given dash. If we type
+% 'signal\?dependent' then this behavior is changed and LaTeX will
+% additionally hyphen 'signal' or 'dependent' if necessary.
+%
+\RequirePackage{hyphenat} % Package for hypenation-stuff
+\newcommand{\?}{\hyp{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists and Enumerations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Temporarily save counter of enumerations
+% Usage:
+% 
+%% \begin{enumerate}
+%% \item bla
+%% \item bla
+%%   \saveenumi
+%% \end{enumerate}
+%% bla bla
+%% \begin{enumerate}
+%%   \loadenumi
+%% \item bla
+%% \item bla
+%% \end{enumerate}
+%
+% saveenumii is for saving the label of an enumerate-environment that
+% resides inside another enumerate-environment
+\newcommand{\saveenumi}{\xdef\saveenumitmp{\arabic{enumi}}}
+\newcommand{\loadenumi}{\setcounter{enumi}{\saveenumitmp}}
+\newcommand{\saveenumii}{\xdef\saveenumitmp{\arabic{enumii}}}
+\newcommand{\loadenumii}{\setcounter{enumii}{\saveenumitmp}}
+%
+% Label inside second level of enumerate-environment:
+%
+% To set a label that only refers to an enumerate-environment that
+% resides inside another enumerate-environment, use \labelii{labelname}
+% instead of \label{labelname}. Use normal \ref{labelname} to refer to it.
+\def\atauxout{\csname @auxout\endcsname}%
+\def\labelii#1{\immediate\write\atauxout{%
+    \noexpand\newlabel{#1}{{\theenumii}{\thepage}}}}
+
+
+%Redefinition of the normal enumerate environment:  (see also IT-script!)
+%
+% List:         1. 
+% Reference:    1
+%\renewcommand{\theenumi}{\arabic{enumi}}
+%\renewcommand{\labelenumi}{\theenumi.}
+
+
+%New list with compulsory argument for item label name.
+\RequirePackage{calc}
+
+%Enumerate with item specified by argument: \begin{myenumerate}{Step}
+%will produce Step 1:, Step 2:, etc.
+\newcounter{myenumi}
+\newenvironment{myenumerate}[1]{%
+  \begin{list}{}%
+    {\renewcommand{\makelabel}[1]{\textbf{#1~\arabic{myenumi}:}\hfil}%
+      \settowidth{\labelwidth}{\makelabel{#1}}%
+      \setlength{\leftmargin}{\labelwidth+\labelsep}%
+      \usecounter{myenumi}%
+      \renewcommand{\themyenumi}{#1~\arabic{myenumi}}}%
+  }{%
+  \end{list}%
+}
+
+%Description with item-length specified by
+%argument: \begin{mydescription}{value of longest item}
+%will produce description with labellength being value of longest
+%item. If longer, then label is broken!
+\newenvironment{mydescription}[1]{%
+  \begin{list}{}%
+    {\renewcommand{\makelabel}[1]{\raisebox{0pt}[1ex][0pt]%
+        {\makebox[\labelwidth][l]%
+          {\parbox[t]{\labelwidth}%
+            {\raggedright\hspace{0pt}\textbf{##1}}}}}%
+      \settowidth{\labelwidth}{\textbf{#1}}%
+      \setlength{\leftmargin}{\labelwidth+\labelsep}}%
+  }{%
+  \end{list}%
+}
+
+%Description with item-length specified by
+%argument: \begin{mydescriptionfill}{value of longest item}
+%will produce description with labellength being value of longest
+%item. If longer, then label is NOT broken but simply leaks inside!
+\newenvironment{mydescriptionfill}[1]{%
+  \begin{list}{}%
+    {\renewcommand{\makelabel}[1]{\raisebox{0pt}[1ex][0pt]%
+        {\makebox[\labelwidth][l]%
+          {\textbf{##1}}}}%
+      \settowidth{\labelwidth}{\textbf{#1}}%
+      \setlength{\leftmargin}{\labelwidth+\labelsep}}%
+  }{%
+  \end{list}%
+}
+
+%Itemize with customized item specified by
+%argument: \begin{myitemize}{item}
+%will produce itemize list with each item being as defined by the
+%argument 
+\newenvironment{myitemize}[1]{%
+  \begin{list}{}%
+    {\renewcommand{\makelabel}[1][#1]{\raisebox{0pt}[1ex][0pt]%
+        {\makebox[\labelwidth][r]%
+          {\parbox[t]{\labelwidth}%
+            {\hspace{0.2em}{##1}}}}}%
+      \settowidth{\labelwidth}{#1}%
+      \setlength{\leftmargin}{\labelwidth+\labelsep}}%
+  }{%
+  \end{list}%
+}
+
+%Itemize with customized item specified at each
+%item-level: \begin{myitemizeopt}{item} 
+%The argument will define the size reserved for the items
+\newenvironment{myitemizeopt}[1]{%
+  \begin{list}{}%
+    {\renewcommand{\makelabel}[1]{\raisebox{0pt}[1ex][0pt]%
+        {\makebox[\labelwidth][r]%
+          {\parbox[t]{\labelwidth}%
+            {\hspace{0.2em}{##1}}}}}%
+      \settowidth{\labelwidth}{#1}%
+      \setlength{\leftmargin}{\labelwidth+\labelsep}}%
+  }{%
+  \end{list}%
+}
+
+%emphasize in color:
+\newcommand{\redemph}[1]{\textbf{\color{red} #1}}
+\newcommand{\blueemph}[1]{\textbf{\color{blue} #1}}
+
+\RequirePackage{multicol} %defines environment \begion{multicols}{2}
+                          %to make locally several columns 
+
+%\setlength{\premulticols}{2mm}
+%\setlength{\postmulticols}{2mm}
+\newenvironment{enumeratecol}[1][2]{%
+  \begin{multicols}{#1}\begin{enumerate}}%
+ {\end{enumerate}\end{multicols}
+}
+
+\newenvironment{itemizecol}[1][2]{%
+  \begin{multicols}{#1}\begin{itemize}}%
+ {\end{itemize}\end{multicols}
+}
+
+\RequirePackage{paralist}
+\RequirePackage{tabto}
+
+\newenvironment{enumeratetab}[1][2]
+{\NumTabs{#1}\inparaenum\let\latexitem\item
+  \def\item{\def\item{\tab\latexitem}\latexitem}}
+{\endinparaenum}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Detail environment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{detail}{
+\begin{quote}
+\small
+}
+{\end{quote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For lengthening or shortening the page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Use these commands between two paragraphs on the pages in question:
+\newcommand\longpage[1][1]{\enlargethispage{#1\baselineskip}}
+\newcommand\shortpage[1][1]{\enlargethispage{-#1\baselineskip}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Layout abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\vproof}{\vspace{0.2cm}} %Correction of layout for proofs
+                                     %beginning right after an
+                                     %equation (additional space)
+\newcommand{\sizecorr}[1]{\makebox[0cm]{\phantom{$\displaystyle #1$}}} 
+                                     %Correction of size of brackets 
+
+\newcommand{\vs}[1]{\vspace{\stretch{#1}}}
+\newcommand{\hs}[1]{\hspace{\stretch{#1}}}
+
+\newcommand{\D}{\displaystyle}
+
+\newcommand{\upst}{\textsuperscript{st}}
+\newcommand{\upnd}{\textsuperscript{nd}}
+\newcommand{\uprd}{\textsuperscript{rd}}
+\newcommand{\upth}{\textsuperscript{th}}
+
+\newcommand{\circled}[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=0.7pt] (char) {#1};}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Spacing issues
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\midk}[1]{\kern0.1em #1 \kern0.1em}
+\newcommand{\middlek}[1]{\kern0.1em \middle#1 \kern0.1em}
+\newcommand{\bigk}[1]{\kern-0.1em \bigm#1 \kern-0.1em}
+\newcommand{\Bigk}[1]{\kern-0.1em \Bigm#1 \kern-0.1em}
+\newcommand{\biggk}[1]{\kern-0.1em \biggm#1 \kern-0.1em}
+\newcommand{\Biggk}[1]{\kern-0.1em \Biggm#1 \kern-0.1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General abbreviations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\stefansf\undefined
+  \newcommand{\tn}[1]{\textnormal{#1}}
+\else
+  \newcommand{\tn}[1]{\textnormal{\textsf{#1}}}
+\fi
+
+%%%%% Vectors and vector operations %%%%%
+%%%%%
+\renewcommand{\vec}[1]{\widearrow{#1}} % vector with arrow
+\newcommand{\vect}[1]{\mathbf{#1}} % vector
+\newcommand{\vectg}[1]{\bm{#1}} % italic vector (works also for greek)
+%\renewcommand{\vect}[1]{\vectg{#1}} % switch by default to second version!
+\newcommand{\hvect}[1]{\hat{\vect{#1}}} % vector with hat
+\newcommand{\hvectg}[1]{\hat{\vectg{#1}}} % vector with hat
+\newcommand{\pvect}[1]{\overrightarrow{#1}} % vector from point to point
+\newcommand{\vplus}{\bm{+}}
+\newcommand{\vminus}{\bm{-}}
+\newcommand{\vmult}{\bm{\cdot}}
+
+
+%%%%% Matrices and matrix operations %%%%%
+%%%%%
+\newcommand{\mat}[1]{\mathsf{#1}} % matrices (capital greek symbols work too)
+\newcommand{\boldmat}[1]{\textbf{\textsf{#1}}} 
+\newcommand{\boldmatt}[1]{\textnormal{\usefont{T1}{ba9}{r}{r}\selectfont #1}} % Humanist970BT-RomanC
+\newcommand{\vmat}[1]{\mathbb{#1}} % random matrices
+\newcommand{\inv}[1]{#1^{-1}} % inverse  
+\newcommand{\trans}[1]{#1^{\textup{\textsf{\tiny T}}}} % transpose  
+\newcommand{\transsmall}[1]{#1^{\textnormal{\textsf{\fontsize{1pt}{1pt}\selectfont T}}}} % tranpose small  
+\newcommand{\invtrans}[1]{#1^{-\textnormal{\textsf{\tiny T}}}} % transpose of inverse
+\newcommand{\invtranssmall}[1]{#1^{\scriptscriptstyle -\textnormal{\textsf{\fontsize{1pt}{1pt}\selectfont T}}}} % tranpose small  
+\newcommand{\tpt}{\textnormal{\textsf{\tiny T}}} % transpose-t
+%\newcommand{\conj}[1]{#1^{\textnormal{\textsf{\tiny *}}}} % conjugate (small) 
+\newcommand{\conj}[1]{#1^{\textnormal{\textsf{\footnotesize\raisebox{-0.5ex}{*}}}}} % conjugate 
+\newcommand{\conjstar}{\textnormal{\textsf{\footnotesize\raisebox{-0.5ex}{*}}}} % star of conjugate 
+\newcommand{\hermi}[1]{#1^{\dagger}} % transpose and conjugate
+\newcommand{\invhermi}[1]{#1^{-\dagger}} % transpose and conjugate of inverse
+\newcommand{\trace}[1]{\operatorname{tr}\left(#1\right)} % trace
+\newcommand{\etrace}[1]{\operatorname{tr}(#1)} 
+\newcommand{\bigtrace}[1]{\operatorname{tr}\bigl(#1\bigr)} 
+\newcommand{\Bigtrace}[1]{\operatorname{tr}\Bigl(#1\Bigr)} 
+\newcommand{\biggtrace}[1]{\operatorname{tr}\biggl(#1\biggr)} 
+\newcommand{\Biggtrace}[1]{\operatorname{tr}\Biggl(#1\Biggr)} 
+\newcommand{\diag}[1]{\operatorname{diag}\left(#1\right)} % diagonal matrix
+\newcommand{\ediag}[1]{\operatorname{diag}(#1)} 
+\newcommand{\bigdiag}[1]{\operatorname{diag}\bigl(#1\bigr)} 
+\newcommand{\Bigdiag}[1]{\operatorname{diag}\Bigl(#1\Bigr)} 
+\newcommand{\biggdiag}[1]{\operatorname{diag}\biggl(#1\biggr)} 
+\newcommand{\Biggdiag}[1]{\operatorname{diag}\Biggl(#1\Biggr)} 
+\newcommand{\rank}[1]{\operatorname{rank}\left(#1\right)} % rank operator
+\newcommand{\erank}[1]{\operatorname{rank}(#1)} 
+\newcommand{\bigrank}[1]{\operatorname{rank}\bigl(#1\bigr)} 
+\newcommand{\Bigrank}[1]{\operatorname{rank}\Bigl(#1\Bigr)} 
+\newcommand{\biggrank}[1]{\operatorname{rank}\biggl(#1\biggr)} 
+\newcommand{\Biggrank}[1]{\operatorname{rank}\Biggl(#1\Biggr)} 
+
+
+%%%%% Fields and Spaces %%%%%
+%%%%%
+\newcommand{\Reals}{\mathbb{R}}      % real numbers
+\newcommand{\Integers}{\mathbb{Z}}   % integers
+\newcommand{\Rationals}{\mathbb{Q}}  % rational numbers
+\newcommand{\Naturals}{\mathbb{N}}   % natural numbers 1,2,3,...
+\newcommand{\Complex}{\mathbb{C}}    % complex numbers
+\newcommand{\Field}{\mathbb{F}}      % field
+\newcommand{\GF}{\tn{GF}}            % Galois-field
+\newcommand{\Lone}{\mathcal{L}_{\mathit{1}}} % complex integrable functions from the reals
+\newcommand{\Ltwo}{\mathcal{L}_{\mathit{2}}} % complex square integrable functions from the reals
+\newcommand{\LLtwo}{L_{\mathit{2}}}  % L_2 space of equivalence classes
+\newcommand{\LCirc}{\mathcal{L}_{\mathit{2}}(\mathbb{T})}
+
+
+%%%%% Real and Imaginary Parts of a Complex Number %%%%%
+%%%%%
+\renewcommand{\Re}[1]{\mathop{}\!\tn{Re}\left\{#1\right\}}
+\newcommand{\eRe}[1]{\mathop{}\!\tn{Re}\{#1\}}
+\newcommand{\bigRe}[1]{\mathop{}\!\tn{Re}\bigl\{#1\bigr\}}
+\newcommand{\BigRe}[1]{\mathop{}\!\tn{Re}\Bigl\{#1\Bigr\}}
+\newcommand{\biggRe}[1]{\mathop{}\!\tn{Re}\biggl\{#1\biggr\}}
+\newcommand{\BiggRe}[1]{\mathop{}\!\tn{Re}\Biggl\{#1\Biggr\}}
+\renewcommand{\Im}[1]{\mathop{}\!\tn{Im}\left\{#1\right\}}
+\newcommand{\eIm}[1]{\mathop{}\!\tn{Im}\{#1\}}
+\newcommand{\bigIm}[1]{\mathop{}\!\tn{Im}\bigl\{#1\bigr\}}
+\newcommand{\BigIm}[1]{\mathop{}\!\tn{Im}\Bigl\{#1\Bigr\}}
+\newcommand{\biggIm}[1]{\mathop{}\!\tn{Im}\biggl\{#1\biggr\}}
+\newcommand{\BiggIm}[1]{\mathop{}\!\tn{Im}\Biggl\{#1\Biggr\}}
+
+
+%%%%% Inner Products and Norms %%%%%
+%%%%%
+\newcommand{\bra}{\langle} % inner products 
+\newcommand{\ket}{\rangle} % inner products
+\newcommand{\inner}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\einner}[2]{\langle{#1},{#2}\rangle}
+\newcommand{\biginner}[2]{\bigl\langle{#1},{#2}\bigr\rangle}
+\newcommand{\Biginner}[2]{\Bigl\langle{#1},{#2}\Bigr\rangle}
+\newcommand{\bigginner}[2]{\biggl\langle{#1},{#2}\biggr\rangle}
+\newcommand{\Bigginner}[2]{\Biggl\langle{#1},{#2}\Biggr\rangle}
+\newcommand{\innerN}[2]{\overline{\left\langle{#1},{#2}\right\rangle}}
+\newcommand{\einnerN}[2]{\overline{\langle{#1},{#2}\rangle}}
+\newcommand{\biginnerN}[2]{\overline{\bigl\langle{#1},{#2}\bigr\rangle}}
+\newcommand{\BiginnerN}[2]{\overline{\Bigl\langle{#1},{#2}\Bigr\rangle}}
+\newcommand{\bigginnerN}[2]{\overline{\biggl\langle{#1},{#2}\biggr\rangle}}
+\newcommand{\BigginnerN}[2]{\overline{\Biggl\langle{#1},{#2}\Biggr\rangle}}
+
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\enorm}[1]{\|#1\|}
+\newcommand{\bignorm}[1]{\bigl\|#1\bigr\|}
+\newcommand{\Bignorm}[1]{\Bigl\|#1\Bigr\|}
+\newcommand{\biggnorm}[1]{\biggl\|#1\biggr\|}
+\newcommand{\Biggnorm}[1]{\Biggl\|#1\Biggr\|}
+
+\newcommand{\normone}[1]{\left\|#1\right\|_{\mathit{1}}}
+\newcommand{\enormone}[1]{\|#1\|_{\mathit{1}}}
+\newcommand{\bignormone}[1]{\bigl\|#1\bigr\|_{\mathit{1}}}
+\newcommand{\Bignormone}[1]{\Bigl\|#1\Bigr\|_{\mathit{1}}}
+\newcommand{\biggnormone}[1]{\biggl\|#1\biggr\|_{\mathit{1}}}
+\newcommand{\Biggnormone}[1]{\Biggl\|#1\Biggr\|_{\mathit{1}}}
+
+\newcommand{\normtwo}[1]{\left\|#1\right\|_{\mathit{2}}}
+\newcommand{\enormtwo}[1]{\|#1\|_{\mathit{2}}}
+\newcommand{\bignormtwo}[1]{\bigl\|#1\bigr\|_{\mathit{2}}}
+\newcommand{\Bignormtwo}[1]{\Bigl\|#1\Bigr\|_{\mathit{2}}}
+\newcommand{\biggnormtwo}[1]{\biggl\|#1\biggr\|_{\mathit{2}}}
+\newcommand{\Biggnormtwo}[1]{\Biggl\|#1\Biggr\|_{\mathit{2}}}
+
+\newcommand{\spn}[1]{\operatorname{span}\left(#1\right)} % \span is already defined, and it's not a good idea to redefine it here 
+\newcommand{\espn}[1]{\operatorname{span}(#1)} 
+\newcommand{\bigspn}[1]{\operatorname{span}\bigl(#1\bigr)} 
+\newcommand{\Bigspn}[1]{\operatorname{span}\Bigl(#1\Bigr)} 
+\newcommand{\biggspn}[1]{\operatorname{span}\biggl(#1\biggr)} 
+\newcommand{\Biggspn}[1]{\operatorname{span}\Biggl(#1\Biggr)} 
+
+\newcommand{\Dim}[1]{\operatorname{dim}\left(#1\right)} % dimension
+\newcommand{\eDim}[1]{\operatorname{dim}(#1)}
+\newcommand{\bigDim}[1]{\operatorname{dim}\bigl(#1\bigr)}  
+\newcommand{\BigDim}[1]{\operatorname{dim}\Bigl(#1\Bigr)}  
+\newcommand{\biggDim}[1]{\operatorname{dim}\biggl(#1\biggr)}
+\newcommand{\BiggDim}[1]{\operatorname{dim}\Biggl(#1\Biggr)}
+
+
+%%%%% Sets, cardinalities %%%%%
+%%%%%
+\let\set=\mathcal                             % set
+\newcommand{\switchsetcal}{\let\set=\mathcal} % switch to change to alternative definition of sets
+\newcommand{\switchsetbb}{\let\set=\mathds}   % switch to return to original definition of sets
+\newcommand{\cset}[1]{\set{#1}^{\tn{c}}}      % complement set
+\newcommand{\comp}[1]{{#1}^{\tn{c}}}          % complement 
+\newcommand{\compc}{\tn{c}}                   % complement-c
+
+\newcommand{\card}[1]{\left|#1\right|}        % cardinality of a set.
+\newcommand{\ecard}[1]{|#1|}
+\newcommand{\bigcard}[1]{\bigl|#1\bigr|} 
+\newcommand{\Bigcard}[1]{\Bigl|#1\Bigr|} 
+\newcommand{\biggcard}[1]{\biggl|#1\biggr|} 
+\newcommand{\Biggcard}[1]{\Biggl|#1\Biggr|} 
+
+
+%%%%% Communication Constants %%%%%
+%%%%%
+\DeclareMathAlphabet{\const}{U}{zeur}{m}{n} % Euler as mathfont
+\DeclareMathAlphabet{\constb}{U}{zeur}{b}{n} % bold Euler as mathfont
+%\newcommand{\const}[1]{\textnormal{\usefont{U}{eur}{m}{n}\selectfont #1}} % Euler
+%\newcommand{\constb}[1]{\textnormal{\usefont{U}{eur}{b}{n}\selectfont #1}} % bold Euler
+\newcommand{\constold}[1]{\textnormal{\usefont{T1}{bc9}{r}{r}\selectfont #1}} % Calligraphic421BT-RomanB
+\newcommand{\EE}{\const{E}}        % energy
+\newcommand{\Eb}{\EE_{\tn{b}}}     % energy per bit
+\newcommand{\Es}{\EE_{\tn{s}}}     % energy per symbol
+\newcommand{\Ez}{\EE_{0}}          % unit energy
+\newcommand{\Nzero}{\const{N}_{0}} % single-sided noise spectrum; N_{0}/2 double-sided 
+\newcommand{\ebnofr}{\frac{\Eb}{\Nzero}}
+\newcommand{\ebno}{\Eb/\Nzero}
+%\newcommand{\SNR}{\tn{SNR}}
+\newcommand{\SNR}{\textsc{snr}}
+\newcommand{\SNRnorm}{\tn{SNR}_{\tn{norm}}}
+\newcommand{\Pb}{P_{\tn{b}}}
+\newcommand{\PB}{P_{\tn{B}}}
+\newcommand{\PS}{P_{\tn{S}}}
+\newcommand{\Lt}{\const{L}_{\tn{t}}}
+\newcommand{\HH}{\mathop{}\!\const{H}}  % entropy
+\newcommand{\Hb}{\HH_{\tn{b}}}          % binary entropy function
+\newcommand{\hh}{\mathop{}\!\const{h}}  % differential entropy
+\newcommand{\II}{\mathop{}\!\const{I}}  % mutual information
+
+\newcommand{\relD}{\mathop{}\!\mathscr{D}}         % relative entropy
+\newcommand{\relDf}[2]{\relD\left(#1 \kern0.1em\middle\|\kern0.1em #2\right)}
+\newcommand{\erelDf}[2]{\relD(#1 \kern0.1em\|\kern0.1em #2)} 
+\newcommand{\bigrelDf}[2]{\relD\bigl(#1 \kern-0.1em \bigm\| \kern-0.1em#2\bigr)}
+\newcommand{\BigrelDf}[2]{\relD\Bigl(#1 \kern-0.1em \Bigm\| \kern-0.1em#2\Bigr)}
+\newcommand{\biggrelDf}[2]{\relD\biggl(#1 \kern-0.1em \biggm\| \kern-0.1em#2\biggr)}
+\newcommand{\BiggrelDf}[2]{\relD\Biggl(#1 \kern-0.1em \Biggm\| \kern-0.1em#2\Biggr)}
+
+\newcommand{\relV}{\mathop{}\!\mathscr{V}}         % variational distance
+\newcommand{\nt}{n_{\tn{T}}}
+\newcommand{\nr}{n_{\tn{R}}}
+\newcommand{\amp}{\const{A}}
+\newcommand{\PP}{\const{P}}
+\newcommand{\Code}{\mathscr{C}}           
+\newcommand{\bit}{\text{ bit}}
+\newcommand{\bits}{\text{ bits}}
+\newcommand{\nat}{\text{ nat}}
+\newcommand{\nats}{\text{ nats}}
+\newcommand{\error}{\tn{error}}
+\newcommand{\fc}{f_{\tn{c}}}            % carrier frequency
+\newcommand{\WW}{\const{W}}             % constant W used to denote bandwidth
+\newcommand{\WWc}{\const{W}_{\tn{c}}}   % cutoff frequency
+\newcommand{\Hz}{\text{Hz}}             % Hertz
+\newcommand{\TT}{\const{T}}             % period
+\newcommand{\Ts}{\TT_{\tn{s}}}
+\newcommand{\Tp}{\TT_{\tn{p}}}          % period of a periodic signal
+\newcommand{\Tc}{\TT_{\tn{c}}}
+\newcommand{\Tb}{\TT_{\tn{b}}}
+\newcommand{\RR}{\const{R}}            % bit rate
+\newcommand{\Rs}{\RR_{\textnormal{s}}}
+\newcommand{\Rb}{\RR_{\textnormal{b}}}
+\newcommand{\MM}{\const{M}}  %Number of hypotheses, number of codewords.
+\newcommand{\LL}{\const{L}}
+\newcommand{\JJ}{\const{J}}
+\newcommand{\KK}{\const{K}}  % dimensionality of the problem.
+\newcommand{\WC}{\textnormal{WC}}
+\newcommand{\df}{d_{\textnormal{f}}}
+\newcommand{\DB}{D_{\textnormal{B}}}
+\newcommand{\Nf}{\const{N}_{\textnormal{f}}}
+\newcommand{\Rt}{\const{R}_{\textnormal{t}}}
+\newcommand{\dmin}{d_{\tn{min}}}
+\newcommand{\wmin}{w_{\tn{min}}}
+\newcommand{\wmax}{w_{\tn{max}}}
+\newcommand{\dH}{d_{\tn{H}}} % Hamming distance
+\newcommand{\wH}{w_{\tn{H}}} % Hamming weight
+
+
+%%%%% Probability %%%%%
+%%%%%
+%% -2 types of probabilities: round brackets (Prs) for sets and events
+%%  like Pr({w: X(w) \leq 5}) or Pr(\set{A}); and square brackets (Prv)
+%%  for RVs like Pr[X \leq 5] 
+%% -conditional: Prvcond{X=x}{Y=y}: the second argument is the conditional part 
+\newcommand{\Prob}{\operatorname{\tn{Pr}}} 
+
+\newcommand{\Prs}[1]{\Pr\left(#1\right)}
+\newcommand{\ePrs}[1]{\Pr(#1)}
+\newcommand{\bigPrs}[1]{\Pr\bigl(#1\bigr)}
+\newcommand{\BigPrs}[1]{\Pr\Bigl(#1\Bigr)}
+\newcommand{\biggPrs}[1]{\Pr\biggl(#1\biggr)}
+\newcommand{\BiggPrs}[1]{\Pr\Biggl(#1\Biggr)}
+
+\newcommand{\Prv}[1]{\Pr\left[#1\right]}
+\newcommand{\ePrv}[1]{\Pr[#1]}
+\newcommand{\bigPrv}[1]{\Pr\bigl[#1\bigr]}
+\newcommand{\BigPrv}[1]{\Pr\Bigl[#1\Bigr]}
+\newcommand{\biggPrv}[1]{\Pr\biggl[#1\biggr]}
+\newcommand{\BiggPrv}[1]{\Pr\Biggl[#1\Biggr]}
+
+\newcommand{\Prvcond}[2]{\Pr\left[#1 \kern0.1em\middle|\kern0.1em #2\right]}
+\newcommand{\ePrvcond}[2]{\Pr[#1 \kern0.1em|\kern0.1em #2]} 
+\newcommand{\bigPrvcond}[2]{\Pr\bigl[#1 \kern-0.1em \bigm| \kern-0.1em#2\bigr]}
+\newcommand{\BigPrvcond}[2]{\Pr\Bigl[#1 \kern-0.1em \Bigm| \kern-0.1em#2\Bigr]}
+\newcommand{\biggPrvcond}[2]{\Pr\biggl[#1 \kern-0.1em \biggm| \kern-0.1em#2\biggr]}
+\newcommand{\BiggPrvcond}[2]{\Pr\Biggl[#1 \kern-0.1em \Biggm| \kern-0.1em#2\Biggr]}
+
+\newcommand{\Prscond}[2]{\Pr\left(#1 \kern0.1em\middle|\kern0.1em #2\right)}
+\newcommand{\ePrscond}[2]{\Pr(#1 \kern0.1em|\kern0.1em #2)} 
+\newcommand{\bigPrscond}[2]{\Pr\bigl(#1 \kern-0.1em \bigm| \kern-0.1em#2\bigr)}
+\newcommand{\BigPrscond}[2]{\Pr\Bigl(#1 \kern-0.1em \Bigm| \kern-0.1em#2\Bigr)}
+\newcommand{\biggPrscond}[2]{\Pr\biggl(#1 \kern-0.1em \biggm| \kern-0.1em#2\biggr)}
+\newcommand{\BiggPrscond}[2]{\Pr\Biggl(#1 \kern-0.1em \Biggm| \kern-0.1em#2\Biggr)}
+
+
+%%%%% Expectation %%%%%
+%%%%%
+%% -all expectations have an optional argument: distribution/RV: \E[Q]{X} yields E_Q[X]
+%% -conditional: Econd{X}{Y=y}: the second argument is the conditional part 
+\newcommand{\Exp}{\operatorname{\textnormal{\textsf{E}}}}
+
+\newcommand{\E}[2][]{\Exp_{#1}\left[#2\right]}
+\newcommand{\eE}[2][]{\Exp_{#1}[#2]}
+\newcommand{\bigE}[2][]{\Exp_{#1}\bigl[#2\bigr]}
+\newcommand{\BigE}[2][]{\Exp_{#1}\Bigl[#2\Bigr]}
+\newcommand{\biggE}[2][]{\Exp_{#1}\biggl[#2\biggr]}
+\newcommand{\BiggE}[2][]{\Exp_{#1}\Biggl[#2\Biggr]}
+
+\newcommand{\Econd}[3][]{\Exp_{#1}\left[#2 \kern0.1em\middle|\kern0.1em #3\right]}
+\newcommand{\eEcond}[3][]{\Exp_{#1}[#2 \kern0.1em|\kern0.1em #3]}
+\newcommand{\bigEcond}[3][]{\Exp_{#1}\bigl[#2 \kern-0.1em \bigm| \kern-0.1em #3\bigr]}
+\newcommand{\BigEcond}[3][]{\Exp_{#1}\Bigl[#2 \kern-0.1em \Bigm| \kern-0.1em #3\Bigr]}
+\newcommand{\biggEcond}[3][]{\Exp_{#1}\biggl[#2 \kern-0.1em \biggm| \kern-0.1em #3\biggr]}
+\newcommand{\BiggEcond}[3][]{\Exp_{#1}\Biggl[#2 \kern-0.1em \Biggm| \kern-0.1em #3\Biggr]}
+
+
+%%%%% Variance %%%%%
+%%%%%
+\newcommand{\Varop}{\operatorname{\mathsf{Var}}}
+\newcommand{\Var}[2][]{\Varop_{#1}\left[#2\right]} 
+\newcommand{\eVar}[2][]{\Varop_{#1}[#2]} 
+\newcommand{\bigVar}[2][]{\Varop_{#1}\bigl[#2\bigr]} 
+\newcommand{\BigVar}[2][]{\Varop_{#1}\Bigl[#2\Bigr]} 
+\newcommand{\biggVar}[2][]{\Varop_{#1}\biggl[#2\biggr]} 
+\newcommand{\BiggVar}[2][]{\Varop_{#1}\Biggl[#2\Biggr]} 
+
+\newcommand{\Covop}{\operatorname{\mathsf{Cov}}}
+\newcommand{\Cov}[3][]{\Covop_{#1}\left[{#2},{#3}\right]} 
+\newcommand{\eCov}[3][]{\Covop_{#1}[{#2},{#3}]} 
+\newcommand{\bigCov}[3][]{\Covop_{#1}\bigl[{#2},{#3}\bigr]} 
+\newcommand{\BigCov}[3][]{\Covop_{#1}\Bigl[{#2},{#3}\Bigr]} 
+\newcommand{\biggCov}[3][]{\Covop_{#1}\biggl[{#2},{#3}\biggr]} 
+\newcommand{\BiggCov}[3][]{\Covop_{#1}\Biggl[{#2},{#3}\Biggr]} 
+
+\newcommand{\Covcond}[4][]{\Covop_{#1}\left[{#2},{#3}\kern0.1em\middle|\kern0.1em{#4}\right]}
+\newcommand{\eCovcond}[4][]{\Covop_{#1}[{#2},{#3}\kern0.1em|\kern0.1em{#4}]}
+\newcommand{\bigCovcond}[4][]{\Covop_{#1}\bigl[{#2},{#3}\kern-0.1em\bigm|\kern-0.1em{#4}\bigr]}
+\newcommand{\BigCovcond}[4][]{\Covop_{#1}\Bigl[{#2},{#3}\kern-0.1em\Bigm|\kern-0.1em{#4}\Bigr]}
+\newcommand{\biggCovcond}[4][]{\Covop_{#1}\biggl[{#2},{#3}\kern-0.1em\biggm|\kern-0.1em{#4}\biggr]}
+\newcommand{\BiggCovcond}[4][]{\Covop_{#1}\Biggl[{#2},{#3}\kern-0.1em\Biggm|\kern-0.1em{#4}\Biggr]}
+
+\newcommand{\vCov}[2][]{\Covop_{#1}\left[{#2}\right]} 
+\newcommand{\evCov}[2][]{\Covop_{#1}[{#2}]} 
+\newcommand{\bigvCov}[2][]{\Covop_{#1}\bigl[{#2}\bigr]} 
+\newcommand{\BigvCov}[2][]{\Covop_{#1}\Bigl[{#2}\Bigr]} 
+\newcommand{\biggvCov}[2][]{\Covop_{#1}\biggl[{#2}\biggr]} 
+\newcommand{\BiggvCov}[2][]{\Covop_{#1}\Biggl[{#2}\Biggr]} 
+
+\newcommand{\covop}{\operatorname{\mat{K}}}
+\newcommand{\cov}[1]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}} % covariance matrix
+\newcommand{\autocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\left(#2\right)}
+\newcommand{\eautocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}(#2)}
+\newcommand{\bigautocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\bigl(#2\bigr)}
+\newcommand{\Bigautocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\Bigl(#2\Bigr)}
+\newcommand{\biggautocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\biggl(#2\biggr)}
+\newcommand{\Biggautocovfun}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\Biggl(#2\Biggr)}
+
+\newcommand{\avgcov}[1]{\operatorname{\bar{\mat{K}}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}}
+\newcommand{\crosscov}[2]{\covop_{\mspace{-1.0mu}#1\mspace{-2.0mu}#2}}
+
+
+%%%%% For nonstationary SP %%%%%
+%%%%%
+\newcommand{\gencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}\left(#2,#3\right)} % for nonstationary SP
+\newcommand{\egencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}(#2,#3)} 
+\newcommand{\biggencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}\bigl(#2,#3\bigr)} 
+\newcommand{\Biggencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}\Bigl(#2,#3\Bigr)} 
+\newcommand{\bigggencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}\biggl(#2,#3\biggr)} 
+\newcommand{\Bigggencovfun}[3]{\operatorname{\mat{\Gamma}}_{\mspace{-1.5mu}#1\mspace{-2.0mu}#1}\Biggl(#2,#3\Biggr)} 
+
+
+%%%%% Related to self-similarity %%%%%
+%%%%%
+\newcommand{\selfsim}[1]{\operatorname{\mat{R}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}} % self-similarity of deterministic signal
+\newcommand{\selfsimN}[1]{\operatorname{\bar{\mat{R}}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}} % normalized self-similarity of deterministic signal
+\newcommand{\Fselfsim}[1]{\operatorname{\Four{\mat{R}}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}} % Fourier transform of  self-similarity of deterministic signal
+
+
+%%%%% Spectrum & PSD %%%%%
+%%%%%
+\newcommand{\spec}[1]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}} 
+\newcommand{\PSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\left(#2\right)} 
+\newcommand{\ePSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}(#2)} 
+\newcommand{\bigPSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\bigl(#2\bigr)} 
+\newcommand{\BigPSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\Bigl(#2\Bigr)} 
+\newcommand{\biggPSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\biggl(#2\biggr)} 
+\newcommand{\BiggPSD}[2]{\operatorname{\mat{S}}_{\mspace{-1.0mu}#1\mspace{-2.0mu}#1}\Biggl(#2\Biggr)} 
+
+
+%%%%% Distributions %%%%%
+%%%%%
+\newcommand{\Normalop}{\operatorname{\mathcal{N}}}
+\newcommand{\Normal}[2]{\Normalop\left({#1},{#2}\right)} % Gaussian 
+\newcommand{\eNormal}[2]{\Normalop({#1},{#2})} 
+\newcommand{\bigNormal}[2]{\Normalop\bigl({#1},{#2}\bigr)}
+\newcommand{\BigNormal}[2]{\Normalop\Bigl({#1},{#2}\Bigr)}
+\newcommand{\biggNormal}[2]{\Normalop\biggl({#1},{#2}\biggr)}
+\newcommand{\BiggNormal}[2]{\Normalop\Biggl({#1},{#2}\Biggr)}
+
+\newcommand{\NormalC}[2]{\Normalop_{\Complex}\left({#1},{#2}\right)} % complex Gaussian
+\newcommand{\eNormalC}[2]{\Normalop_{\Complex}({#1},{#2})} 
+\newcommand{\bigNormalC}[2]{\Normalop_{\Complex}\bigl({#1},{#2}\bigr)}
+\newcommand{\BigNormalC}[2]{\Normalop_{\Complex}\Bigl({#1},{#2}\Bigr)}
+\newcommand{\biggNormalC}[2]{\Normalop_{\Complex}\biggl({#1},{#2}\biggr)}
+\newcommand{\BiggNormalC}[2]{\Normalop_{\Complex}\Biggl({#1},{#2}\Biggr)}
+
+\newcommand{\NormalR}[2]{\Normalop_{\Reals}\left(#1,#2\right)} % real Gaussian
+\newcommand{\eNormalR}[2]{\Normalop_{\Reals}(#1,#2)} 
+\newcommand{\bigNormalR}[2]{\Normalop_{\Reals}\bigl(#1,#2\bigr)}
+\newcommand{\BigNormalR}[2]{\Normalop_{\Reals}\Bigl(#1,#2\Bigr)}
+\newcommand{\biggNormalR}[2]{\Normalop_{\Reals}\biggl(#1,#2\biggr)}
+\newcommand{\BiggNormalR}[2]{\Normalop_{\Reals}\Biggl(#1,#2\Biggr)}
+
+\newcommand{\Uniformop}{\operatorname{\mathcal{U}}}
+\newcommand{\Uniform}[1]{\Uniformop\left(#1\right)} % Uniform
+\newcommand{\eUniform}[1]{\Uniformop(#1)} 
+\newcommand{\bigUniform}[1]{\Uniformop\bigl(#1\bigr)}
+\newcommand{\BigUniform}[1]{\Uniformop\Bigl(#1\Bigr)}
+\newcommand{\biggUniform}[1]{\Uniformop\biggl(#1\biggr)}
+\newcommand{\BiggUniform}[1]{\Uniformop\Biggl(#1\Biggr)}
+
+\newcommand{\Uh}[1][]{\hat{U}_{#1}} % Uniform over the sphere |z|=1
+\newcommand{\Ut}[1][]{\ope^{\ii\Theta_{#1}}} % Uniform over the sphere |z|=1
+
+\newcommand{\Poissonop}{\operatorname{\const{Po}}}
+%\newcommand{\Poissonop}{\operatorname{\mathcal{P}\!\textit{o}}}
+\newcommand{\Poisson}[1]{\Poissonop\left(#1\right)} % Poisson 
+\newcommand{\ePoisson}[1]{\Poissonop(#1)} 
+\newcommand{\bigPoisson}[1]{\Poissonop\bigl(#1\bigr)}
+\newcommand{\BigPoisson}[1]{\Poissonop\Bigl(#1\Bigr)}
+\newcommand{\biggPoisson}[1]{\Poissonop\biggl(#1\biggr)}
+\newcommand{\BiggPoisson}[1]{\Poissonop\Biggl(#1\Biggr)}
+
+\newcommand{\Exponentialop}{\operatorname{\const{Exp}}}
+%\newcommand{\Exponentialop}{\operatorname{\mathcal{E}\mspace{-1.5mu}\constold{xp}}}
+\newcommand{\Exponential}[1]{\Exponentialop\left(#1\right)} % Exponential 
+\newcommand{\eExponential}[1]{\Exponentialop(#1)} 
+\newcommand{\bigExponential}[1]{\Exponentialop\bigl(#1\bigr)}
+\newcommand{\BigExponential}[1]{\Exponentialop\Bigl(#1\Bigr)}
+\newcommand{\biggExponential}[1]{\Exponentialop\biggl(#1\biggr)}
+\newcommand{\BiggExponential}[1]{\Exponentialop\Biggl(#1\Biggr)}
+
+\newcommand{\Bernoulliop}{\operatorname{\tn{Bernoulli}}}
+\newcommand{\Bernoulli}[1]{\Bernoulliop\left(#1\right)} % Bernoulli dist.
+\newcommand{\eBernoulli}[1]{\Bernoulliop(#1)}
+\newcommand{\bigBernoulli}[1]{\Bernoulliop\bigl(#1\bigr)}
+\newcommand{\BigBernoulli}[1]{\Bernoulliop\Bigl(#1\Bigr)}
+\newcommand{\biggBernoulli}[1]{\Bernoulliop\biggl(#1\biggr)}
+\newcommand{\BiggBernoulli}[1]{\Bernoulliop\Biggl(#1\Biggr)}
+
+
+%%%%% Statistical Operators %%%%%
+%%%%%
+\newcommand{\eqlaw}{\stackrel{\mathscr{\scriptscriptstyle L}}{=}} %equivalence in prob. law
+\newcommand{\indep}{\mathrel{\bot}\joinrel\mathrel{\mkern-5mu}\joinrel\mathrel{\bot}}  %independent
+\newcommand{\dep}{\centernot\indep} %dependent 
+\newcommand{\markov}{\mathrel{\multimap}\joinrel\mathrel{-}\joinrel\mathrel{\mkern-6mu}\joinrel\mathrel{-}} % Markov chain
+\newcommand{\geqst}{\geq^{\textrm{st}}} %stochastically larger or equal
+\newcommand{\gst}{>^{\textrm{st}}} %stochastically larger
+
+\newcommand{\transform}{\,\mbox{\setlength{\unitlength}{0.01em}%
+    \begin{picture}(220,50)%
+      \put(45,25){\circle{30}}%
+      \put(62,25){\line(1,0){100}}%
+      \put(177,25){\circle*{30}}%
+    \end{picture}}\,}
+\newcommand{\invtransform}{\,\mbox{\setlength{\unitlength}{0.01em}%
+    \begin{picture}(220,50)%
+      \put(45,25){\circle*{30}}%
+      \put(60,25){\line(1,0){100}}%
+      \put(177,25){\circle{30}}%
+    \end{picture}}\,}
+\newcommand{\arrow}{$\Longrightarrow$\ } % use \iff, \implies, \impliedby
+
+
+%%%%% Special functions %%%%%
+%%%%%
+
+\newcommand{\indicatorfunction}{\operatorname{\mathds{1}}} % indicator function 
+%\newcommand{\indicatorfunction}{\operatorname{\constb{I}}} % indicator function 
+%\newcommand{\indicatorfunction}{\operatorname{\eucal{I}}} % indicator function 
+%\newcommand{\indicatorfunction}{\operatorname{\mathscr{I}}} % indicator function 
+\ifx\stefanchinese\undefined 
+  \newcommand{\I}[1]{\indicatorfunction\left\{#1\right\}} 
+\else
+  \ifx\stefanxelatex\undefined 
+    % \I is defined in MULEenc.sty (called via CJK.sty) to be a
+    % capital version of \i, i.e., it's simply an "I"
+    \renewcommand{\I}[1]{\indicatorfunction\left\{#1\right\}} % indicator function
+  \else
+    \newcommand{\I}[1]{\indicatorfunction\left\{#1\right\}} 
+  \fi
+\fi
+\newcommand{\eI}[1]{\indicatorfunction\{#1\}}
+\newcommand{\bigI}[1]{\indicatorfunction\bigl\{#1\bigr\}}
+\newcommand{\BigI}[1]{\indicatorfunction\Bigl\{#1\Bigr\}}
+\newcommand{\biggI}[1]{\indicatorfunction\biggl\{#1\biggr\}}
+\newcommand{\BiggI}[1]{\indicatorfunction\Biggl\{#1\Biggr\}}
+
+\newcommand{\Ei}[1]{\operatorname{Ei}\left(#1\right)}
+\newcommand{\eEi}[1]{\operatorname{Ei}(#1)}
+\newcommand{\bigEi}[1]{\operatorname{Ei}\bigl(#1\bigr)}
+\newcommand{\BigEi}[1]{\operatorname{Ei}\Bigl(#1\Bigr)}
+\newcommand{\biggEi}[1]{\operatorname{Ei}\biggl(#1\biggr)}
+\newcommand{\BiggEi}[1]{\operatorname{Ei}\Biggl(#1\Biggr)}
+
+\newcommand{\Qop}{\operatorname{\mathcal{Q}}}
+\newcommand{\Q}{\mathcal{Q}} % Q function = 1 - Gaussian CDF
+\newcommand{\Qf}[1]{\Qop\left(#1\right)}
+\newcommand{\eQf}[1]{\Qop(#1)}
+\newcommand{\bigQf}[1]{\Qop\bigl(#1\bigr)}
+\newcommand{\BigQf}[1]{\Qop\Bigl(#1\Bigr)}
+\newcommand{\biggQf}[1]{\Qop\biggl(#1\biggr)}
+\newcommand{\BiggQf}[1]{\Qop\Biggl(#1\Biggr)}
+
+\newcommand{\MQ}{\mathcal{Q}_{1}}    %Marcum Q function
+\newcommand{\MQf}[1]{\Qop_{1}\left(#1\right)}
+\newcommand{\eMQf}[1]{\Qop_{1}(#1)}
+\newcommand{\bigMQf}[1]{\Qop_{1}\bigl(#1\bigr)}
+\newcommand{\BigMQf}[1]{\Qop_{1}\Bigl(#1\Bigr)}
+\newcommand{\biggMQf}[1]{\Qop_{1}\biggl(#1\biggr)}
+\newcommand{\BiggMQf}[1]{\Qop_{1}\Biggl(#1\Biggr)}
+
+\newcommand{\erf}[1]{\operatorname{erf}\left({#1}\right)}
+\newcommand{\eerf}[1]{\operatorname{erf}({#1})}
+\newcommand{\bigerf}[1]{\operatorname{erf}\bigl({#1}\bigr)}
+\newcommand{\Bigerf}[1]{\operatorname{erf}\Bigl({#1}\Bigr)}
+\newcommand{\biggerf}[1]{\operatorname{erf}\biggl({#1}\biggr)}
+\newcommand{\Biggerf}[1]{\operatorname{erf}\Biggl({#1}\Biggr)}
+
+\newcommand{\erfc}[1]{\operatorname{erfc}\left({#1}\right)}
+\newcommand{\eerfc}[1]{\operatorname{erfc}({#1})}
+\newcommand{\bigerfc}[1]{\operatorname{erfc}\bigl({#1}\bigr)}
+\newcommand{\Bigerfc}[1]{\operatorname{erfc}\Bigl({#1}\Bigr)}
+\newcommand{\biggerfc}[1]{\operatorname{erfc}\biggl({#1}\biggr)}
+\newcommand{\Biggerfc}[1]{\operatorname{erfc}\Biggl({#1}\Biggr)}
+
+\newcommand{\erfi}[1]{\operatorname{erfi}\left({#1}\right)}
+\newcommand{\eerfi}[1]{\operatorname{erfi}({#1})}
+\newcommand{\bigerfi}[1]{\operatorname{erfi}\bigl({#1}\bigr)}
+\newcommand{\Bigerfi}[1]{\operatorname{erfi}\Bigl({#1}\Bigr)}
+\newcommand{\biggerfi}[1]{\operatorname{erfi}\biggl({#1}\biggr)}
+\newcommand{\Biggerfi}[1]{\operatorname{erfi}\Biggl({#1}\Biggr)}
+
+\newcommand{\sinc}[1]{\operatorname{sinc}\left(#1\right)}
+\newcommand{\esinc}[1]{\operatorname{sinc}(#1)}
+\newcommand{\bigsinc}[1]{\operatorname{sinc}\bigl(#1\bigr)}
+\newcommand{\Bigsinc}[1]{\operatorname{sinc}\Bigl(#1\Bigr)}
+\newcommand{\biggsinc}[1]{\operatorname{sinc}\biggl(#1\biggr)}
+\newcommand{\Biggsinc}[1]{\operatorname{sinc}\Biggl(#1\Biggr)}
+
+\newcommand{\rect}[1]{\operatorname{rect}\left(#1\right)}
+\newcommand{\erect}[1]{\operatorname{rect}(#1)}
+\newcommand{\bigrect}[1]{\operatorname{rect}\bigl(#1\bigr)}
+\newcommand{\Bigrect}[1]{\operatorname{rect}\Bigl(#1\Bigr)}
+\newcommand{\biggrect}[1]{\operatorname{rect}\biggl(#1\biggr)}
+\newcommand{\Biggrect}[1]{\operatorname{rect}\Biggl(#1\Biggr)}
+
+\newcommand{\sgn}[1]{\operatorname{sgn}\left(#1\right)}
+\newcommand{\esgn}[1]{\operatorname{sgn}(#1)}
+\newcommand{\bigsgn}[1]{\operatorname{sgn}\bigl(#1\bigr)}
+\newcommand{\Bigsgn}[1]{\operatorname{sgn}\Bigl(#1\Bigr)}
+\newcommand{\biggsgn}[1]{\operatorname{sgn}\biggl(#1\biggr)}
+\newcommand{\Biggsgn}[1]{\operatorname{sgn}\Biggl(#1\Biggr)}
+
+\newcommand{\co}[1]{\operatorname{co}\left(#1\right)} % Convex Hull
+\newcommand{\eco}[1]{\operatorname{co}(#1)}
+\newcommand{\bigco}[1]{\operatorname{co}\bigl(#1\bigr)}
+\newcommand{\Bigco}[1]{\operatorname{co}\Bigl(#1\Bigr)}
+\newcommand{\biggco}[1]{\operatorname{co}\biggl(#1\biggr)}
+\newcommand{\Biggco}[1]{\operatorname{co}\Biggl(#1\Biggr)}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\eabs}[1]{\lvert#1\rvert}
+\providecommand{\bigabs}[1]{\bigl\lvert#1\bigr\rvert}
+\providecommand{\Bigabs}[1]{\Bigl\lvert#1\Bigr\rvert}
+\providecommand{\biggabs}[1]{\biggl\lvert#1\biggr\rvert}
+\providecommand{\Biggabs}[1]{\Biggl\lvert#1\Biggr\rvert}
+
+\newcommand{\Shah}{\mbox{\setlength{\unitlength}{0.1em}%
+    \begin{picture}(12,9)%
+      \put(2,-1){\vector(0,1){10}}%
+      \put(2,-1){\line(1,0){4}}%
+      \put(6,-1){\vector(0,1){10}}%
+      \put(6,-1){\line(1,0){4}}%
+      \put(10,-1){\vector(0,1){10}}%
+    \end{picture}}}
+
+\newcommand{\arc}{\operatorname{arc}}
+
+%%%%% Various Mathematical %%%%%
+%%%%%
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\intinf}{\int_{-\infty}^{\infty}}
+\newcommand{\ii}{\mathsf{i}} %square root of -1
+\newcommand{\eqdef}{\triangleq} % definition
+\newcommand{\conv}[2]{#1 \mathrel{\star} #2}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\argmin}{\operatorname*{argmin}}
+\newcommand{\argmax}{\operatorname*{argmax}}
+\newcommand{\plim}{\operatorname*{plim}}
+\newcommand{\grad}{^{\circ}}
+\newcommand{\corresponds}{\mathrel{\widehat{=}}}
+
+%%%%% One Half %%%%%%%%%%%%%%%%
+%%%%%
+\newcommand{\slantfrac}[2]{\,^#1\!/_#2}
+\newcommand{\slhalf}{\slantfrac{1}{2}} % produces a nicely spaced 1/2
+\newcommand{\newhalf}[2]{\mathchoice{\frac{#1}{#2}}{\slantfrac{#1}{#2}}{\frac{#1}{#2}}{\frac{#1}{#2}}}
+
+
+%%%%% Mirror %%%%%%%%%%%%%%%%
+%%%%%
+\newcommand{\mirror}[1]{\backvec{#1}} % x(-t) % NEEDS OPTION backvec
+\newcommand{\refl}[1]{\accentset{\leftarrow}{#1}} % alternative to backvec
+
+
+%%%%% Fourier %%%%%%%%%%%%%%%%
+%%%%%
+\newcommand{\Four}[1]{\hat{#1}} 
+\newcommand{\wideFour}[1]{\widehat{#1}}
+\newcommand{\Fourop}{\operatorname{\mathcal{F}}}
+\newcommand{\FourF}[1]{\Fourop\left\{#1\right\}}
+\newcommand{\eFourF}[1]{\Fourop\{#1\}}
+\newcommand{\bigFourF}[1]{\Fourop\bigl\{#1\bigr\}}
+\newcommand{\BigFourF}[1]{\Fourop\Bigl\{#1\Bigr\}}
+\newcommand{\biggFourF}[1]{\Fourop\biggl\{#1\biggr\}}
+\newcommand{\BiggFourF}[1]{\Fourop\Biggl\{#1\Biggr\}}
+
+\newcommand{\iFour}[1]{\check{#1}} 
+\newcommand{\iwideFour}[1]{\widecheck{#1}}
+\newcommand{\iFourF}[1]{\Fourop^{-1}\left\{#1\right\}}
+\newcommand{\eiFourF}[1]{\Fourop^{-1}\{#1\}}
+\newcommand{\bigiFourF}[1]{\Fourop^{-1}\bigl\{#1\bigr\}}
+\newcommand{\BigiFourF}[1]{\Fourop^{-1}\Bigl\{#1\Bigr\}}
+\newcommand{\biggiFourF}[1]{\Fourop^{-1}\biggl\{#1\biggr\}}
+\newcommand{\BiggiFourF}[1]{\Fourop^{-1}\Biggl\{#1\Biggr\}}
+
+
+%%%%% cf. %%%%%%%%%%%%%
+%%%%%
+\newcommand{\cfno}{\emph{cf.}}
+\newcommand{\cf}[1]{\emph{cf.}~\ref{#1}}
+\newcommand{\cftwo}[2]{\emph{cf.}~\ref{#1} and \ref{#2}}
+
+\newcommand{\careof}{\raisebox{0.8ex}{\tiny c}\hspace{-0.5mm}/\hspace{-0.5mm}\raisebox{-0.3ex}{\tiny o}} 
+
+
+%%%%% Further abbreviations %%%%%%%%
+%%%%%
+\newcommand{\eps}{\epsilon} 
+\newcommand{\veps}{\varepsilon}
+
+
+%%%%% Roman Numberals %%%%%%%%
+%%%%%
+\makeatletter
+\newcommand{\rmnum}[1]{{\romannumeral #1}}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For spacing issues
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ope}{\mathop{}\!e} %base of natural exponentiation
+\newcommand{\opfunc}[1]{\mathop{}\!#1} % def. of function, e.g., \opfunc{f}
+
+%Double and Triple sums
+\newcommand{\ssum}{\mathop{\sum \sum}}
+\newcommand{\sssum}{\mathop{\sum \sum \sum}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LATEXCODE and LATEXCODEONLY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The idea and code is stolen from Tobias Oetiker's "Not So Short
+% Introduction to LaTeX". I adapted the code by replacing \textwidth
+% by \linewidth. This version is  hyperref-ready.
+% 
+% This is an environment to show LaTeX code examples both as its
+% actual code and the compiled version. On the left side the source
+% code is given and on the right side the compiled result is shown.
+% For latexcodeonly only the source code is shown, but it is not
+% compiled.
+%
+% Example:
+% \begin{latexcode}
+% \Large This is Large
+% \end{latexcode}
+% \begin{latexcodeonly}
+% \Large This is Large
+% \end{latexcodeonly}
+%
+\ifx\stefanlatexcode\undefined
+  \relax
+\else
+\RequirePackage{verbatim}
+% --- Definitions for latexcode ----
+\makeatletter
+\newwrite\latexcode@out
+\newcounter{exacnt}
+\setcounter{exacnt}{1}
+\newlength{\savefboxrule}
+\newlength{\savefboxsep}
+\newlength{\outdent}
+\setlength{\outdent}{0cm} %used to be 1cm
+%\addtolength{\headwidth}{\outdent}
+\newenvironment{latexcode}%
+{\begingroup% Lets Keep the Changes Local
+  \@bsphack
+  \immediate\openout \latexcode@out \jobname.exa
+  \let\do\@makeother\dospecials\catcode`\^^M\active
+  \def\verbatim@processline{%
+    \immediate\write\latexcode@out{\the\verbatim@line}}%
+  \verbatim@start}%
+{\immediate\closeout\latexcode@out\@esphack\endgroup%
+                                %
+                                % And here comes my part. :-
+                                %   
+  \stepcounter{exacnt}%
+  \setlength{\parindent}{0pt}%
+  \par\addvspace{3.0ex plus 0.8ex minus 0.5ex}\vskip -\parskip
+%  Page \lsspageref{exa:\theexacnt}
+\expandafter\ifx\csname r@exa\theexacnt\endcsname\relax\else
+%\ifx\pdfoutput\undefined % We're not running pdftex
+%  \ifodd\lsspageref{exa\theexacnt}\hspace*{0pt}\else\hspace*{-\outdent}\fi%
+%\else
+%% HyPsd@pageref internal hyperref command v6.69c
+\ifx\stefanhyperref\undefined
+  \hspace*{0pt} %added instead of ifodd-command below
+\else
+  \ifodd\HyPsd@pageref{exa\theexacnt}\hspace*{0pt}\else\hspace*{-\outdent}\fi%
+\fi
+%\fi
+\fi
+\makebox[\linewidth][l]{%
+%\raisebox{-\height}[0pt][\totalheight]{%
+  \begin{minipage}[c]{0.5\outdent+0.46\linewidth-3mm}%
+    \small\verbatiminput{\jobname.exa}
+  \end{minipage}%
+                                %}%
+  \hspace{5mm}%
+  \setlength{\savefboxrule}{\fboxrule}%
+  \setlength{\fboxrule}{0.1pt}%
+  \setlength{\savefboxsep}{\fboxsep}%
+  \setlength{\fboxsep}{3mm}%
+  % \raisebox{-\height}[0pt][\totalheight]{%
+  \fbox{%
+    \begin{minipage}{0.5\outdent+0.54\linewidth-3.5mm-2\fboxrule-2\fboxsep}%
+      \setlength{\fboxrule}{\savefboxrule}%
+      \setlength{\fboxsep}{\savefboxsep}%
+      \setlength{\fboxrule}{0.5pt}%
+      \setlength{\parskip}{1ex plus 0.4ex minus 0.2ex}%
+      \begin{trivlist}\item\small\input{\jobname.exa}
+      \end{trivlist}
+    \end{minipage}
+    }%
+%  }%
+}\label{exa\theexacnt}%
+\par\addvspace{3ex plus 0.8ex minus 0.5ex}\vskip -\parskip
+}
+\makeatother
+% ----- end latexcode -----
+
+% --- Definitions for latexcodeonly ----
+\makeatletter
+\newwrite\latexcode@out
+\setcounter{exacnt}{1}
+\setlength{\outdent}{0cm} %used to be 1cm
+%\addtolength{\headwidth}{\outdent}
+\newenvironment{latexcodeonly}%
+{\begingroup% Lets Keep the Changes Local
+  \@bsphack
+  \immediate\openout \latexcode@out \jobname.exa
+  \let\do\@makeother\dospecials\catcode`\^^M\active
+  \def\verbatim@processline{%
+    \immediate\write\latexcode@out{\the\verbatim@line}}%
+  \verbatim@start}%
+{\immediate\closeout\latexcode@out\@esphack\endgroup%
+                                %
+                                % And here comes my part. :-
+                                %   
+  \stepcounter{exacnt}%
+  \setlength{\parindent}{0pt}%
+  \par\addvspace{3.0ex plus 0.8ex minus 0.5ex}\vskip -\parskip
+%  Page \lsspageref{exa:\theexacnt}
+\expandafter\ifx\csname r@exa\theexacnt\endcsname\relax\else
+%\ifx\pdfoutput\undefined % We're not running pdftex
+%  \ifodd\lsspageref{exa\theexacnt}\hspace*{0pt}\else\hspace*{-\outdent}\fi%
+%\else
+%% HyPsd@pageref internal hyperref command v6.69c
+\ifx\stefanhyperref\undefined
+  \hspace*{0pt} %added instead of ifodd-command below
+\else
+  \ifodd\HyPsd@pageref{exa\theexacnt}\hspace*{0pt}\else\hspace*{-\outdent}\fi%
+\fi
+%\fi
+\fi
+\makebox[\linewidth][l]{%
+%\raisebox{-\height}[0pt][\totalheight]{%
+  \begin{minipage}[c]{0.9\outdent+0.46\linewidth-3mm}%
+    \small\verbatiminput{\jobname.exa}
+  \end{minipage}%
+                                %}%
+  \hspace{5mm}%
+  \setlength{\savefboxrule}{\fboxrule}%
+  \setlength{\fboxrule}{0.1pt}%
+  \setlength{\savefboxsep}{\fboxsep}%
+  \setlength{\fboxsep}{3mm}%
+}\label{exa\theexacnt}%
+\par\addvspace{3ex plus 0.8ex minus 0.5ex}\vskip -\parskip
+}
+\makeatother
+% ----- end latexcodeonly -----
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HYPERREF
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Must be loaded as very last package!
+\ifx\stefanhyperref\undefined
+  \relax
+\else
+  \ifx\stefanslides\undefined
+    \ifx\stefanhyperrefblack\undefined
+      \ifx\stefanhyperrefurl\undefined
+        % normal hyperref
+        \RequirePackage[plainpages=false,breaklinks=true,hyperindex=true,colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=red,backref=false]{hyperref}
+      \else
+        % hyperrefurl
+        \RequirePackage[plainpages=false,breaklinks=true,hyperindex=true,colorlinks=true,filecolor=black,linkcolor=black,citecolor=black,urlcolor=blue,backref=false]{hyperref}
+      \fi
+    \else
+      %hyperrefblack
+      \RequirePackage[plainpages=false,breaklinks=true,hyperindex=true,colorlinks=true,filecolor=black,linkcolor=black,citecolor=black,urlcolor=black,backref=false]{hyperref}
+    \fi
+    %save pageref to label
+    %\let\lsspageref\pageref
+
+    \pdfstringdefDisableCommands{\def\eqref#1{(\ref{#1})}} %teach hyperref to deal with \eqref
+
+    \newcommand{\regurl}[1]{\href{#1}{#1}} %like \url, but without
+      % changing the font of the link. Problem: special characters
+      % like _ ~ etc. won't work. For those cases, use \url (which
+      % will change font though!) or use directly 
+      % \href{http://gugus_milk.com}{http://gugus\_milk.com} 
+
+    \ifx\stefanurl\undefined
+      \relax
+    \else
+      \RequirePackage{shellverb}
+      \renewcommand{\url}[1]{\href{#1}{\shortcmdword #1 \end}}
+      \renewcommand{\regurl}[1]{\href{#1}{\shortcmdword #1 \end}}
+      \newcommand{\hypurl}[2]{\href{#1}{\shortcmdword #2 \end}}
+      \newcommand{\blockshell}[1]{\shortcmdword #1 \end}
+    \fi
+
+  \fi
+\fi
+

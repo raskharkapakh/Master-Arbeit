@@ -1,0 +1,27 @@
+\babel@toc {USenglish}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {USenglish}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Example of beamforming source map, with three sources.}}{6}{figure.1.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of the measurement setup used, with three audio sources}}{14}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Device used as audio source to create the measurement}}{15}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Picture of the array of microphone used to create the real measurement}}{15}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Levels of the eigenvalues of a synthetized CSM (blue) and of a measured CSM (orange).}}{16}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Beamforming maps, created respectively with CSMs from the synthetic dataset and from the measurement data}}{17}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}}{18}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Beamforming map, created with a rank I CSM created from measurement data}}{20}{figure.2.7}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Histograms of the values of the scalars of the eigenvectors with different index. The eigenvector with index $63$ is the main eigenvector (two last histograms).}}{21}{figure.2.8}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}}{22}{figure.2.9}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces The loss functions of the critic of the WGAN-GP for eigenvalues generation, respectively while performing the initial training and while fine-tuning}}{23}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for scaled eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for scaled eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}}{24}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces The loss functions of the critic of the WGAN-GP for the levels of eigenvalues generation, respectively while performing the initial training and while fine-tuning}}{24}{figure.3.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for level of eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for level of eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}}{25}{figure.3.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces The loss functions of the critic of the WGAN-GP for the main eigenvector generation, respectively while performing the initial training and while fine-tuning}}{25}{figure.3.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces The first beamforming map has been perfomed with a Rank I CSM computed with a generated main eigenvector. The second map shows the difference between the beamforming map obtained with Rank I CSM computed respectively with a generated main eigenvector and a main eigenvector from the dataset.}}{26}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces The first beamforming map has been perfomed with a CSM computed with the data augemntation scheme. The second map shwos the difference between the beamforming map obtained with CSM from respectively the data augmentation dataset and the training dataset}}{27}{figure.3.7}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

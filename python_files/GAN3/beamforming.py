@@ -32,7 +32,7 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
     Lm = L_p(pm)
 
     # show map
-    figure()
+    #figure()
     imshow(Lm.T,
             origin='lower',
             vmin=Lm.max()-20,

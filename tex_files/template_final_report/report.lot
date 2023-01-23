@@ -1,0 +1,20 @@
+\babel@toc {USenglish}{}\relax 
+\babel@toc {ngerman}{}\relax 
+\babel@toc {USenglish}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {A.1}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{33}{table.A.1}%
+\contentsline {table}{\numberline {A.2}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate eigenvalues. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}}{34}{table.A.2}%
+\contentsline {table}{\numberline {A.3}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate eigenvalues from their level values. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}}{34}{table.A.3}%
+\contentsline {table}{\numberline {A.4}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate eigenvalues from their level values. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}}{34}{table.A.4}%
+\contentsline {table}{\numberline {A.5}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate the main eigenvector. Total params: 821,888, Trainable params: 821,376, Non-trainable params: 512}}{35}{table.A.5}%
+\contentsline {table}{\numberline {A.6}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the main eigenvector. Total params: 197,633, Trainable params: 197,633, Non-trainable params: 0}}{35}{table.A.6}%
+\contentsline {table}{\numberline {A.7}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate the noise eigenvectors. Total params: 37,520,384, Trainable params: 37,519,872, Non-trainable params: 512}}{35}{table.A.7}%
+\contentsline {table}{\numberline {A.8}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate the noise eigenvectors. Total params: 35,263,489, Trainable params: 35,263,489, Non-trainable params: 0}}{36}{table.A.8}%
+\contentsline {table}{\numberline {A.9}{\ignorespaces Architecture of the generator used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 986,632, Trainable params: 977,796, Non-trainable params: 8,836}}{36}{table.A.9}%
+\contentsline {table}{\numberline {A.10}{\ignorespaces Architecture of the critic used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 4,317,761, Trainable params: 4,317,761, Non-trainable params: 0}}{37}{table.A.10}%
