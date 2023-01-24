@@ -1,15 +1,15 @@
 # Fdb version 3
-["bibtex report"] 1674507072 "report.aux" "report.bbl" "report" 1674507171
-  "./bibliography.bib" 1674226367 14750 16bd08b4efb0206783fbc8ea83584ce5 ""
+["bibtex report"] 1674588207 "report.aux" "report.bbl" "report" 1674588210
+  "./bibliography.bib" 1674588096 16966 4be495a0d1e64b5e465296d3a593f966 ""
   "./resources/IEEEabrv.bib" 1440712899 20898 a5d2167c380db7dfff810b085c77ed63 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "report.aux" 1674507171 25365 b8c36dce1d9899c15a3ceaad8abdf1a9 "pdflatex"
+  "report.aux" 1674588210 25859 44234d4efad33ea7f0134e398464eab2 "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
-["pdflatex"] 1674507168 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/template_final_report/report.tex" "report.pdf" "report" 1674507171
+["pdflatex"] 1674588207 "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/template_final_report/report.tex" "report.pdf" "report" 1674588210
   "/etc/texmf/web2c/texmf.cnf" 1664350533 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/template_final_report/report.tex" 1674507167 77290 54df21bf85cbb15f86669d8d0deb4e23 ""
+  "/home/gaspard/ETHZ/Master_Arbeit/repo/Master-Arbeit/tex_files/template_final_report/report.tex" 1674588194 79124 fdbcf38638d6f14dc36b5ad93f414b52 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
@@ -330,13 +330,13 @@
   "figs/samples_evals_dB_wgangp.pdf" 1674416739 21246 45d39ae7a8106a1ab5fcf533212f12e2 ""
   "figs/samples_evals_wgangp.pdf" 1674416439 19910 fa68f5be442250bd5dac15c01ef131a3 ""
   "figs/source.png" 1674394040 1407283 b19e68b1ad31ca11619c71a5bd6680ee ""
-  "report.aux" 1674507171 25365 b8c36dce1d9899c15a3ceaad8abdf1a9 "pdflatex"
-  "report.bbl" 1674507073 9039 7b09de0ad96c1d1de126a1aeece86c65 "bibtex report"
-  "report.lof" 1674507171 4056 9a0ce8a081b9ffb72306acd759e6d437 "pdflatex"
-  "report.lot" 1674507171 2619 1bf4157571303a454effb431927a9ac1 "pdflatex"
-  "report.out" 1674507171 8456 10d069b2f5c4cc906922929e079a05d6 "pdflatex"
-  "report.tex" 1674507167 77290 54df21bf85cbb15f86669d8d0deb4e23 ""
-  "report.toc" 1674507171 4913 cec23f70abed23b9c7096a3be8dcae39 "pdflatex"
+  "report.aux" 1674588210 25859 44234d4efad33ea7f0134e398464eab2 "pdflatex"
+  "report.bbl" 1674588207 10503 e6a0b15b4c32ecf2d8af18098266742a "bibtex report"
+  "report.lof" 1674588210 4217 d01ab078d4ed75a348bf586733003be0 "pdflatex"
+  "report.lot" 1674588210 2619 1bf4157571303a454effb431927a9ac1 "pdflatex"
+  "report.out" 1674588210 8266 46f00b3110f36b6803414525dfbbafec "pdflatex"
+  "report.tex" 1674588194 79124 fdbcf38638d6f14dc36b5ad93f414b52 ""
+  "report.toc" 1674588210 4878 16fbc28f4c2ff95a79a5919dd9b75908 "pdflatex"
   "resources/ethlogo.pdf" 1372927126 14104 adf4ff467d8807d02c52897f982245c5 ""
   "resources/isilogo_plain_bw.pdf" 1611820785 246640 f3a005c5ceef85ee8942462a6753de25 ""
   "resources/research18.sty" 1611901748 96301 6604079d612a177d5b747b082ae839a1 ""
