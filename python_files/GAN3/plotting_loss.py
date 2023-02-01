@@ -26,3 +26,28 @@ def plot_loss(history):
     plt.yticks(fontsize=nb_fontsize)
     
     plt.show()
+    
+    
+def plot_loss_critic_before_after(history1, history2):
+    
+    title_fontsize = 20
+    axis_fontsize = 17
+    nb_fontsize = 15
+    
+    fig = plt.figure(figsize=(15,20))
+    plt.subplot(121)
+    plt.title('critic loss', fontsize=title_fontsize)
+    plt.plot(history.history['c_loss'])
+    plt.ylabel('loss', fontsize=axis_fontsize)
+    plt.xlabel('epochs', fontsize=axis_fontsize)
+    plt.xticks(fontsize=nb_fontsize)
+    plt.yticks(fontsize=nb_fontsize)
+    
+    
+    plt.subplot(121)
+    plt.title('critic loss', fontsize=title_fontsize)
+    plt.plot(history.history['c_loss'])
+    plt.ylabel('loss', fontsize=axis_fontsize)
+    plt.xlabel('epochs', fontsize=axis_fontsize)
+    plt.xticks(fontsize=nb_fontsize)
+    plt.yticks(fontsize=nb_fontsize)

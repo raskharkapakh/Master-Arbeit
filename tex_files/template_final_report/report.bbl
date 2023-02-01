@@ -145,11 +145,35 @@ J.~M. Vera-Diaz, D.~Pizarro, and J.~Macias-Guarasa, ``Acoustic source
   localization with deep generalized cross correlations,'' \emph{Signal
   Processing}, vol. 187, p. 108169, 2021.
 
+\bibitem{castellini2021neural}
+P.~Castellini, N.~Giulietti, N.~Falcionelli, A.~F. Dragoni, and P.~Chiariotti,
+  ``A neural network based microphone array approach to grid-less noise source
+  localization,'' \emph{Applied Acoustics}, vol. 177, p. 107947, 2021.
+
+\bibitem{lee2021deep}
+S.~Y. Lee, J.~Chang, and S.~Lee, ``Deep learning-based method for multiple
+  sound source localization with high resolution and accuracy,''
+  \emph{Mechanical Systems and Signal Processing}, vol. 161, p. 107959, 2021.
+
+\bibitem{ma2019phased}
+W.~Ma and X.~Liu, ``Phased microphone array for sound source localization with
+  deep learning,'' \emph{Aerospace Systems}, vol.~2, no.~2, pp. 71--81, 2019.
+
+\bibitem{xu2021deep}
+P.~Xu, E.~J. Arcondoulis, and Y.~Liu, ``Deep neural network models for acoustic
+  source localization,'' in \emph{Berlin Beamforming Conference}, 2021.
+
 \bibitem{welch1967use}
 P.~Welch, ``The use of fast fourier transform for the estimation of power
   spectra: a method based on time averaging over short, modified
   periodograms,'' \emph{IEEE Transactions on audio and electroacoustics},
   vol.~15, no.~2, pp. 70--73, 1967.
+
+\bibitem{kujawski2022fast}
+A.~Kujawski and E.~Sarradj, ``Fast grid-free strength mapping of multiple sound
+  sources from microphone array data using a transformer architecture,''
+  \emph{The Journal of the Acoustical Society of America}, vol. 152, no.~5, pp.
+  2543--2556, 2022.
 
 \bibitem{sarradj2010fast}
 E.~Sarradj, ``A fast signal subspace approach for the determination of absolute
@@ -183,29 +207,12 @@ I.~Gulrajani, F.~Ahmed, M.~Arjovsky, V.~Dumoulin, and A.~C.Courville,
   2017. [Online]. Available: \url{http://arxiv.org/abs/1704.00028}
 \BIBentrySTDinterwordspacing
 
-\bibitem{castellini2021neural}
-P.~Castellini, N.~Giulietti, N.~Falcionelli, A.~F. Dragoni, and P.~Chiariotti,
-  ``A neural network based microphone array approach to grid-less noise source
-  localization,'' \emph{Applied Acoustics}, vol. 177, p. 107947, 2021.
-
-\bibitem{lee2021deep}
-S.~Y. Lee, J.~Chang, and S.~Lee, ``Deep learning-based method for multiple
-  sound source localization with high resolution and accuracy,''
-  \emph{Mechanical Systems and Signal Processing}, vol. 161, p. 107959, 2021.
-
-\bibitem{ma2019phased}
-W.~Ma and X.~Liu, ``Phased microphone array for sound source localization with
-  deep learning,'' \emph{Aerospace Systems}, vol.~2, no.~2, pp. 71--81, 2019.
-
-\bibitem{xu2021deep}
-P.~Xu, E.~J. Arcondoulis, and Y.~Liu, ``Deep neural network models for acoustic
-  source localization,'' in \emph{Berlin Beamforming Conference}, 2021.
-
-\bibitem{kujawski2022fast}
-A.~Kujawski and E.~Sarradj, ``Fast grid-free strength mapping of multiple sound
-  sources from microphone array data using a transformer architecture,''
-  \emph{The Journal of the Acoustical Society of America}, vol. 152, no.~5, pp.
-  2543--2556, 2022.
+\bibitem{kujawski2022acoupipe}
+\BIBentryALTinterwordspacing
+A.~Kujawski, ``Acoupipe: A library for large-scale microphone array data
+  simulation to solve deep learning tasks.'' [Online]. Available:
+  \url{https://github.com/adku1173/acoupipe}
+\BIBentrySTDinterwordspacing
 
 \bibitem{gerstoft2012eigenvalues}
 P.~Gerstoft, R.~Menon, W.~S. Hodgkiss, and C.~F. Mecklenbr{\"a}uker,

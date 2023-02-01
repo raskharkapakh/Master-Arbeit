@@ -1,9 +1,11 @@
 import tensorflow as tf
+import matplotlib.pyplot as plt
 from pylab import figure, imshow, colorbar, newaxis, diag, array
 from os import path
 from acoular import __file__ as bpath, MicGeom, RectGrid, SteeringVector,\
  BeamformerBase, L_p, ImportGrid
 from spectra import PowerSpectraImport
+import numpy as np
 
 
 def beamform(csm, helmotz_number=4.0625, measurement=False):
@@ -12,7 +14,7 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
     scaling = 1.0
     if measurement:
         mg = MicGeom(from_file='tub_vogel64.xml')
-        scaling = 1.5
+        scaling = 1.4648587220804408#1.5
     f = (helmotz_number*343)/scaling
     # generate test data, in real life this would come from an array measurement
     
@@ -30,14 +32,80 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
                         cached=False)
     pm = bb.synthetic(f, 0)
     Lm = L_p(pm)
-
+    
     # show map
-    #figure()
+    
+    #fig = plt.figure(figsize=(10,10))
+    #nb_fontsize = 15
+    
     imshow(Lm.T,
             origin='lower',
             vmin=Lm.max()-20,
             extent=rg.extend(),
             interpolation='bicubic')
+    
+    #plt.xticks(fontsize=nb_fontsize)
+    #plt.yticks(fontsize=nb_fontsize)
+    
+    colorbar()
+
+    return None
+
+def beamform_difference(csm1, csm2, helmotz_number=4.0625, measurement=False):
+    
+    mg = MicGeom(from_file='tub_vogel64_ap1.xml')
+    scaling = 1.0
+    if measurement:
+        mg = MicGeom(from_file='tub_vogel64.xml')
+        scaling = 1.5
+    f = (helmotz_number*343)/scaling
+    # generate test data, in real life this would come from an array measurement
+    
+    ps_import1 = PowerSpectraImport(csm=csm1.copy(), frequencies=f)
+    ps_import2 = PowerSpectraImport(csm=csm2.copy(), frequencies=f)
+    
+    rg = RectGrid(x_min=-0.5*scaling,
+                x_max=0.5*scaling,
+                y_min=-0.5*scaling,
+                y_max=0.5*scaling,
+                z=0.5*scaling,
+                increment=0.01)
+    st = SteeringVector(grid=rg, mics=mg)
+    
+    bb1 = BeamformerBase(freq_data=ps_import1,
+                        steer=st,
+                        r_diag=False,
+                        cached=False)
+    bb2 = BeamformerBase(freq_data=ps_import2,
+                        steer=st,
+                        r_diag=False,
+                        cached=False)
+    
+    pm1 = bb1.synthetic(f, 0)
+    pm2 = bb2.synthetic(f, 0)
+    
+    Lm1 = L_p(pm1)
+    Lm2 = L_p(pm2)
+
+    print(type(Lm1))
+    
+    diff = Lm1.T - Lm2.T
+    
+    diff = np.flip(diff, axis=0)
+    
+    # show difference between the two beamforming maps
+    
+    #fig = plt.figure(figsize=(10,10))
+    #nb_fontsize = 15
+    
+    imshow(diff,
+           vmin=diff.min(),
+           vmax=diff.max(),
+           extent=rg.extend(),
+            interpolation='bicubic')
+    #plt.xticks(fontsize=nb_fontsize)
+    #plt.yticks(fontsize=nb_fontsize)
+
     colorbar()
 
     return None

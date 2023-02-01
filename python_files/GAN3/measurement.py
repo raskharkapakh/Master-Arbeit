@@ -3,7 +3,7 @@ import numpy as np
 import tensorflow as tf
 from eigenmanipulation import normalize_evals, levelify
 
-def get_measurement_sample(measurement_name, freq_index):
+def get_measurement_sample(measurement_name, helmotz_number):
 
     nb_samples = acoular.TimeSamples(name=measurement_name).numsamples
         
@@ -11,6 +11,12 @@ def get_measurement_sample(measurement_name, freq_index):
 
     # Get a random slice of measurement 
     ts_slice = acoular.MaskedTimeSamples(name=measurement_name)
+
+    BLOCKSIZE = 128
+    SAMPLING_FREQUENCY = ts_slice.sample_freq
+    SPEED_OF_SOUND = 343
+    APERTURE_SIZE = 1.4648587220804408#1.5
+    
 
     nb_slices = 50 # maximum number of non-overlapping slices wished
     slice_length = int(np.floor(nb_samples/nb_slices)) # length of slice to use
@@ -20,16 +26,22 @@ def get_measurement_sample(measurement_name, freq_index):
     ts_slice.start = start_index
     ts_slice.stop = stop_index
 
+
+    
     # Creating the power spectra (object containing the cross spectral matrix)
-    ps = acoular.PowerSpectra(time_data=ts_slice, block_size=128, window='Hanning', overlap="75%")
+    ps = acoular.PowerSpectra(time_data=ts_slice, block_size=BLOCKSIZE, window='Hanning', overlap="75%")
     #TODO: uncomment if necessary: print(f"measurement #blocks: {ps.num_blocks}")
     # get csm
     csm = ps.csm
-    
-    
 
-    #freq_index = 64
+
+    f = (helmotz_number*SPEED_OF_SOUND)/APERTURE_SIZE
+    freq_index = (f*BLOCKSIZE)/SAMPLING_FREQUENCY
+    freq_index = int(np.round(freq_index))
+
     freq_csm = csm[freq_index, :, :]
+
+    print(freq_csm[63,63])
 
     # extract eigenvalues and eigenvectors from CSM
     main_evecs, noise_evecs, evals, evals_dB_tf = get_evals_evecs(freq_csm)

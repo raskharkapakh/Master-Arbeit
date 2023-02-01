@@ -20,7 +20,7 @@ from eigenmanipulation import normalize_evecs
 # parameters
 num_channels = 1
 #evecs_SHAPE = (64,64,2)
-evecs_SHAPE = (1,64,2)
+evecs_SHAPE = (64,1,2)#(1,64,2)
 
 latent_dim = 128
 batch_size = 16

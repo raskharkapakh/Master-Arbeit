@@ -23,12 +23,14 @@ def get_sample2(loc, helmotz_number):
     
     csm = wcsm.sample_csm()
     
+    scaling = 5.544528947189135e-07 
+
     # create noise
     wcsm_noise = WishartCSM(
         mics=MicGeom( from_file="tub_vogel64_ap1.xml"),
         loc=(0,0,0.5),
         f=f,
-        scale=np.eye(64)*.1,
+        scale=np.eye(64)*scaling,#"""scale=np.eye(64)*.1,
         df=df,
     )
 
@@ -37,6 +39,13 @@ def get_sample2(loc, helmotz_number):
     # get "realistic" (i.e. noisy) CSM
     realistic_csm = csm + noise
     
+    # Compute SNR
+    snr = 10*np.log10(csm.diagonal()[63]/noise.diagonal()[63])
+    snr = np.real(snr)
+    snr = np.round(100*snr)/100.0 # rounding
+    print(f"SNR={snr}dB")
+    
+
 
     # extract eigenvalues (as square shape) and eigenvectors
     evals, evecs = tf.linalg.eigh(realistic_csm)

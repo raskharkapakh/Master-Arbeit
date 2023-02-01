@@ -21,7 +21,7 @@ from eigenmanipulation import normalize_evecs
 
 # parameters
 num_channels = 1
-evecs_SHAPE = (63,64,2)
+evecs_SHAPE = (64,63,2)
 #latent_dim = 128
 batch_size = 16
 #n_critic = 5
