@@ -36,18 +36,23 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
     # show map
     
     #fig = plt.figure(figsize=(10,10))
-    #nb_fontsize = 15
+    nb_fontsize = 20
     
-    imshow(Lm.T,
+
+    im = imshow(Lm.T,
             origin='lower',
             vmin=Lm.max()-20,
             extent=rg.extend(),
             interpolation='bicubic')
     
-    #plt.xticks(fontsize=nb_fontsize)
-    #plt.yticks(fontsize=nb_fontsize)
+    plt.xlabel(r"$x$", fontsize=nb_fontsize)
+    plt.ylabel(r"$y$", fontsize=nb_fontsize)
+    plt.xticks(fontsize=nb_fontsize)
+    plt.yticks(fontsize=nb_fontsize)
     
-    colorbar()
+    cbar = colorbar(im)
+    im.figure.axes[1].tick_params(labelsize=nb_fontsize)
+    cbar.set_label(r'$L_p/$dB', rotation=90, fontsize=nb_fontsize)
 
     return None
 
@@ -95,18 +100,24 @@ def beamform_difference(csm1, csm2, helmotz_number=4.0625, measurement=False):
     
     # show difference between the two beamforming maps
     
-    #fig = plt.figure(figsize=(10,10))
-    #nb_fontsize = 15
+    nb_fontsize = 20
     
-    imshow(diff,
+  
+    
+    im = imshow(diff,
            vmin=diff.min(),
            vmax=diff.max(),
            extent=rg.extend(),
             interpolation='bicubic')
-    #plt.xticks(fontsize=nb_fontsize)
-    #plt.yticks(fontsize=nb_fontsize)
-
-    colorbar()
+    
+    plt.xlabel(r"$x$", fontsize=nb_fontsize)
+    plt.ylabel(r"$y$", fontsize=nb_fontsize)
+    plt.xticks(fontsize=nb_fontsize)
+    plt.yticks(fontsize=nb_fontsize)
+    
+    cbar = colorbar(im)
+    im.figure.axes[1].tick_params(labelsize=nb_fontsize)
+    cbar.set_label(r'$L_p/$dB', rotation=90, fontsize=nb_fontsize)
 
     return None
 

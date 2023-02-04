@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 from evals_WGANGP import evals_WGANGP
 from data_generation import get_sample
 from beamforming import beamform, get_csm
-from eigenmanipulation import unlevelify
+from eigenmanipulation import unlevelify, normalize_evals, normalize_evecs
 
 
-def get_augmented_csm(evals_dB_wgangp, evecs_dataset):
+def get_augmented_csm_from_eval(evals_dB_wgangp, evecs_dataset):
     
     _, evals_dB = evals_dB_wgangp.generate_evals(nb_trial=10)
 
@@ -21,6 +21,21 @@ def get_augmented_csm(evals_dB_wgangp, evecs_dataset):
     augmented_csm = get_csm(evecs_real, evecs_imag, evals)
     
     return augmented_csm
+
+def get_augmented_csm_from_evec(main_evec_wgangp, evals, noise_evecs):
+    
+    _, main_evec_generated = main_evec_wgangp.generate_evecs(nb_trial=10)
+
+    evals = normalize_evals(np.sort(np.array(evals[ :, :, 0]).flatten())) # convert sample from (1,8,8,1) to (64,)
+    
+    evecs = normalize_evecs(tf.concat([noise_evecs, main_evec_generated[0,:,:,:]],axis=-2))
+    evecs_real = evecs[:,:,0]
+    evecs_imag = evecs[:,:,1]
+    
+    augmented_csm = get_csm(evecs_real, evecs_imag, evals)
+    
+    return augmented_csm
+    
     
     
 

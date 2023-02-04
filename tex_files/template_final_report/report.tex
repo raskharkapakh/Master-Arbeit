@@ -10,6 +10,8 @@
 \usepackage{emptypage} % removes header/footer from empty pages
 \usetikzlibrary{fit} % used for the example tikzpicture
 \usepackage{pdfpages} % to include external pdf-documents
+\usepackage{subcaption}
+\usepackage{graphicx}
 
 %\renewcommand{\baselinestretch}{1.2}
 
@@ -46,7 +48,7 @@
     \vspace{\stretch{8}}
     \Huge\textbf{
       Using A Generative Adversarial Network\\
-      For Generating Microphone Array Data. TODO: fix title
+      For Generating Microphone Array Data. TODO: change title ?
     }
 
     
@@ -66,37 +68,16 @@
 \end{titlepage}
 
 
-% Acknowledgments
-\chapter*{Acknowledgments}
-I would like to thank \ldots
-
-
-\vspace{11mm}
-\noindent
-Berlin, 6 February 2023
-
-\vspace{19mm}
-\noindent
-Gaspard Ulysse Fragnière \null
-
 \cleardoublepage
 
 % English abstract
 \thispagestyle{empty}
 \chapter*{Abstract}
 
-Here comes the abstract\ldots
+This thesis investigates whether Generative Adversial Network can be used to generate realistic Cross Spectral Matrix (CSM) through their eigendecomposition. Models to generate the eigenvalues' spectrum as well the strongest eigenvector are proposed. The GAN model used to generate those quantities is a Wasserstein GAN with penalized norm of gradient of the critic with respect to its input (WGAN-GP). Based on those models, a data augmentation scheme allowing to improve the realness of synthetic CSM is introduced. 
 
 \clearpage
 
-% Abstract in other language(s) (optional)
-\thispagestyle{empty}
-\german
-\chapter*{Zusammenfassung}
-
-Das ist die Zusammenfassung \ldots
-
-\english
 \cleardoublepage
 
 % Setup the fancy headers
@@ -180,7 +161,7 @@ In \cite{hubner2021efficient} introduce a low complexity model-based method for 
 
 Several methods were introduced to generate acoustical quantities, but most do not propose methods that are really suited for multi-channel data generation using deep learning. Indeed, only a few papers proposes methods for multichannel data generation. 
 
-Moreover, it is relevant to note that the data used for source characterization in \cite{castellini2021neural}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{xu2021deep} is the Cross Spectral Matrix (CSM), i.e. a direct representation of the signals received in the array of microphone. Indeed those approaches do not use direct recording of microphone input but instead this feature extracted from the raw data. This is crucial because it means that recording, simulating or generating raw microphone data is not necessary, if realistic CSMs could be generated directly. 
+Moreover, it is relevant to note that the data used for source characterization in \cite{castellini2021neural}, \cite{lee2021deep}, \cite{ma2019phased}, \cite{xu2021deep} is the Cross Spectral Matrix (CSM), i.e. a direct representation of the signals received in the array of microphone. Indeed those approaches do not use direct recording of microphone input but instead this feature extracted from the raw data. This is crucial because it means that recording, simulating or generating raw microphone data is not necessary, if realistic CSM could be generated directly. 
 
 Therefore, the goal of the this thesis would be to investigate more general representation of the microphone array data by generating the CSM directly or inderectly, as realisticly as possible. It is to be noted that the approach proposed in \cite{gerstoft2020parametric} can be a starting point for the purpose of this thesis. Indeed, this paper introduced a bootstrapping procedure, for the creation of CSM snapshots for a single source position.
 
@@ -260,7 +241,7 @@ Using the steering vectors $g_{n,m}$ for $(n,m) \in [1, \dots, N] \times [1, \do
     A(\xi_n) = \frac{1}{2} \frac{\mathbf{g}_{n}^H \hat{\mathbf{C}} \mathbf{g}_{n}}{||\mathbf{g}_{n}||^4}
 \end{equation}
 
-This provides a source map. An example of source map can be seen in Fig. \ref{fig:beamforming_example}. Moreover, \cite{sarradj2010fast} shows that equation \ref{autopower}, can also be used with a Rank I CSM $\hat{\mathbf{C}}_i$, giving
+This provides a source map. An example of source map can be seen in Fig.~\ref{fig:beamforming_example}. Moreover, \cite{sarradj2010fast} shows that equation \ref{autopower}, can also be used with a Rank I CSM $\hat{\mathbf{C}}_i$, giving
 
 \begin{equation}
     A(\xi_n) = \frac{1}{2} \frac{\mathbf{g}_{n}^H \hat{\mathbf{C}}_i \mathbf{g}_{n}}{||\mathbf{g}_{n}||^4}
@@ -300,32 +281,32 @@ Both models are trained simultaneously. First the generator create a batch of fa
 In a gaming theory framework, both networks are competing in a zero-sum game. This means that if one network performs well at its task and gets rewarded by little weights update, the other must have performed poorly and hence gets penalized by heavy weights updated. E.g. if the discriminator was successful at classifying all samples, it means that the generator had not been able to fool the discriminator by producing any realistic fake samples.  
 
 
-\section{DCGAN}
+%\section{DCGAN}
 
-\cite{radford2015unsupervised} introduce GAN, but unlike in \cite{goodfellow2020generative}, the architecture of the discriminator and generator is not achieved with regular perceptron, but with Convolutional layer. First, it needs to be reminded how a regular perceptron layer works. For an input vector $\mathbf{x} \in \mathbb{R}^k$ and output vector $\mathbf{y} \in \mathbb{R}^l$, a perceptron layer consists of two parts:
+%\cite{radford2015unsupervised} introduce GAN, but unlike in \cite{goodfellow2020generative}, the architecture of the discriminator and generator is not achieved with regular perceptron, but with Convolutional layer. First, it needs to be reminded how a regular perceptron layer works. For an input vector $\mathbf{x} \in \mathbb{R}^k$ and output vector $\mathbf{y} \in \mathbb{R}^l$, a perceptron layer consists of two parts:
 
-\begin{itemize}
-    \item an activation $\mathbf{a} = \mathbf{W} \mathbf{x} + \mathbf{b}$
-    \item a non-linearity $y = f(\mathbf{x};\theta) = \sigma(\mathbf{a})$
-\end{itemize}
+%\begin{itemize}
+%    \item an activation $\mathbf{a} = \mathbf{W} \mathbf{x} + \mathbf{b}$
+%    \item a non-linearity $y = f(\mathbf{x};\theta) = \sigma(\mathbf{a})$
+%\end{itemize}
 
-where $\mathbf{W} \in \mathbb{R}^{l \times k}$ are the weights of the perceptron and $\mathbf{b} \in \mathbb{R}^l$ its bias. $\sigma(\cdot)$ is called the activation function and is the source of non linearity in neural networks. An example of such activation function is the Rectified Linear Unit (ReLU) where:
+%where $\mathbf{W} \in \mathbb{R}^{l \times k}$ are the weights of the perceptron and $\mathbf{b} \in \mathbb{R}^l$ its bias. $\sigma(\cdot)$ is called the activation function and is the source of non linearity in neural networks. An example of such activation function is the Rectified Linear Unit (ReLU) where:
 
-\begin{equation}
-    \sigma_{\text{ReLU}}(\mathbf{a}) = [\max(a_0, 0), \dots, \max(a_{l-1}, 0)]^T
-\end{equation}
+%\begin{equation}
+%    \sigma_{\text{ReLU}}(\mathbf{a}) = [\max(a_0, 0), \dots, \max(a_{l-1}, 0)]^T
+%\end{equation}
 
-The architecture of a convolutional layer can now be introduced. Without loss of generality, the assumption that the network receives as input an square image with a single channel is made, i.e. $\mathbf{H_0} \in \mathbb{R}^{d_0 \times (m \times m)}$ with $d_0 = 1$, transforms it with one square kernel, i.e. $\mathbf{K} \in \mathbb{R}^{s \times (r \times r)}$ with $s = 1$ to output another square image with a single channel, i.e. $\mathbf{H_1} \in \mathbb{R}^{d_1 \times (n \times n)}$, with $d_1 = 1$
+%The architecture of a convolutional layer can now be introduced. Without loss of generality, the assumption that the network receives as input an square image with a single channel is made, i.e. $\mathbf{H_0} \in \mathbb{R}^{d_0 \times (m \times m)}$ with $d_0 = 1$, transforms it with one square kernel, i.e. $\mathbf{K} \in \mathbb{R}^{s \times (r \times r)}$ with $s = 1$ to output another square image with a single channel, i.e. $\mathbf{H_1} \in \mathbb{R}^{d_1 \times (n \times n)}$, with $d_1 = 1$
 
-The relationship between input image $\mathbf{H_0} \in \mathbb{R}^{m \times m}$, output image $\mathbf{H_1} \in \mathbb{R}^{n \times n}$ and kernel $\mathbf{K} \in \mathbb{R}^{r \times r}$ is defined as:
+%The relationship between input image $\mathbf{H_0} \in \mathbb{R}^{m \times m}$, output image $\mathbf{H_1} \in \mathbb{R}^{n \times n}$ and kernel $\mathbf{K} \in \mathbb{R}^{r \times r}$ is defined as:
 
 
-\begin{itemize} 
-    \item an activation $\mathbf{A} = \mathbf{H_0} \ast \mathbf{K}$
-    \item a non-linearity $\mathbf{H_1}_{(i,j)} = \sigma(\mathbf{A}_{(i,j)})$ 
-\end{itemize}
+%\begin{itemize} 
+%    \item an activation $\mathbf{A} = \mathbf{H_0} \ast \mathbf{K}$
+%    \item a non-linearity $\mathbf{H_1}_{(i,j)} = \sigma(\mathbf{A}_{(i,j)})$ 
+%\end{itemize}
 
-\cite{radford2015unsupervised} proposes a set of constraint that makes the use of convulotional layers possible in GAN setting.
+%\cite{radford2015unsupervised} proposes a set of constraint that makes the use of convulotional layers possible in GAN setting.
 
 
 \section{WGAN}
@@ -413,9 +394,9 @@ This simple example shows that there exist distributions for which the Total Var
     \item Statements 1 and 2 do not hold for neither $JS(P_r, P_{\theta})$, $KL(P_r||P_{\theta})$ or $KL(P_{\theta}||P_r)$.
 \end{enumerate}
 
-This first theorem shows that out of the four loss functions above-mentioned, only the Eart-Mover has some guarantees of both continuinity and differentiability, which are nice gurantees for a loss function.
+This first theorem shows that out of the four loss functions above-mentioned, only the Earth-Mover has some guarantees of both continuity and differentiability, which are nice guarantees for a loss function.
 
-\textbf{Theorem 2:} Let $P$ be a distribution and $(P_n)_{n \in \mathbb{N}}$ be a sequence of distributions. The the following is true
+\textbf{Theorem 2:} Let $P$ be a distribution and $(P_n)_{n \in \mathbb{N}}$ be a sequence of distributions. The following is true
 
 \begin{enumerate}
     \item The following statements are equivalent:
@@ -432,9 +413,9 @@ This first theorem shows that out of the four loss functions above-mentioned, on
     \item Statement 1 implies statement 2.
 \end{enumerate}
 
-The above theorem proves that every distribution that converges under the Kullback-Leiber divergence (in any direction), the Jensen-Shannon divergence or the Total Variation also converges under the Earth-Mover distance. It also shows that a smaller difference between two probability distribution implies a smaller EM distance. 
+The above theorem proves that every distribution that converges under the Kullback-Leibler divergence (in any direction), the Jensen-Shannon divergence or the Total Variation also converges under the Earth-Mover distance. It also shows that a smaller difference between two probability distribution implies a smaller EM distance. 
 
-Unfortunately the EM distance is intractable, due to the infinum part in its equation. But using the Kantorovich-Rubinstein duality, it can be reformulated as:
+Unfortunately the EM distance is intractable, due to the infimum part in its equation. But using the Kantorovich-Rubinstein duality, it can be reformulated as:
 
 
 
@@ -448,7 +429,7 @@ Where the supremum is over 1-Lipschitz functions. It is important to note that i
     \max_{w \in \mathcal{W}}  \mathbb{E}_{x \sim \mathbb{P}_r}[f_w(x)] - \mathbb{E}_{z \sim p(z)}[f_w(g_{\theta}(z))]
 \end{equation}
 
-Note: the solution of the above mentioned problem can approximated with a Neural Network with weights $\mathcal{W}$. $\mathcal{W}$ need to be compact to assure that the function $f_w$ are K-Lipschitz. Therefore in order to have $\mathcal{W}$ being compact, \cite{arjovsky2017wasserstein} proposes to simply clip the weights, such that they lay in a small box $[-c, c]^l$, e.g. with $c = 0.01$
+Note: the solution of the above-mentioned problem can be approximated with a Neural Network with weights $\mathcal{W}$. $\mathcal{W}$ need to be compact to assure that the function $f_w$ are K-Lipschitz. Therefore, in order to have $\mathcal{W}$ being compact, \cite{arjovsky2017wasserstein} proposes to simply clip the weights, such that they lay in a small box $[-c, c]^l$, e.g. with $c = 0.01$
 
 \subsection{Necessary changes to turn a GAN into a WGAN}
 
@@ -457,8 +438,8 @@ Implementation of a WGAN requires a few changes from implementation of a regular
 \begin{itemize}
     \item Use a linear activation function in the output layer of the "discriminator" model (instead of sigmoid). The "discriminator" then becomes a critic that quantify the realness of a sample, instead of discriminating between real or fake.
     \item Use Wasserstein loss to train the critic and generator models that promotes larger difference between scores for real and generated images. 
-    \item Constrain critic model weights to a limited range after each mini batch update (e.g. [-0.01,0.01]). As seen above, this is to ensure, that the function estimated in the for approximting the Wasserstein distance are K-lipschitz, a necessary condition.
-    \item Update the critic model more times than the generator each iteration (e.g. 5). Contrary as in a GAN, this is not a issue. Indeed, switching to the EM distance, allows for more stability when training the two networks in the WGAN. Moreover, the fact that the EM distance is continuous and differentiable means that the critic should be trained until optimality.
+    \item Constrain critic model weights to a limited range after each mini batch update (e.g. [-0.01,0.01]). As seen above, this is to ensure, that the function estimated in the for approximating the Wasserstein distance are K-lipschitz, a necessary condition.
+    \item Update the critic model more times than the generator each iteration (e.g. 5). Contrary as in a GAN, this is not an issue. Indeed, switching to the EM distance, allows for more stability when training the two networks in the WGAN. Moreover, the fact that the EM distance is continuous and differentiable means that the critic should be trained until optimality.
     \item Use the RMSProp version of gradient descent with small learning rate and no momentum (e.g. 0.00005).
     
 \end{itemize}
@@ -493,7 +474,7 @@ The goal of the penalty is to enforce the 1-Lipschitz constraint. Indeed, by def
 
 The sampling distribution $\mathbb{P}_{\hat{\mathbf{x}}}$ is defined by sampling uniformly on on a line between a pair of points respectively sampled from $\mathbb{P}_{r}$ and $\mathbb{P}_{g}$. This was proven experimentally to give sufficiently good results.
 
-In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done. No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to macth a batch input to a batch output. This makes the penalty invalid, since the penalization is perfomed with each input individually and batch normalization introduce correlation between samples. Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recomnends layer normalizations.
+In \cite{DBLP:journals/corr/GulrajaniAADC17}, the penalty coefficient $\lambda$ was set always to 10 in all experiences done. No batch normalization was used in \cite{DBLP:journals/corr/GulrajaniAADC17}. They claim that batch normalization shifts the discriminator problem from trying to match a single input to a single output from trying to match a batch input to a batch output. This makes the penalty invalid, since the penalization is performed with each input individually and batch normalization introduce correlation between samples. Instead of batch normalization, \cite{DBLP:journals/corr/GulrajaniAADC17} recommends layer normalizations.
 
 \section{Assessing performances of a WGAN or WGAN-GP compared to GAN} \label{sec:assessing_perf}
 
@@ -507,17 +488,17 @@ In this chapter, the investigated methods of the thesis for the approximation of
 
 This choice of generating the CSM through its eigendecomposition instead of generating directly the CSM or generating snapshot as in \cite{gerstoft2020parametric} can be justified. On the one hand, the CSM is a complex data structure and building a model to learn its probability distribution is a hard task. Indeed, CSM are complex and hermitian matrices. On the other hand, generating the snapshots is a computationally extensive.
 
-Moreover generating the eignvalues comes with two advantages. First, a model to generate eigenvalues of CSM would allow for a quick data augmentation stategy. By using generated eigenvalues and real eigenvectors, the datasets could be extended. This is of particular interest, since the measurement datasets at our disposal is too small for a learning task. Then, being able to generate the eigenvalues could be used to realify synthetic CSM. As it will be shown, one significative difference between synthetic CSM and CSM from real measurement is the steepness in the decay of the eigenvalues spectrum.
+Moreover, generating the eigenvalues comes with two advantages. First, a model to generate eigenvalues of CSM would allow for a quick data augmentation strategy. By using generated eigenvalues and real eigenvectors, the datasets could be extended. This is of particular interest, since the measurement datasets at our disposal is too small for a learning task. Then, being able to generate the eigenvalues could be used to realify synthetic CSM. As it will be shown, one significative difference between synthetic CSM and CSM from real measurement is the steepness in the decay of the eigenvalues spectrum.
 
 Generating the eigenvectors also comes with benefits. All the positional information of a source (and its coherent component) are contained in the eigenvectors. In free-field synthetic source cases, an eigenvector is different to a measured one which holds the source position and the information from coherent reflections of the environment. In this sense, Replacing the strongest eigenvector with a generated one trained from measured data would probably already improve the degree of realism. It is to be noted that the strongest eigenvector contains the information about the source, in the case of a single source.
 
-Moreover, the eigenvectors can be normalized and the eigenvalues scaled such that they all lies in $[0,1]$. Both these normalization and scaling process could allow to reduce the size of the space of data to generate and hence improve performances.
+Moreover, the eigenvectors can be normalized and the eigenvalues scaled such that they all lies in $[0,1]$. Both these normalization and scaling processes could allow to reduce the size of the space of data to generate and hence improve performances.
 
-Each of the above mentionned techniques are of valuable interest for supervised learning of deep learning models. Moreover, data does not need to be saved on disk and can be created swiftly, once the models are trained. 
+Each of the above-mentioned techniques are of valuable interest for supervised learning of deep learning models. Moreover, data does not need to be saved on disk and can be created swiftly, once the models are trained. 
 
-Finally it is worth mentionning that the data generated in this thesis contains only a single source (plus some noise). But this can be extended to  the multiple source cases since it can be created by superposition of individual CSMs.
+Finally, it is worth mentioning that the data generated in this thesis contains only a single source (plus some noise). But this can be extended to  the multiple source cases since it can be created by superposition of individual CSM.
 
-As mentioned in the introduction using only real measurment was not a feasible approach, since there are enough measurement available required for training. For this reason, the chosen approach was to first pretrain the models using the eigendecomposition of synthetic CSMs and then fine-tune the model using eigendecomposition of CSMs of recorded pressure vectors $\mathbf{p}$. 
+As mentioned in the introduction using only real measurement was not a feasible approach, since there are enough measurement available required for training. For this reason, the chosen approach was to first pretrain the models using the eigendecomposition of synthetic CSM and then fine-tune the model using eigendecomposition of CSM of recorded pressure vectors $\mathbf{p}$. 
 
 Different approaches to generate the CSM from their eigendecomposition have been considered. Those approaches were the following:
 
@@ -526,7 +507,7 @@ Different approaches to generate the CSM from their eigendecomposition have been
     \item Generating only the eigenvalues.
     \item Generating only the levels of eigenvalues.
     \item Generating only a single eigenvector. More specifically only the strongest eigenvector is generated, since it is the one containing the information about the strongest source, which is the only source in our case. 
-    \item Generating all the remaining weakest eigenvectors.
+    \item Generating all the remaining weakest eigenvectors. This approach has not been investigated in depth. Trying to generate the remaining weakest eigenvector the same way as done for the strongest eigenvector has been tried but not successfully.  
 \end{itemize}
 
 \section{Data}
@@ -535,58 +516,73 @@ For training the networks designed in this thesis, two kinds of data were used, 
 
 \subsection{Synthetic Data}
 
-When a specific measurement was chosen to create the measurement dataset, its source's position was used to create the corresponding synthetic data. The synthetic CSM were sampled from the complex Wishart distribution. The number of degree of freedom was set to $4 \times M = 256$, since they are 64 microphones. Moreover some noise was added to the synthetic CSM, such that the SNR of synthetic data was approximately matching the one of the measurement data. Here the SNR was approximately to 60dB. 
+When a specific measurement was chosen to create the measurement dataset, its source's position was used to create the corresponding synthetic data. The synthetic CSM were sampled from the complex Wishart distribution. The number of degree of freedom was set to $4 \times M = 256$, since they are 64 microphones. Moreover, some noise was added to the synthetic CSM, such that the SNR of synthetic data was approximately matching the one of the measurement data. Here the SNR was approximately to 60dB. 
 
-When creating the CSM from the synthetic data, the CSM corresponding to the Helmotz number $He = 16$ were created. In the case of the synthetic data, the characteristic dimension was $d_s = 1$, hence the frequency related to the Helmotz number $He$ was $f = 5.488$kHz. The source position used in the synthetic was $(x \cdot d_s,y \cdot d_s, z \cdot d_s) = (-0.06,-0.074, 0.5)$\textbf{TODO: change value}. 
+When creating the CSM from the synthetic data, the CSM corresponding to the Helmotz number $He = 16$ were created. In the case of the synthetic data, the characteristic dimension was $d_s = 1$, hence the frequency related to the Helmotz number $He$ was $f = 5.488$kHz. The source position used in the synthetic was $(x \cdot d_s,y \cdot d_s, z \cdot d_s) = (-0.0614,-0.0757, 0.5)$.
 
 \subsection{Measurement}
 
-In order to generate realistic data, measurement have been performed. An example of the measurement setup is displayed in Fig. \ref{fig:full_measurement_setup}. It is made of sound sources located at different position $(x \cdot d_m,y \cdot d_m, z \cdot d_m)$ in a $1 \cdot d_m$m $\times$ $1 \cdot d_m$m plane located $0.5 \cdot d$ meter in front an array of 64 microphones. In the case of the measurement data, the characteristic dimension $d_m$ was equal to $1.46$. Every measurement corresponds to single source case, at a different position for every measurement. All measurements have a duration 10s and a sampling frequency of 51.2kHz. We note here that the SNR of the recordings was of 62.5dB. For the recordings, the microphones were organized in Vogel's spiral pattern, with the central one acting as the reference microphone.  Fig. \ref{fig:source} shows one of the loudspeaker used  for the measurement setup and Fig. \ref{fig:microphone_array} shows the microphone array. The measurements are sound pressure $\mathbf{p} \in \mathbb{C}^{64}$ at the 64 microphones of the array.
+In order to generate realistic data, measurement have been performed. An example of the measurement setup is displayed in Fig.~\ref{fig:full_measurement_setup}. The measurement used were taken from the measurement campaign of 2022 \textbf{TODO: ask how to formulate this properly}. It is made of sound sources located at different position $(x \cdot d_m,y \cdot d_m, z \cdot d_m)$ in a $1 \cdot d_m$m $\times$ $1 \cdot d_m$m plane located $0.5 \cdot d$ meter in front an array of 64 microphones. In the case of the measurement data, the characteristic dimension $d_m$ was equal to $1.46$, which is the aperture size $AP$ of the microphone array. Every measurement corresponds to single source case, at a different position for every measurement. All measurements have a duration 10s and a sampling frequency of 51.2kHz. We note here that the SNR of the recordings was of 62.5dB. For the recordings, the microphones were organised in Vogel's spiral pattern, with the central one acting as the reference microphone.  Fig.~\ref{fig:source} shows one of the loudspeaker used  for the measurement setup and Fig.~\ref{fig:microphone_array} shows the microphone array. The measurements are sound pressure $\mathbf{p} \in \mathbb{C}^{64}$ at the 64 microphones of the array.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{figs/full_measurement_setup.pdf}
-    \caption{Example of the measurement setup used, with three audio sources. Image taken from \cite{kujawski2022acoupipe}}
+    \caption{Example of the measurement setup used, with three audio sources. This is image is only for illustration purposes. In the actual performed measurement, there was only one audio source. Moreover, the dimension showed in the picture are for an aperture size of 1m, whereas in the actual performed measurement, the aperture size was of 1.46m. This means that in the actual setup every dimension were actually 1.46 times bigger than in the image. This image is taken from \cite{kujawski2022acoupipe}}
     \label{fig:full_measurement_setup}
 \end{figure} 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.65\textwidth]{figs/source.png}
-    \caption{Device used as audio source to create the measurement}
-    \label{fig:source}
+    \begin{minipage}{0.45\textwidth}
+        \includegraphics[width=1\textwidth]{figs/source.png}
+        \caption{Device used as audio source to create the measurement}
+        \label{fig:source}
+    \end{minipage}\hfill
+    \begin{minipage}{0.5\textwidth}
+        \includegraphics[width=1\textwidth]{figs/microphone_array_cropped.jpg}
+        \caption{Picture of the array of microphone used to create the real measurement}
+        \label{fig:microphone_array}
+    \end{minipage}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.65\textwidth]{figs/microphone_array_cropped.jpg}
-    \caption{Picture of the array of microphone used to create the real measurement}
-    \label{fig:microphone_array}
-\end{figure}
 
-
-From the recorded sound pressure vector $\mathbf{p}$, Welch's method (i.e. equation $\ref{csm}$) is used to compute approximated CSM $\hat{\mathbf{C}}$. From \cite{gerstoft2012eigenvalues}, it is known that the number of snapshots $B$ needed to be at least 4 times the number of receivers $M$ of the array, in order for the eigenvalues of the approximated CSM $\hat{\mathbf{C}}$ to be sufficiently close to the eigenvalues of the real CSM. In this case, the number of receivers $M = 64$, hence $B$ needed to be at least $256$. In order to generate one CSM $\hat{\mathbf{C}}$, a slice of duration 0.2s is extracted from the measurement. From this slice, $B$ snapshots were created. By using a slice of 0.2s duration and extracting snapshots with 75\% overlap, $B = 317$ snapshots could be created per slice of measurement. Per measurement, 200 CSM $\hat{\mathbf{C}}$ were created from 200 slices selected at random. The CSM created from the recordings corresponds to a source located at position $(x \cdot d_m,y \cdot d_m, z \cdot d_m) = (-0.09,-0.111, 0.75)$, Helmotz Number $He = 16$ and its corresponding frequency $f = 3.758$kHz.
+From the recorded sound pressure vector $\mathbf{p}$, Welch's method (i.e. equation $\ref{csm}$) is used to compute approximated CSM $\hat{\mathbf{C}}$. From \cite{gerstoft2012eigenvalues}, it is known that the number of snapshots $B$ needed to be at least 4 times the number of receivers $M$ of the array, in order for the eigenvalues of the approximated CSM $\hat{\mathbf{C}}$ to be sufficiently close to the eigenvalues of the real CSM. In this case, the number of receivers $M = 64$, hence $B$ needed to be at least $256$. In order to generate one CSM $\hat{\mathbf{C}}$, a slice of duration 0.2s is extracted from the measurement. From this slice, $B$ snapshots were created. By using a slice of 0.2s duration and extracting snapshots with 75\% overlap, $B = 317$ snapshots could be created per slice of measurement. Per measurement, 200 CSM $\hat{\mathbf{C}}$ were created from 200 slices selected at random. The CSM created from the recordings corresponds to a source located at position $(x \cdot d_m,y \cdot d_m, z \cdot d_m) = (-0.09,-0.111, 0.7324)$, Helmotz Number $He = 16$ and its corresponding frequency $f = 3.758$kHz.
 
 
 \subsection{Comparison between Synthetic and Measured Data}
 
-Fig. \ref{fig:comparison_synthetic_measurement_data} shows a comparison of the level of eigenvalues of a synthetic CSM compared with a measured CSM. In the synthetic level of eigenvalues, it can first be observed that all the eigenvalues except the first ones are close to zero. When observing the level of the eigenspectrum of the measured data, a slowlier decay can be observed. It can be concluded that the measured and synthetic data are indeed not fully similar and hence that synthetized data cannot replace measured data. This difference be explained by the fact that the synthetic CSMs are closed to the perfection of a mathematical model and hence do not show presence of natural noise created by reverberation for instance.
+Fig.~\ref{fig:comparison_synthetic_measurement_data} shows a comparison of the level of eigenvalues of a synthetic CSM compared with a measured CSM. In the synthetic level of eigenvalues, it can first be observed that all the eigenvalues except the first ones are close to zero. When observing the level of the eigenspectrum of the measured data, a more slowly decay can be observed. It can be concluded that the measured and synthetic data are indeed not fully similar and hence that synthesized data cannot replace measured data. This difference be explained by the fact that the synthetic CSM are closed to the perfection of a mathematical model and hence do not show presence of natural noise created by reverberation for instance.
 
+% DONE
 \begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{figs/comparison_synthetic_measurement_data.pdf}
-    \caption{Levels of the eigenvalues of a synthetized CSM (blue) and of a measured CSM (orange).}
+    \caption{Levels of the eigenvalues of a synthesized CSM (blue) and of a measured CSM (orange).}
     \label{fig:comparison_synthetic_measurement_data}    
 \end{figure}
 
-When generating the dataset, the case of a single source was considered. The audio source is located at the same position, respectively to the charactersitic dimension $d$ on the plane in front of the microphones array. The CSM are frequency dependent and the datasets consists of CSMs with Helmotz number $He = 16$. Example of beamforming maps resulting from CSMs from the datasets are displayed in Fig. \ref{fig:datasets_beamforming_example} (respectively from synthetic and measurement datasets).
+When generating the dataset, the case of a single source was considered. The audio source is located at the same position, respectively to the characteristic dimension $d$ on the plane in front of the microphones array. The CSM are frequency dependent and the datasets consists of CSM with Helmotz number $He = 16$. Example of beamforming maps resulting from CSM from the datasets are displayed in Fig.~\ref{fig:datasets_beamforming_example} (respectively from synthetic and measurement datasets).
+
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{figs/datasets_beamforming_example.pdf}}
-    \caption{Beamforming maps, created respectively with CSMs from the synthetic dataset and from the measurement data}
-    \label{fig:datasets_beamforming_example}    
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_synthetic.pdf}
+        \caption{CSM from synthetic dataset}
+        \label{fig:datasets_beamforming_example_synthetic}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_measurement.pdf}
+        \caption{CSM from measurement dataset}
+        \label{fig:datasets_beamforming_example_measurement}
+    \end{subfigure}
+    \caption{Beamforming maps, created respectively with CSM from the synthetic dataset and from the measurement data.}
+    \label{fig:datasets_beamforming_example}
 \end{figure}
+
 
 \section{Architectures}
 
@@ -596,18 +592,52 @@ In order to generate the different types of data, WGAN-GPs were designed. The di
 
 \subsubsection{Generating Scaled Eigenvalues}
 
-The first WGAN-GP created was to generate the scaled eigenvalues $[\lambda_0, \dots, \lambda_{63}] \in ]0,1]^{64}$. These eigenvalues are sorted such that $\lambda_0 \leq \lambda_1 \leq \dots \leq \lambda_{63}$. It can be noted that the eigenvalues are real since the CSM is symmetric. Unlike in the implementation of \cite{nain2020wgangp}, when generating the eigenvalues, both inner networks (generator and critic) do not have a convolutional but a perceptron structure. A convolutional structure is relevant when the data to generate is an image. A convolutional layer is good at seeing patterns in image, by identifying topological structures in neighbouring pixels.
+The first WGAN-GP created was to generate the scaled eigenvalues $[\lambda_0, \dots, \lambda_{63}] \in ]0,1]^{64}$. These eigenvalues are sorted such that $\lambda_0 \leq \lambda_1 \leq \dots \leq \lambda_{63}$. It can be noted that the eigenvalues are real since the CSM is symmetric. Unlike in the implementation of \cite{nain2020wgangp}, when generating the eigenvalues, both inner networks (generator and critic) do not have a convolutional but a perceptron structure. A convolutional structure is relevant when the data to generate is an image. A convolutional layer is good at seeing patterns in image, by identifying topological structures in neighboring pixels.
 
 Another changes that was made compared to the implementation of \cite{nain2020wgangp}, is that a ReLU activation function and a small positive offset noise $n = 10^{-100}$ were added as the last layer of the generator. This change was made to ensure that the generator only create positive eigenvalues. 
 
-Finally, before being fed to the discriminator, generated eigenvalues are scaled such that $0 \leq \lambda_i \leq 1$ for $\lambda_i \in \mathbf{\lambda}$. Normalizing eigenvalues in this way is done to reduce the size of the sample space. This is illustrated in Fig. \ref{fig:flowchart_evals_wgangp} \textbf{TODO: redo this figure as TikZ}. Both architectures of the generator and critic used are illustrated respectively in tables Tab.\ref{tab:evals_generator_WGANGP_architecture} and Tab.\ref{tab:evals_critic_WGANGP_architecture}.
+Finally, before being fed to the discriminator, generated eigenvalues are scaled such that $0 \leq \lambda_i \leq 1$ for $\lambda_i \in \mathbf{\lambda}$. Normalizing eigenvalues in this way is done to reduce the size of the sample space. This is illustrated in Fig.~\ref{fig:flowchart_wgangp}. Both architectures of the generator and critic used are illustrated respectively in tables Tab.~\ref{tab:evals_generator_WGANGP_architecture} and Tab.~\ref{tab:evals_critic_WGANGP_architecture}.
 
-\begin{figure}
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=0.65\textwidth]{figs/flowchart_evals_wgangp.jpg}
-    \caption{Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}
-    \label{fig:flowchart_evals_wgangp}
-\end{figure}
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+        %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+        
+        %Curve Lines [id:da24102753764051987] 
+        \draw    (65,9.33) .. controls (211.27,10.99) and (109.03,69.41) .. (184.84,69.01) ;
+        \draw [shift={(186,69)}, rotate = 179.27] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da042737199958181704] 
+        \draw    (79.67,68.33) -- (184,68.99) ;
+        \draw [shift={(186,69)}, rotate = 180.36] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da48348965218999584] 
+        \draw    (260.33,79.33) -- (260.33,128.67) ;
+        \draw [shift={(260.33,130.67)}, rotate = 270] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Straight Lines [id:da6843336271870258] 
+        \draw    (218,139) -- (164.33,139) ;
+        \draw [shift={(162.33,139)}, rotate = 360] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+        %Shape: Rectangle [id:dp5961208628096415] 
+        \draw   (1.67,60.67) -- (79.67,60.67) -- (79.67,75.67) -- (1.67,75.67) -- cycle ;
+        %Shape: Rectangle [id:dp7837205891485919] 
+        \draw   (218.33,131.33) -- (296.33,131.33) -- (296.33,146.33) -- (218.33,146.33) -- cycle ;
+        
+        % Text Node
+        \draw (1.67,61) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textbf{Generator}};
+        % Text Node
+        \draw (236.5,131.75) node [anchor=north west][inner sep=0.75pt]   [align=left] {\textbf{Critic}};
+        % Text Node
+        \draw (5.67,2.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {Dataset};
+        % Text Node
+        \draw (187.33,63.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small Scaling or normalization}};
+        % Text Node
+        \draw (80.67,56.67) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\tiny generated data}};
+        % Text Node
+        \draw (65.33,-1) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\tiny real data}};
+        % Text Node
+        \draw (42.33,132) node [anchor=north west][inner sep=0.75pt]   [align=left] {{\small "Realness" of input}};    
+    \end{tikzpicture}
+    \caption{Full structure of the implementation used in the WGAN-GP to generate eigenvalues or eigenvectors. The eigenvalues are being scaled before being fed to the generator, while the eigenvectors are being normalized.}
+    \label{fig:flowchart_wgangp}
+  \end{figure}
 
 
 
@@ -619,16 +649,16 @@ Another approach to generate the scaled eigenvalues $\lambda_0, \dots, \lambda_{
     L_{\lambda_i} = 10 \log_{10}(\frac{\lambda_i}{\lambda_{63}})
 \end{equation}
 
-where $\lambda_{63}$ is the strongest eigenvalue.  Since all values $L_{\lambda_i}$ are non-positive, the generator has been built such that the two last steps are first a ReLU, followed by a multiplication by $-1$. This way IT can ensure that the network only produces non-positive spectrum. This approach was also justified by the usage of Leaky ReLUs as activation throughout the generator. 
+where $\lambda_{63}$ is the strongest eigenvalue.  Since all values $L_{\lambda_i}$ are non-positive, the generator has been built such that the two last steps are first a ReLU, followed by a multiplication by $-1$. This way IT can ensure that the network only produces non-positive spectrum. This approach was also justified by the usage of Leaky ReLU as activation throughout the generator. 
 
-Because Leaky ReLUs were also used in the critic, the first layer of its network is also a multiplicative layer. Therefore, the critic is not trained to detect real from fake levels, but rather real from fake negative levels, which is equivalent. 
+Because Leaky ReLU were also used in the critic, the first layer of its network is also a multiplicative layer. Therefore, the critic is not trained to detect real from fake levels, but rather real from fake negative levels, which is equivalent. 
 
-The architecures used for the generator and the critic are shown respectively in Tab.\ref{tab:evals_dB_generator_WGANGP_architecture} and Tab.\ref{tab:evals_dB_critic_WGANGP_architecture}.
+The architectures used for the generator and the critic are shown respectively in Tab.~\ref{tab:evals_dB_generator_WGANGP_architecture} and Tab.~\ref{tab:evals_dB_critic_WGANGP_architecture}.
 
 
 \subsection{Generating Eigenvectors}
 
-In order to generate the eigenvector, itwas decided to start by only generating the eigenvector corresponding to the strongest eigenvalue, as a proof of concept. This eigenvector was defined as main eigenvector. Indeed, using equation \ref{rank_I_csm}, once a main eigenvector is produced, its quality can be directly assessed by computing a Rank I CSM, allowing to perform beamforming and locate the source position. In Fig. \ref{fig:measurement_sample_rank_I_beamforming}, an beamforming map, created with a rank I CSM obtained from measurement data is showed.
+In order to generate the eigenvector, it was decided to start by only generating the eigenvector corresponding to the strongest eigenvalue, as a proof of concept. This eigenvector was defined as main eigenvector. Indeed, using equation \ref{rank_I_csm}, once a main eigenvector is produced, its quality can be directly assessed by computing a Rank I CSM, allowing to perform beamforming and locate the source position. In Fig.~\ref{fig:measurement_sample_rank_I_beamforming}, a beamforming map, created with a rank I CSM obtained from measurement data is showed.
 
 \begin{figure}
     \centering
@@ -641,29 +671,19 @@ In order to generate the eigenvector, itwas decided to start by only generating 
 
 Moreover, first generating only the main eigenvector can be justified by the fact, it is the most meaningful eigenvector. Indeed, each eigenvector belongs to a different incoherent source. If there would to be  multiple coherent source, all the energy and their position merges into a single eigenmode. Since the case where there is only one source is under consideration, only the eigenvector with the biggest index corresponds to a DoA/source and the remaining 63 eigenvectors corresponds to noise.  
 
-In Fig. \ref{fig:histograms_eigenvectors} are plotted the histograms of the values of the scalars of the eigenvectors with different index. It can be noticed that the values of the eigenvectors with low index seem to follow a gaussian distribution, whereas the values of the eigenvectors with index close to the maximal index are following a more complex distribution.
+In Fig.~\ref{fig:histograms_eigenvectors} are plotted the histograms of the values of the scalars of the eigenvectors with different index. It can be noticed that the values of the eigenvectors with low index seem to follow a Gaussian distribution, whereas the values of the eigenvectors with index close to the maximal index are following a more complex distribution.
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{figs/histograms_eigenvectors.pdf}}
+    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figs/histograms_eigenvectors.pdf}}
     \caption{Histograms of the values of the scalars of the eigenvectors with different index. The eigenvector with index $63$ is the main eigenvector (two last histograms).}
     \label{fig:histograms_eigenvectors}
 \end{figure}
 
 \subsubsection{Main Eigenvector}
 
-Since the main eigenvector is $\in \mathbb{C}^{64}$, a network with a similar architecture as the one used for the eigenvalues can be used. But instead of scaling the generated sample, they are normalized before being fed to the discriminator. Here by normalization is meant that the main eigenvector is recomputed such that its direction remains the same but its norm is equal to 1. Since the main eigenvector is complex, it is fed to the network as a concatenation of its real and imaginary part, namely as a vector $\in \mathbb{R}^{128}$. The full WGAN-GP structure is illutrates in Fig. \ref{fig:flowchart_evecs_wgangp} \textbf{TODO: redo this figure as TikZ}. The architectures both the generator and critic are illustrated respectively in the tables Tab.\ref{tab:main_evec_generator_WGANGP_architecture} and Tab.\ref{tab:main_evec_critic_WGANGP_architecture}.
+Since the main eigenvector is $\in \mathbb{C}^{64}$, a network with a similar architecture as the one used for the eigenvalues can be used. But instead of scaling the generated sample, they are normalized before being fed to the discriminator. Here by normalization is meant that the main eigenvector is recomputed such that its direction remains the same but its norm is equal to 1. Since the main eigenvector is complex, it is fed to the network as a concatenation of its real and imaginary part, namely as a vector $\in \mathbb{R}^{128}$. The full WGAN-GP structure is illustrated in Fig.~\ref{fig:flowchart_wgangp}. The architectures both the generator and critic are illustrated respectively in the tables Tab.~\ref{tab:main_evec_generator_WGANGP_architecture} and Tab.~\ref{tab:main_evec_critic_WGANGP_architecture}.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.65\textwidth]{figs/flowchart_evecs_wgangp.jpg}
-    \caption{Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}
-    \label{fig:flowchart_evecs_wgangp}
-\end{figure}
-
-\subsubsection{Noise Eigenvectors}
-
-\textbf{TODO: fill this section if enough time}
 
 \section{Data Augmentation}
 
@@ -701,7 +721,7 @@ The WGAN-GP for generating the scaled eigenvalues, the level of eigenvalues and 
 
 \subsection{Generating Eigenvalues from their Scaled Values}
 
-In Fig. \ref{fig:loss_evals_wgangp}  is displayed the loss function when respectively training with the synthetic data and fine-tuning with measurement data. Only the loss function of the critic is displayed, since it is the only one relevant to assess convergence of a WGAN-GP (see Section~\ref{sec:assessing_perf}). Training the WGAN-GP took 19s for the initial training and 10s for the fine-tuning. It can be observed that the model converged before the fine-tuning. The critic's loss first shows a steep decrease before making its way up to zero. This means that the distribution of the real samples and generated ones are really close to each other, with respect to the Wasserstein distance. During the fine-tuning, the loss remained close to zero, hinting that little weight updates were required in order to generate measurement data. It can be observed that there was more epoch for fine-tuning than for the initial training. This design choice was made to ensure the WGAN-GP would converges again during fine-tuning, but it can be observed from the behaviour of the loss that it was not necessary and that 50 epochs would have been sufficient for fine-tuning.    
+In Fig.~\ref{fig:loss_evals_wgangp}  is displayed the loss function when respectively training with the synthetic data and fine-tuning with measurement data. Only the loss function of the critic is displayed, since it is the only one relevant to assess convergence of a WGAN-GP (see Section~\ref{sec:assessing_perf}). Training the WGAN-GP took 19s for the initial training and 10s for the fine-tuning. It can be observed that the model converged before the fine-tuning. The critic's loss first shows a steep decrease before making its way up to zero. This means that the distribution of the real samples and generated ones are really close to each other, with respect to the Wasserstein distance. During the fine-tuning, the loss remained close to zero, hinting that little weight updates were required in order to generate measurement data. It can be observed that there was more epoch for fine-tuning than for the initial training. This design choice was made to ensure the WGAN-GP would converge again during fine-tuning, but it can be observed from the behavior of the loss that it was not necessary and that 50 epochs would have been sufficient for fine-tuning.    
 
 \begin{figure}
     \centering
@@ -710,20 +730,18 @@ In Fig. \ref{fig:loss_evals_wgangp}  is displayed the loss function when respect
     \label{fig:loss_evals_wgangp}
 \end{figure}
 
-In Fig. \ref{fig:samples_evals_wgangp}, a comparion between real and generated eigenvalues is displayed. It contains an example eigenvalues from the synthetic dataset (green), an example of eigenvalues from the measurement dataset (red), sample eigenvalues generated by the WGAN-GP before the fine-tuning (blue) and sample eigenvalues generated by the WGAN-GP after fine-tuning (orange). In the second graph, the levels of the same eigenvalues is displayed. In the first graph, it can be observed that the sample eigenvalues generated by the WGAN-GP before fine-tuning seem to follow the eigenvalues from the synthetic dataset and the sample eigenvalues generated by the WGAN-GP after fine-tuning are quite similar to the eigenvalues from the measurement dataset. In the levels representation of the sample, both the samples generated before and after fine-tuning show a sudden and steep drop in value, reaching a level around $10^{-100}$
+In Fig.~\ref{fig:samples_evals_wgangp}, a comparison between real and generated eigenvalues is displayed. It contains an example eigenvalues from the synthetic dataset (green), an example of eigenvalues from the measurement dataset (red), sample eigenvalues generated by the WGAN-GP before the fine-tuning (blue) and sample eigenvalues generated by the WGAN-GP after fine-tuning (orange). All those quantities are displayed as their levels values. It can be observed that both the samples generated before and after fine-tuning show a sudden and steep drop in value, reaching a level around $10^{-100}$
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figs/samples_evals_wgangp.pdf}}
-    \caption{The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for scaled eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for scaled eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}
+    \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figs/samples_evals_wgangp.pdf}}
+    \caption{This graph shows the level of eigenvalues of a synthetic CSM (green), level of eigenvalues of a measured CSM (red), level of eigenvalues generated with the WGAN-GP for scaled eigenvalues after the initial training (blue) and level of eigenvalues generated with the WGAN-GP for scaled eigenvalues after the fine-tuning (orange).}
     \label{fig:samples_evals_wgangp}
 \end{figure}
 
-\textbf{TODO: show outliers}
-
 \subsection{Generating Eigenvalues from their Level Values}
 
-The losses during training of the critic of the WGAN-GP for generating eigenvalues from their level values are displayed in Fig. \ref{fig:loss_evals_dB_wgangp}. Training the WGAN-GP took 19s for the initial training and 1.9s for the fine-tuning. It can be seen that the model converged before fine-tuning. Then, during the fine-tuning, the loss drops before converging again.
+The losses during training of the critic of the WGAN-GP for generating eigenvalues from their level values are displayed in Fig.~\ref{fig:loss_evals_dB_wgangp}. Training the WGAN-GP took 19s for the initial training and 1.9s for the fine-tuning. It can be seen that the model converged before fine-tuning. Then, during the fine-tuning, the loss drops before converging again.
 
 \begin{figure}
     \centering
@@ -733,38 +751,61 @@ The losses during training of the critic of the WGAN-GP for generating eigenvalu
 \end{figure}
 
 
-In Fig. \ref{fig:samples_evals_dB_wgangp} is displayed a comparison between levels of the eigenvalues from the synthetic dataset (color), levels of the eigenvalues from the measurement dataset (color), sample levels of eigenvalues generated by the WGAN-GP before fine-tuning (color) and sample levels of eigenvalues generated by the WGAN-GP after fine-tuning (color). It can be seen that the sample generated before fine-tuning follow quite well the levels from the synthetic dataset, though not decaying as linearly. The sample generated after fine-tuning display a similar decay as the levels from the measurement dataset.
+In Fig.~\ref{fig:samples_evals_dB_wgangp} is displayed a comparison between levels of the eigenvalues from the synthetic dataset (green), levels of the eigenvalues from the measurement dataset (red), sample levels of eigenvalues generated by the WGAN-GP before fine-tuning (blue) and sample levels of eigenvalues generated by the WGAN-GP after fine-tuning (orange). It can be seen that the sample generated before fine-tuning follows quite well the levels from the synthetic dataset, though not decaying as linearly. The sample generated after fine-tuning display a similar decay as the levels from the measurement dataset.
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{figs/samples_evals_dB_wgangp.pdf}}
-    \caption{The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for level of eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for level of eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}
+    \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figs/samples_evals_dB_wgangp.pdf}}
+    \caption{The first graph shows levels of eigenvalues of a synthetic CSM (green), levels of eigenvalues of a measured CSM (red), levels of eigenvalues generated with the WGAN-GP for level of eigenvalues after the initial training (blue) and levels of eigenvalues generated with the WGAN-GP for level of eigenvalues after the fine-tuning (orange).}
     \label{fig:samples_evals_dB_wgangp}
 \end{figure}
 
-Then the comparison between the same quantities is shown, but this time not using the levels values $L_{\lambda_i}$, but the actual eigenvalues $\lambda_{i}$.
-
-\textbf{TODO: show outliers}
-
-\subsection{Data Augmentation}
-
-\textbf{TODO: see what can be done with this comment: One approach would be to take a synthetic csm, perform a eigenvalue decomposition and replace the eigenvalue decay with a generated one. -> Here, it would be nice to see three plots -> the beamforming map with the synthetic csm, the beamforming map with the augmented data, the beamforming map with a similar measured decay. Is the augmented map more related to the synthetic or to the real one? Hopefully the real one. I think this is a very important and valuable point if you do not show results for multiple source positions.
-I think this is easy to achieve}
-
-Fig. \ref{fig:beamforming_map_data_augmentation} shows in the first map the result of performing beamforming on a augmented CSM issued from the dataset and from a semi-generated CSM. The second image shows the difference between the beamforming map obtained from an augmented CSM and a CSM from the datasets used to generate it. It can be observed that the map is almost zero everywhere, but some artifacts can still be observed.
+In Fig.~\ref{fig:outliers_evals_dB_wgangp} is displayed a statistical study of the generated level of eigenvalues. The average generated level eigenvalues (bold) as well as the 5\% and 95\% percentiles (dotted) are showed in blue. In orange is showed the levels of eigenvalues that was used for fine-tuning. In gray are showed, for comparison purpose, the levels of eigenvalues that were not used to train this model for fine-tuning. It can be observed that the generated levels have a larger span than the measured levels of eigenvalues is almost constant, whether used for training or not. Even though the scaling is not identical between measured and generated, the eigenvalues are decaying similarly.
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{figs/beamforming_map_data_augmentation.pdf}}
-    \caption{The first beamforming map has been perfomed with a CSM computed with the data augemntation scheme. The second map shwos the difference between the beamforming map obtained with CSM from respectively the data augmentation dataset and the training dataset}
-    \label{fig:beamforming_map_data_augmentation}
+    \makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{figs/outliers_evals_dB_wgangp.pdf}}
+    %\includegraphics[width=0.9\textwidth]{figs/outliers_evals_dB_wgangp.pdf}
+    \caption{In orange are displayed the level eigenvalues of the measurement CSM. In blue, the average (bold), the 5\% and 95\%percentiles (dotted) of generated level of eigenvalues are displayed. In gray are displayed examples of eigenvalues' levels coming from other measurements not used for training.}
+    \label{fig:outliers_evals_dB_wgangp}    
+\end{figure}
+
+\subsection{Data Augmentation}
+
+Fig.~\ref{fig:data_augmentation_evals} shows three different beamforming map. Fig.~\ref{fig:data_augmentation_evals_synthetic}, Fig.~\ref{fig:data_augmentation_evals_measurement} and Fig.~\ref{fig:data_augmentation_evals_augmented_csm} show respectively the beamforming map obtained when using a synthetic CSM, a measured CSM and a CSM augmented with eigenvalues. It can be observed that the map issued from an augmented CSM is closer to the map issued from a synthetic CSM.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_synthetic.pdf}
+        \caption{CSM from synthetic dataset}
+        \label{fig:data_augmentation_evals_synthetic}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_measurement.pdf}
+        \caption{CSM from measurement dataset}
+        \label{fig:data_augmentation_evals_measurement}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/data_augmentation_evals_augmented_csm.pdf}
+        \caption{CSM Augmented with generated eigenvalues.} 
+        \label{fig:data_augmentation_evals_augmented_csm}
+    \end{subfigure}
+            
+    \caption{Three beamforming maps obtained from synthetic CSM, measured CSM and CSM augmented with generated eigenvalues}
+    \label{fig:data_augmentation_evals}
 \end{figure}
 
 \section{Generating Eigenvectors}
 
 \subsection{Generating the Main Eigenvector}
 
-When training the network, the losses shown in Fig. \ref{fig:loss_main_evec_wgangp} (respectively initial training and fine-tuning) are observed. Training the WGAN-GP took 84s for the initial training and 32s for the fine-tuning. It can be seen that the network has converged during the initial training, and converged again during the fine-tuning after some weights updates.
+When training the network, the losses shown in Fig.~\ref{fig:loss_main_evec_wgangp} (respectively initial training and fine-tuning) are observed. Training the WGAN-GP took 84s for the initial training and 32s for the fine-tuning. It can be seen that the network has converged during the initial training, and converged again during the fine-tuning after some weights updates.
 
 \begin{figure}
     \centering
@@ -773,24 +814,69 @@ When training the network, the losses shown in Fig. \ref{fig:loss_main_evec_wgan
     \label{fig:loss_main_evec_wgangp}
 \end{figure}
 
-Unlike for the eigenvalues, showing a generated sample of main eigenvector will not provide insights for assessing the quality of the generated sample. Therefore, instead the following was done: generate a sample main eigenvector $\hat{\mathbf{v}}_{63}$ and use equation \ref{rank_I_csm} to create a rank I CSM. It is important to note that the eigenvalue $\mathbf{\Lambda}_{63, 63}$ corresponding to the main eigenvector is by definition equal to one. Indeed, it is by defintion the biggest eigenvalues and the eigenvalues were scaled such that all eigenvalues lie in $[0,1]$.  In Fig. \ref{fig:beamforming_map_main_evec_wgangp} is plotted first the beamforming map resulting from performing beamforming with the Rank I CSM created from a sampled main eigenvector. In the second map of Fig. \ref{fig:beamforming_map_main_evec_wgangp} is plotted the difference between a beamforming map computed with a generated main eigenvector and the beamforming map computed with a main eigenvector from the measurement dataset (i.e. map shown in Fig. \ref{fig:measurement_sample_rank_I_beamforming}. It can observe that the difference of the two map is almost zero everywhere. \textbf{TODO: explain that there are also outliers, so the fact that it is zero almost everywhere does not imply that it is a data copy.}
-
-\textbf{TODO: show outliers}
+Unlike for the eigenvalues, showing a generated sample of main eigenvector will not provide insights for assessing the quality of the generated sample. Therefore, instead the following was done: generate a sample main eigenvector $\hat{\mathbf{v}}_{63}$ and use equation \ref{rank_I_csm} to create a rank I CSM. It is important to note that the eigenvalue $\mathbf{\Lambda}_{63, 63}$ corresponding to the main eigenvector is by definition equal to one. Indeed, it is by definition the biggest eigenvalues and the eigenvalues were scaled such that all eigenvalues lie in $[0,1]$.  In Fig.~\ref{fig:beamforming_map_main_evec_wgangp} is plotted first the beamforming map resulting from performing beamforming with the Rank I CSM created from a sampled main eigenvector. In the second map of Fig.~\ref{fig:beamforming_map_main_evec_wgangp} is plotted the difference between a beamforming map computed with a generated main eigenvector and the beamforming map computed with a main eigenvector from the measurement dataset (i.e. map shown in Fig.~\ref{fig:measurement_sample_rank_I_beamforming}. It can observe that the difference of the two map is almost zero everywhere.
 
 \begin{figure}
     \centering
-    \makebox[\textwidth][c]{\includegraphics[width=1.5\textwidth]{figs/beamforming_map_main_evec_wgangp.pdf}}
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/beamforming_map_main_evec_wgangp_generated.pdf}
+        \caption{Generated Rank I CSM}
+        \label{fig:beamforming_map_main_evec_wgangp_generated}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/beamforming_map_main_evec_wgangp_difference.pdf}
+        \caption{Difference}
+        \label{fig:beamforming_map_main_evec_wgangp_difference}
+    \end{subfigure}
     \caption{The first beamforming map has been perfomed with a Rank I CSM computed with a generated main eigenvector. The second map shows the difference between the beamforming map obtained with Rank I CSM computed respectively with a generated main eigenvector and a main eigenvector from the dataset.}
-    \label{fig:beamforming_map_main_evec_wgangp}    
+    \label{fig:beamforming_map_main_evec_wgangp}
 \end{figure}
 
-\subsection{Generating All the Eigenvectors}
 
-\textbf{TODO: fill this section if enough time}
+Moreover, 10000 sample main eigenvector were generated using the WGAN-GP and the one with the lowest critic score was used to create a beamforming map and plotted in Fig.~\ref{fig:outliers_main_evec}. It can be observed that the obtained map is almost identical to the one displayed in Fig.~\ref{fig:beamforming_map_main_evec_wgangp_generated}  
+
+\begin{figure}
+    \centering
+    \makebox[\textwidth][c]{\includegraphics[width=0.6\textwidth]{figs/outliers_main_evec.pdf}}
+    \caption{Beamforming map resulting from a rank I CSM, computed from a generated main eigenvector with the lowest critic score out of 10000 generated main eigenvector.}
+    \label{fig:outliers_main_evec}    
+\end{figure}
 
 \subsection{Data Augmentation}
 
-\textbf{TODO: fill this section about data augmentation with the main eigenvectors}
+Three different beamforming map are displayed in Fig.~\ref{fig:data_augmentation_evecs}. Fig.~\ref{fig:data_augmentation_evecs_synthetic}, Fig.~\ref{fig:data_augmentation_evecs_measurement} and Fig.~\ref{fig:data_augmentation_evecs_augmented_csm} show respectively the beamforming map obtained when using a synthetic CSM, a measured CSM and a CSM augmented with generated eigenvalues. It can be observed that the map issued from an CSM augmented with a generated main eigenvector, displays thicker lobes than on the map issued from synthetic CSM, while not being fully identical to the map from issued from a measured CSM.
+
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_synthetic.pdf}
+        \caption{CSM from synthetic dataset}
+        \label{fig:data_augmentation_evecs_synthetic}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/datasets_beamforming_example_measurement.pdf}
+        \caption{CSM from measurement dataset}
+        \label{fig:data_augmentation_evecs_measurement}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=1.3\textwidth]{figs/data_augmentation_evecs_augmented_csm.pdf}
+        \caption{CSM Augmented From Main Eigenvector} 
+        \label{fig:data_augmentation_evecs_augmented_csm}
+    \end{subfigure}
+            
+    \caption{Three beamforming maps obtained from synthetic CSM, measured CSM and CSM augmented with generated main eigenvector}
+    \label{fig:data_augmentation_evecs}
+\end{figure}
 
 \chapter{Discussions}
 
@@ -798,59 +884,51 @@ Unlike for the eigenvalues, showing a generated sample of main eigenvector will 
 
 \subsection{Generating Eigenvalues from their Scaled Values}
 
-It was observed in the first plot of Fig. \ref{fig:samples_evals_wgangp} that the WGAN-GP designed to generate eigenvalues seem to produce sufficiently realistic results, both for synthetic and measurement data when only looking at the eigenvalues, but when looking at the levels of the eigenvalues, the difference between real and generated samples was obvious. This can be explained by the fact, that the WGAN-GP cannot capture very well small numerical variation. This lack of extreme precision is very visible in the eigenvalues close to zero. Indeed, microvariation around zero lead to big variation in the level values. Since the level of the spectrum, is the way used to tell synthetic data from measured data, using a Generative approach producing eigenvalues with unrealistic levels spectrum is not conceivable. 
+It was observed in the first plot of Fig.~\ref{fig:samples_evals_wgangp} that the difference between real and generated samples was obvious, when their level values are displayed. This can be explained by the fact, that the WGAN-GP cannot capture very well small numerical variation. This lack of extreme precision is very visible in the eigenvalues close to zero. Indeed, micro-variations around zero lead to big variations in the level values. Since the level of the spectrum, is the way used to tell synthetic data from measured data, using a Generative approach producing eigenvalues with unrealistic levels spectrum is not conceivable. 
 
 \subsection{Generating Eigenvalues from their Level Values}
 
 It can be observed that learning the levels of the eigenvalues leads to a network that is able to generate sample levels of eigenvalues more realistic than when generating sample eigenvalues and then computing their levels. This is due to the fact that the logarithm re-weights the generated values here, so that small values become more important for the critic. It can be concluded than this second method is better suited for generating eigenvalues of CSM.
 
-\textbf{TODO: answer what is the value range spawned by the measured dataset? are the generated decays are within this range}
+Moreover, it was observed that training the network first with synthetic data and then fine-tuning it with a single measurement allows to produce eigenvalues that are not simply a data copy of the measured eigenvalues. Indeed, while the eigenvalues of a single measurement do not have a large variation, the produced sample eigenvalues cover a larger range. Hence, it can be concluded that this approach allows to generate eigenvalues samples that are representative not only of a single measurement, but of multiple ones. Moreover, it is important to notice, that these differences observed in the levels between generated and real eigenvalues, occur for eigenvalues that are very close to zero. Hence, these differences are not visible between real and generated eigenvalues, once converted back from their levels values.
+
 
 \subsection{Data Augmentation}
 
-The method introduced for data augmentation has shown to produce satisfying results. Indeed, it was observed that when using the augemented CSM for beamforming, the result produced reliable information regarding source information. Moreover it was observed that the Augmented CSM were not fully identical to the ones of the datasets. Finally this technique is very efficent and does not require a lot of computational effort. Indeed, training the WGAN-GPk to produce  the eigenvalues takes less than a minute to train, and once the network's weights are computed, eigenvalues can be obtained instantely.
-
-\textbf{TODO: explain depending on the results of the three beamforming maps. ->  The positional information is only in the eigenvectors. Maybe information such as coherent reflections or the positions of other noise sources not present in the observation area cannot be modeled. But realistic amplitude characteristics can be modeled for multiple soruce positions! And you can show this perhaps (see my previous remark) -> i.e. showing the three beamforming maps.}
+It was observed that when using the data augmentation scheme with eigenvalues, the obtained beamforming map were still very similar to the ones obtained with synthetic CSM. It can therefore be concluded that only replacing the synthetic eigenvalues with more realistic eigenvalues is not sufficient to create realistic CSM.
 
 \section{Generating Eigenvectors}
 
 \subsection{Generating the Main Eigenvector}
 
-When observing the beamforming map computed from generated main eigenvector, it can be concluded that WGAN-GP is able to generate sample close to the original main eigenvector, without being 100\% similar. Indeed on the beamforming map, the audio source can be easily located, and the difference of between two beamforming map is not zero everywhere.
+When observing the beamforming map computed from generated main eigenvector, it can be concluded that WGAN-GP is able to generate sample close to the original main eigenvector, without being 100\% similar. Indeed, on the beamforming map, the audio source can be easily located, and the difference of between two beamforming map is not zero everywhere.
 
-\subsection{Generating All the Eigenvectors}
-
-\textbf{TODO: fill this section}
+Though it is to be noted that when plotting an outlier, i.e. the sample with the lowest critic score amongst 10000 samples, the resulting beamforming map remains close to a sample with a higher score. From this it can be concluded that the WGAN-GP cannot produce a great variety of sample, but it is important to note that it is representative of the data it was trained with.  
 
 \subsection{Data Augmentation}
 
-\textbf{TODO: need to include data augmentation with main eigenvector}
+The method introduced for data augmentation with the main eigenvector has shown to produce more satisfying results than with the eigenvalues. Indeed, it was observed that when using the augmented CSM for beamforming, the resulting CSM both showed reliable information regarding source information but were also closer to the measured CSM. Indeed, the lobes on the resulting beamforming map were thicker than on the beamforming maps computed with a synthetic CSM.
 
+Moreover, it is important to note that  this technique is very efficient and does not require a lot of computational effort. Indeed, training the WGAN-GP to produce  the eigenvectors takes approximately two minutes to train, and once the network's weights are computed, sample main eigenvector can be obtained instantly.
 
 \section{General}
 
-\textbf{TODO: This is a Conclusion chapter mixed with discussion! Concluding sentences should be placed in the conclusion. Discussing sentences in the corresponding sections (eigenvalue or eigenvector related)}
+The data generated is accurate. Indeed, when replacing real data by generated data, in the case of rank I beamforming or data augmentation for the eigenvalues, beamforming could be performed providing with sufficiently clear beamforming map. But unfortunately, the data that can be currently generated, is not sufficient to create fully realistic CSM. Indeed, the CSM that can be recreated with generated eigenvalues and main eigenvectors do not account fully for the noise information, since this information is contained in the eigenvectors with index $0$ to $62$. The problem of generating the 64 eigenvectors simultaneously is complex, since it is subject to the constraint that all vectors need to be orthogonal. 
 
-As it has been shown, the methods of this thesis allow to generate realistic eigenvalue spectra and main eigenvector. Currently the WGAN-GP used to generate these quantities have been trained only with CSM from a single position. For the puprose of generating realistic CSMs for training DL-based algorithm for source characterization, those methods would need to be extended to be able to generate CSMs for different positions. More specifically, this would need to be done for the network to generate the main eigenvector. Indeed, the eigenvalue spectrum is not position dependent, hence no modification is needed to the current network for a later use in generating CSMs for multiple positions.
-
-The data generated is accurate. Indeed, when replacing real data by generated data, in the case of rank I beamforming or data augmentation for the eigenvalues, beamforming could be perfomed providing with sufficiently clear beamforming map. But unfortunately, the data that can be currently generated, is not sufficient to create realistic CSMs. Indeed, the CSMs that can be recreated with generated eigenvalues and main eigenvectors do not account for the noise information, since this information is contained in the eigenvectors with index $0$ to $62$. The problem of generating the 64 eigenvectors simultaneously is complex, since it is subject to the constraint that all vectors need to be ortogonal. 
-
-More than simply training the eigenvectors for multiple positions, it should be investigated whether a Neural Network could be designed for generating eigenvectors also corresponding to source position not observed in the dataset. It is to be noted that a good starting point for this investigation would be to attempt to build a Neural Network to learn relationship between source position and the main eigenvector. From then it could be extended with a network to generate eigenvectors with index $0$ to $62$, conditioned on a main eigenvector 
-
-In conclusion, it can be stated that this thesis lay important foundation for generating the CSM representation of microphone array data. Moreover, a new method for learning matrix data, but using its eigendecomposition has been introduced. Such a method could be applied to other tasks that Acoustical Source Characterization, or extended for non-diagonalizable matrix by using singular value decomposition instead of eigendecomposition.
 
 \chapter{Conclusion}
 
+As it has been shown, the methods of this thesis allow to generate realistic eigenvalue spectra and main eigenvector. It is important to highlight that currently the WGAN-GP used to generate these quantities have been trained only with CSM from a single position. Moreover, it was shown that the data augmentation method using generated main eigenvector allows to improve how realistic synthetic CSM are.
+
+In conclusion, it can be stated that this thesis lay important foundation for generating the CSM representation of microphone array data. Moreover, a new method for learning matrix data, by using its eigendecomposition has been introduced. It is to be noted that such a method could be applied to other tasks that Acoustical Source Characterization, or extended for non-diagonalizable matrix by using singular value decomposition instead of eigendecomposition.
+
 \chapter{Future Works}
 
-As stated in the General Discussion, the next tas 
+For the purpose of generating realistic CSM for training DL-based algorithm for source characterization, the methods introduced in this thesis would need to be extended to be able to generate CSM for different positions. More specifically, this would need to be done for the network to generate the main eigenvector. Indeed, the eigenvalue spectrum is not position dependent, hence no modification is needed to the current network for a later use in generating CSM for multiple positions.
 
+More than simply training the eigenvectors for multiple positions, it should be investigated whether a Neural Network could be designed for generating eigenvectors also corresponding to source position not observed in the dataset. It is to be noted that a good starting point for this investigation would be to attempt to build a Neural Network to learn relationship between source position and the main eigenvector.
 
-Investigating the noise eigenvector, e.g. using TransGAN or using a convolutional critic trained on beamforming map instead of the vectors.
-Creating a conditional WGAN for the main eigenvector. This could be an easy first step for generating CSM (multichannel array data) for a single source.
-
-
-
+In is also to be noted that in order to generate realistic CSM, its is crucial to be able to model the weakest eigenvectors. i.e. the eigenvectors with index $0$ to $62$. Extending the approach to generate the strongest eigenvector to all eigenvectors, has been tried but without compelling results. An idea that could be tried is that instead of feeding real and generated eigenvectors to the critic, the corresponding beamforming map could be computed and fed to the critic. The architecture of the critic would then need to be converted from a perceptron architecture to a convolutional one. 
 
 
 \cleardoublepage
@@ -867,8 +945,16 @@ Creating a conditional WGAN for the main eigenvector. This could be an easy firs
 
 \chapter[Architectures of the Different Networks]{Architectures of the Generator and Critic Networks}
 
-In this appendix are compiled the architectures of the critics and generators used in the different WGAN-GP designed for this thesis.
-Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGANGP_architecture}, Tab.\ref{tab:evals_dB_generator_WGANGP_architecture}, Tab.\ref{tab:evals_dB_critic_WGANGP_architecture}, Tab.\ref{tab:main_evec_generator_WGANGP_architecture}, Tab.\ref{tab:main_evec_critic_WGANGP_architecture}, Tab.\ref{tab:noise_evecs_generator_WGANGP_architecture}, Tab.\ref{tab:noise_evecs_critic_WGANGP_architecture}, Tab.\ref{tab:snapshots_generator_WGANGP_architecture} and Tab.\ref{tab:snapshots_critic_WGANGP_architecture}
+In this appendix are compiled the architectures of the critics and generators used in the different WGAN-GP designed for this thesis:
+
+\begin{itemize}
+    \item Tab.~\ref{tab:evals_generator_WGANGP_architecture} shows the architecture of the generator used in the WGAN-GP for generating the eigenvalues from their scaled values.
+    \item Tab.~\ref{tab:evals_critic_WGANGP_architecture} shows the architecture of the critic used in the WGAN-GP for generating the eigenvalues from their scaled values.
+    \item Tab.~\ref{tab:evals_dB_generator_WGANGP_architecture} shows the architecture of the generator used in the WGAN-GP for generating the eigenvalues from their levels.
+    \item Tab.~\ref{tab:evals_dB_critic_WGANGP_architecture} shows the architecture of the critic used in the WGAN-GP for generating the eigenvalues from their levels.
+    \item Tab.~\ref{tab:main_evec_generator_WGANGP_architecture} shows the architecture of the generator used in the WGAN-GP for generating the main eigenvector.
+    \item Tab.~\ref{tab:main_evec_critic_WGANGP_architecture} shows the architecture of the critic used in the WGAN-GP for generating the main eigenvector.
+\end{itemize}
 
 
 \begin{table}[]
@@ -886,7 +972,7 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       LeakyReLU             & 1024          & 0                 \\ 
       Dense                 & 64            & 65600             \\ 
       \end{tabular}
-  \caption{Architecture of the generator used in the WGAN-GP to generate eigenvalues. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}
+  \caption{Architecture of the generator used in the WGAN-GP to generate eigenvalues. Total parameters: 756,288, Trainable parameters: 755,776, Non-trainable parameters: 512}
   \label{tab:evals_generator_WGANGP_architecture}
 \end{table}
 
@@ -902,7 +988,7 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       LeakyReLU             & 256           & 0                 \\
       Dense                 & 1             & 257               \\
   \end{tabular}
-  \caption{Architecture of the critic used in the WGAN-GP to generate eigenvalues. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}
+  \caption{Architecture of the critic used in the WGAN-GP to generate eigenvalues. Total parameters: 164,865, Trainable parameters: 164,865, Non-trainable parameters: 0}
   \label{tab:evals_critic_WGANGP_architecture}
 \end{table}
 
@@ -923,7 +1009,7 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       ReLU                  & 64            & 0                 \\
       Multiply              & 64            & 0                 \\
   \end{tabular}
-  \caption{Architecture of the generator used in the WGAN-GP to generate eigenvalues from their level values. Total params: 756,288, Trainable params: 755,776, Non-trainable params: 512}
+  \caption{Architecture of the generator used in the WGAN-GP to generate eigenvalues from their level values. Total parameters: 756,288, Trainable parameters: 755,776, Non-trainable parameters: 512}
   \label{tab:evals_dB_generator_WGANGP_architecture}
 \end{table}
 
@@ -940,7 +1026,7 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       LeakyReLU             & 256           & 0                 \\
       Dense                 & 1             & 257               \\
   \end{tabular}
-  \caption{Architecture of the critic used in the WGAN-GP to generate eigenvalues from their level values. Total params: 164,865, Trainable params: 164,865, Non-trainable params: 0}
+  \caption{Architecture of the critic used in the WGAN-GP to generate eigenvalues from their level values. Total parameters: 164,865, Trainable parameters: 164,865, Non-trainable parameters: 0}
   \label{tab:evals_dB_critic_WGANGP_architecture}
 \end{table}
 
@@ -960,7 +1046,7 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       Dense                 & 128           & 131200            \\
       Reshape               & (1, 64, 2)    & 0                 \\
   \end{tabular}
-  \caption{Architecture of the generator used in the WGAN-GP to generate the main eigenvector. Total params: 821,888, Trainable params: 821,376, Non-trainable params: 512}
+  \caption{Architecture of the generator used in the WGAN-GP to generate the main eigenvector. Total parameters: 821,888, Trainable parameters: 821,376, Non-trainable parameters: 512}
   \label{tab:main_evec_generator_WGANGP_architecture}
 \end{table}
 
@@ -977,109 +1063,9 @@ Tab.\ref{tab:evals_generator_WGANGP_architecture}, Tab.\ref{tab:evals_critic_WGA
       LeakyReLU             & 256           & 0                 \\
       Dense                 & 1             & 257               \\
   \end{tabular}
-  \caption{Architecture of the critic used in the WGAN-GP to generate the main eigenvector. Total params: 197,633, Trainable params: 197,633, Non-trainable params: 0}
+  \caption{Architecture of the critic used in the WGAN-GP to generate the main eigenvector. Total parameters: 197,633, Trainable parameters: 197,633, Non-trainable parameters: 0}
   \label{tab:main_evec_critic_WGANGP_architecture}
 \end{table}
-
-\begin{table}[]
-  \centering
-  \begin{tabular}{c c c}
-      \hline
-      \textbf{Layer} & \textbf{Output Shape} & \textbf{Number of Parameters} \\ \hline
-      InputLayer            & 128           & 0                 \\
-      Dense                 & 256           & 32768             \\
-      BatchNormalization    & 256           & 1024              \\
-      LeakyReLU             & 256           & 0                 \\
-      Dense                 & 1024          & 262144            \\
-      LeakyReLU             & 1024          & 0                 \\
-      Dense                 & 4096          & 4194304           \\
-      LeakyReLU             & 4096          & 0                 \\
-      Dense                 & 8064          & 33030144          \\
-      LeakyReLU             & 8064          & 0                 \\
-      Reshape               & (63, 64, 2)   & 0                 \\
-  \end{tabular}
-  \caption{Architecture of the generator used in the WGAN-GP to generate the noise eigenvectors. Total params: 37,520,384, Trainable params: 37,519,872, Non-trainable params: 512}
-  \label{tab:noise_evecs_generator_WGANGP_architecture}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \begin{tabular}{c c c}
-      \hline
-      \textbf{Layer} & \textbf{Output Shape} & \textbf{Number of Parameters} \\ \hline
-      InputLayer            & (63, 64, 2)   & 0                 \\
-      Flatten               & 8064          & 0                 \\
-      Dense                 & 4096          & 33034240          \\
-      LeakyReLU             & 4096          & 0                 \\
-      Dense                 & 512           & 2097664           \\
-      LeakyReLU             & 512           & 0                 \\
-      Dense                 & 256           & 131328            \\
-      LeakyReLU             & 256           & 0                 \\
-      Dense                 & 1             & 257               \\
-      \end{tabular}
-  \caption{Architecture of the critic used in the WGAN-GP to generate the noise eigenvectors. Total params: 35,263,489, Trainable params: 35,263,489, Non-trainable params: 0}
-  \label{tab:noise_evecs_critic_WGANGP_architecture}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \begin{tabular}{c c c}
-      \hline
-      \textbf{Layer} & \textbf{Output Shape} & \textbf{Number of Parameters} \\ \hline
-      InputLayer            & 128           & 0                 \\
-      Dense                 & 4096          & 524288            \\
-      BatchNormalization    & 4096          & 16384             \\
-      LeakyReLU             & 4096          & 0                 \\
-      Reshape               & (4, 4, 256)   & 0                 \\
-      UpSampling2D          & (8, 8, 256)   & 0                 \\
-      Conv2D                & (8, 8, 128)   & 294912            \\
-      BatchNormalization    & (8, 8, 128)   & 512               \\
-      LeakyReLU             & (8, 8, 128)   & 0                 \\
-      UpSampling2D          & (16, 16, 128) & 0                 \\
-      Conv2D                & (16, 16, 64)  & 73728             \\
-      BatchNormalization    & (16, 16, 64)  & 256               \\
-      LeakyReLU             & (16, 16, 64)  & 0                 \\
-      UpSampling2D          & (32, 32, 64)  & 0                 \\
-      Conv2D                & (32, 32, 128) & 73728             \\
-      BatchNormalization    & (32, 32, 128) & 512               \\
-      LeakyReLU             & (32, 32, 128) & 0                 \\
-      UpSampling2D          & (64, 64, 128) & 0                 \\
-      Conv2D                & (64, 64, 2)   & 2304              \\
-      BatchNormalization    & (64, 64, 2)   & 8                 \\
-      Activation            & (64, 64, 2)   & 0                 \\
-      \end{tabular}
-  \caption{Architecture of the generator used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 986,632, Trainable params: 977,796, Non-trainable params: 8,836}
-  \label{tab:snapshots_generator_WGANGP_architecture}
-\end{table}
-
-\begin{table}[]
-  \centering
-  \begin{tabular}{c c c}
-      \hline
-      \textbf{Layer} & \textbf{Output Shape} & \textbf{Number of Parameters} \\ \hline
-      InputLayer            & (64, 64, 2)   & 0                 \\
-      ZeroPadding2D         & (68, 68, 2)   & 0                 \\
-      Conv2D                & (34, 34, 64)  & 3264              \\
-      LeakyReLU             & (34, 34, 64)  & 0                 \\
-      Conv2D                & (17, 17, 128) & 204928            \\
-      LeakyReLU             & (17, 17, 128) & 0                 \\
-      Dropout               & (17, 17, 128) & 0                 \\
-      Conv2D                & (9, 9, 256)   & 819456            \\
-      LeakyReLU             & (9, 9, 256)   & 0                 \\
-      Dropout               & (9, 9, 256)   & 0                 \\
-      Conv2D                & (5, 5, 512)   & 3277312           \\
-      LeakyReLU             & (5, 5, 512)   & 0                 \\
-      Flatten               & 12800         & 0                 \\
-      Dropout               & 12800         & 0                 \\
-      Dense                 & 1             & 12801             \\
-      \end{tabular}
-  \caption{Architecture of the critic used in the WGAN-GP to generate snapshots used for creating an approximated CSM. Total params: 4,317,761, Trainable params: 4,317,761, Non-trainable params: 0}
-  \label{tab:snapshots_critic_WGANGP_architecture}
-\end{table}
-
-
-
-
 
 
 \cleardoublepage

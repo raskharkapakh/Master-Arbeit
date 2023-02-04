@@ -360,20 +360,33 @@ class evals_dB_WGANGP(Model):
         return {"c_loss": c_loss, "g_loss": g_loss}
 
     def generate_evals(self, nb_trial=100):
-        
-        for i in range(nb_trial):
-            random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
-            generated_evals = self.generator.predict(random_latent_vectors)
-            predictions = self.critic(generated_evals)
-            print(predictions[0, 0])
-            
-            if predictions[0, 0] > 0:
-                print("real eigenvalues found")
-                return True, generated_evals
+        if nb_trial==0:
+            while(True):    
+                random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
+                generated_evals = self.generator.predict(random_latent_vectors)
+                predictions = self.critic(generated_evals)
+                print(predictions[0, 0])
                 
+                if predictions[0, 0] > 0:
+                    print("real eigenvalues found")
+                    return True, generated_evals
+                
+        else:
+            for i in range(nb_trial):
+                random_latent_vectors = tf.random.normal(shape=(1, self.latent_dim))
+                generated_evals = self.generator.predict(random_latent_vectors)
+                predictions = self.critic(generated_evals)
+                print(predictions[0, 0])
+                
+                if predictions[0, 0] > 0:
+                    print("real eigenvalues found")
+                    return True, generated_evals
+                    
+            
+            print("no real eigenvalues found")
+            return False, generated_evals
+
         
-        print("no real eigenvalues found")
-        return False, generated_evals
 
 
 

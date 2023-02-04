@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  1 FEB 2023 13:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  4 FEB 2023 16:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -893,39 +893,60 @@ File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
 \AM@toc@title=\toks50
 \c@AM@survey=\count352
 \AM@templatesizebox=\box117
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen316
+\captionmargin@=\dimen317
+\captionwidth=\dimen318
+\caption@tempdima=\dimen319
+\caption@indent=\dimen320
+\caption@parindent=\dimen321
+\caption@hangindent=\dimen322
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count353
+\c@continuedfloat=\count354
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count355
+\c@subtable=\count356
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count353
-\scratchdimen=\dimen316
+\scratchcounter=\count357
+\scratchdimen=\dimen323
 \scratchbox=\box118
-\nofMPsegments=\count354
-\nofMParguments=\count355
+\nofMPsegments=\count358
+\nofMParguments=\count359
 \everyMPshowfont=\toks51
-\MPscratchCnt=\count356
-\MPscratchDim=\dimen317
-\MPnumerator=\count357
-\makeMPintoPDFobject=\count358
+\MPscratchCnt=\count360
+\MPscratchDim=\dimen324
+\MPnumerator=\count361
+\makeMPintoPDFobject=\count362
 \everyMPtoPDFconversion=\toks52
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -935,7 +956,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.18} (current compat level: 1.16).
 
-Package hyperref Info: Link coloring ON on input line 20.
+Package hyperref Info: Link coloring ON on input line 22.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -943,11 +964,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count359
+\c@section@level=\count363
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 22.
+LaTeX Info: Redefining \pageref on input line 22.
+LaTeX Info: Redefining \nameref on input line 22.
  (./report.out) (./report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
@@ -959,51 +980,36 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-<resources/ethlogo.pdf, id=264, 177.66376pt x 49.18375pt>
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+<resources/ethlogo.pdf, id=252, 177.66376pt x 49.18375pt>
 File: resources/ethlogo.pdf Graphic file (type pdf)
 <use resources/ethlogo.pdf>
-Package pdftex.def Info: resources/ethlogo.pdf  used on input line 31.
+Package pdftex.def Info: resources/ethlogo.pdf  used on input line 33.
 (pdftex.def)             Requested size: 154.165pt x 42.67912pt.
-<resources/isilogo_plain_bw.pdf, id=265, 47.17424pt x 30.11853pt>
+<resources/isilogo_plain_bw.pdf, id=253, 47.17424pt x 30.11853pt>
 File: resources/isilogo_plain_bw.pdf Graphic file (type pdf)
 <use resources/isilogo_plain_bw.pdf>
-Package pdftex.def Info: resources/isilogo_plain_bw.pdf  used on input line 33.
+Package pdftex.def Info: resources/isilogo_plain_bw.pdf  used on input line 35.
 (pdftex.def)             Requested size: 66.85039pt x 42.67912pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 64.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 64.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 62.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 64.
  (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/ethlogo.pdf> <./resources/isilogo_plain_bw.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[2
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/ethlogo.pdf> <./resources/isilogo_plain_bw.pdf>] [2
 
 ] [3
 
-
-]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[4
+] [4
 
 
 ] (./report.toc
@@ -1015,7 +1021,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [5
-
 
 ])
 \tf@toc=\write5
@@ -1085,10 +1090,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6]
-<figs/beamforming_example.pdf, id=471, 433.62pt x 289.08pt>
+<figs/beamforming_example.pdf, id=454, 433.62pt x 289.08pt>
 File: figs/beamforming_example.pdf Graphic file (type pdf)
 <use figs/beamforming_example.pdf>
-Package pdftex.def Info: figs/beamforming_example.pdf  used on input line 271.
+Package pdftex.def Info: figs/beamforming_example.pdf  used on input line 252.
 (pdftex.def)             Requested size: 332.89499pt x 221.93945pt.
 
 
@@ -1123,7 +1128,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [10]
-Overfull \hbox (4.33054pt too wide) in paragraph at lines 416--417
+Overfull \hbox (4.33054pt too wide) in paragraph at lines 397--398
 []\T1/cmr/m/n/10.95 This first the-o-rem shows that out of the four loss func-tions above-mentioned,
  []
 
@@ -1151,14 +1156,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [13]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[14]
 Chapter 3.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1167,7 +1164,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[15
+[14
 
 ]
 
@@ -1177,23 +1174,31 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[16]
-<figs/full_measurement_setup.pdf, id=598, 498.86375pt x 398.48875pt>
+[15]
+<figs/full_measurement_setup.pdf, id=571, 498.86375pt x 398.48875pt>
 File: figs/full_measurement_setup.pdf Graphic file (type pdf)
 <use figs/full_measurement_setup.pdf>
-Package pdftex.def Info: figs/full_measurement_setup.pdf  used on input line 548.
+Package pdftex.def Info: figs/full_measurement_setup.pdf  used on input line 529.
 (pdftex.def)             Requested size: 369.88583pt x 295.47295pt.
-<figs/source.png, id=601, 987.69pt x 1103.12125pt>
+<figs/source.png, id=574, 987.69pt x 1103.12125pt>
 File: figs/source.png Graphic file (type png)
 <use figs/source.png>
-Package pdftex.def Info: figs/source.png  used on input line 555.
-(pdftex.def)             Requested size: 240.42352pt x 268.5081pt.
-<figs/microphone_array_cropped.jpg, id=603, 657.1752pt x 462.528pt>
+Package pdftex.def Info: figs/source.png  used on input line 537.
+(pdftex.def)             Requested size: 166.4475pt x 185.8954pt.
+<figs/microphone_array_cropped.jpg, id=576, 657.1752pt x 462.528pt>
 File: figs/microphone_array_cropped.jpg Graphic file (type jpg)
 <use figs/microphone_array_cropped.jpg>
-Package pdftex.def Info: figs/microphone_array_cropped.jpg  used on input line 562.
-(pdftex.def)             Requested size: 240.42352pt x 169.213pt.
+Package pdftex.def Info: figs/microphone_array_cropped.jpg  used on input line 542.
+(pdftex.def)             Requested size: 184.94292pt x 130.1633pt.
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[16]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1202,26 +1207,33 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [17 <./figs/full_measurement_setup.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[18 <./figs/source.png> <./figs/microphone_array_cropped.jpg>]
-<figs/comparison_synthetic_measurement_data.pdf, id=628, 433.62pt x 289.08pt>
+<figs/comparison_synthetic_measurement_data.pdf, id=600, 614.295pt x 361.35pt>
 File: figs/comparison_synthetic_measurement_data.pdf Graphic file (type pdf)
 <use figs/comparison_synthetic_measurement_data.pdf>
-Package pdftex.def Info: figs/comparison_synthetic_measurement_data.pdf  used on input line 577.
-(pdftex.def)             Requested size: 332.89499pt x 221.93945pt.
-<figs/datasets_beamforming_example.pdf, id=630, 1084.05pt x 433.62pt>
-File: figs/datasets_beamforming_example.pdf Graphic file (type pdf)
-<use figs/datasets_beamforming_example.pdf>
-Package pdftex.def Info: figs/datasets_beamforming_example.pdf  used on input line 586.
-(pdftex.def)             Requested size: 554.82875pt x 221.93726pt.
+Package pdftex.def Info: figs/comparison_synthetic_measurement_data.pdf  used on input line 559.
+(pdftex.def)             Requested size: 332.89499pt x 195.82083pt.
+<figs/datasets_beamforming_example_synthetic.pdf, id=602, 578.16pt x 433.62pt>
+File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_synthetic.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 571.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
 
-Overfull \hbox (13.98616pt too wide) in paragraph at lines 599--600
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 571--572
+ [][] 
+ []
+
+<figs/datasets_beamforming_example_measurement.pdf, id=603, 578.16pt x 433.62pt>
+File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_measurement.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 578.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 578--579
+ [][] 
+ []
+
+
+Overfull \hbox (13.98616pt too wide) in paragraph at lines 595--596
 \T1/cmr/m/n/10.95 The first WGAN-GP cre-ated was to gen-er-ate the scaled eigen-val-ues $\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 ^^U[]; [] ; ^^U[]\OT1/cmr/m/n/10.95 ] \OMS/cmsy/m/n/10.95 2
  []
 
@@ -1232,7 +1244,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[19]
+[18 <./figs/source.png> <./figs/microphone_array_cropped.jpg>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1240,13 +1252,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[20 <./figs/comparison_synthetic_measurement_data.pdf> <./figs/datasets_beamforming_example.pdf>]
-<figs/flowchart_evals_wgangp.jpg, id=730, 1080.035pt x 932.48375pt>
-File: figs/flowchart_evals_wgangp.jpg Graphic file (type jpg)
-<use figs/flowchart_evals_wgangp.jpg>
-Package pdftex.def Info: figs/flowchart_evals_wgangp.jpg  used on input line 607.
-(pdftex.def)             Requested size: 240.42352pt x 207.5659pt.
-
+[19 <./figs/comparison_synthetic_measurement_data.pdf> <./figs/datasets_beamforming_example_synthetic.pdf> <./figs/datasets_beamforming_example_measurement.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1254,12 +1260,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[21 <./figs/flowchart_evals_wgangp.jpg>]
-<figs/measurement_sample_rank_I_beamforming.pdf, id=744, 505.89pt x 433.62pt>
+[20]
+<figs/measurement_sample_rank_I_beamforming.pdf, id=731, 578.16pt x 433.62pt>
 File: figs/measurement_sample_rank_I_beamforming.pdf Graphic file (type pdf)
 <use figs/measurement_sample_rank_I_beamforming.pdf>
-Package pdftex.def Info: figs/measurement_sample_rank_I_beamforming.pdf  used on input line 635.
-(pdftex.def)             Requested size: 295.90979pt x 253.64352pt.
+Package pdftex.def Info: figs/measurement_sample_rank_I_beamforming.pdf  used on input line 665.
+(pdftex.def)             Requested size: 295.90979pt x 221.93063pt.
+<figs/histograms_eigenvectors.pdf, id=733, 1445.4pt x 1589.94pt>
+File: figs/histograms_eigenvectors.pdf Graphic file (type pdf)
+<use figs/histograms_eigenvectors.pdf>
+Package pdftex.def Info: figs/histograms_eigenvectors.pdf  used on input line 678.
+(pdftex.def)             Requested size: 443.86186pt x 488.24255pt.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1268,18 +1279,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[22 <./figs/measurement_sample_rank_I_beamforming.pdf>]
-<figs/histograms_eigenvectors.pdf, id=790, 1445.4pt x 1445.4pt>
-File: figs/histograms_eigenvectors.pdf Graphic file (type pdf)
-<use figs/histograms_eigenvectors.pdf>
-Package pdftex.def Info: figs/histograms_eigenvectors.pdf  used on input line 648.
-(pdftex.def)             Requested size: 554.82875pt x 554.81557pt.
-<figs/flowchart_evecs_wgangp.jpg, id=794, 1079.03125pt x 932.48375pt>
-File: figs/flowchart_evecs_wgangp.jpg Graphic file (type jpg)
-<use figs/flowchart_evecs_wgangp.jpg>
-Package pdftex.def Info: figs/flowchart_evecs_wgangp.jpg  used on input line 659.
-(pdftex.def)             Requested size: 240.42352pt x 207.7651pt.
+[21 <./figs/measurement_sample_rank_I_beamforming.pdf>]
 
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[22 <./figs/histograms_eigenvectors.pdf>]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1295,26 +1303,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[24 <./figs/histograms_eigenvectors.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[25 <./figs/flowchart_evecs_wgangp.jpg>]
+[24]
 Chapter 4.
-<figs/loss_evals_wgangp.pdf, id=850, 1228.59pt x 361.35pt>
+<figs/loss_evals_wgangp.pdf, id=829, 1228.59pt x 361.35pt>
 File: figs/loss_evals_wgangp.pdf Graphic file (type pdf)
 <use figs/loss_evals_wgangp.pdf>
-Package pdftex.def Info: figs/loss_evals_wgangp.pdf  used on input line 708.
+Package pdftex.def Info: figs/loss_evals_wgangp.pdf  used on input line 728.
 (pdftex.def)             Requested size: 443.86186pt x 130.54906pt.
-<figs/samples_evals_wgangp.pdf, id=852, 1228.59pt x 361.35pt>
+<figs/samples_evals_wgangp.pdf, id=831, 722.7pt x 433.62pt>
 File: figs/samples_evals_wgangp.pdf Graphic file (type pdf)
 <use figs/samples_evals_wgangp.pdf>
-Package pdftex.def Info: figs/samples_evals_wgangp.pdf  used on input line 717.
-(pdftex.def)             Requested size: 443.86186pt x 130.54906pt.
+Package pdftex.def Info: figs/samples_evals_wgangp.pdf  used on input line 737.
+(pdftex.def)             Requested size: 295.90979pt x 177.54715pt.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1322,7 +1322,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[26
+[25
 
 ]
 
@@ -1332,20 +1332,53 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[27 <./figs/loss_evals_wgangp.pdf> <./figs/samples_evals_wgangp.pdf
-
-pdfTeX warning: pdflatex (file ./figs/samples_evals_wgangp.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-<figs/loss_evals_dB_wgangp.pdf, id=950, 1228.59pt x 361.35pt>
+[26 <./figs/loss_evals_wgangp.pdf> <./figs/samples_evals_wgangp.pdf>]
+<figs/loss_evals_dB_wgangp.pdf, id=926, 1228.59pt x 361.35pt>
 File: figs/loss_evals_dB_wgangp.pdf Graphic file (type pdf)
 <use figs/loss_evals_dB_wgangp.pdf>
-Package pdftex.def Info: figs/loss_evals_dB_wgangp.pdf  used on input line 730.
+Package pdftex.def Info: figs/loss_evals_dB_wgangp.pdf  used on input line 748.
 (pdftex.def)             Requested size: 443.86186pt x 130.54906pt.
-<figs/samples_evals_dB_wgangp.pdf, id=952, 1228.59pt x 361.35pt>
+<figs/samples_evals_dB_wgangp.pdf, id=928, 614.295pt x 361.35pt>
 File: figs/samples_evals_dB_wgangp.pdf Graphic file (type pdf)
 <use figs/samples_evals_dB_wgangp.pdf>
-Package pdftex.def Info: figs/samples_evals_dB_wgangp.pdf  used on input line 740.
-(pdftex.def)             Requested size: 443.86186pt x 130.54906pt.
+Package pdftex.def Info: figs/samples_evals_dB_wgangp.pdf  used on input line 758.
+(pdftex.def)             Requested size: 295.90979pt x 174.06357pt.
+<figs/outliers_evals_dB_wgangp.pdf, id=930, 578.16pt x 433.62pt>
+File: figs/outliers_evals_dB_wgangp.pdf Graphic file (type pdf)
+<use figs/outliers_evals_dB_wgangp.pdf>
+Package pdftex.def Info: figs/outliers_evals_dB_wgangp.pdf  used on input line 767.
+(pdftex.def)             Requested size: 295.90979pt x 221.93063pt.
+File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_synthetic.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 781.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 781--782
+ [][] 
+ []
+
+File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_measurement.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 788.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 788--789
+ [][] 
+ []
+
+<figs/data_augmentation_evals_augmented_csm.pdf, id=935, 578.16pt x 433.62pt>
+File: figs/data_augmentation_evals_augmented_csm.pdf Graphic file (type pdf)
+<use figs/data_augmentation_evals_augmented_csm.pdf>
+Package pdftex.def Info: figs/data_augmentation_evals_augmented_csm.pdf  used on input line 795.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 795--796
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1354,17 +1387,106 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[28 <./figs/loss_evals_dB_wgangp.pdf>]
-<figs/beamforming_map_data_augmentation.pdf, id=999, 1084.05pt x 433.62pt>
-File: figs/beamforming_map_data_augmentation.pdf Graphic file (type pdf)
-<use figs/beamforming_map_data_augmentation.pdf>
-Package pdftex.def Info: figs/beamforming_map_data_augmentation.pdf  used on input line 758.
-(pdftex.def)             Requested size: 554.82875pt x 221.93726pt.
-<figs/loss_main_evec_wgangp.pdf, id=1001, 1228.59pt x 361.35pt>
+[27 <./figs/loss_evals_dB_wgangp.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[28 <./figs/samples_evals_dB_wgangp.pdf> <./figs/outliers_evals_dB_wgangp.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[29 <./figs/data_augmentation_evals_augmented_csm.pdf>]
+<figs/loss_main_evec_wgangp.pdf, id=1080, 1228.59pt x 361.35pt>
 File: figs/loss_main_evec_wgangp.pdf Graphic file (type pdf)
 <use figs/loss_main_evec_wgangp.pdf>
-Package pdftex.def Info: figs/loss_main_evec_wgangp.pdf  used on input line 771.
+Package pdftex.def Info: figs/loss_main_evec_wgangp.pdf  used on input line 812.
 (pdftex.def)             Requested size: 443.86186pt x 130.54906pt.
+<figs/beamforming_map_main_evec_wgangp_generated.pdf, id=1085, 578.16pt x 433.62pt>
+File: figs/beamforming_map_main_evec_wgangp_generated.pdf Graphic file (type pdf)
+<use figs/beamforming_map_main_evec_wgangp_generated.pdf>
+Package pdftex.def Info: figs/beamforming_map_main_evec_wgangp_generated.pdf  used on input line 823.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 823--824
+ [][] 
+ []
+
+<figs/beamforming_map_main_evec_wgangp_difference.pdf, id=1086, 578.16pt x 433.62pt>
+File: figs/beamforming_map_main_evec_wgangp_difference.pdf Graphic file (type pdf)
+<use figs/beamforming_map_main_evec_wgangp_difference.pdf>
+Package pdftex.def Info: figs/beamforming_map_main_evec_wgangp_difference.pdf  used on input line 830.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 830--831
+ [][] 
+ []
+
+
+Overfull \hbox (1.6698pt too wide) in paragraph at lines 839--840
+[]\T1/cmr/m/n/10.95 Moreover, 10000 sam-ple main eigen-vec-tor were gen-er-ated us-ing the WGAN-
+ []
+
+<figs/outliers_main_evec.pdf, id=1089, 578.16pt x 433.62pt>
+File: figs/outliers_main_evec.pdf Graphic file (type pdf)
+<use figs/outliers_main_evec.pdf>
+Package pdftex.def Info: figs/outliers_main_evec.pdf  used on input line 843.
+(pdftex.def)             Requested size: 221.93375pt x 166.44467pt.
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[30 <./figs/loss_main_evec_wgangp.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[31 <./figs/beamforming_map_main_evec_wgangp_generated.pdf> <./figs/beamforming_map_main_evec_wgangp_difference.pdf> <./figs/outliers_main_evec.pdf>]
+File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_synthetic.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 858.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 858--859
+ [][] 
+ []
+
+File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_measurement.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 865.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 865--866
+ [][] 
+ []
+
+<figs/data_augmentation_evecs_augmented_csm.pdf, id=1233, 578.16pt x 433.62pt>
+File: figs/data_augmentation_evecs_augmented_csm.pdf Graphic file (type pdf)
+<use figs/data_augmentation_evecs_augmented_csm.pdf>
+Package pdftex.def Info: figs/data_augmentation_evecs_augmented_csm.pdf  used on input line 872.
+(pdftex.def)             Requested size: 216.38225pt x 162.28288pt.
+
+Overfull \hbox (49.93475pt too wide) in paragraph at lines 872--873
+ [][] 
+ []
+
+
+Underfull \hbox (badness 4403) in paragraph at lines 873--873
+[]\T1/cmr/m/n/10 (c) |CSM Aug-mented From Main
+ []
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1373,32 +1495,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[29 <./figs/samples_evals_dB_wgangp.pdf>]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[30 <./figs/beamforming_map_data_augmentation.pdf> <./figs/loss_main_evec_wgangp.pdf
-
-pdfTeX warning: pdflatex (file ./figs/loss_main_evec_wgangp.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-<figs/beamforming_map_main_evec_wgangp.pdf, id=1148, 1084.05pt x 433.62pt>
-File: figs/beamforming_map_main_evec_wgangp.pdf Graphic file (type pdf)
-<use figs/beamforming_map_main_evec_wgangp.pdf>
-Package pdftex.def Info: figs/beamforming_map_main_evec_wgangp.pdf  used on input line 782.
-(pdftex.def)             Requested size: 554.82875pt x 221.93726pt.
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[31 <./figs/beamforming_map_main_evec_wgangp.pdf>]
+[32 <./figs/data_augmentation_evecs_augmented_csm.pdf>]
 Chapter 5.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1407,17 +1504,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[32
+[33
 
 ]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[33]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1426,7 +1515,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [34]
-Chapter 6.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1434,10 +1522,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[35
-
-]
-Chapter 7.
+[35]
+Chapter 6.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1448,47 +1534,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [36
 
 ]
-Appendix A.
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 874.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 893.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 909.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 930.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 947.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 967.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 984.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1005.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1024.
-
-
-LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1055.
-
+Chapter 7.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1498,8 +1544,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [37
 
+] [38
 
 ]
+Appendix A.
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 960.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 979.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 995.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1016.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1033.
+
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 1053.
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1507,15 +1579,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[38]
+[39
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller to compensate:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[39]
+]
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -1568,17 +1634,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [46] (./report.lof
-Overfull \hbox (9.68144pt too wide) in paragraph at lines 8--8
+Overfull \hbox (9.68144pt too wide) in paragraph at lines 6--6
  [][] [][][]\T1/cmr/m/n/10.95 Example of the mea-sure-ment setup used, with three au-dio sources. 
  []
 
 
-Overfull \hbox (0.58789pt too wide) in paragraph at lines 19--19
- \T1/cmr/m/n/10.95 with the WGAN-GP for scaled eigen-val-ues af-ter the ini-tial train- 
- []
-
-
-Underfull \vbox (badness 1436) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -1622,21 +1683,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 ] [51] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 304A501ACA2B26852102D8D4291F441D;10273.
+(rerunfilecheck)             Checksum: 01F2A5D172F0C46D7F133FAC0F330540;9742.
  ) 
 Here is how much of TeX's memory you used:
- 40078 strings out of 478287
- 919515 string characters out of 5849289
- 1314272 words of memory out of 5000000
- 57279 multiletter control sequences out of 15000+600000
- 490671 words of font info for 79 fonts, out of 8000000 for 9000
+ 41464 strings out of 478287
+ 948803 string characters out of 5849289
+ 1331466 words of memory out of 5000000
+ 58664 multiletter control sequences out of 15000+600000
+ 491434 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,103p,1444b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on report.pdf (57 pages, 6304934 bytes).
+ 99i,12n,131p,1392b,711s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on report.pdf (57 pages, 5865923 bytes).
 PDF statistics:
- 1540 PDF objects out of 1728 (max. 8388607)
- 1046 compressed objects within 11 object streams
- 224 named destinations out of 1000 (max. 500000)
- 668 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1591 PDF objects out of 1728 (max. 8388607)
+ 1060 compressed objects within 11 object streams
+ 213 named destinations out of 1000 (max. 500000)
+ 659 words of extra memory for PDF output out of 10000 (max. 10000000)
 

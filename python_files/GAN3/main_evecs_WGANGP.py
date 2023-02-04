@@ -212,9 +212,9 @@ class main_evecs_WGANGP(Model):
             
             if predictions[0, 0] > 0:
                 print("real main eigenvectors found")
-                return True, norm_generated_evecs
+                return predictions[0, 0], norm_generated_evecs
                 
         
         print("no real main eigenvectors found")
-        return False, norm_generated_evecs
+        return predictions[0, 0], norm_generated_evecs
 

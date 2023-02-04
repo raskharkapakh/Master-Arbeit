@@ -1,27 +1,27 @@
 \babel@toc {USenglish}{}\relax 
-\babel@toc {ngerman}{}\relax 
-\babel@toc {USenglish}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of beamforming source map, with three sources.}}{7}{figure.2.1}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Example of beamforming source map, with three sources.\relax }}{7}{figure.caption.3}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of the measurement setup used, with three audio sources. Image taken from \cite {kujawski2022acoupipe}}}{17}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Device used as audio source to create the measurement}}{18}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Picture of the array of microphone used to create the real measurement}}{18}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Levels of the eigenvalues of a synthetized CSM (blue) and of a measured CSM (orange).}}{20}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Beamforming maps, created respectively with CSMs from the synthetic dataset and from the measurement data}}{20}{figure.3.5}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvalues.}}{21}{figure.3.6}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Beamforming map, created with a rank I CSM created from measurement data}}{22}{figure.3.7}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Histograms of the values of the scalars of the eigenvectors with different index. The eigenvector with index $63$ is the main eigenvector (two last histograms).}}{24}{figure.3.8}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Full structure of the used implementation of the WGAN-GP to generate eigenvectors.}}{25}{figure.3.9}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Example of the measurement setup used, with three audio sources. This is image is only for illustration purposes. In the actual performed measurement, there was only one audio source. Moreover, the dimension showed in the picture are for an aperture size of 1m, whereas in the actual performed measurement, the aperture size was of 1.46m. This means that in the actual setup every dimension were actually 1.46 times bigger than in the image. This image is taken from \cite {kujawski2022acoupipe}\relax }}{17}{figure.caption.4}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Device used as audio source to create the measurement\relax }}{18}{figure.caption.5}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Picture of the array of microphone used to create the real measurement\relax }}{18}{figure.caption.5}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Levels of the eigenvalues of a synthesized CSM (blue) and of a measured CSM (orange).\relax }}{19}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Beamforming maps, created respectively with CSM from the synthetic dataset and from the measurement data.\relax }}{19}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Full structure of the implementation used in the WGAN-GP to generate eigenvalues or eigenvectors. The eigenvalues are being scaled before being fed to the generator, while the eigenvectors are being normalized.\relax }}{20}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Beamforming map, created with a rank I CSM created from measurement data\relax }}{21}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Histograms of the values of the scalars of the eigenvectors with different index. The eigenvector with index $63$ is the main eigenvector (two last histograms).\relax }}{22}{figure.caption.12}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces The loss functions of the critic of the WGAN-GP for eigenvalues generation, respectively while performing the initial training and while fine-tuning}}{27}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for scaled eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for scaled eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}}{27}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces The loss functions of the critic of the WGAN-GP for the levels of eigenvalues generation, respectively while performing the initial training and while fine-tuning}}{28}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces The first graph shows eigenvalues of a synthetic CSM (green), eigenvalues of a measured CSM (red), eigenvalues generated with the WGAN-GP for level of eigenvalues after the initial training (blue) and eigenvalues generated with the WGAN-GP for level of eigenvalues after the fine-tuning (orange). The second graph displays the levels of the same eigenvalues.}}{29}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces The first beamforming map has been perfomed with a CSM computed with the data augemntation scheme. The second map shwos the difference between the beamforming map obtained with CSM from respectively the data augmentation dataset and the training dataset}}{30}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces The loss functions of the critic of the WGAN-GP for the main eigenvector generation, respectively while performing the initial training and while fine-tuning}}{30}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces The first beamforming map has been perfomed with a Rank I CSM computed with a generated main eigenvector. The second map shows the difference between the beamforming map obtained with Rank I CSM computed respectively with a generated main eigenvector and a main eigenvector from the dataset.}}{31}{figure.4.7}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces The loss functions of the critic of the WGAN-GP for eigenvalues generation, respectively while performing the initial training and while fine-tuning\relax }}{26}{figure.caption.14}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces This graph shows the level of eigenvalues of a synthetic CSM (green), level of eigenvalues of a measured CSM (red), level of eigenvalues generated with the WGAN-GP for scaled eigenvalues after the initial training (blue) and level of eigenvalues generated with the WGAN-GP for scaled eigenvalues after the fine-tuning (orange).\relax }}{26}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces The loss functions of the critic of the WGAN-GP for the levels of eigenvalues generation, respectively while performing the initial training and while fine-tuning\relax }}{27}{figure.caption.16}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces The first graph shows levels of eigenvalues of a synthetic CSM (green), levels of eigenvalues of a measured CSM (red), levels of eigenvalues generated with the WGAN-GP for level of eigenvalues after the initial training (blue) and levels of eigenvalues generated with the WGAN-GP for level of eigenvalues after the fine-tuning (orange).\relax }}{28}{figure.caption.17}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces In orange are displayed the level eigenvalues of the measurement CSM. In blue, the average (bold), the 5\% and 95\%percentiles (dotted) of generated level of eigenvalues are displayed. In gray are displayed examples of eigenvalues' levels coming from other measurements not used for training.\relax }}{28}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Three beamforming maps obtained from synthetic CSM, measured CSM and CSM augmented with generated eigenvalues\relax }}{29}{figure.caption.19}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces The loss functions of the critic of the WGAN-GP for the main eigenvector generation, respectively while performing the initial training and while fine-tuning\relax }}{30}{figure.caption.20}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces The first beamforming map has been perfomed with a Rank I CSM computed with a generated main eigenvector. The second map shows the difference between the beamforming map obtained with Rank I CSM computed respectively with a generated main eigenvector and a main eigenvector from the dataset.\relax }}{31}{figure.caption.21}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Beamforming map resulting from a rank I CSM, computed from a generated main eigenvector with the lowest critic score out of 10000 generated main eigenvector.\relax }}{31}{figure.caption.22}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Three beamforming maps obtained from synthetic CSM, measured CSM and CSM augmented with generated main eigenvector\relax }}{32}{figure.caption.23}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

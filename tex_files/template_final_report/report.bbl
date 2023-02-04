@@ -190,11 +190,6 @@ I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
   A.~Courville, and Y.~Bengio, ``Generative adversarial networks,''
   \emph{Communications of the ACM}, vol.~63, no.~11, pp. 139--144, 2020.
 
-\bibitem{radford2015unsupervised}
-A.~Radford, L.~Metz, and S.~Chintala, ``Unsupervised representation learning
-  with deep convolutional generative adversarial networks,'' \emph{arXiv
-  preprint arXiv:1511.06434}, 2015.
-
 \bibitem{arjovsky2017wasserstein}
 M.~Arjovsky, S.~Chintala, and L.~Bottou, ``Wasserstein generative adversarial
   networks,'' in \emph{International conference on machine learning}.\hskip 1em
