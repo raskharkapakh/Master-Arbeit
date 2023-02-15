@@ -45,8 +45,8 @@ def beamform(csm, helmotz_number=4.0625, measurement=False):
             extent=rg.extend(),
             interpolation='bicubic')
     
-    plt.xlabel(r"$x$", fontsize=nb_fontsize)
-    plt.ylabel(r"$y$", fontsize=nb_fontsize)
+    plt.xlabel(r"$x/$m", fontsize=nb_fontsize)
+    plt.ylabel(r"$y/$m", fontsize=nb_fontsize)
     plt.xticks(fontsize=nb_fontsize)
     plt.yticks(fontsize=nb_fontsize)
     
@@ -110,8 +110,8 @@ def beamform_difference(csm1, csm2, helmotz_number=4.0625, measurement=False):
            extent=rg.extend(),
             interpolation='bicubic')
     
-    plt.xlabel(r"$x$", fontsize=nb_fontsize)
-    plt.ylabel(r"$y$", fontsize=nb_fontsize)
+    plt.xlabel(r"$x/$m", fontsize=nb_fontsize)
+    plt.ylabel(r"$y/m$", fontsize=nb_fontsize)
     plt.xticks(fontsize=nb_fontsize)
     plt.yticks(fontsize=nb_fontsize)
     

@@ -74,7 +74,7 @@
 \thispagestyle{empty}
 \chapter*{Abstract}
 
-This thesis investigates whether Generative Adversial Network can be used to generate realistic Cross Spectral Matrix (CSM) through their eigendecomposition. Models to generate the eigenvalues' spectrum as well the strongest eigenvector are proposed. The GAN model used to generate those quantities is a Wasserstein GAN with penalized norm of gradient of the critic with respect to its input (WGAN-GP). Based on those models, a data augmentation scheme allowing to improve the realness of synthetic CSM is introduced. 
+This thesis investigates whether Generative Adversarial Network can be used to generate realistic Cross Spectral Matrix (CSM) through their eigendecomposition. Models to generate the eigenvalues' spectrum as well the strongest eigenvector are proposed. The GAN model used to generate those quantities is a Wasserstein GAN with penalized norm of gradient of the critic with respect to its input (WGAN-GP). The method shows that WGAN-GP are suited to generate the eigenvalues spectrum and the strongest eigenvector. Based on those models, a data augmentation scheme allowing to improve the realness of synthetic CSM is introduced. Moreover, this work shows that only a few measured source cases are needed in order to generate data with properties similar to experimental data. Based on the findings of this work, GAN  could be a promising tool to achieve better generalization of deep learning models for source characterization.
 
 \clearpage
 
@@ -249,7 +249,7 @@ This provides a source map. An example of source map can be seen in Fig.~\ref{fi
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{figs/beamforming_example.pdf}
+    \includegraphics[width=0.7\textwidth]{figs/beamforming_example.pdf}
     \caption{Example of beamforming source map, with three sources.}
     \label{fig:beamforming_example}    
 \end{figure}
@@ -518,35 +518,28 @@ For training the networks designed in this thesis, two kinds of data were used, 
 
 When a specific measurement was chosen to create the measurement dataset, its source's position was used to create the corresponding synthetic data. The synthetic CSM were sampled from the complex Wishart's distribution. The number of degree of freedom was set to $4 \times M = 256$, since they are $M = 64$ microphones. Moreover, some noise was added to the synthetic CSM, such that the SNR of synthetic data was approximately matching the one of the measurement data. Here the SNR was approximately 60dB. 
 
-When creating the CSM from the synthetic data, the CSM corresponding to the Helmotz number $He = 16$ were created. In the case of the synthetic data, the characteristic dimension was $d_s = 1$, hence the frequency related to the Helmotz number $He$ was $f = 5.488$kHz. The source position used in the synthetic was $(x \cdot d_s,y \cdot d_s, z \cdot d_s) = (-0.0614,-0.0757, 0.5)$.
+When creating the CSM from the synthetic data, the CSM corresponding to the Helmotz number $He = 16$ were created. In the case of the synthetic data, the characteristic dimension was $d_s = 1\,$m, hence the frequency related to the Helmotz number $He$ was $f = 5.488\, \mathrm{kHz}$. The source position used in the synthetic was $(x \cdot d_s,y \cdot d_s, z \cdot d_s) = (-0.0614,-0.0757, 0.5)$.
 
 \subsection{Measurement}
 
-In order to generate realistic data, measurement have been performed. Existing microphone array data that stems from a measurement campaign in 2022 was used. An example of the measurement setup is displayed in Fig.~\ref{fig:full_measurement_setup}. It is made of sound sources located at different position $(x \cdot d_m,y \cdot d_m, z \cdot d_m)$ in a $1 \cdot d_m$m $\times$ $1 \cdot d_m$m plane located $0.5 \cdot d_m$ meter in front an array of 64 microphones. In the case of the measurement data, the characteristic dimension $d_m$ was equal to $1.46$, which is the aperture size $AP$ of the microphone array. Every measurement corresponds to single source case, at a different position for every measurement. All measurements have a duration 10s and a sampling frequency of 51.2kHz. We note here that the SNR of the recordings was of 62.5dB. For the recordings, the microphones were organized in Vogel's spiral pattern, with the central one acting as the reference microphone.  Fig.~\ref{fig:source} shows one of the loudspeaker used for the measurement setup and Fig.~\ref{fig:microphone_array} shows the microphone array. The measurements are sound pressure $\mathbf{p} \in \mathbb{C}^{64}$ at the 64 microphones of the array.
+In order to generate realistic data, measurement have been performed. Existing microphone array data that stems from a measurement campaign in 2022 was used. An example of the measurement setup is displayed in Fig.~\ref{fig:full_measurement_setup}. It is made of sound sources located at different position $(x \cdot d_m,y \cdot d_m, z \cdot d_m)$ in a $1 \cdot d_m\,$m $\times$ $1 \cdot d_m\,$m plane located $0.5 \cdot d_m\,$m in front an array of 64 microphones. In the case of the measurement data, the characteristic dimension $d_m$ was equal to $1.46\,$m, which is the aperture size $AP$ of the microphone array. Every measurement corresponds to single source case, at a different position for every measurement. All measurements have a duration $10\,$s and a sampling frequency of $51.2\,$kHz. It is to be noted here that the SNR of the recordings was of 62.5dB. For the recordings, the microphones were organized in Vogel's spiral pattern, with the central one acting as the reference microphone. Fig.~\ref{fig:microphone_array} shows the microphone array used in the measurement setup. The measurements are sound pressure $\mathbf{p} \in \mathbb{C}^{64}$ at the 64 microphones of the array.
 
 \begin{figure}
     \centering
     \includegraphics[width=1\textwidth]{figs/full_measurement_setup.pdf}
-    \caption{Example of the measurement setup used, with three audio sources. This is image is only for illustration purposes. In the actual performed measurement, there was only one audio source. Moreover, the dimension showed in the picture are for an aperture size of 1m, whereas in the actual performed measurement, the aperture size was of 1.46m. This means that in the actual setup every dimension were actually 1.46 times bigger than in the image. This image is taken from \cite{kujawski2022acoupipe}}
+    \caption{Example of the measurement setup used, with three audio sources. This is image is only for illustration purposes. In the actual performed measurement, there was only one audio source. Moreover, the dimension showed in the picture are for an aperture size of $1\,$m, whereas in the actual performed measurement, the aperture size was of $1.46\,$m. This means that in the actual setup every dimension were actually 1.46 times bigger than in the image. This image is taken from \cite{kujawski2022acoupipe}}
     \label{fig:full_measurement_setup}
 \end{figure} 
 
 \begin{figure}
     \centering
-    \begin{minipage}{0.45\textwidth}
-        \includegraphics[width=1\textwidth]{figs/source.png}
-        \caption{Device used as audio source to create the measurement}
-        \label{fig:source}
-    \end{minipage}\hfill
-    \begin{minipage}{0.5\textwidth}
-        \includegraphics[width=1\textwidth]{figs/microphone_array_cropped.jpg}
-        \caption{Picture of the array of microphone used to create the real measurement}
-        \label{fig:microphone_array}
-    \end{minipage}
+    \includegraphics[width=0.8\textwidth]{figs/microphone_array_cropped.jpg}
+    \caption{Picture of the array of microphone used to create the measurement.}
+    \label{fig:microphone_array}
 \end{figure}
 
 
-From the recorded sound pressure vector $\mathbf{p}$, Welch's method (i.e. equation $\ref{csm}$) is used to compute approximated CSM $\hat{\mathbf{C}}$. From \cite{gerstoft2012eigenvalues}, it is known that the number of snapshots $B$ needed to be at least 4 times the number of receivers $M$ of the array, in order for the eigenvalues of the approximated CSM $\hat{\mathbf{C}}$ to be sufficiently close to the eigenvalues of the real CSM. In this case, the number of receivers $M = 64$, hence $B$ needed to be at least $256$. In order to generate one CSM $\hat{\mathbf{C}}$, a slice of duration 0.2s is extracted from the measurement. From this slice, $B$ snapshots were created. By using a slice of 0.2s duration and extracting snapshots with 75\% overlap, $B = 317$ snapshots could be created per slice of measurement. Per measurement, 200 CSM $\hat{\mathbf{C}}$ were created from 200 slices selected at random. The CSM created from the recordings corresponds to a source located at position $(x \cdot d_m,y \cdot d_m, z \cdot d_m) = (-0.09,-0.111, 0.7324)$, Helmotz Number $He = 16$ and its corresponding frequency $f = 3.758$kHz.
+From the recorded sound pressure vector $\mathbf{p}$, Welch's method (i.e. equation $\ref{csm}$) is used to compute approximated CSM $\hat{\mathbf{C}}$. From \cite{gerstoft2012eigenvalues}, it is known that the number of snapshots $B$ needed to be at least 4 times the number of receivers $M$ of the array, in order for the eigenvalues of the approximated CSM $\hat{\mathbf{C}}$ to be sufficiently close to the eigenvalues of the real CSM. In this case, the number of receivers $M = 64$, hence $B$ needed to be at least $256$. In order to generate one CSM $\hat{\mathbf{C}}$, a slice of duration 0.2s is extracted from the measurement. From this slice, $B$ snapshots were created. By using a slice of 0.2s duration and extracting snapshots with 75\% overlap, $B = 317$ snapshots could be created per slice of measurement. Per measurement, 200 CSM $\hat{\mathbf{C}}$ were created from 200 slices selected at random. The CSM created from the recordings corresponds to a source located at position $(x \cdot d_m,y \cdot d_m, z \cdot d_m) = (-0.09,-0.111, 0.7324)$, Helmotz Number $He = 16$ and its corresponding frequency $f = 3.758\,$kHz.
 
 
 \subsection{Comparison between Synthetic and Measured Data}
@@ -649,7 +642,7 @@ Another approach to generate the scaled eigenvalues $\lambda_0, \dots, \lambda_{
     L_{\lambda_i} = 10 \log_{10}(\frac{\lambda_i}{\lambda_{63}})
 \end{equation}
 
-where $\lambda_{63}$ is the strongest eigenvalue.  Since all values $L_{\lambda_i}$ are non-positive, the generator has been built such that the two last steps are first a ReLU, followed by a multiplication by $-1$. This way it can be ensured that the network only produces non-positive spectrum. This approach was also justified by the usage of Leaky ReLU as activation throughout the generator. 
+where $\lambda_{63}$ is the strongest eigenvalue. Since all values $L_{\lambda_i}$ are non-positive, the generator has been built such that the two last steps are first a ReLU, followed by a multiplication by $-1$. This way it can be ensured that the network only produces non-positive spectrum. This approach was also justified by the usage of Leaky ReLU as activation throughout the generator. 
 
 Because Leaky ReLU were also used in the critic, the first layer of its network is also a multiplicative layer. Therefore, the critic is not trained to detect real from fake levels, but rather real from fake negative levels, which is equivalent. 
 
@@ -918,9 +911,14 @@ The data generated is accurate. Indeed, when replacing real data by generated da
 
 \chapter{Conclusion}
 
-As it has been shown, the methods of this thesis allow to generate realistic eigenvalue spectra and main eigenvector. It is important to highlight that currently the WGAN-GP used to generate these quantities have been trained only with CSM from a single position. Moreover, it was shown that the data augmentation method using generated main eigenvector allows to improve how realistic synthetic CSM are.
+As it has been shown, the WGAN-GP introduced for generating eigenvalues from their level approach is able to produce realistic samples, which is not true when generating directly the eigenvalues. Moreover, it was shown that training this WGAN-GP with synthetic data and fine-tuning it with a single measurement was sufficient to produce a variety of different realistic spectra, also representative of the spectra of different measurement, not used for training.  
 
-In conclusion, it can be stated that this thesis lay important foundation for generating the CSM representation of microphone array data. Moreover, a new method for learning matrix data, by using its eigendecomposition has been introduced. It is to be noted that such a method could be applied to other tasks that Acoustical Source Characterization, or extended for non-diagonalizable matrix by using singular value decomposition instead of eigendecomposition.
+Then, it is shown that a WGAN-GP approach is also suited to generate realistic strongest eigenvector. The beamforming map generated from Rank I CSM computed with generated strongest eigenvector showed accuratly the position of the sound source.
+
+Moreover, the data augmentation method using generated main eigenvector allows to improve how realistic synthetic CSM are. It was shown that the beamforming map obtained from CSM augmented with this method displayed features of beamforming map obtained from measurement data.
+
+In conclusion, it can be stated that this thesis lay important foundation for generating the CSM representation of microphone array data. It introduces new methods for learning matrix data, by using its eigendecomposition. It is shown that the eigedecomposition is a good representation of CSM to learn their distribution and hence generating them. The finding in this thesis are an important step toward solving the unavailability of real training data for source localization or characterization. Indeed, as shown in the literature survey, extensive researchs on this topic do not exist, which makes the contribution of this thesis especially relevant. 
+
 
 \chapter{Future Works}
 
@@ -1113,7 +1111,7 @@ In this appendix are compiled the architectures of the critics and generators us
 \fancyhead[RE]{}
 
 
-%\includepdf[pages=-]{decl_originality.pdf}
+\includepdf[pages=-]{decl_originality.pdf}
 
 
 
