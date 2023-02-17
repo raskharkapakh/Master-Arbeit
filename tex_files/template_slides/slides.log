@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  15 FEB 2023 18:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.28)  17 FEB 2023 19:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1065,7 +1065,7 @@ Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 24.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./resources/ethlogo_short.pdf> <./resources/isilogo_plain.pdf>]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 48.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 58.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1076,78 +1076,102 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 pdfTeX warning (ext4): destination with the same identifier (name{firstpage.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.48 \end{psli}
+l.58 \end{psli}
                pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.48 \end{psli}
+l.58 \end{psli}
                 [1]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 58.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[2]
-Overfull \hbox (9.23125pt too wide) in paragraph at lines 63--64
-[]\T1/cmss/m/n/12 Unfortunately, DL-based al-go-rithm needs sig-ni-fica-tive quan-ti-ties of well-structured 
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 67.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[3]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 76.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[4]
-<figs/full_measurement_setup.pdf, id=75, 498.86375pt x 398.48875pt>
+<figs/full_measurement_setup.pdf, id=52, 498.86375pt x 398.48875pt>
 File: figs/full_measurement_setup.pdf Graphic file (type pdf)
 <use figs/full_measurement_setup.pdf>
-Package pdftex.def Info: figs/full_measurement_setup.pdf  used on input line 81.
+Package pdftex.def Info: figs/full_measurement_setup.pdf  used on input line 64.
 (pdftex.def)             Requested size: 231.60672pt x 185.0035pt.
 
-Overfull \hbox (21.05632pt too wide) in paragraph at lines 81--82
+Overfull \hbox (21.05632pt too wide) in paragraph at lines 64--65
  [][] 
  []
 
 
-Overfull \hbox (3.91571pt too wide) in paragraph at lines 79--92
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 62--74
 [][] []  
  []
 
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 93.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 74.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 Package fancyhdr Warning: \footskip is too small (10.2pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
-[5 <./figs/full_measurement_setup.pdf>]
+[2 <./figs/full_measurement_setup.pdf>]
+<figs/comparison_synthetic_measurement_data.pdf, id=65, 614.295pt x 361.35pt>
+File: figs/comparison_synthetic_measurement_data.pdf Graphic file (type pdf)
+<use figs/comparison_synthetic_measurement_data.pdf>
+Package pdftex.def Info: figs/comparison_synthetic_measurement_data.pdf  used on input line 79.
+(pdftex.def)             Requested size: 231.60672pt x 136.23924pt.
+
+Overfull \hbox (21.05632pt too wide) in paragraph at lines 79--80
+ [][] 
+ []
+
+
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 77--88
+[][] []  
+ []
+
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 123.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 88.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[3 <./figs/comparison_synthetic_measurement_data.pdf>]
+<figs/GAN_illustration.jpg, id=106, 3983.5224pt x 1707.4992pt>
+File: figs/GAN_illustration.jpg Graphic file (type jpg)
+<use figs/GAN_illustration.jpg>
+Package pdftex.def Info: figs/GAN_illustration.jpg  used on input line 102.
+(pdftex.def)             Requested size: 210.5504pt x 90.22606pt.
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 106.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[4 <./figs/GAN_illustration.jpg>]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 116.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[5]
+File: figs/full_measurement_setup.pdf Graphic file (type pdf)
+<use figs/full_measurement_setup.pdf>
+Package pdftex.def Info: figs/full_measurement_setup.pdf  used on input line 125.
+(pdftex.def)             Requested size: 210.5504pt x 168.18498pt.
+
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 123--142
+[][] []  
+ []
+
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 143.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 Package fancyhdr Warning: \footskip is too small (10.2pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1156,7 +1180,7 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 [6]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 132.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 173.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1165,9 +1189,14 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
 [7]
+<figs/GAN_structure.png, id=141, 658.46pt x 282.05376pt>
+File: figs/GAN_structure.png Graphic file (type png)
+<use figs/GAN_structure.png>
+Package pdftex.def Info: figs/GAN_structure.png  used on input line 185.
+(pdftex.def)             Requested size: 126.33151pt x 54.11153pt.
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 142.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 188.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1175,32 +1204,7 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
-[8]
-<figs/comparison_synthetic_measurement_data.pdf, id=116, 614.295pt x 361.35pt>
-File: figs/comparison_synthetic_measurement_data.pdf Graphic file (type pdf)
-<use figs/comparison_synthetic_measurement_data.pdf>
-Package pdftex.def Info: figs/comparison_synthetic_measurement_data.pdf  used on input line 147.
-(pdftex.def)             Requested size: 252.65984pt x 148.62312pt.
-
-Overfull \hbox (42.10944pt too wide) in paragraph at lines 147--148
- [][] 
- []
-
-
-Overfull \hbox (3.91571pt too wide) in paragraph at lines 145--157
-[][] []  
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 157.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[9 <./figs/comparison_synthetic_measurement_data.pdf>]
+[8 <./figs/GAN_structure.png (PNG copy)>]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
 Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 202.
@@ -1211,10 +1215,31 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
-[10]
+[9]
+<figs/datasets_beamforming_example_synthetic.pdf, id=153, 578.16pt x 433.62pt>
+File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_synthetic.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 216.
+(pdftex.def)             Requested size: 142.12054pt x 106.58519pt.
+<figs/datasets_beamforming_example_measurement.pdf, id=154, 578.16pt x 433.62pt>
+File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_measurement.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 223.
+(pdftex.def)             Requested size: 142.12054pt x 106.58519pt.
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 215.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 230.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[10 <./figs/datasets_beamforming_example_synthetic.pdf> <./figs/datasets_beamforming_example_measurement.pdf>]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 274.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1225,7 +1250,7 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 [11]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 223.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 329.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1236,7 +1261,7 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 [12]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 243.
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 379.
 (pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
 
 
@@ -1245,238 +1270,6 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
 [13]
-<figs/samples_evals_wgangp.pdf, id=185, 722.7pt x 433.62pt>
-File: figs/samples_evals_wgangp.pdf Graphic file (type pdf)
-<use figs/samples_evals_wgangp.pdf>
-Package pdftex.def Info: figs/samples_evals_wgangp.pdf  used on input line 248.
-(pdftex.def)             Requested size: 252.65984pt x 151.59724pt.
-
-Overfull \hbox (42.10944pt too wide) in paragraph at lines 248--249
- [][] 
- []
-
-
-Overfull \hbox (3.91571pt too wide) in paragraph at lines 246--258
-[][] []  
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 258.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[14 <./figs/samples_evals_wgangp.pdf>]
-<figs/samples_evals_dB_wgangp.pdf, id=233, 614.295pt x 361.35pt>
-File: figs/samples_evals_dB_wgangp.pdf Graphic file (type pdf)
-<use figs/samples_evals_dB_wgangp.pdf>
-Package pdftex.def Info: figs/samples_evals_dB_wgangp.pdf  used on input line 263.
-(pdftex.def)             Requested size: 252.65984pt x 148.62312pt.
-
-Overfull \hbox (42.10944pt too wide) in paragraph at lines 263--264
- [][] 
- []
-
-
-Overfull \hbox (3.91571pt too wide) in paragraph at lines 261--271
-[][] []  
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 271.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[15 <./figs/samples_evals_dB_wgangp.pdf>]
-<figs/outliers_evals_dB_wgangp.pdf, id=279, 578.16pt x 433.62pt>
-File: figs/outliers_evals_dB_wgangp.pdf Graphic file (type pdf)
-<use figs/outliers_evals_dB_wgangp.pdf>
-Package pdftex.def Info: figs/outliers_evals_dB_wgangp.pdf  used on input line 276.
-(pdftex.def)             Requested size: 252.65984pt x 189.48993pt.
-
-Overfull \hbox (42.10944pt too wide) in paragraph at lines 276--277
- [][] 
- []
-
-
-Overfull \hbox (3.91571pt too wide) in paragraph at lines 274--284
-[][] []  
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 284.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[16 <./figs/outliers_evals_dB_wgangp.pdf>]
-<figs/beamforming_map_main_evec_wgangp_generated.pdf, id=306, 578.16pt x 433.62pt>
-File: figs/beamforming_map_main_evec_wgangp_generated.pdf Graphic file (type pdf)
-<use figs/beamforming_map_main_evec_wgangp_generated.pdf>
-Package pdftex.def Info: figs/beamforming_map_main_evec_wgangp_generated.pdf  used on input line 292.
-(pdftex.def)             Requested size: 202.12477pt x 151.59062pt.
-
-Overfull \hbox (33.68703pt too wide) in paragraph at lines 292--293
- [][] 
- []
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 300.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[17 <./figs/beamforming_map_main_evec_wgangp_generated.pdf>]
-<figs/datasets_beamforming_example_synthetic.pdf, id=343, 578.16pt x 433.62pt>
-File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
-<use figs/datasets_beamforming_example_synthetic.pdf>
-Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 308.
-(pdftex.def)             Requested size: 168.43774pt x 126.3222pt.
-<figs/datasets_beamforming_example_measurement.pdf, id=344, 578.16pt x 433.62pt>
-File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
-<use figs/datasets_beamforming_example_measurement.pdf>
-Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 313.
-(pdftex.def)             Requested size: 168.43774pt x 126.3222pt.
-<figs/data_augmentation_evals_augmented_csm.pdf, id=345, 578.16pt x 433.62pt>
-File: figs/data_augmentation_evals_augmented_csm.pdf Graphic file (type pdf)
-<use figs/data_augmentation_evals_augmented_csm.pdf>
-Package pdftex.def Info: figs/data_augmentation_evals_augmented_csm.pdf  used on input line 319.
-(pdftex.def)             Requested size: 168.43774pt x 126.3222pt.
-<figs/data_augmentation_evecs_augmented_csm.pdf, id=346, 578.16pt x 433.62pt>
-File: figs/data_augmentation_evecs_augmented_csm.pdf Graphic file (type pdf)
-<use figs/data_augmentation_evecs_augmented_csm.pdf>
-Package pdftex.def Info: figs/data_augmentation_evecs_augmented_csm.pdf  used on input line 324.
-(pdftex.def)             Requested size: 168.43774pt x 126.3222pt.
-
-Underfull \hbox (badness 3989) in paragraph at lines 306--327
-[][] [] 
- []
-
-
-LaTeX Warning: Float too large for page by 55.10538pt on input line 327.
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 328.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[18]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 328.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[19 <./figs/datasets_beamforming_example_synthetic.pdf> <./figs/datasets_beamforming_example_measurement.pdf> <./figs/data_augmentation_evals_augmented_csm.pdf> <./figs/data_augmentation_evecs_augmented_csm.pdf>]
-File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
-<use figs/datasets_beamforming_example_synthetic.pdf>
-Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 336.
-(pdftex.def)             Requested size: 157.9128pt x 118.42873pt.
-File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
-<use figs/datasets_beamforming_example_measurement.pdf>
-Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 343.
-(pdftex.def)             Requested size: 157.9128pt x 118.42873pt.
-File: figs/data_augmentation_evals_augmented_csm.pdf Graphic file (type pdf)
-<use figs/data_augmentation_evals_augmented_csm.pdf>
-Package pdftex.def Info: figs/data_augmentation_evals_augmented_csm.pdf  used on input line 350.
-(pdftex.def)             Requested size: 157.9128pt x 118.42873pt.
-File: figs/data_augmentation_evecs_augmented_csm.pdf Graphic file (type pdf)
-<use figs/data_augmentation_evecs_augmented_csm.pdf>
-Package pdftex.def Info: figs/data_augmentation_evecs_augmented_csm.pdf  used on input line 356.
-(pdftex.def)             Requested size: 157.9128pt x 118.42873pt.
-
-
-LaTeX Warning: Float too large for page by 29.51843pt on input line 359.
-
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 360.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[20]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 360.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[21]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 370.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[22]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 381.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[23]
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 387.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[24] (./slides.bbl
-LaTeX Font Info:    Font shape `T1/cmss/m/it' in size <12> not available
-(Font)              Font shape `T1/cmss/m/sl' tried instead on input line 27.
-)
-File: resources/isilogo_plain.pdf Graphic file (type pdf)
-<use resources/isilogo_plain.pdf>
-Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 393.
-(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
-
-
-Package fancyhdr Warning: \footskip is too small (10.2pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\footskip}{14.49998pt}.
-
-[25]
 File: resources/isilogo_plain.pdf Graphic file (type pdf)
 <use resources/isilogo_plain.pdf>
 Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 399.
@@ -1487,23 +1280,254 @@ Package fancyhdr Warning: \footskip is too small (10.2pt):
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\footskip}{14.49998pt}.
 
-[26] (./slides.aux)
+[14]
+<figs/samples_evals_wgangp.pdf, id=251, 722.7pt x 433.62pt>
+File: figs/samples_evals_wgangp.pdf Graphic file (type pdf)
+<use figs/samples_evals_wgangp.pdf>
+Package pdftex.def Info: figs/samples_evals_wgangp.pdf  used on input line 404.
+(pdftex.def)             Requested size: 252.65984pt x 151.59724pt.
+
+Overfull \hbox (42.10944pt too wide) in paragraph at lines 404--405
+ [][] 
+ []
+
+
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 402--413
+[][] []  
+ []
+
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 413.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[15 <./figs/samples_evals_wgangp.pdf>]
+<figs/samples_evals_dB_wgangp.pdf, id=298, 614.295pt x 361.35pt>
+File: figs/samples_evals_dB_wgangp.pdf Graphic file (type pdf)
+<use figs/samples_evals_dB_wgangp.pdf>
+Package pdftex.def Info: figs/samples_evals_dB_wgangp.pdf  used on input line 418.
+(pdftex.def)             Requested size: 252.65984pt x 148.62312pt.
+
+Overfull \hbox (42.10944pt too wide) in paragraph at lines 418--419
+ [][] 
+ []
+
+
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 416--426
+[][] []  
+ []
+
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 426.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[16 <./figs/samples_evals_dB_wgangp.pdf>]
+<figs/outliers_evals_dB_wgangp.pdf, id=344, 578.16pt x 433.62pt>
+File: figs/outliers_evals_dB_wgangp.pdf Graphic file (type pdf)
+<use figs/outliers_evals_dB_wgangp.pdf>
+Package pdftex.def Info: figs/outliers_evals_dB_wgangp.pdf  used on input line 431.
+(pdftex.def)             Requested size: 252.65984pt x 189.48993pt.
+
+Overfull \hbox (42.10944pt too wide) in paragraph at lines 431--432
+ [][] 
+ []
+
+
+Overfull \hbox (3.91571pt too wide) in paragraph at lines 429--439
+[][] []  
+ []
+
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 439.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[17 <./figs/outliers_evals_dB_wgangp.pdf>]
+<figs/beamforming_map_main_evec_wgangp_generated.pdf, id=371, 578.16pt x 433.62pt>
+File: figs/beamforming_map_main_evec_wgangp_generated.pdf Graphic file (type pdf)
+<use figs/beamforming_map_main_evec_wgangp_generated.pdf>
+Package pdftex.def Info: figs/beamforming_map_main_evec_wgangp_generated.pdf  used on input line 447.
+(pdftex.def)             Requested size: 202.12477pt x 151.59062pt.
+
+Overfull \hbox (33.68703pt too wide) in paragraph at lines 447--448
+ [][] 
+ []
+
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 456.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[18 <./figs/beamforming_map_main_evec_wgangp_generated.pdf>]
+File: figs/datasets_beamforming_example_synthetic.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_synthetic.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_synthetic.pdf  used on input line 464.
+(pdftex.def)             Requested size: 94.74702pt x 71.05458pt.
+File: figs/datasets_beamforming_example_measurement.pdf Graphic file (type pdf)
+<use figs/datasets_beamforming_example_measurement.pdf>
+Package pdftex.def Info: figs/datasets_beamforming_example_measurement.pdf  used on input line 471.
+(pdftex.def)             Requested size: 94.74702pt x 71.05458pt.
+<figs/data_augmentation_evals_augmented_csm.pdf, id=409, 578.16pt x 433.62pt>
+File: figs/data_augmentation_evals_augmented_csm.pdf Graphic file (type pdf)
+<use figs/data_augmentation_evals_augmented_csm.pdf>
+Package pdftex.def Info: figs/data_augmentation_evals_augmented_csm.pdf  used on input line 478.
+(pdftex.def)             Requested size: 94.74702pt x 71.05458pt.
+<figs/data_augmentation_evecs_augmented_csm.pdf, id=410, 578.16pt x 433.62pt>
+File: figs/data_augmentation_evecs_augmented_csm.pdf Graphic file (type pdf)
+<use figs/data_augmentation_evecs_augmented_csm.pdf>
+Package pdftex.def Info: figs/data_augmentation_evecs_augmented_csm.pdf  used on input line 484.
+(pdftex.def)             Requested size: 94.74702pt x 71.05458pt.
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 488.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[19]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 488.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[20 <./figs/data_augmentation_evals_augmented_csm.pdf> <./figs/data_augmentation_evecs_augmented_csm.pdf>]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 498.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[21]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 509.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[22]
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 515.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[23] (./slides.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 24.
+
+)
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 521.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[24]
+<figs/loss_evals_wgangp.pdf, id=504, 1228.59pt x 361.35pt>
+File: figs/loss_evals_wgangp.pdf Graphic file (type pdf)
+<use figs/loss_evals_wgangp.pdf>
+Package pdftex.def Info: figs/loss_evals_wgangp.pdf  used on input line 525.
+(pdftex.def)             Requested size: 421.1008pt x 123.85536pt.
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 526.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[25 <./figs/loss_evals_wgangp.pdf>]
+<figs/loss_evals_dB_wgangp.pdf, id=550, 1228.59pt x 361.35pt>
+File: figs/loss_evals_dB_wgangp.pdf Graphic file (type pdf)
+<use figs/loss_evals_dB_wgangp.pdf>
+Package pdftex.def Info: figs/loss_evals_dB_wgangp.pdf  used on input line 530.
+(pdftex.def)             Requested size: 421.1008pt x 123.85536pt.
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 531.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[26 <./figs/loss_evals_dB_wgangp.pdf>]
+<figs/loss_main_evec_wgangp.pdf, id=595, 1228.59pt x 361.35pt>
+File: figs/loss_main_evec_wgangp.pdf Graphic file (type pdf)
+<use figs/loss_main_evec_wgangp.pdf>
+Package pdftex.def Info: figs/loss_main_evec_wgangp.pdf  used on input line 535.
+(pdftex.def)             Requested size: 421.1008pt x 123.85536pt.
+File: resources/isilogo_plain.pdf Graphic file (type pdf)
+<use resources/isilogo_plain.pdf>
+Package pdftex.def Info: resources/isilogo_plain.pdf  used on input line 536.
+(pdftex.def)             Requested size: 17.82997pt x 11.38109pt.
+
+
+Package fancyhdr Warning: \footskip is too small (10.2pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\footskip}{14.49998pt}.
+
+[27 <./figs/loss_main_evec_wgangp.pdf>] (./slides.aux)
 Package rerunfilecheck Info: File `slides.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 38142 strings out of 478287
- 867699 string characters out of 5849289
- 1238759 words of memory out of 5000000
- 55571 multiletter control sequences out of 15000+600000
- 488529 words of font info for 76 fonts, out of 8000000 for 9000
+ 38124 strings out of 478287
+ 867498 string characters out of 5849289
+ 1243545 words of memory out of 5000000
+ 55545 multiletter control sequences out of 15000+600000
+ 487704 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,16n,94p,1040b,738s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1000.pfb>
-Output written on slides.pdf (27 pages, 508539 bytes).
+ 99i,16n,94p,829b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx1000.pfb>
+Output written on slides.pdf (28 pages, 2530486 bytes).
 PDF statistics:
- 604 PDF objects out of 1000 (max. 8388607)
- 313 compressed objects within 4 object streams
- 68 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 728 PDF objects out of 1000 (max. 8388607)
+ 343 compressed objects within 4 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
